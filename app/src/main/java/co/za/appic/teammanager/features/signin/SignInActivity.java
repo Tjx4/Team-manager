@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import co.za.appic.teammanager.R;
 import co.za.appic.teammanager.base.activities.BaseNoActionBarActivity;
 import co.za.appic.teammanager.di.components.AppComponent;
+import co.za.appic.teammanager.di.components.DaggerSignInComponent;
 import co.za.appic.teammanager.di.interfaces.DaggerActivity;
 import co.za.appic.teammanager.di.modules.SignInModule;
 import co.za.appic.teammanager.models.SupervisorModel;
@@ -27,12 +28,11 @@ public class SignInActivity extends BaseNoActionBarActivity implements DaggerAct
 
     @Override
     public void setupComponent(AppComponent appComponent) {
-        /*
+
         DaggerSignInComponent.builder().appComponent(appComponent)
-                .SignInModule(new SignInModule(this))
+                .signInModule(new SignInModule(this))
                 .build()
                 .inject(this);
-        */
     }
 
     @Override
