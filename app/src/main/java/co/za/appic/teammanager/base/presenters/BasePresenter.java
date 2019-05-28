@@ -1,4 +1,5 @@
 package co.za.appic.teammanager.base.presenters;
 
-public class BasePresenter {
+public abstract class BasePresenter {
+    public abstract void handleBackButtonPressed();
 }
