@@ -18,6 +18,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected DialogFragmentHelper dialogFragmentHelper;
     protected NotificationHelper notificationHelper;
     protected TransitionHelper transitionHelper;
+    protected boolean isNewActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,8 +35,10 @@ public abstract class BaseActivity extends AppCompatActivity {
         } catch (Exception e) {
 
         }
+
+        isNewActivity = true;
     }
 
     protected abstract void setBaseActivityDependencies();
-
+    protected void initViews() { }
 }
