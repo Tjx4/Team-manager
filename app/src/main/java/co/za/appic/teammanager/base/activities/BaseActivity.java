@@ -15,6 +15,7 @@ import co.za.appic.teammanager.base.presenters.BasePresenter;
 import co.za.appic.teammanager.constants.Constants;
 import co.za.appic.teammanager.helpers.DialogFragmentHelper;
 import co.za.appic.teammanager.helpers.PermissionsHelper;
+import co.za.appic.teammanager.helpers.TransitionHelper;
 
 public abstract class BaseActivity extends AppCompatActivity {
 
@@ -72,4 +73,26 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
     }
 
+    protected TransitionHelper slideInActivity() {
+        return getTransitionAnimation(R.anim.slide_right, R.anim.no_transition);
+    }
+
+    protected TransitionHelper slideOutActivity() {
+        return getTransitionAnimation(R.anim.no_transition, R.anim.slide_left);
+    }
+
+    protected TransitionHelper fadeInActivity() {
+        return getTransitionAnimation(R.anim.fade_in, R.anim.no_transition);
+    }
+
+    public TransitionHelper fadeOutActivity() {
+        return getTransitionAnimation(R.anim.no_transition, R.anim.fade_out);
+    }
+
+    private TransitionHelper getTransitionAnimation(int inAnimation, int outAnimation) {
+        TransitionHelper transitionProvider = new TransitionHelper();
+        transitionProvider.setInAnimation(inAnimation);
+        transitionProvider.setOutAnimation(outAnimation);
+        return transitionProvider;
+    }
 }
