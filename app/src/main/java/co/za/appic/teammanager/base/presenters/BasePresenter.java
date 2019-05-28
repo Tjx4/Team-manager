@@ -1,5 +1,16 @@
 package co.za.appic.teammanager.base.presenters;
 
+import co.za.appic.teammanager.base.views.BaseView;
+
 public abstract class BasePresenter {
-    public abstract void handleBackButtonPressed();
+
+    private BaseView baseView;
+
+    public BasePresenter(BaseView baseView) {
+        this.baseView = baseView;
+    }
+
+    public void handleBackButtonPressed(){
+
+    }
 }
