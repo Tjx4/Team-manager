@@ -4,6 +4,8 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
 
+    <color name="splashBackgroundColor">#FFF</color>
+
     <color name="lightText">#AAA</color>
     <color name="lighterText">#CCC</color>
     <color name="lightestText">#FFF</color>

@@ -21,10 +21,11 @@
         </activity>
         <activity android:name=".features.history.HistoryActivity" />
         <activity android:name=".features.dashboard.DashboardActivity" />
-        <activity android:name=".features.splash.SplashActivity">
+
+        <activity android:name=".features.splash.SplashActivity"
+                  android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
