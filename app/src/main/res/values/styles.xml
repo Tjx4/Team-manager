@@ -31,23 +31,36 @@
     <style name="teamManagerEditText">
         <item name="android:background">@drawable/def_edittext_background</item>
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
         <item name="android:paddingLeft">@dimen/small_view_padding</item>
         <item name="android:paddingRight">@dimen/small_view_padding</item>
     </style>
     <style name="mediumEditText" parent="teamManagerEditText">
         <item name="android:textSize">@dimen/medium_text_size</item>
+        <item name="android:layout_height">@dimen/medium_view_height</item>
+    </style>
+    <style name="mediumLightEditText" parent="mediumEditText">
+        <item name="android:background">@drawable/light_edittext_background</item>
+        <item name="android:textColor">@color/lightestText</item>
+    </style>
+    <style name="mediumDarkEditText" parent="mediumEditText">
+        <item name="android:background">@drawable/dark_edittext_background</item>
+        <item name="android:textColor">@color/darkestText</item>
     </style>
 
     <style name="teamManagerButton">
         <item name="android:background">@drawable/def_button_background</item>
-        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:paddingLeft">@dimen/small_view_padding</item>
         <item name="android:paddingRight">@dimen/small_view_padding</item>
     </style>
     <style name="mediumTeamManagerButton" parent="teamManagerButton">
         <item name="android:textSize">@dimen/medium_text_size</item>
+        <item name="android:layout_height">@dimen/medium_view_height</item>
+    </style>
+    <style name="mediumGreenButton" parent="mediumTeamManagerButton">
+        <item name="android:background">@drawable/green_button_background</item>
+        <item name="android:textColor">@color/lightestText</item>
     </style>
 
     <style name="DialogTheme">
