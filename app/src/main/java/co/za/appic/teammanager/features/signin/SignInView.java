@@ -6,7 +6,7 @@ import co.za.appic.teammanager.models.SupervisorModel;
 import co.za.appic.teammanager.models.WorkerModel;
 
 public interface SignInView extends BaseView {
-    SigninPresenter getPresenter();
+    SignInPresenter getPresenter();
     void onLoginButtonClicked(View view);
     void onCreateNewAccountClicked(View view);
     void enterAppAsSupervisor(SupervisorModel supervisor);

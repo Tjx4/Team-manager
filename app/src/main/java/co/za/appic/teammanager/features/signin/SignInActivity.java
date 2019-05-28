@@ -6,13 +6,16 @@ import android.widget.EditText;
 import javax.inject.Inject;
 import co.za.appic.teammanager.R;
 import co.za.appic.teammanager.base.activities.BaseNoActionBarActivity;
+import co.za.appic.teammanager.di.components.AppComponent;
+import co.za.appic.teammanager.di.interfaces.DaggerActivity;
+import co.za.appic.teammanager.di.modules.SignInModule;
 import co.za.appic.teammanager.models.SupervisorModel;
 import co.za.appic.teammanager.models.WorkerModel;
 
-public class SignInActivity extends BaseNoActionBarActivity implements SignInView {
+public class SignInActivity extends BaseNoActionBarActivity implements DaggerActivity, SignInView {
 
     @Inject
-    ISigninPresenter signInPresenter;
+    ISignInPresenter signInPresenter;
 
     private EditText usernameTxt;
     private EditText passwordTxt;
@@ -20,6 +23,16 @@ public class SignInActivity extends BaseNoActionBarActivity implements SignInVie
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    public void setupComponent(AppComponent appComponent) {
+        /*
+        DaggerSignInComponent.builder().appComponent(appComponent)
+                .SignInModule(new SignInModule(this))
+                .build()
+                .inject(this);
+        */
     }
 
     @Override
@@ -35,8 +48,8 @@ public class SignInActivity extends BaseNoActionBarActivity implements SignInVie
     }
 
     @Override
-    public SigninPresenter getPresenter() {
-        return (SigninPresenter) signInPresenter;
+    public SignInPresenter getPresenter() {
+        return (SignInPresenter) signInPresenter;
     }
 
     @Override
