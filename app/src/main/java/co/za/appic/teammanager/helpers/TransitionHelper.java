@@ -26,15 +26,15 @@ public class TransitionHelper {
         this.outAnimation = outAnimation;
     }
 
-    protected TransitionHelper slideInActivity() {
+    public TransitionHelper slideInActivity() {
         return getTransitionAnimation(R.anim.slide_right, R.anim.no_transition);
     }
 
-    protected TransitionHelper slideOutActivity() {
+    public TransitionHelper slideOutActivity() {
         return getTransitionAnimation(R.anim.no_transition, R.anim.slide_left);
     }
 
-    protected TransitionHelper fadeInActivity() {
+    public TransitionHelper fadeInActivity() {
         return getTransitionAnimation(R.anim.fade_in, R.anim.no_transition);
     }
 

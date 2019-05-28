@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import javax.inject.Inject;
+
+import co.za.appic.teammanager.MyApplication;
 import co.za.appic.teammanager.R;
 import co.za.appic.teammanager.base.activities.BaseNoActionBarActivity;
 import co.za.appic.teammanager.di.components.AppComponent;
@@ -28,7 +30,6 @@ public class SignInActivity extends BaseNoActionBarActivity implements DaggerAct
 
     @Override
     public void setupComponent(AppComponent appComponent) {
-
         DaggerSignInComponent.builder().appComponent(appComponent)
                 .signInModule(new SignInModule(this))
                 .build()

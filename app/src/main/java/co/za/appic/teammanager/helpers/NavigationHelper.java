@@ -21,7 +21,7 @@ public class NavigationHelper {
         goToActivity(activityFrom, activity, transitionAnimation, null);
     }
 
-    protected void goToActivityWithPayload(Context activityFrom, Class activity, Bundle payload, TransitionHelper transitionAnimation) {
+    protected static void goToActivityWithPayload(Context activityFrom, Class activity, Bundle payload, TransitionHelper transitionAnimation) {
         goToActivity(activityFrom, activity, transitionAnimation, payload);
     }
 
