@@ -10,10 +10,12 @@
     <style name="SplashTheme" parent="TeamManagerNoActionBarTheme">
         <item name="android:background">@drawable/splash_background</item>
     </style>
-    <style name="NoActionBarStyle">
+
+    <style name="NoActionBarTheme" parent="AppTheme">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
+
     <style name="teamManagerTextView">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
@@ -30,6 +32,9 @@
     <style name="smallLabel" parent="teamManagerTextView">
         <item name="android:textSize">@dimen/small_text_size</item>
     </style>
+    <style name="smallWhiteLabel" parent="smallLabel">
+        <item name="android:textColor">@color/lightestText</item>
+    </style>
 
     <style name="teamManagerEditText">
         <item name="android:background">@drawable/def_edittext_background</item>
@@ -44,6 +49,7 @@
     <style name="mediumLightEditText" parent="mediumEditText">
         <item name="android:background">@drawable/light_edittext_background</item>
         <item name="android:textColor">@color/lightestText</item>
+        <item name="android:textColorHint">@color/lightText</item>
     </style>
     <style name="mediumDarkEditText" parent="mediumEditText">
         <item name="android:background">@drawable/dark_edittext_background</item>
