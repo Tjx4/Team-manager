@@ -12,7 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".features.signin.SignInActivity"></activity>
+        <activity android:name=".features.signin.SignInActivity"
+            android:theme="@style/NoActionBarStyle"
+            android:windowSoftInputMode="adjustPan" />
         <activity android:name=".features.registration.RegistrationActivity" />
         <activity android:name=".features.newtask.NewTaskActivity">
             <meta-data

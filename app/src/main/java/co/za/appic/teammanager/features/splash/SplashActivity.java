@@ -3,7 +3,6 @@ package co.za.appic.teammanager.features.splash;
 import android.os.Bundle;
 import android.widget.ImageView;
 import javax.inject.Inject;
-import co.za.appic.teammanager.R;
 import co.za.appic.teammanager.base.activities.BaseAsyncActivity;
 import co.za.appic.teammanager.di.components.AppComponent;
 import co.za.appic.teammanager.di.components.DaggerSplashComponent;
@@ -15,8 +14,6 @@ public class SplashActivity extends BaseAsyncActivity implements SplashView {
 
     @Inject
     ISplashPresenter splashPresenter;
-    private ImageView logoImg;
-    private AppComponent appComponent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,8 +51,6 @@ public class SplashActivity extends BaseAsyncActivity implements SplashView {
 
     @Override
     protected void setBaseActivityDependencies() {
-        //setContentView(R.layout.activity_splash);
-        //initViews();
     }
 
     @Override

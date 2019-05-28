@@ -1,11 +1,10 @@
 package co.za.appic.teammanager.features.signin;
 
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 import javax.inject.Inject;
-
-import co.za.appic.teammanager.MyApplication;
 import co.za.appic.teammanager.R;
 import co.za.appic.teammanager.base.activities.BaseNoActionBarActivity;
 import co.za.appic.teammanager.di.components.AppComponent;
@@ -72,5 +71,15 @@ public class SignInActivity extends BaseNoActionBarActivity implements DaggerAct
     public void enterAppAsWorker(WorkerModel worker) {
 
     }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == android.view.KeyEvent.KEYCODE_BACK) {
+            moveTaskToBack(true);
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
 
 }
