@@ -1,11 +1,47 @@
 <resources>
-
-    <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="teamManagerTextView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+    <style name="xlargeLabel" parent="teamManagerTextView">
+        <item name="android:textSize">@dimen/xlarge_text_size</item>
+    </style>
+    <style name="largeLabel" parent="teamManagerTextView">
+        <item name="android:textSize">@dimen/large_text_size</item>
+    </style>
+    <style name="mediumLabel" parent="teamManagerTextView">
+        <item name="android:textSize">@dimen/medium_text_size</item>
+    </style>
+    <style name="smallLabel" parent="teamManagerTextView">
+        <item name="android:textSize">@dimen/small_text_size</item>
+    </style>
+
+    <style name="teamManagerEditText">
+        <item name="android:background">@drawable/def_edittext_background</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingLeft">@dimen/small_view_padding</item>
+        <item name="android:paddingRight">@dimen/small_view_padding</item>
+    </style>
+    <style name="mediumEditText" parent="teamManagerEditText">
+        <item name="android:textSize">@dimen/medium_text_size</item>
+    </style>
+
+    <style name="teamManagerButton">
+        <item name="android:background">@drawable/def_button_background</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingLeft">@dimen/small_view_padding</item>
+        <item name="android:paddingRight">@dimen/small_view_padding</item>
+    </style>
+    <style name="mediumTeamManagerButton" parent="teamManagerButton">
+        <item name="android:textSize">@dimen/medium_text_size</item>
     </style>
 
 </resources>
