@@ -17,7 +17,7 @@ public abstract class BaseActivity extends AppCompatActivity implements DaggerAc
     protected Context context;
     protected BasePresenter presenter;
     protected PermissionsHelper permissionsHelper;
-    protected DialogFragmentHelper dialogFragmentHelper;
+    protected DialogFragmentHelper dialogFragment;
     protected NotificationHelper notificationHelper;
     protected TransitionHelper transitionHelper;
     protected boolean isNewActivity;

@@ -29,6 +29,9 @@
     <style name="mediumLabel" parent="teamManagerTextView">
         <item name="android:textSize">@dimen/medium_text_size</item>
     </style>
+    <style name="mediumWhiteLabel" parent="mediumLabel">
+        <item name="android:textColor">@color/lightestText</item>
+    </style>
     <style name="smallLabel" parent="teamManagerTextView">
         <item name="android:textSize">@dimen/small_text_size</item>
     </style>
