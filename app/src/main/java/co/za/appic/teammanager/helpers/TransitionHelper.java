@@ -30,7 +30,7 @@ public class TransitionHelper {
     }
 
     public TransitionHelper slideOutActivity() {
-        return getTransitionAnimation(R.anim.no_transition, R.anim.slide_left);
+        return getTransitionAnimation(R.anim.slide_left, R.anim.no_transition);
     }
 
     public TransitionHelper fadeInActivity() {

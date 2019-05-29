@@ -1,6 +1,7 @@
 package co.za.appic.teammanager.features.registration;
 
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
@@ -32,6 +33,7 @@ public class RegistrationActivity extends BaseActionBarActivity implements Regis
     protected void setActionbarActivityDependencies() {
         currentActionBar.setTitle(context.getString(R.string.create_account_message));
         currentActionBar.setIcon(R.drawable.ic_register_light);
+        currentActionBar.setLogo(R.drawable.ic_register_light);
         currentActionBar.setDisplayUseLogoEnabled(true);
     }
 
@@ -71,6 +73,11 @@ public class RegistrationActivity extends BaseActionBarActivity implements Regis
     public void hideLoader() {
         hideLoadingDialog();
     }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.registration_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -80,7 +87,7 @@ public class RegistrationActivity extends BaseActionBarActivity implements Regis
 
         switch (itemId){
             case R.id.action_go_to_login:
-                NavigationHelper.goToActivityWithNoPayload(this, SignInActivity.class, transitionHelper.slideInActivity());
+                NavigationHelper.goToActivityWithNoPayload(this, SignInActivity.class, transitionHelper.slideOutActivity());
                 break;
         }
         return true;
