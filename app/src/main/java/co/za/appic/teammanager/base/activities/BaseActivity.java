@@ -1,11 +1,12 @@
 package co.za.appic.teammanager.base.activities;
 
 import android.content.Context;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
-
 import co.za.appic.teammanager.MyApplication;
 import co.za.appic.teammanager.base.presenters.BasePresenter;
 import co.za.appic.teammanager.constants.Constants;
@@ -51,5 +52,35 @@ public abstract class BaseActivity extends AppCompatActivity implements DaggerAc
     protected void showValidationError(TextView errorTv, String errorMessage) {
         errorTv.setVisibility(View.VISIBLE);
         errorTv.setText(errorMessage);
+
+        View preView = getPrevView(errorTv);
+
+        if(preView == null)
+            return;
+
+        final Rect rect = new Rect(0, 0, preView.getWidth(), preView.getHeight());
+        preView.requestRectangleOnScreen(rect, false);
+        // preView.requestFocus();
+        // preView.getParent().requestChildFocus(errorTv, errorTv);
+    }
+
+    private View getPrevView(View triggerView){
+        View preView = null;
+
+        try {
+            ViewGroup vg = (ViewGroup)triggerView.getParent();
+            for (int itemPos = 0; itemPos < vg.getChildCount(); itemPos++) {
+                View view = vg.getChildAt(itemPos);
+                if (triggerView.equals(view)) {
+                    int vIndx = itemPos - 1;
+                    preView = vg.getChildAt(vIndx);
+                    break;
+                }
+            }
+        }
+        catch (Exception e){
+
+        }
+        return preView;
     }
 }

@@ -76,13 +76,24 @@ public class RegistrationActivity extends BaseActionBarActivity implements Regis
 
     @Override
     public void onRegisterButtonClicked(View view) {
+        hideValidationLabels();
+
         String name = nameTxt.getText().toString();
         String surName = surNameTxt.getText().toString();
-        String email = passwordTxt.getText().toString();
-        String password = emailTxt.getText().toString();
+        String email = emailTxt.getText().toString();
+        String password = passwordTxt.getText().toString();
         String confirmedPassword = confirmPasswordTxt.getText().toString();
 
         getPresenter().registerNewUser(name, surName, email, password, confirmedPassword);
+    }
+
+    @Override
+    public void hideValidationLabels() {
+        nameErrorTv.setVisibility(View.INVISIBLE);
+        surnameErrorTv.setVisibility(View.INVISIBLE);
+        emailErrorTv.setVisibility(View.INVISIBLE);
+        passwordErrorTv.setVisibility(View.INVISIBLE);
+        confirmPasswordErrorTv.setVisibility(View.INVISIBLE);
     }
 
     @Override
@@ -128,6 +139,11 @@ public class RegistrationActivity extends BaseActionBarActivity implements Regis
     @Override
     public void showRegisterError() {
         notificationHelper.showErrorDialog(context.getString(R.string.register_error), context.getString(R.string.register_error_message));
+    }
+
+    @Override
+    public void showRegisterSuccessDialog(String name) {
+        // show
     }
 
     @Override

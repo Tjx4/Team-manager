@@ -8,9 +8,11 @@ public interface RegistrationView extends BaseView {
     RegistrationPresenter getPresenter();
     void showRegisteringDialog();
     void showRegisterError();
+    void showRegisterSuccessDialog(String name);
     void showInvalidName();
     void showInvalidSurname();
     void showInvalidEmail();
     void showInvalidPassword();
     void showInvalidConfirmPassword();
+    void hideValidationLabels();
 }

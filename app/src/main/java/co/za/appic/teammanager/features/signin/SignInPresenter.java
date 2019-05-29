@@ -5,7 +5,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
 import co.za.appic.teammanager.R;
 import co.za.appic.teammanager.base.presenters.BaseFirebaseAuthPresenter;
 import co.za.appic.teammanager.helpers.StringValidationHelper;
@@ -52,7 +51,7 @@ public class SignInPresenter extends BaseFirebaseAuthPresenter implements ISignI
     @Override
     protected void onFirebaseSignInFailure() {
         super.onFirebaseSignInFailure();
-        signInView.showSignInError();
+        signInView.showSignInError(context.getString(R.string.signin_error), context.getString(R.string.signin_error_message));
     }
 
     private void fetchCurrentWorker(final String clientId) {

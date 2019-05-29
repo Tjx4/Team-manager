@@ -1,9 +1,9 @@
 package co.za.appic.teammanager.features.registration;
 
-import co.za.appic.teammanager.R;
+import com.google.firebase.database.DatabaseReference;
 import co.za.appic.teammanager.base.presenters.BaseFirebaseAuthPresenter;
 import co.za.appic.teammanager.enums.UserType;
-import co.za.appic.teammanager.features.signin.SignInActivity;
+import co.za.appic.teammanager.helpers.StringHelper;
 import co.za.appic.teammanager.helpers.StringValidationHelper;
 import co.za.appic.teammanager.models.SupervisorModel;
 import co.za.appic.teammanager.models.UserModel;
@@ -17,6 +17,7 @@ public class RegistrationPresenter extends BaseFirebaseAuthPresenter implements 
     public RegistrationPresenter(RegistrationView registrationView) {
         super(registrationView);
         this.registrationView = registrationView;
+        newUser = new UserModel();
     }
 
     @Override
@@ -24,40 +25,44 @@ public class RegistrationPresenter extends BaseFirebaseAuthPresenter implements 
         if(isBusy)
             return;
 
-        newUser = new UserModel();
-        newUser.setName(name);
-        newUser.setSurname(surname);
-        newUser.setEmail(email);
+        boolean isValidName = StringValidationHelper.isValidName(name);
 
-        boolean isValidName = StringValidationHelper.isValidName(name.trim());
-
-        if(isValidName){
+        if(!isValidName){
             registrationView.showInvalidName();
+            return;
         }
 
-        boolean isValidSurname = StringValidationHelper.isValidName(surname.trim());
+        boolean isValidSurname = StringValidationHelper.isValidName(surname);
 
-        if(isValidSurname){
+        if(!isValidSurname){
             registrationView.showInvalidSurname();
+            return;
         }
 
-        boolean isValidEmail = StringValidationHelper.isValidEmail(email.trim());
+        boolean isValidEmail = StringValidationHelper.isValidEmail(email);
 
-        if(isValidEmail){
+        if(!isValidEmail){
             registrationView.showInvalidEmail();
+            return;
         }
 
-        boolean isValidPassword = StringValidationHelper.isValidPassword(password.trim());
+        boolean isValidPassword = StringValidationHelper.isValidPassword(password);
 
-        if(isValidPassword){
+        if(!isValidPassword){
             registrationView.showInvalidPassword();
+            return;
         }
 
         boolean isPasswordConfirmed = StringValidationHelper.isMatchPasswords(password, confirmedPassword);
 
-        if(isPasswordConfirmed){
+        if(!isPasswordConfirmed){
             registrationView.showInvalidConfirmPassword();
+            return;
         }
+
+        newUser.setName(name);
+        newUser.setSurname(surname);
+        newUser.setEmail(email);
 
         registrationView.showRegisteringDialog();
         registerUserOnFireBase(email, password, (RegistrationActivity)registrationView);
@@ -75,6 +80,8 @@ public class RegistrationPresenter extends BaseFirebaseAuthPresenter implements 
                 addSupervisorToDB((SupervisorModel) newUser);
                 break;
         }
+
+        registrationView.showRegisterSuccessDialog(newUser.getName());
     }
 
     @Override
@@ -84,11 +91,37 @@ public class RegistrationPresenter extends BaseFirebaseAuthPresenter implements 
 
     @Override
     public void addSupervisorToDB(SupervisorModel supervisor) {
+        String supervisorEmployeeId = StringHelper.getSupervisorEmployeeId();
+        supervisor.setEmployeeId(supervisorEmployeeId);
 
+        DatabaseReference clientDbRef =  firebaseDatabase.getReference("supervisors");
+        DatabaseReference user = clientDbRef.child(supervisorEmployeeId);
+        user.setValue(supervisorEmployeeId);
+
+        addCommonData(supervisor, user);
     }
 
     @Override
     public void addWorkerToDB(WorkerModel worker) {
+        String workerEmployeeId = StringHelper.getWorkerEmployeeId();
+        worker.setEmployeeId(workerEmployeeId);
 
+        DatabaseReference clientDbRef =  firebaseDatabase.getReference("supervisors");
+        DatabaseReference user = clientDbRef.child(workerEmployeeId);
+        user.setValue(workerEmployeeId);
+
+        addCommonData(worker, user);
+
+        DatabaseReference name = user.child("teams");
+        name.setValue(true);
+    }
+
+    private void addCommonData(UserModel newUser, DatabaseReference dbUserRef) {
+        DatabaseReference name = dbUserRef.child("name");
+        name.setValue(newUser.getName());
+        DatabaseReference surname = dbUserRef.child("surname");
+        surname.setValue(newUser.getSurname());
+        DatabaseReference email = dbUserRef.child("email");
+        email.setValue(newUser.getEmail());
     }
 }

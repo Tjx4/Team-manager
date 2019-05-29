@@ -89,14 +89,15 @@ public class SignInActivity extends BaseNoActionBarActivity implements DaggerAct
         NavigationHelper.goToActivityWithPayload(this, DashboardActivity.class, payload, transitionHelper.slideInActivity());
     }
 
+
     @Override
-    public void showSignInError() {
-        notificationHelper.showErrorDialog(context.getString(R.string.signin_error), context.getString(R.string.signin_error_message));
+    public void showSignInError(String title, String message) {
+        notificationHelper.showErrorDialog(title, message);
     }
 
     @Override
     public void showInvalidUsername() {
-        showValidationError(usernameErrorTv, context.getString(R.string.invalid_username_message));
+        showValidationError(usernameErrorTv, getString(R.string.invalid_username_message));
     }
 
     @Override
