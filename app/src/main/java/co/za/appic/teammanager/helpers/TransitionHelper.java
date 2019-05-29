@@ -30,7 +30,15 @@ public class TransitionHelper {
     }
 
     public TransitionHelper slideOutActivity() {
-        return getTransitionAnimation(R.anim.slide_left, R.anim.no_transition);
+        return getTransitionAnimation(R.anim.fade_in , R.anim.slide_out);
+    }
+
+    public TransitionHelper transitionInActivity() {
+        return getTransitionAnimation(R.anim.slide_out, R.anim.slide_in);
+    }
+
+    public TransitionHelper transitionOutActivity() {
+        return getTransitionAnimation(R.anim.slide_in, R.anim.slide_out);
     }
 
     public TransitionHelper fadeInActivity() {

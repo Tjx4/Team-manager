@@ -31,10 +31,10 @@ public class RegistrationActivity extends BaseActionBarActivity implements Regis
 
     @Override
     protected void setActionbarActivityDependencies() {
-        currentActionBar.setTitle(context.getString(R.string.create_account_message));
-        currentActionBar.setIcon(R.drawable.ic_register_light);
+        currentActionBar.setTitle(" "+context.getString(R.string.create_account_message));
         currentActionBar.setLogo(R.drawable.ic_register_light);
         currentActionBar.setDisplayUseLogoEnabled(true);
+        currentActionBar.setDisplayShowHomeEnabled(true);
     }
 
     @Override
