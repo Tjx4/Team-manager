@@ -11,4 +11,6 @@ public interface SignInView extends BaseView {
     void onCreateNewAccountClicked(View view);
     void enterAppAsSupervisor(SupervisorModel supervisor);
     void enterAppAsWorker(WorkerModel worker);
+    void showInvalidUsername(String message);
+    void showInvalidPassword(String message);
 }

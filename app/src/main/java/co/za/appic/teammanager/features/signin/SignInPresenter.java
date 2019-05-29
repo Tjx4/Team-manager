@@ -1,8 +1,5 @@
 package co.za.appic.teammanager.features.signin;
 
-import android.content.Context;
-import android.support.v7.app.AppCompatActivity;
-
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -10,6 +7,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import co.za.appic.teammanager.R;
 import co.za.appic.teammanager.base.presenters.BaseAsyncPresenter;
+import co.za.appic.teammanager.helpers.StringValidationHelper;
 import co.za.appic.teammanager.models.SupervisorModel;
 import co.za.appic.teammanager.models.WorkerModel;
 
@@ -24,7 +22,20 @@ public class SignInPresenter extends BaseAsyncPresenter implements ISignInPresen
 
     @Override
     public void SignInUser(String username, String password) {
-        signInUserOnFirebase(username, password, (SignInActivity)signInView);
+        boolean isValidUsername = StringValidationHelper.isValidSurname(username.trim());
+        boolean isValidPassword = !password.trim().isEmpty();
+
+        if(isValidUsername){
+            if(isValidPassword){
+                signInUserOnFirebase(username, password, (SignInActivity)signInView);
+            }
+            else {
+                signInView.showInvalidPassword(context.getString(R.string.signin_error));
+            }
+        }
+        else {
+            signInView.showInvalidUsername(context.getString(R.string.signin_error));
+        }
     }
     @Override
     protected void onFirebaseSignInSuccessfull() {
