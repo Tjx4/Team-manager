@@ -74,11 +74,16 @@
         <item name="android:paddingRight">@dimen/small_view_padding</item>
     </style>
     <style name="mediumTeamManagerButton" parent="teamManagerButton">
+        <item name="android:textAllCaps">false</item>
         <item name="android:textSize">@dimen/medium_text_size</item>
         <item name="android:layout_height">@dimen/medium_view_height</item>
     </style>
     <style name="mediumGreenButton" parent="mediumTeamManagerButton">
         <item name="android:background">@drawable/green_button_background</item>
+        <item name="android:textColor">@color/lightestText</item>
+    </style>
+    <style name="lightLabelButton" parent="mediumTeamManagerButton">
+        <item name="android:background">@android:color/transparent</item>
         <item name="android:textColor">@color/lightestText</item>
     </style>
 

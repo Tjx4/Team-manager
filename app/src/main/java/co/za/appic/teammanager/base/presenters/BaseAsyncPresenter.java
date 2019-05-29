@@ -6,7 +6,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
-
 import co.za.appic.teammanager.base.activities.BaseActivity;
 import co.za.appic.teammanager.base.views.BaseView;
 import co.za.appic.teammanager.helpers.StringValidationHelper;
@@ -75,9 +74,6 @@ public abstract class BaseAsyncPresenter extends BasePresenter {
     }
 
     protected void setCommonUserDetails(DataSnapshot chatSnapshot, UserModel user) {
-       if(user == null)
-           return;
-
         String name = chatSnapshot.child("name").getValue().toString();
         user.setName(name);
         String surname = chatSnapshot.child("surname").getValue().toString();

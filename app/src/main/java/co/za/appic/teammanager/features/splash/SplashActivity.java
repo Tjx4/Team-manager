@@ -60,4 +60,9 @@ public class SplashActivity extends BaseAsyncActivity implements SplashView {
     public SplashPresenter getPresenter() {
         return (SplashPresenter)splashPresenter;
     }
+
+    @Override
+    public void hideLoader() {
+
+    }
 }
