@@ -6,8 +6,6 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
-import java.util.ArrayList;
-import java.util.List;
 import javax.inject.Inject;
 import co.za.appic.teammanager.R;
 import co.za.appic.teammanager.base.activities.BaseNoActionBarActivity;
@@ -19,7 +17,6 @@ import co.za.appic.teammanager.di.modules.SignInModule;
 import co.za.appic.teammanager.features.dashboard.DashboardActivity;
 import co.za.appic.teammanager.features.registration.RegistrationActivity;
 import co.za.appic.teammanager.helpers.NavigationHelper;
-import co.za.appic.teammanager.helpers.StringHelper;
 import co.za.appic.teammanager.models.SupervisorModel;
 import co.za.appic.teammanager.models.WorkerModel;
 

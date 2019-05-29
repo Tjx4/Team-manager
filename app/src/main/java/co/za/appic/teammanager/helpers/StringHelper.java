@@ -1,10 +1,14 @@
 package co.za.appic.teammanager.helpers;
 
+import android.util.Log;
+
 import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.Formatter;
+import java.util.List;
 import java.util.Random;
 import java.util.UUID;
 
@@ -61,6 +65,33 @@ public class StringHelper {
         String uniqueString = UUID.randomUUID().toString();
         return uniqueString;
     }
+
+private static void testForDups() {
+
+    List workerIids = new ArrayList();
+    List superviseorIds = new ArrayList();
+
+    for(int i = 1; i < 100; ++i){
+        String workerId = StringHelper.getWorkerEmployeeId();
+        String superVisorId = StringHelper.getSupervisorEmployeeId();
+
+        Log.i("SS", "worker "+i+") "+workerId);
+        Log.i("SS", "Supervisor "+i+") "+superVisorId);
+
+        workerIids.add(workerId);
+        superviseorIds.add(superVisorId);
+
+
+        if(workerIids.contains(workerId)){
+            Log.i("SS", "----------------------> workerId Dup "+workerId+"/"+workerId);
+        }
+
+        if(superviseorIds.contains(superVisorId)){
+            Log.i("SS", "----------------------> Supervisor Dup "+superVisorId+"/"+superVisorId);
+        }
+
+    }
+}
 
     private static String getEmployeeId() {
         Random random = new Random(System.nanoTime());
