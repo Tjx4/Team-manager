@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="co.za.appic.teammanager">
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
 
@@ -12,7 +13,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".features.signin.SignInActivity"
+        <activity android:name=".features.pending.PendingRegActivity"></activity>
+        <activity
+            android:name=".features.signin.SignInActivity"
             android:theme="@style/NoActionBarTheme"
             android:windowSoftInputMode="adjustPan" />
         <activity android:name=".features.registration.RegistrationActivity" />
@@ -23,11 +26,12 @@
         </activity>
         <activity android:name=".features.history.HistoryActivity" />
         <activity android:name=".features.dashboard.DashboardActivity" />
-
-        <activity android:name=".features.splash.SplashActivity"
-                  android:theme="@style/SplashTheme">
+        <activity
+            android:name=".features.splash.SplashActivity"
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

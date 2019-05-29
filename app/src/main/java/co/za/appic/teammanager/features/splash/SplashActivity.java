@@ -1,12 +1,14 @@
 package co.za.appic.teammanager.features.splash;
 
 import android.os.Bundle;
-import android.widget.ImageView;
 import javax.inject.Inject;
 import co.za.appic.teammanager.base.activities.BaseAsyncActivity;
 import co.za.appic.teammanager.di.components.AppComponent;
 import co.za.appic.teammanager.di.components.DaggerSplashComponent;
 import co.za.appic.teammanager.di.modules.SplashModule;
+import co.za.appic.teammanager.enums.UserStatus;
+import co.za.appic.teammanager.features.pending.PendingRegActivity;
+import co.za.appic.teammanager.features.registration.RegistrationActivity;
 import co.za.appic.teammanager.features.signin.SignInActivity;
 import co.za.appic.teammanager.helpers.NavigationHelper;
 
@@ -35,18 +37,17 @@ public class SplashActivity extends BaseAsyncActivity implements SplashView {
 
     @Override
     public void showSplashAndEnterApp() {
-        /*
 
-            if(getPresenter().cacheProvider.getUserStatus() == UserStatus.registered){
-                NavigationHelper.goToActivityWithNoPayload(SignInActivity.class, slideInActivity());
+            if(getPresenter().cacheHelper.getUserStatus() == UserStatus.registered){
+                NavigationHelper.goToActivityWithNoPayload(this, SignInActivity.class, transitionHelper.slideInActivity());
             }
-            else if(getPresenter().cacheProvider.getUserStatus() == UserStatus.pending){
-                NavigationHelper.goToActivityWithNoPayload(PendingRegActivity.class, slideInActivity());
+            else if(getPresenter().cacheHelper.getUserStatus() == UserStatus.pending){
+                NavigationHelper.goToActivityWithNoPayload(this, PendingRegActivity.class, transitionHelper.slideInActivity());
             }
             else{
-                NavigationHelper.goToActivityWithNoPayload(RegistrationActivity.class, slideInActivity());
+                NavigationHelper.goToActivityWithNoPayload(this, RegistrationActivity.class, transitionHelper.slideInActivity());
             }
-        */
+
     }
 
     @Override

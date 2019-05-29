@@ -1,7 +1,6 @@
 package co.za.appic.teammanager.helpers;
 
 import android.content.Context;
-
 import co.za.appic.teammanager.R;
 
 public class TransitionHelper {
