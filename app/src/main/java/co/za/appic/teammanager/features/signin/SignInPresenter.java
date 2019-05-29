@@ -23,7 +23,7 @@ public class SignInPresenter extends BaseAsyncPresenter implements ISignInPresen
     @Override
     public void SignInUser(String username, String password) {
         boolean isValidUsername = StringValidationHelper.isValidSurname(username.trim());
-        boolean isValidPassword = !password.trim().isEmpty();
+        boolean isValidPassword = !password.isEmpty();
 
         if(isValidUsername){
             if(isValidPassword){
