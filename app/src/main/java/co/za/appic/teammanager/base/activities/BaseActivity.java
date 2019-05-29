@@ -58,10 +58,8 @@ public abstract class BaseActivity extends AppCompatActivity implements DaggerAc
         if(preView == null)
             return;
 
-        final Rect rect = new Rect(0, 0, preView.getWidth(), preView.getHeight());
+        final Rect rect = new Rect(0, -15, preView.getWidth(), preView.getHeight());
         preView.requestRectangleOnScreen(rect, false);
-        // preView.requestFocus();
-        // preView.getParent().requestChildFocus(errorTv, errorTv);
     }
 
     private View getPrevView(View triggerView){
