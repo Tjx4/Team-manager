@@ -1,6 +1,9 @@
 package co.za.appic.teammanager.fragments;
 
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +22,15 @@ public class LoadingSpinnerFragment extends DialogFragmentHelper {
         getDialog().setCancelable(false);
         getDialog().setCanceledOnTouchOutside(false);
         getDialog().getWindow().setDimAmount(0.9f);
+        getDialog().setOnKeyListener(new DialogInterface.OnKeyListener() {
+            @Override
+            public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
+                if (keyCode == KeyEvent.KEYCODE_BACK) {
+
+                }
+                return false;
+            }
+        });
 
         View parentView = super.onCreateView( inflater,  container, savedInstanceState);
         loader = parentView.findViewById(R.id.progressBarLoading);
@@ -28,6 +40,21 @@ public class LoadingSpinnerFragment extends DialogFragmentHelper {
         loadingTxt.setText(loadingMessage);
 
         return parentView;
+    }
+
+    @Override
+    public Dialog onCreateDialog(Bundle savedInstanceState){
+        return new Dialog(getActivity(), getTheme()){
+            @Override
+            public void onBackPressed(){
+
+            }
+        };
+    }
+
+    @Override
+    public void onCancel(DialogInterface dialog) {
+        super.onCancel(dialog);
     }
 
     public void hideLoaderAndShowEnterMessage() {

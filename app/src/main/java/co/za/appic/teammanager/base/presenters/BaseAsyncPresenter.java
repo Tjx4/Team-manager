@@ -1,26 +1,47 @@
 package co.za.appic.teammanager.base.presenters;
 
 import android.support.annotation.NonNull;
+
+import com.google.android.gms.tasks.OnCanceledListener;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import co.za.appic.teammanager.base.activities.BaseActivity;
 import co.za.appic.teammanager.base.views.BaseView;
-import co.za.appic.teammanager.helpers.StringValidationHelper;
 import co.za.appic.teammanager.models.SupervisorModel;
 import co.za.appic.teammanager.models.UserModel;
 import co.za.appic.teammanager.models.WorkerModel;
 
 public abstract class BaseAsyncPresenter extends BasePresenter {
 
+    protected boolean isBusy;
+
     public BaseAsyncPresenter(BaseView baseView) {
         super(baseView);
     }
 
     protected void signInUserOnFirebase(String username, String password, BaseActivity baseActivity){
+        isBusy = true;
         firebaseAuth = FirebaseAuth.getInstance();
+
+        OnCanceledListener signCancelListener = new OnCanceledListener() {
+            @Override
+            public void onCanceled() {
+                onFirebaseSignInFailure();
+                isBusy = false;
+            }
+        };
+
+        OnFailureListener signInFailListener = new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                onFirebaseSignInFailure();
+                isBusy = false;
+            }
+        };
 
         OnCompleteListener signInCompleteListener = new OnCompleteListener<AuthResult>(){
 
@@ -33,10 +54,16 @@ public abstract class BaseAsyncPresenter extends BasePresenter {
                 else {
                     onFirebaseSignInFailure();
                 }
+
+                isBusy = false;
             }
+
         };
 
-        firebaseAuth.signInWithEmailAndPassword(username, password).addOnCompleteListener(baseActivity, signInCompleteListener);
+        firebaseAuth.signInWithEmailAndPassword(username, password)
+                .addOnCompleteListener(baseActivity, signInCompleteListener)
+                .addOnFailureListener(baseActivity, signInFailListener)
+                .addOnCanceledListener(baseActivity, signCancelListener);
     }
 
     protected void onFirebaseSignInSuccessfull() {
