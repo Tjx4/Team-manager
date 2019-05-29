@@ -41,6 +41,10 @@
     <style name="smallWhiteLabel" parent="smallLabel">
         <item name="android:textColor">@color/lightestText</item>
     </style>
+    <style name="smallErrorLabel" parent="smallLabel">
+        <item name="android:visibility">invisible</item>
+        <item name="android:textColor">@color/errorText</item>
+    </style>
 
     <style name="teamManagerEditText">
         <item name="android:background">@drawable/def_edittext_background</item>

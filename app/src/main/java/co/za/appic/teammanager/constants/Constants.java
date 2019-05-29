@@ -1,6 +1,7 @@
 package co.za.appic.teammanager.constants;
 
 public class Constants {
+    public static final String NAME = "name";
     public static final String TITLE = "title";
     public static final String TOAST_ERROR = "toast_error";
     public static final String LAYOUT = "layout";
