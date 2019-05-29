@@ -8,5 +8,16 @@ public class SignInPresenter extends BaseAsyncPresenter implements ISignInPresen
 
     public SignInPresenter(SignInView signInView){
         super(signInView);
+        this.signInView = signInView;
+    }
+
+    @Override
+    public void SignInUser(String username, String password) {
+
+    }
+
+    @Override
+    public void showSignIndError(String title, String message) {
+
     }
 }

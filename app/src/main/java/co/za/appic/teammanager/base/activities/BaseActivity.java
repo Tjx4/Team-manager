@@ -3,7 +3,6 @@ package co.za.appic.teammanager.base.activities;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import co.za.appic.teammanager.MyApplication;
 import co.za.appic.teammanager.base.presenters.BasePresenter;
 import co.za.appic.teammanager.constants.Constants;
@@ -36,7 +35,6 @@ public abstract class BaseActivity extends AppCompatActivity implements DaggerAc
             int[] activityTransition = getIntent().getBundleExtra(Constants.PAYLOAD_KEY).getIntArray(Constants.ACTIVITY_TRANSITION);
             overridePendingTransition(activityTransition[0], activityTransition[1]);
         } catch (Exception e) {
-            Log.e("TRANSITIONS_ERROR", "Error "+e);
         }
 
         isNewActivity = true;

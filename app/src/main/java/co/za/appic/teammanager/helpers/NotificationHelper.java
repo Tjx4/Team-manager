@@ -2,6 +2,9 @@ package co.za.appic.teammanager.helpers;
 
 import android.app.Activity;
 import android.content.Context;
+import android.os.Bundle;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +20,17 @@ public class NotificationHelper {
 
     public  NotificationHelper(Context context) {
         this.context = context;
+    }
+
+    public void showFragmentDialog(String title, int Layout, DialogFragmentHelper newFragment) {
+        AppCompatActivity activity = (AppCompatActivity)context;
+        FragmentTransaction ft = activity.getSupportFragmentManager().beginTransaction();
+        Bundle payload = new Bundle();
+        payload.putString(Constants.TITLE, title);
+        payload.putInt(Constants.LAYOUT, Layout);
+
+        newFragment.setArguments(payload);
+        newFragment.show(ft, "dialog");
     }
 
     public void showShortToast(String message) {

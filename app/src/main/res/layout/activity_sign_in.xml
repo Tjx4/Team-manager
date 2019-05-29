@@ -53,8 +53,8 @@
                     android:id="@+id/button"
                     style="@style/mediumGreenButton"
                     android:layout_marginTop="20dp"
-                    android:text="@string/login"
-                    android:onClick="onLoginButtonClicked"/>
+                    android:text="@string/Signin"
+                    android:onClick="onSignInButtonClicked"/>
 
             </LinearLayout>
 

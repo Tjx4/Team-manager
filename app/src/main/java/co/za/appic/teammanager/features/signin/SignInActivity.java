@@ -53,8 +53,8 @@ public class SignInActivity extends BaseNoActionBarActivity implements DaggerAct
     }
 
     @Override
-    public void onLoginButtonClicked(View view) {
-
+    public void onSignInButtonClicked(View view) {
+        showLoadingDialog(context.getString(R.string.signing_in));
     }
 
     @Override
@@ -80,6 +80,5 @@ public class SignInActivity extends BaseNoActionBarActivity implements DaggerAct
         }
         return super.onKeyDown(keyCode, event);
     }
-
 
 }
