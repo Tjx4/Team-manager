@@ -3,8 +3,13 @@ package co.za.appic.teammanager.helpers;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
+
+import com.google.gson.Gson;
+
 import co.za.appic.teammanager.enums.UserStatus;
+import co.za.appic.teammanager.models.SupervisorModel;
 import co.za.appic.teammanager.models.UserModel;
+import co.za.appic.teammanager.models.WorkerModel;
 
 public class CacheHelper {
     private SharedPreferences sharedPreferences;
@@ -13,13 +18,35 @@ public class CacheHelper {
     private char userStatus;
     //Constants
     private static final String USERSTATUS = "user_status";
+    private static final String WORKER = "worker";
+    private static final String SUPERVISOR = "supervisor";
 
     public CacheHelper(AppCompatActivity activity) {
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(activity);
         this.activity = activity;
     }
 
-    public void setUserStatus(UserStatus userStatus){
+    public void setWorker(WorkerModel worker){
+        if(worker == null)
+            return;
+
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        String connectionsJSONString = new Gson().toJson(worker);
+        editor.putString(WORKER, connectionsJSONString);
+        editor.commit();
+    }
+
+    public void setSupervisor(SupervisorModel supervisor){
+        if(supervisor == null)
+            return;
+
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        String connectionsJSONString = new Gson().toJson(supervisor);
+        editor.putString(SUPERVISOR, connectionsJSONString);
+        editor.commit();
+    }
+
+   public void setUserStatus(UserStatus userStatus){
         if(userStatus == null)
             return;
 

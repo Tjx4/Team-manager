@@ -55,6 +55,10 @@ public class SignInActivity extends BaseNoActionBarActivity implements DaggerAct
     @Override
     public void onSignInButtonClicked(View view) {
         showLoadingDialog(context.getString(R.string.signing_in));
+
+        String username = usernameTxt.getText().toString();
+        String password = usernameTxt.getText().toString();
+        getPresenter().SignInUser(username, password);
     }
 
     @Override
@@ -82,4 +86,8 @@ public class SignInActivity extends BaseNoActionBarActivity implements DaggerAct
         return super.onKeyDown(keyCode, event);
     }
 
+    @Override
+    public void hideLoader() {
+        hideLoadingDialog();
+    }
 }
