@@ -14,4 +14,5 @@ public interface SignInView extends BaseView {
     void showInvalidUsername(String message);
     void showInvalidPassword(String message);
     void hideValidationLabels();
+    void showSigningInDialog();
 }

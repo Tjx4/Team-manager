@@ -63,7 +63,6 @@ public class SignInActivity extends BaseNoActionBarActivity implements DaggerAct
 
     @Override
     public void onSignInButtonClicked(View view) {
-        showLoadingDialog(context.getString(R.string.signing_in));
         hideValidationLabels();
 
         String username = usernameTxt.getText().toString();
@@ -106,6 +105,11 @@ public class SignInActivity extends BaseNoActionBarActivity implements DaggerAct
     public void hideValidationLabels() {
         usernameErrorTv.setVisibility(View.INVISIBLE);
         passwordErrorTv.setVisibility(View.INVISIBLE);
+    }
+
+    @Override
+    public void showSigningInDialog() {
+        showLoadingDialog(context.getString(R.string.signing_in));
     }
 
     @Override

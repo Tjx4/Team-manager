@@ -27,6 +27,7 @@ public class SignInPresenter extends BaseAsyncPresenter implements ISignInPresen
 
         if(isValidUsername){
             if(isValidPassword){
+                signInView.showSigningInDialog();
                 signInUserOnFirebase(username, password, (SignInActivity)signInView);
             }
             else {
