@@ -4,7 +4,6 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-
 import co.za.appic.teammanager.MyApplication;
 import co.za.appic.teammanager.base.presenters.BasePresenter;
 import co.za.appic.teammanager.constants.Constants;
