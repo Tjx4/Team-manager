@@ -47,6 +47,7 @@ public abstract class BaseActivity extends AppCompatActivity implements DaggerAc
     }
 
     protected abstract void setBaseActivityDependencies();
+
     protected void initViews() { }
 
     protected void showValidationError(TextView errorTv, String errorMessage) {
