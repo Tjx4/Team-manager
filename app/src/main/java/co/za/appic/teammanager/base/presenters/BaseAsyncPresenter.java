@@ -36,9 +36,7 @@ public abstract class BaseAsyncPresenter extends BasePresenter {
             }
         };
 
-        if( StringValidationHelper.isValidEmail(username) ){
-            firebaseAuth.signInWithEmailAndPassword(username, password).addOnCompleteListener(baseActivity, signInCompleteListener);
-        }
+        firebaseAuth.signInWithEmailAndPassword(username, password).addOnCompleteListener(baseActivity, signInCompleteListener);
     }
 
     protected void onFirebaseSignInSuccessfull() {
