@@ -51,6 +51,7 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:paddingLeft">@dimen/small_view_padding</item>
         <item name="android:paddingRight">@dimen/small_view_padding</item>
+        <item name="android:singleLine">true</item>
     </style>
     <style name="mediumEditText" parent="teamManagerEditText">
         <item name="android:textSize">@dimen/medium_text_size</item>
