@@ -31,11 +31,11 @@ public class SignInPresenter extends BaseAsyncPresenter implements ISignInPresen
                 signInUserOnFirebase(username, password, (SignInActivity)signInView);
             }
             else {
-                signInView.showInvalidPassword(context.getString(R.string.invalid_username_message));
+                signInView.showInvalidPassword(context.getString(R.string.invalid_password_message));
             }
         }
         else {
-            signInView.showInvalidUsername(context.getString(R.string.invalid_password_message));
+            signInView.showInvalidUsername(context.getString(R.string.invalid_username_message));
         }
     }
     @Override
