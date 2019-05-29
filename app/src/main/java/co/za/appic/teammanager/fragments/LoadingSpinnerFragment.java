@@ -22,15 +22,6 @@ public class LoadingSpinnerFragment extends DialogFragmentHelper {
         getDialog().setCancelable(false);
         getDialog().setCanceledOnTouchOutside(false);
         getDialog().getWindow().setDimAmount(0.9f);
-        getDialog().setOnKeyListener(new DialogInterface.OnKeyListener() {
-            @Override
-            public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
-                if (keyCode == KeyEvent.KEYCODE_BACK) {
-
-                }
-                return false;
-            }
-        });
 
         View parentView = super.onCreateView( inflater,  container, savedInstanceState);
         loader = parentView.findViewById(R.id.progressBarLoading);
@@ -50,11 +41,6 @@ public class LoadingSpinnerFragment extends DialogFragmentHelper {
 
             }
         };
-    }
-
-    @Override
-    public void onCancel(DialogInterface dialog) {
-        super.onCancel(dialog);
     }
 
     public void hideLoaderAndShowEnterMessage() {
