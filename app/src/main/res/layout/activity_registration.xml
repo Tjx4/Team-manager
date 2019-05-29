@@ -1,9 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/login_bg"
     tools:context=".features.registration.RegistrationActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_gravity="top"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusableInTouchMode="true"
+            android:orientation="vertical"
+            android:padding="40dp">
+
+            <TextView
+                style="@style/xlargeLabel"
+                android:gravity="center"
+                android:text="@string/welcome"
+                android:textColor="@color/lightestText"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/smallWhiteLabel"
+                    android:layout_marginTop="24dp"
+                    android:gravity="center"
+                    android:text="@string/register_details_message"
+                    android:textColor="@color/lighterText"/>
+
+                <EditText
+                    android:id="@+id/txtName"
+                    style="@style/mediumLightEditText"
+                    android:layout_marginTop="30dp"
+                    android:hint="@string/name"/>
+
+                <TextView
+                    android:id="@+id/tvNameError"
+                    style="@style/smallErrorLabel"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="22dp"
+                    android:text="Error"/>
+
+                <EditText
+                    android:id="@+id/txtSurname"
+                    style="@style/mediumLightEditText"
+                    android:layout_marginTop="12dp"
+                    android:hint="@string/surname"/>
+
+                <TextView
+                    android:id="@+id/tvSurnameNameError"
+                    style="@style/smallErrorLabel"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="22dp"
+                    android:text="Error"/>
+
+                <EditText
+                    android:id="@+id/txtPassword"
+                    style="@style/mediumLightEditText"
+                    android:layout_marginTop="12dp"
+                    android:hint="@string/password"
+                    android:inputType="textPassword"/>
+
+                <TextView
+                    android:id="@+id/tvPasswordError"
+                    style="@style/smallErrorLabel"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="22dp"
+                    android:text="Error"/>
+
+                <EditText
+                    android:id="@+id/txtConfirmPassword"
+                    style="@style/mediumLightEditText"
+                    android:layout_marginTop="12dp"
+                    android:hint="@string/confirm_password"
+                    android:inputType="textPassword"/>
+
+                <TextView
+                    android:id="@+id/tvConfirmPasswordError"
+                    style="@style/smallErrorLabel"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="22dp"
+                    android:text="Error"/>
+
+                <Button
+                    style="@style/mediumGreenButton"
+                    android:layout_marginTop="12dp"
+                    android:text="@string/register"
+                    android:onClick="onRegisterButtonClicked"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</FrameLayout>
