@@ -18,7 +18,8 @@
             android:name=".features.signin.SignInActivity"
             android:theme="@style/NoActionBarTheme"
             android:windowSoftInputMode="adjustPan" />
-        <activity android:name=".features.registration.RegistrationActivity" />
+        <activity android:name=".features.registration.RegistrationActivity"
+                  android:windowSoftInputMode="adjustPan"  />
         <activity android:name=".features.newtask.NewTaskActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

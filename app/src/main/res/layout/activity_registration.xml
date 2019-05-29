@@ -19,28 +19,16 @@
             android:orientation="vertical"
             android:padding="40dp">
 
-            <TextView
-                style="@style/xlargeLabel"
-                android:gravity="center"
-                android:text="@string/welcome"
-                android:textColor="@color/lightestText"/>
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <TextView
-                    style="@style/smallWhiteLabel"
-                    android:layout_marginTop="24dp"
-                    android:gravity="center"
-                    android:text="@string/register_details_message"
-                    android:textColor="@color/lighterText"/>
 
                 <EditText
                     android:id="@+id/txtName"
                     style="@style/mediumLightEditText"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="0dp"
                     android:hint="@string/name"/>
 
                 <TextView

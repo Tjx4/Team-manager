@@ -12,7 +12,6 @@ public abstract class BaseChildActivity extends BaseActionBarActivity{
 
     @Override
     protected void setActionbarActivityDependencies() {
-        super.setActionbarActivityDependencies();
         currentActionBar.setDisplayUseLogoEnabled(false);
         currentActionBar.setDisplayHomeAsUpEnabled(true);
     }

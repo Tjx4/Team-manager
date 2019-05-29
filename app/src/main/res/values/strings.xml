@@ -17,5 +17,6 @@
     <string name="register_details_message">Please enter your details</string>
     <string name="surname">Surname</string>
     <string name="confirm_password">Confirm password</string>
-    <string name="create_account_message">Create new account</string>
+    <string name="create_account_message">Create a new account</string>
+    <string name="go_to_login">Go to signin</string>
 </resources>

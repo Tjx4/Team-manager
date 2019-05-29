@@ -9,14 +9,18 @@ import android.view.MenuItem;
 public abstract class BaseActionBarActivity extends BaseAsyncActivity{
     protected int actionBarMenu;
     protected ActionBar currentActionBar;
-    protected boolean useLogo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setActionbarActivityDependencies();
+        setActionbar();
+    }
+
+    protected void setActionbar(){
         currentActionBar = getSupportActionBar();
         currentActionBar.setElevation(0);
+        currentActionBar.setDisplayUseLogoEnabled(true);
+        setActionbarActivityDependencies();
     }
 
     protected abstract void setActionbarActivityDependencies();

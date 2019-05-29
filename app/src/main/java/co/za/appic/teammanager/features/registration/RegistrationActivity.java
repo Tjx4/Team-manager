@@ -1,6 +1,7 @@
 package co.za.appic.teammanager.features.registration;
 
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import javax.inject.Inject;
@@ -9,6 +10,8 @@ import co.za.appic.teammanager.base.activities.BaseActionBarActivity;
 import co.za.appic.teammanager.di.components.AppComponent;
 import co.za.appic.teammanager.di.components.DaggerRegistrationComponent;
 import co.za.appic.teammanager.di.modules.RegistrationModule;
+import co.za.appic.teammanager.features.signin.SignInActivity;
+import co.za.appic.teammanager.helpers.NavigationHelper;
 
 public class RegistrationActivity extends BaseActionBarActivity implements RegistrationView {
 
@@ -29,6 +32,7 @@ public class RegistrationActivity extends BaseActionBarActivity implements Regis
     protected void setActionbarActivityDependencies() {
         currentActionBar.setTitle(context.getString(R.string.create_account_message));
         currentActionBar.setIcon(R.drawable.ic_register_light);
+        currentActionBar.setDisplayUseLogoEnabled(true);
     }
 
     @Override
@@ -65,6 +69,20 @@ public class RegistrationActivity extends BaseActionBarActivity implements Regis
 
     @Override
     public void hideLoader() {
+        hideLoadingDialog();
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        super.onOptionsItemSelected(item);
+
+        int itemId = item.getItemId();
+
+        switch (itemId){
+            case R.id.action_go_to_login:
+                NavigationHelper.goToActivityWithNoPayload(this, SignInActivity.class, transitionHelper.slideInActivity());
+                break;
+        }
+        return true;
     }
 }
