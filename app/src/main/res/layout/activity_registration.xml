@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/login_bg"
+    android:background="@drawable/register_bg"
     android:animateLayoutChanges="true"
     tools:context=".features.registration.RegistrationActivity">
 
@@ -52,6 +52,19 @@
                     android:text="Error"/>
 
                 <EditText
+                    android:id="@+id/txtEmail"
+                    style="@style/mediumLightEditText"
+                    android:layout_marginTop="12dp"
+                    android:hint="@string/email"/>
+
+                <TextView
+                    android:id="@+id/tvEmailError"
+                    style="@style/smallErrorLabel"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="22dp"
+                    android:text="Error"/>
+
+                <EditText
                     android:id="@+id/txtPassword"
                     style="@style/mediumLightEditText"
                     android:layout_marginTop="12dp"
@@ -74,6 +87,35 @@
 
                 <TextView
                     android:id="@+id/tvConfirmPasswordError"
+                    style="@style/smallErrorLabel"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="22dp"
+                    android:text="Error"/>
+
+
+                <RadioGroup
+                    android:layout_gravity="center"
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                   <RadioButton
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="@string/worker"
+                       android:textColor="@color/lightestText"/>
+
+                   <RadioButton
+                       android:layout_marginLeft="20dp"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="@string/supervisor"
+                       android:textColor="@color/lightestText"/>
+
+                </RadioGroup>
+
+                <TextView
+                    android:id="@+id/tvEmployeeTypeError"
                     style="@style/smallErrorLabel"
                     android:layout_marginTop="10dp"
                     android:layout_marginLeft="22dp"

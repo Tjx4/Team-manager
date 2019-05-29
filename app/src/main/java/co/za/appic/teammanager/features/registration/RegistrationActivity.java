@@ -5,6 +5,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
+
 import javax.inject.Inject;
 import co.za.appic.teammanager.R;
 import co.za.appic.teammanager.base.activities.BaseActionBarActivity;
@@ -21,8 +23,15 @@ public class RegistrationActivity extends BaseActionBarActivity implements Regis
 
     private EditText nameTxt;
     private EditText passwordTxt;
-    private EditText surrNameTxt;
+    private EditText emailTxt;
+    private EditText surNameTxt;
     private EditText confirmPasswordTxt;
+
+    private TextView nameErrorTv;
+    private TextView surnameErrorTv;
+    private TextView emailErrorTv;
+    private TextView passwordErrorTv;
+    private TextView confirmPasswordErrorTv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,9 +55,16 @@ public class RegistrationActivity extends BaseActionBarActivity implements Regis
     @Override
     protected void initViews() {
         nameTxt = findViewById(R.id.txtName);
-        surrNameTxt = findViewById(R.id.txtSurname);
+        surNameTxt = findViewById(R.id.txtSurname);
         passwordTxt = findViewById(R.id.txtPassword);
+        emailTxt = findViewById(R.id.txtEmail);
         confirmPasswordTxt = findViewById(R.id.txtConfirmPassword);
+
+        nameErrorTv = findViewById(R.id.tvNameError);
+        surnameErrorTv = findViewById(R.id.tvSurnameNameError);
+        emailErrorTv = findViewById(R.id.tvEmailError);
+        passwordErrorTv = findViewById(R.id.tvPasswordError);
+        confirmPasswordErrorTv = findViewById(R.id.tvConfirmPasswordError);
     }
 
     @Override
@@ -61,12 +77,48 @@ public class RegistrationActivity extends BaseActionBarActivity implements Regis
 
     @Override
     public void onRegisterButtonClicked(View view) {
+        String name = nameTxt.getText().toString();
+        String surName = surNameTxt.getText().toString();
+        String email = passwordTxt.getText().toString();
+        String password = emailTxt.getText().toString();
+        String confirmedPassword = confirmPasswordTxt.getText().toString();
 
+        getPresenter().registerNewUser(name, surName, email, password, confirmedPassword);
     }
 
     @Override
     public RegistrationPresenter getPresenter() {
         return (RegistrationPresenter)registrationPresenter;
+    }
+
+    @Override
+    public void showRegisteringDialog() {
+        showLoadingDialog(getString(R.string.no_internet_message));
+    }
+
+    @Override
+    public void showInvalidName() {
+        showValidationError(nameErrorTv, getString(R.string.invalid_name_message));
+    }
+
+    @Override
+    public void showInvalidSurname() {
+        showValidationError(surnameErrorTv, getString(R.string.invalid_surname_message));
+    }
+
+    @Override
+    public void showInvalidEmail() {
+        showValidationError(emailErrorTv, getString(R.string.invalid_email_message));
+    }
+
+    @Override
+    public void showInvalidPassword() {
+        showValidationError(passwordErrorTv, getString(R.string.invalid_password_message));
+    }
+
+    @Override
+    public void showInvalidConfirmPassword() {
+        showValidationError(confirmPasswordErrorTv, getString(R.string.invalid_password_message));
     }
 
     @Override
@@ -86,7 +138,7 @@ public class RegistrationActivity extends BaseActionBarActivity implements Regis
         int itemId = item.getItemId();
 
         switch (itemId){
-            case R.id.action_go_to_login:
+            case R.id.action_quit_reg:
                 NavigationHelper.goToActivityWithNoPayload(this, SignInActivity.class, transitionHelper.slideOutActivity());
                 break;
         }

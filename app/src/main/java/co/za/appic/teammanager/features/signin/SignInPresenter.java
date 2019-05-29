@@ -6,12 +6,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import co.za.appic.teammanager.R;
-import co.za.appic.teammanager.base.presenters.BaseAsyncPresenter;
+import co.za.appic.teammanager.base.presenters.BaseFirebaseAuthPresenter;
 import co.za.appic.teammanager.helpers.StringValidationHelper;
 import co.za.appic.teammanager.models.SupervisorModel;
 import co.za.appic.teammanager.models.WorkerModel;
 
-public class SignInPresenter extends BaseAsyncPresenter implements ISignInPresenter {
+public class SignInPresenter extends BaseFirebaseAuthPresenter implements ISignInPresenter {
 
     private SignInView signInView;
 
@@ -34,13 +34,14 @@ public class SignInPresenter extends BaseAsyncPresenter implements ISignInPresen
                 signInUserOnFirebase(username, password, (SignInActivity)signInView);
             }
             else {
-                signInView.showInvalidPassword(context.getString(R.string.invalid_password_message));
+                signInView.showInvalidPassword();
             }
         }
         else {
-            signInView.showInvalidUsername(context.getString(R.string.invalid_username_message));
+            signInView.showInvalidUsername();
         }
     }
+
     @Override
     protected void onFirebaseSignInSuccessfull() {
         super.onFirebaseSignInSuccessfull();

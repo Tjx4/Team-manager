@@ -1,15 +1,6 @@
 package co.za.appic.teammanager.base.presenters;
 
-import android.support.annotation.NonNull;
-
-import com.google.android.gms.tasks.OnCanceledListener;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
-import co.za.appic.teammanager.base.activities.BaseActivity;
 import co.za.appic.teammanager.base.views.BaseView;
 import co.za.appic.teammanager.models.SupervisorModel;
 import co.za.appic.teammanager.models.UserModel;
@@ -21,57 +12,6 @@ public abstract class BaseAsyncPresenter extends BasePresenter {
 
     public BaseAsyncPresenter(BaseView baseView) {
         super(baseView);
-    }
-
-    protected void signInUserOnFirebase(String username, String password, BaseActivity baseActivity){
-        isBusy = true;
-        firebaseAuth = FirebaseAuth.getInstance();
-
-        OnCanceledListener signCancelListener = new OnCanceledListener() {
-            @Override
-            public void onCanceled() {
-                onFirebaseSignInFailure();
-                isBusy = false;
-            }
-        };
-
-        OnFailureListener signInFailListener = new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                onFirebaseSignInFailure();
-                isBusy = false;
-            }
-        };
-
-        OnCompleteListener signInCompleteListener = new OnCompleteListener<AuthResult>(){
-
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-
-                if(task.isSuccessful()){
-                    onFirebaseSignInSuccessfull();
-                }
-                else {
-                    onFirebaseSignInFailure();
-                }
-
-                isBusy = false;
-            }
-
-        };
-
-        firebaseAuth.signInWithEmailAndPassword(username, password)
-                .addOnCompleteListener(baseActivity, signInCompleteListener)
-                .addOnFailureListener(baseActivity, signInFailListener)
-                .addOnCanceledListener(baseActivity, signCancelListener);
-    }
-
-    protected void onFirebaseSignInSuccessfull() {
-
-    }
-
-    protected void onFirebaseSignInFailure() {
-
     }
 
     protected WorkerModel getWorkerFromDataSnapshot(DataSnapshot chatSnapshot) {

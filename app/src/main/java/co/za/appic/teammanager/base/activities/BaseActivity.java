@@ -3,6 +3,9 @@ package co.za.appic.teammanager.base.activities;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.TextView;
+
 import co.za.appic.teammanager.MyApplication;
 import co.za.appic.teammanager.base.presenters.BasePresenter;
 import co.za.appic.teammanager.constants.Constants;
@@ -44,4 +47,9 @@ public abstract class BaseActivity extends AppCompatActivity implements DaggerAc
 
     protected abstract void setBaseActivityDependencies();
     protected void initViews() { }
+
+    protected void showValidationError(TextView errorTv, String errorMessage) {
+        errorTv.setVisibility(View.VISIBLE);
+        errorTv.setText(errorMessage);
+    }
 }

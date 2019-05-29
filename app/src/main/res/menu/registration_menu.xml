@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/action_go_to_login"
+        android:id="@+id/action_quit_reg"
         android:icon="@drawable/ic_back_light"
-        android:title="@string/go_to_login"
+        android:title="@string/quit_registration"
         app:showAsAction="never"/>
 </menu>

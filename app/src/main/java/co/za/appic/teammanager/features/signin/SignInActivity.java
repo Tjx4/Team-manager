@@ -91,15 +91,13 @@ public class SignInActivity extends BaseNoActionBarActivity implements DaggerAct
     }
 
     @Override
-    public void showInvalidUsername(String message) {
-        usernameErrorTv.setVisibility(View.VISIBLE);
-        usernameErrorTv.setText(message);
+    public void showInvalidUsername() {
+        showValidationError(usernameErrorTv, context.getString(R.string.invalid_username_message));
     }
 
     @Override
-    public void showInvalidPassword(String message) {
-        passwordErrorTv.setVisibility(View.VISIBLE);
-        passwordErrorTv.setText(message);
+    public void showInvalidPassword() {
+        showValidationError(passwordErrorTv, getString(R.string.invalid_password_message));
     }
 
     @Override
