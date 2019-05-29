@@ -5,6 +5,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
 import co.za.appic.teammanager.R;
 import co.za.appic.teammanager.base.presenters.BaseFirebaseAuthPresenter;
 import co.za.appic.teammanager.helpers.StringValidationHelper;
@@ -26,20 +27,19 @@ public class SignInPresenter extends BaseFirebaseAuthPresenter implements ISignI
             return;
 
         boolean isValidUsername = StringValidationHelper.isValidSurname(username.trim());
-        boolean isValidPassword = !password.isEmpty();
-
-        if(isValidUsername){
-            if(isValidPassword){
-                signInView.showSigningInDialog();
-                signInUserOnFirebase(username, password, (SignInActivity)signInView);
-            }
-            else {
-                signInView.showInvalidPassword();
-            }
-        }
-        else {
+        if(!isValidUsername){
             signInView.showInvalidUsername();
+            return;
         }
+
+        boolean isValidPassword = !password.isEmpty();
+        if(!isValidPassword){
+            signInView.showInvalidPassword();
+            return;
+        }
+
+        signInView.showSigningInDialog();
+        signInUserOnFirebase(username, password, (SignInActivity)signInView);
     }
 
     @Override
@@ -52,12 +52,7 @@ public class SignInPresenter extends BaseFirebaseAuthPresenter implements ISignI
     @Override
     protected void onFirebaseSignInFailure() {
         super.onFirebaseSignInFailure();
-        showSignIndError(context.getString(R.string.signin_error), context.getString(R.string.signin_error_message));
-    }
-
-    @Override
-    public void showSignIndError(String title, String message) {
-
+        signInView.showSignInError();
     }
 
     private void fetchCurrentWorker(final String clientId) {
@@ -112,11 +107,11 @@ public class SignInPresenter extends BaseFirebaseAuthPresenter implements ISignI
                         signInView.hideLoader();
                     }
                     else {
-                        showSignIndError("SignIn error", "Sorry we are experiencing technical problems");
+                        signInView.showSignInError(context.getString(R.string.signin_error), context.getString(R.string.signin_technical_error));
                     }
                 }
                 catch (Exception e){
-                    showSignIndError("SignIn error", "Sorry we are experiencing technical problems");
+                    signInView.showSignInError(context.getString(R.string.signin_error), context.getString(R.string.signin_technical_error));
                 }
 
                 UserRef.removeEventListener(this);
@@ -124,7 +119,7 @@ public class SignInPresenter extends BaseFirebaseAuthPresenter implements ISignI
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                showSignIndError("SignIn error", "Connection error");
+                signInView.showSignInError(context.getString(R.string.signin_error), context.getString(R.string.signin_technical_error));
                 UserRef.removeEventListener(this);
             }
         };

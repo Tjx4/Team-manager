@@ -7,6 +7,7 @@ public interface RegistrationView extends BaseView {
     void onRegisterButtonClicked(View view);
     RegistrationPresenter getPresenter();
     void showRegisteringDialog();
+    void showRegisterError();
     void showInvalidName();
     void showInvalidSurname();
     void showInvalidEmail();

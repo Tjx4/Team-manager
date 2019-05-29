@@ -6,7 +6,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
-
 import javax.inject.Inject;
 import co.za.appic.teammanager.R;
 import co.za.appic.teammanager.base.activities.BaseActionBarActivity;
@@ -125,6 +124,12 @@ public class RegistrationActivity extends BaseActionBarActivity implements Regis
     public void hideLoader() {
         hideLoadingDialog();
     }
+
+    @Override
+    public void showRegisterError() {
+        notificationHelper.showErrorDialog(context.getString(R.string.register_error), context.getString(R.string.register_error_message));
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.registration_menu, menu);
@@ -144,4 +149,5 @@ public class RegistrationActivity extends BaseActionBarActivity implements Regis
         }
         return true;
     }
+
 }

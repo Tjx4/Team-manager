@@ -64,4 +64,8 @@ public class NotificationHelper {
             return null;
         }
     }
+
+    public void showErrorDialog(String title, String message){
+
+    }
 }

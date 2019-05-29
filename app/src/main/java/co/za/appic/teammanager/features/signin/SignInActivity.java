@@ -1,7 +1,6 @@
 package co.za.appic.teammanager.features.signin;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
@@ -88,6 +87,11 @@ public class SignInActivity extends BaseNoActionBarActivity implements DaggerAct
         Bundle payload = new Bundle();
         payload.putString(Constants.NAME, worker.getName());
         NavigationHelper.goToActivityWithPayload(this, DashboardActivity.class, payload, transitionHelper.slideInActivity());
+    }
+
+    @Override
+    public void showSignInError() {
+        notificationHelper.showErrorDialog(context.getString(R.string.signin_error), context.getString(R.string.signin_error_message));
     }
 
     @Override
