@@ -103,7 +103,7 @@ public class RegistrationActivity extends BaseActionBarActivity implements Regis
 
     @Override
     public void showRegisteringDialog() {
-        showLoadingDialog(getString(R.string.no_internet_message));
+        showLoadingDialog(getString(R.string.creating_acount));
     }
 
     @Override

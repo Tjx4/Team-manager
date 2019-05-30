@@ -64,7 +64,8 @@
     </style>
     <style name="mediumDarkEditText" parent="mediumEditText">
         <item name="android:background">@drawable/dark_edittext_background</item>
-        <item name="android:textColor">@color/darkestText</item>
+        <item name="android:textColor">@color/darkerText</item>
+        <item name="android:textColorHint">@color/darkText</item>
     </style>
 
     <style name="teamManagerButton">

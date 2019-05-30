@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/register_bg"
+    android:background="@color/lightBackground"
     android:animateLayoutChanges="true"
     tools:context=".features.registration.RegistrationActivity">
 
@@ -27,7 +27,7 @@
 
                 <EditText
                     android:id="@+id/txtName"
-                    style="@style/mediumLightEditText"
+                    style="@style/mediumDarkEditText"
                     android:layout_marginTop="0dp"
                     android:hint="@string/name"/>
 
@@ -40,7 +40,7 @@
 
                 <EditText
                     android:id="@+id/txtSurname"
-                    style="@style/mediumLightEditText"
+                    style="@style/mediumDarkEditText"
                     android:layout_marginTop="12dp"
                     android:hint="@string/surname"/>
 
@@ -53,7 +53,7 @@
 
                 <EditText
                     android:id="@+id/txtEmail"
-                    style="@style/mediumLightEditText"
+                    style="@style/mediumDarkEditText"
                     android:layout_marginTop="12dp"
                     android:hint="@string/email"/>
 
@@ -66,7 +66,7 @@
 
                 <EditText
                     android:id="@+id/txtPassword"
-                    style="@style/mediumLightEditText"
+                    style="@style/mediumDarkEditText"
                     android:layout_marginTop="12dp"
                     android:hint="@string/password"
                     android:inputType="textPassword"/>
@@ -80,7 +80,7 @@
 
                 <EditText
                     android:id="@+id/txtConfirmPassword"
-                    style="@style/mediumLightEditText"
+                    style="@style/mediumDarkEditText"
                     android:layout_marginTop="12dp"
                     android:hint="@string/confirm_password"
                     android:inputType="textPassword"/>
@@ -103,14 +103,14 @@
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
                        android:text="@string/worker"
-                       android:textColor="@color/lightestText"/>
+                       android:textColor="@color/darkText"/>
 
                    <RadioButton
                        android:layout_marginLeft="20dp"
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
                        android:text="@string/supervisor"
-                       android:textColor="@color/lightestText"/>
+                       android:textColor="@color/darkText"/>
 
                 </RadioGroup>
 
