@@ -18,8 +18,8 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     private static final String NAME = "name";
     private static final String SURNAME = "surname";
     private static final String GENDER = "gender";
-    private static final String MOBILENUMBER = "main_number";
-    private static final String EMAIL = "main_email";
+    private static final String MOBILENUMBER = "mobilenumber";
+    private static final String EMAIL = "email";
     private static final String MEMBERTYPE = "member_type";
 
     public SQLiteHelper(Context context) {
