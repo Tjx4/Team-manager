@@ -17,6 +17,7 @@ import co.za.appic.teammanager.features.dashboard.DashboardActivity;
 import co.za.appic.teammanager.features.registration.RegistrationActivity;
 import co.za.appic.teammanager.helpers.NavigationHelper;
 import co.za.appic.teammanager.models.SupervisorModel;
+import co.za.appic.teammanager.models.UserModel;
 import co.za.appic.teammanager.models.WorkerModel;
 
 public class SignInActivity extends BaseNoActionBarActivity implements DaggerActivity, SignInView {
@@ -77,18 +78,19 @@ public class SignInActivity extends BaseNoActionBarActivity implements DaggerAct
 
     @Override
     public void enterAppAsSupervisor(SupervisorModel supervisor) {
-        Bundle payload = new Bundle();
-        payload.putString(Constants.NAME, supervisor.getName());
-        NavigationHelper.goToActivityWithPayload(this, DashboardActivity.class, payload, transitionHelper.slideInActivity());
+        enterApp(supervisor,  DashboardActivity.class);
     }
 
     @Override
     public void enterAppAsWorker(WorkerModel worker) {
-        Bundle payload = new Bundle();
-        payload.putString(Constants.NAME, worker.getName());
-        NavigationHelper.goToActivityWithPayload(this, DashboardActivity.class, payload, transitionHelper.slideInActivity());
+        enterApp(worker,  DashboardActivity.class);
     }
 
+    private void enterApp(UserModel user, Class dashboard) {
+        Bundle payload = new Bundle();
+        payload.putString(Constants.NAME, user.getName());
+        NavigationHelper.goToActivityWithPayload(this ,dashboard, payload, transitionHelper.slideInActivity());
+    }
 
     @Override
     public void showSignInError(String title, String message) {
