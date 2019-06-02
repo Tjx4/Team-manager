@@ -64,7 +64,7 @@ public class SignInPresenter extends BaseFirebaseAuthPresenter implements ISignI
                     WorkerModel worker = getWorkerFromDataSnapshot(dataSnapshot);
 
                     if(worker != null){
-                        cacheHelper.setWorker(worker);
+                        sharedPrefsHelper.setWorker(worker);
                         signInView.enterAppAsWorker(worker);
                         signInView.hideLoader();
                     }
@@ -101,7 +101,7 @@ public class SignInPresenter extends BaseFirebaseAuthPresenter implements ISignI
                     SupervisorModel supervisor = getSupervisorFromDataSnapshot(dataSnapshot);
 
                     if(supervisor != null){
-                        cacheHelper.setSupervisor(supervisor);
+                        sharedPrefsHelper.setSupervisor(supervisor);
                         signInView.enterAppAsSupervisor(supervisor);
                         signInView.hideLoader();
                     }

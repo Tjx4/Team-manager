@@ -9,14 +9,14 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import co.za.appic.teammanager.base.activities.BaseActivity;
 import co.za.appic.teammanager.base.views.BaseView;
-import co.za.appic.teammanager.helpers.CacheHelper;
+import co.za.appic.teammanager.helpers.SharedPrefsHelper;
 import co.za.appic.teammanager.helpers.GlideHelper;
 
 public abstract class BasePresenter {
 
     protected Context context;
     private BaseView baseView;
-    public CacheHelper cacheHelper;
+    public SharedPrefsHelper sharedPrefsHelper;
     public GlideHelper glideHelper;
     protected FirebaseAuth firebaseAuth;
     protected FirebaseDatabase firebaseDatabase;
@@ -26,7 +26,7 @@ public abstract class BasePresenter {
     public BasePresenter(BaseView baseView) {
         this.baseView = baseView;
         context = (AppCompatActivity)baseView;
-        cacheHelper = new CacheHelper((BaseActivity)baseView);
+        sharedPrefsHelper = new SharedPrefsHelper((BaseActivity)baseView);
         glideHelper = new GlideHelper((BaseActivity)baseView);
         firebaseDatabase = FirebaseDatabase.getInstance();
         firebaseAuth = FirebaseAuth.getInstance();

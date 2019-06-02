@@ -37,10 +37,10 @@ public class SplashActivity extends BaseAsyncActivity implements SplashView {
 
     @Override
     public void showSplashAndEnterApp() {
-        if(getPresenter().cacheHelper.getUserStatus() == UserStatus.registered){
+        if(getPresenter().sharedPrefsHelper.getUserStatus() == UserStatus.registered){
             NavigationHelper.goToActivityWithNoPayload(this, SignInActivity.class, transitionHelper.slideInActivity());
         }
-        else if(getPresenter().cacheHelper.getUserStatus() == UserStatus.pending){
+        else if(getPresenter().sharedPrefsHelper.getUserStatus() == UserStatus.pending){
             NavigationHelper.goToActivityWithNoPayload(this, PendingRegActivity.class, transitionHelper.slideInActivity());
         }
         else{

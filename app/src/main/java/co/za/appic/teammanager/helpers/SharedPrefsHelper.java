@@ -11,7 +11,7 @@ import co.za.appic.teammanager.models.SupervisorModel;
 import co.za.appic.teammanager.models.UserModel;
 import co.za.appic.teammanager.models.WorkerModel;
 
-public class CacheHelper {
+public class SharedPrefsHelper {
     private SharedPreferences sharedPreferences;
     private AppCompatActivity activity;
     private UserModel baseUserModel;
@@ -21,7 +21,7 @@ public class CacheHelper {
     private static final String WORKER = "worker";
     private static final String SUPERVISOR = "supervisor";
 
-    public CacheHelper(AppCompatActivity activity) {
+    public SharedPrefsHelper(AppCompatActivity activity) {
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(activity);
         this.activity = activity;
     }
