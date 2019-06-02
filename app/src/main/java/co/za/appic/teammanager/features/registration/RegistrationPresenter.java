@@ -21,6 +21,10 @@ public class RegistrationPresenter extends BaseFirebaseAuthPresenter implements 
     }
 
     @Override
+    public void setUserType(UserType userType) {
+        newUser.setUserType(userType);
+    }
+
     public void registerNewUser(String name, String surname, String email, String password, String confirmedPassword) {
         if(isBusy)
             return;
@@ -60,6 +64,15 @@ public class RegistrationPresenter extends BaseFirebaseAuthPresenter implements 
             return;
         }
 
+        boolean isValidUserType = newUser.getUserType() != null;
+
+        if(isValidUserType){
+            registrationView.showInvalidUserType();
+            return;
+        }
+
+        isBusy = true;
+
         newUser.setName(name);
         newUser.setSurname(surname);
         newUser.setEmail(email);
@@ -70,6 +83,8 @@ public class RegistrationPresenter extends BaseFirebaseAuthPresenter implements 
 
     @Override
     protected void onFirebaseRegisterSuccessfull() {
+        isBusy = false;
+
         UserType userType = newUser.getUserType();
 
         switch (userType){
@@ -86,6 +101,8 @@ public class RegistrationPresenter extends BaseFirebaseAuthPresenter implements 
 
     @Override
     protected void onFirebaseRegisterFailure() {
+        isBusy = false;
+
         registrationView.showRegisterError();
     }
 

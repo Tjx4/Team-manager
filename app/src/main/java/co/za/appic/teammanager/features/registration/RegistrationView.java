@@ -14,5 +14,8 @@ public interface RegistrationView extends BaseView {
     void showInvalidEmail();
     void showInvalidPassword();
     void showInvalidConfirmPassword();
+    void showInvalidUserType();
     void hideValidationLabels();
+    void onWorkerClicked(View view);
+    void onSupervisorClicked(View view);
 }

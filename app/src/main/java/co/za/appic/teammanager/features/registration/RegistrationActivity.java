@@ -12,8 +12,7 @@ import co.za.appic.teammanager.base.activities.BaseActionBarActivity;
 import co.za.appic.teammanager.di.components.AppComponent;
 import co.za.appic.teammanager.di.components.DaggerRegistrationComponent;
 import co.za.appic.teammanager.di.modules.RegistrationModule;
-import co.za.appic.teammanager.features.signin.SignInActivity;
-import co.za.appic.teammanager.helpers.NavigationHelper;
+import co.za.appic.teammanager.enums.UserType;
 
 public class RegistrationActivity extends BaseActionBarActivity implements RegistrationView {
 
@@ -31,6 +30,7 @@ public class RegistrationActivity extends BaseActionBarActivity implements Regis
     private TextView emailErrorTv;
     private TextView passwordErrorTv;
     private TextView confirmPasswordErrorTv;
+    private TextView employeeTypeErrorTv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +64,7 @@ public class RegistrationActivity extends BaseActionBarActivity implements Regis
         emailErrorTv = findViewById(R.id.tvEmailError);
         passwordErrorTv = findViewById(R.id.tvPasswordError);
         confirmPasswordErrorTv = findViewById(R.id.tvConfirmPasswordError);
+        employeeTypeErrorTv = findViewById(R.id.tvEmployeeTypeError);
     }
 
     @Override
@@ -128,7 +129,12 @@ public class RegistrationActivity extends BaseActionBarActivity implements Regis
 
     @Override
     public void showInvalidConfirmPassword() {
-        showValidationError(confirmPasswordErrorTv, getString(R.string.invalid_password_message));
+        showValidationError(confirmPasswordErrorTv, getString(R.string.invalid_password_confirm_message));
+    }
+
+    @Override
+    public void showInvalidUserType() {
+        showValidationError(employeeTypeErrorTv, getString(R.string.invalid_usertype_message));
     }
 
     @Override
@@ -147,6 +153,16 @@ public class RegistrationActivity extends BaseActionBarActivity implements Regis
     }
 
     @Override
+    public void onWorkerClicked(View view) {
+        getPresenter().setUserType(UserType.worker);
+    }
+
+    @Override
+    public void onSupervisorClicked(View view) {
+        getPresenter().setUserType(UserType.supervisor);
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.registration_menu, menu);
         return super.onCreateOptionsMenu(menu);
@@ -160,7 +176,7 @@ public class RegistrationActivity extends BaseActionBarActivity implements Regis
 
         switch (itemId){
             case R.id.action_quit_reg:
-                NavigationHelper.goToActivityWithNoPayload(this, SignInActivity.class, transitionHelper.slideOutActivity());
+                finish();
                 break;
         }
         return true;

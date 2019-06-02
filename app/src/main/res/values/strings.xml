@@ -18,6 +18,8 @@
     <string name="invalid_surname_message">Please enter a valid surname !</string>
     <string name="invalid_email_message">Please enter a valid email !</string>
     <string name="invalid_password_message">Please enter a valid password !</string>
+    <string name="invalid_password_confirm_message">Your passwords do not match !</string>
+    <string name="invalid_usertype_message">Please select a userType</string>
     <string name="register">Register</string>
     <string name="name">Name</string>
     <string name="register_details_message">Please enter your details</string>

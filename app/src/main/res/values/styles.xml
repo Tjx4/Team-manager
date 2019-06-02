@@ -44,6 +44,9 @@
     <style name="smallErrorLabel" parent="smallLabel">
         <item name="android:visibility">invisible</item>
         <item name="android:textColor">@color/errorText</item>
+        <item name="android:layout_marginTop">6dp</item>
+        <item name="android:layout_marginBottom">16dp</item>
+        <item name="android:layout_marginLeft">22dp</item>
     </style>
 
     <style name="teamManagerEditText">
