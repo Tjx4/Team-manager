@@ -20,7 +20,7 @@
             android:windowSoftInputMode="adjustPan" />
         <activity android:name=".features.registration.RegistrationActivity"
                   android:windowSoftInputMode="adjustPan"  />
-        <activity android:name=".features.newtask.NewTaskActivity">
+        <activity android:name=".features.profile.ProfileActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".features.dashboard.DashboardActivity" />

@@ -1,11 +1,11 @@
-package co.za.appic.teammanager.features.newtask;
+package co.za.appic.teammanager.features.profile;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import co.za.appic.teammanager.R;
 
-public class NewTaskActivity extends AppCompatActivity {
+public class ProfileActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
