@@ -66,7 +66,7 @@ public class RegistrationPresenter extends BaseFirebaseAuthPresenter implements 
 
         boolean isValidUserType = newUser.getUserType() != null;
 
-        if(isValidUserType){
+        if(!isValidUserType){
             registrationView.showInvalidUserType();
             return;
         }
