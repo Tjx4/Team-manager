@@ -1,15 +1,16 @@
 package co.za.appic.teammanager.models;
 
 import java.util.List;
-import co.za.appic.teammanager.enums.UserType;
+
+import co.za.appic.teammanager.enums.EmployeeType;
 
 public class WorkerModel extends UserModel {
 
     private List<String> teams;
 
     @Override
-    public UserType getUserType() {
-        return UserType.worker;
+    public EmployeeType getEmployeeType() {
+        return EmployeeType.worker;
     }
 
     public List<String> getTeams() {

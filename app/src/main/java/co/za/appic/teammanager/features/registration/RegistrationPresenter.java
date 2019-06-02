@@ -2,7 +2,7 @@ package co.za.appic.teammanager.features.registration;
 
 import com.google.firebase.database.DatabaseReference;
 import co.za.appic.teammanager.base.presenters.BaseFirebaseAuthPresenter;
-import co.za.appic.teammanager.enums.UserType;
+import co.za.appic.teammanager.enums.EmployeeType;
 import co.za.appic.teammanager.helpers.StringHelper;
 import co.za.appic.teammanager.helpers.StringValidationHelper;
 import co.za.appic.teammanager.models.SupervisorModel;
@@ -21,8 +21,8 @@ public class RegistrationPresenter extends BaseFirebaseAuthPresenter implements 
     }
 
     @Override
-    public void setUserType(UserType userType) {
-        newUser.setUserType(userType);
+    public void setUserType(EmployeeType employeeType) {
+        newUser.setEmployeeType(employeeType);
     }
 
     public void registerNewUser(String name, String surname, String email, String password, String confirmedPassword) {
@@ -64,7 +64,7 @@ public class RegistrationPresenter extends BaseFirebaseAuthPresenter implements 
             return;
         }
 
-        boolean isValidUserType = newUser.getUserType() != null;
+        boolean isValidUserType = newUser.getEmployeeType() != null;
 
         if(!isValidUserType){
             registrationView.showInvalidUserType();
@@ -85,9 +85,9 @@ public class RegistrationPresenter extends BaseFirebaseAuthPresenter implements 
     protected void onFirebaseRegisterSuccessfull() {
         isBusy = false;
 
-        UserType userType = newUser.getUserType();
+        EmployeeType employeeType = newUser.getEmployeeType();
 
-        switch (userType){
+        switch (employeeType){
             case worker:
                 addWorkerToDB((WorkerModel) newUser);
                 break;

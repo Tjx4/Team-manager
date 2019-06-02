@@ -1,13 +1,13 @@
 package co.za.appic.teammanager.enums;
 
-public enum  UserType {
+public enum EmployeeType {
     worker(1, "Worker"),
     supervisor(2, "Supervisor");
 
     int userId;
     String userType;
 
-    UserType(int userId, String userType) {
+    EmployeeType(int userId, String userType) {
         this.userId = userId;
         this.userType = userType;
     }

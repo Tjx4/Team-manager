@@ -12,7 +12,7 @@ import co.za.appic.teammanager.base.activities.BaseActionBarActivity;
 import co.za.appic.teammanager.di.components.AppComponent;
 import co.za.appic.teammanager.di.components.DaggerRegistrationComponent;
 import co.za.appic.teammanager.di.modules.RegistrationModule;
-import co.za.appic.teammanager.enums.UserType;
+import co.za.appic.teammanager.enums.EmployeeType;
 
 public class RegistrationActivity extends BaseActionBarActivity implements RegistrationView {
 
@@ -154,12 +154,12 @@ public class RegistrationActivity extends BaseActionBarActivity implements Regis
 
     @Override
     public void onWorkerClicked(View view) {
-        getPresenter().setUserType(UserType.worker);
+        getPresenter().setUserType(EmployeeType.worker);
     }
 
     @Override
     public void onSupervisorClicked(View view) {
-        getPresenter().setUserType(UserType.supervisor);
+        getPresenter().setUserType(EmployeeType.supervisor);
     }
 
     @Override
