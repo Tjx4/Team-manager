@@ -114,7 +114,7 @@ public class RegistrationPresenter extends BaseFirebaseAuthPresenter  {
     @Override
     protected void onFirebaseRegisterFailure() {
         isBusy = false;
-        registrationView.showRegisterError();
+        registrationView.hideLoaderAndShowRegisterError();
     }
 
     private void addSupervisorToDB() {
@@ -165,7 +165,7 @@ public class RegistrationPresenter extends BaseFirebaseAuthPresenter  {
         DatabaseReference surname = dbUserRef.child(Constants.DB_SURNAME);
         surname.setValue(newUser.getSurname());
         DatabaseReference gender = dbUserRef.child(Constants.DB_GENDER);
-        gender.setValue(newUser.getGender());
+        gender.setValue(newUser.getGender()+"");
         DatabaseReference mobile = dbUserRef.child(Constants.DB_MOBILE);
         mobile.setValue(newUser.getMobile());
         DatabaseReference email = dbUserRef.child(Constants.DB_EMAIL);

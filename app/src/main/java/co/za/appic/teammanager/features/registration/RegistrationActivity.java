@@ -169,7 +169,8 @@ public class RegistrationActivity extends BaseActionBarActivity implements Regis
     }
 
     @Override
-    public void showRegisterError() {
+    public void hideLoaderAndShowRegisterError() {
+        hideLoader();
         NotificationHelper.showErrorDialog(this, getString(R.string.register_error), getString(R.string.register_error_message));
     }
 
