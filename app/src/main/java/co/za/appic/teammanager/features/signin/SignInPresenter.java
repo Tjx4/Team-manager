@@ -80,13 +80,11 @@ public class SignInPresenter extends BaseFirebaseAuthPresenter  {
                     fetchCurrentSupervisor(clientId);
                 }
 
-                signInView.hideLoader();
                 UserRef.removeEventListener(this);
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                signInView.hideLoader();
                 fetchCurrentSupervisor(clientId);
                 UserRef.removeEventListener(this);
             }
