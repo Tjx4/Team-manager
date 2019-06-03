@@ -8,7 +8,7 @@ public class UserModel {
     private String surname;
     private String email;
     private String employeeId;
-    private String mobileNumber;
+    private String mobile;
     protected EmployeeType employeeType;
 
     public String getName() {
@@ -59,11 +59,11 @@ public class UserModel {
         this.gender = gender;
     }
 
-    public String getMobileNumber() {
-        return mobileNumber;
+    public String getMobile() {
+        return mobile;
     }
 
-    public void setMobileNumber(String mobileNumber) {
-        this.mobileNumber = mobileNumber;
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
     }
 }

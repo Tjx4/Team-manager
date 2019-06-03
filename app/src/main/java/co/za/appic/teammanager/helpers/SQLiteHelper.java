@@ -49,7 +49,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
             values.put(NAME, user.getName());
             values.put(SURNAME, user.getSurname());
             values.put(GENDER, user.getGender()+"");
-            values.put(MOBILENUMBER, user.getMobileNumber());
+            values.put(MOBILENUMBER, user.getMobile());
             values.put(EMAIL, user.getEmail());
             values.put(MEMBERTYPE, user.getEmployeeType().getUserId());
 
@@ -150,7 +150,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         values.put(NAME, user.getName());
         values.put(SURNAME, user.getSurname());
         values.put(GENDER, user.getGender()+"");
-        values.put(MOBILENUMBER, user.getMobileNumber());
+        values.put(MOBILENUMBER, user.getMobile());
         values.put(EMAIL, user.getEmail());
         values.put(MEMBERTYPE, user.getEmployeeType().getUserId());
 

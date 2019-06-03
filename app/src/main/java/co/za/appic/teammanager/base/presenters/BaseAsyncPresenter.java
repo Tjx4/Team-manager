@@ -47,5 +47,9 @@ public abstract class BaseAsyncPresenter extends BasePresenter {
         user.setName(name);
         String surname = chatSnapshot.child("surname").getValue().toString();
         user.setSurname(surname);
+        String email = chatSnapshot.child("email").getValue().toString();
+        user.setEmail(email);
+        String mobile = chatSnapshot.child("mobile").getValue().toString();
+        user.setMobile(mobile);
     }
 }
