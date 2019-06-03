@@ -1,6 +1,5 @@
 package co.za.appic.teammanager.di.modules;
 
-import co.za.appic.teammanager.features.splash.ISplashPresenter;
 import co.za.appic.teammanager.features.splash.SplashPresenter;
 import co.za.appic.teammanager.features.splash.SplashView;
 import dagger.Module;
@@ -20,7 +19,7 @@ public class SplashModule {
     }
 
     @Provides
-    static ISplashPresenter providePresenter(SplashView splashView) {
+    static SplashPresenter providePresenter(SplashView splashView) {
         return new SplashPresenter(splashView);
     }
 }

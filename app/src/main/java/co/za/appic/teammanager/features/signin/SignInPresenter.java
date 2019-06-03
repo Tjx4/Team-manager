@@ -11,7 +11,7 @@ import co.za.appic.teammanager.helpers.StringValidationHelper;
 import co.za.appic.teammanager.models.SupervisorModel;
 import co.za.appic.teammanager.models.WorkerModel;
 
-public class SignInPresenter extends BaseFirebaseAuthPresenter implements ISignInPresenter {
+public class SignInPresenter extends BaseFirebaseAuthPresenter  {
 
     private SignInView signInView;
 
@@ -20,7 +20,6 @@ public class SignInPresenter extends BaseFirebaseAuthPresenter implements ISignI
         this.signInView = signInView;
     }
 
-    @Override
     public void SignInUser(String username, String password) {
         if(isBusy)
             return;
@@ -66,7 +65,6 @@ public class SignInPresenter extends BaseFirebaseAuthPresenter implements ISignI
                     if(worker != null){
                         sharedPrefsHelper.setWorker(worker);
                         signInView.enterAppAsWorker(worker);
-                        signInView.hideLoader();
                     }
                     else {
                         fetchCurrentSupervisor(clientId);
@@ -103,7 +101,6 @@ public class SignInPresenter extends BaseFirebaseAuthPresenter implements ISignI
                     if(supervisor != null){
                         sharedPrefsHelper.setSupervisor(supervisor);
                         signInView.enterAppAsSupervisor(supervisor);
-                        signInView.hideLoader();
                     }
                     else {
                         signInView.showSignInError(context.getString(R.string.signin_error), context.getString(R.string.signin_technical_error));

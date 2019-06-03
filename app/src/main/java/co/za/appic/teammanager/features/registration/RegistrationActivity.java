@@ -17,7 +17,7 @@ import co.za.appic.teammanager.enums.EmployeeType;
 public class RegistrationActivity extends BaseActionBarActivity implements RegistrationView {
 
     @Inject
-    IRegistrationPresenter registrationPresenter;
+    RegistrationPresenter registrationPresenter;
 
     private EditText nameTxt;
     private EditText passwordTxt;
@@ -99,7 +99,7 @@ public class RegistrationActivity extends BaseActionBarActivity implements Regis
 
     @Override
     public RegistrationPresenter getPresenter() {
-        return (RegistrationPresenter)registrationPresenter;
+        return registrationPresenter;
     }
 
     @Override

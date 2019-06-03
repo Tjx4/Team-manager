@@ -3,9 +3,7 @@ package co.za.appic.teammanager.helpers;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
-
 import com.google.gson.Gson;
-
 import co.za.appic.teammanager.enums.UserStatus;
 import co.za.appic.teammanager.models.SupervisorModel;
 import co.za.appic.teammanager.models.UserModel;

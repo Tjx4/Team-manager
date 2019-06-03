@@ -32,48 +32,41 @@
 
                 <TextView
                     style="@style/smallWhiteLabel"
-                    android:layout_marginTop="24dp"
                     android:gravity="center"
                     android:text="@string/login_details_message"
-                    android:textColor="@color/lighterText"/>
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="27dp"/>
 
                 <EditText
                     android:id="@+id/txtUsername"
                     style="@style/mediumLightEditText"
-                    android:layout_marginTop="30dp"
                     android:hint="@string/username"/>
 
                 <TextView
                     android:id="@+id/tvUsernameError"
                     style="@style/smallErrorLabel"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginLeft="22dp"
                     android:text="Error"/>
 
                 <EditText
                     android:id="@+id/txtPassword"
                     style="@style/mediumLightEditText"
-                    android:layout_marginTop="12dp"
                     android:hint="@string/password"
                     android:inputType="textPassword"/>
 
                 <TextView
                     android:id="@+id/tvPasswordError"
                     style="@style/smallErrorLabel"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginLeft="22dp"
                     android:text="Error"/>
 
                 <Button
                     style="@style/mediumGreenButton"
-                    android:layout_marginTop="12dp"
                     android:text="@string/Signin"
                     android:onClick="onSignInButtonClicked"/>
 
                 <Button
                     style="@style/lightLabelButton"
-                    android:layout_marginTop="15dp"
                     android:text="Create new account"
+                    android:layout_marginTop="14dp"
                     android:onClick="onCreateNewAccountClicked"/>
 
             </LinearLayout>

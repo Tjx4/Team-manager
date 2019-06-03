@@ -9,7 +9,7 @@ import co.za.appic.teammanager.models.SupervisorModel;
 import co.za.appic.teammanager.models.UserModel;
 import co.za.appic.teammanager.models.WorkerModel;
 
-public class RegistrationPresenter extends BaseFirebaseAuthPresenter implements IRegistrationPresenter {
+public class RegistrationPresenter extends BaseFirebaseAuthPresenter  {
 
     private RegistrationView registrationView;
     private UserModel newUser;
@@ -20,7 +20,6 @@ public class RegistrationPresenter extends BaseFirebaseAuthPresenter implements 
         newUser = new UserModel();
     }
 
-    @Override
     public void setUserType(EmployeeType employeeType) {
         newUser.setEmployeeType(employeeType);
     }
@@ -106,8 +105,7 @@ public class RegistrationPresenter extends BaseFirebaseAuthPresenter implements 
         registrationView.showRegisterError();
     }
 
-    @Override
-    public void addSupervisorToDB(SupervisorModel supervisor) {
+    private void addSupervisorToDB(SupervisorModel supervisor) {
         String supervisorEmployeeId = StringHelper.getSupervisorEmployeeId();
         supervisor.setEmployeeId(supervisorEmployeeId);
 
@@ -118,8 +116,7 @@ public class RegistrationPresenter extends BaseFirebaseAuthPresenter implements 
         addCommonData(supervisor, user);
     }
 
-    @Override
-    public void addWorkerToDB(WorkerModel worker) {
+    private void addWorkerToDB(WorkerModel worker) {
         String workerEmployeeId = StringHelper.getWorkerEmployeeId();
         worker.setEmployeeId(workerEmployeeId);
 

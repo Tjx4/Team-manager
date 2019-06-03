@@ -15,7 +15,7 @@ import co.za.appic.teammanager.helpers.NavigationHelper;
 public class SplashActivity extends BaseAsyncActivity implements SplashView {
 
     @Inject
-    ISplashPresenter splashPresenter;
+    SplashPresenter splashPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +58,7 @@ public class SplashActivity extends BaseAsyncActivity implements SplashView {
 
     @Override
     public SplashPresenter getPresenter() {
-        return (SplashPresenter)splashPresenter;
+        return splashPresenter;
     }
 
     @Override

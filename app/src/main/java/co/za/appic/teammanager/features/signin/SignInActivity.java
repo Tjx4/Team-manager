@@ -23,7 +23,7 @@ import co.za.appic.teammanager.models.WorkerModel;
 public class SignInActivity extends BaseNoActionBarActivity implements DaggerActivity, SignInView {
 
     @Inject
-    ISignInPresenter signInPresenter;
+    SignInPresenter signInPresenter;
 
     private EditText usernameTxt;
     private EditText passwordTxt;
@@ -59,7 +59,7 @@ public class SignInActivity extends BaseNoActionBarActivity implements DaggerAct
 
     @Override
     public SignInPresenter getPresenter() {
-        return (SignInPresenter) signInPresenter;
+        return signInPresenter;
     }
 
     @Override
@@ -89,7 +89,7 @@ public class SignInActivity extends BaseNoActionBarActivity implements DaggerAct
     private void enterApp(UserModel user, Class dashboard) {
         Bundle payload = new Bundle();
         payload.putString(Constants.NAME, user.getName());
-        NavigationHelper.goToActivityWithPayload(this ,dashboard, payload, transitionHelper.slideInActivity());
+        NavigationHelper.goToActivityWithPayload(this ,dashboard, payload, transitionHelper.fadeInActivity());
     }
 
     @Override

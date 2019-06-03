@@ -1,6 +1,5 @@
 package co.za.appic.teammanager.di.modules;
 
-import co.za.appic.teammanager.features.registration.IRegistrationPresenter;
 import co.za.appic.teammanager.features.registration.RegistrationPresenter;
 import co.za.appic.teammanager.features.registration.RegistrationView;
 import dagger.Module;
@@ -20,7 +19,7 @@ public class RegistrationModule {
     }
 
     @Provides
-    static IRegistrationPresenter providePresenter(RegistrationView registrationView) {
+    static RegistrationPresenter providePresenter(RegistrationView registrationView) {
         return new RegistrationPresenter(registrationView);
     }
 }
