@@ -55,6 +55,7 @@ public class SignInPresenter extends BaseFirebaseAuthPresenter  {
     @Override
     protected void onFirebaseSignInFailure() {
         super.onFirebaseSignInFailure();
+        signInView.hideLoader();
         signInView.showSignInError(context.getString(R.string.signin_error), context.getString(R.string.signin_error_message));
     }
 

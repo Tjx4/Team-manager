@@ -37,13 +37,8 @@ public class SharedPrefsHelper {
 
     public UserModel getLinkedUser(){
         String json = sharedPreferences.getString(USER, "");
-
         Gson gson = new Gson();
         UserModel userModel = gson.fromJson(json, UserModel.class);
-
-        if (userModel == null)
-            userModel = new UserModel();
-
         return userModel;
     }
 

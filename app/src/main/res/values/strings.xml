@@ -34,4 +34,8 @@
     <string name="signin_technical_error">Sorry we are experiencing technical problems</string>
     <string name="user_greeting_message">Hi %1$s  please enter your password to continue</string>
     <string name="create_new_account">Create new account</string>
+    <string name="generic_error_message">Error message</string>
+    <string name="no">No</string>
+    <string name="ok">Ok</string>
+    <string name="confirm">Confirm</string>
 </resources>

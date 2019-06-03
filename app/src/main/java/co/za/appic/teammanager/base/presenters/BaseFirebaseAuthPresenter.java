@@ -29,14 +29,6 @@ public abstract class BaseFirebaseAuthPresenter extends BaseAsyncPresenter {
             }
         };
 
-        OnFailureListener signInFailListener = new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                onFirebaseSignInFailure();
-                isBusy = false;
-            }
-        };
-
         OnCompleteListener signInCompleteListener = new OnCompleteListener<AuthResult>(){
 
             @Override
@@ -56,7 +48,6 @@ public abstract class BaseFirebaseAuthPresenter extends BaseAsyncPresenter {
 
         firebaseAuth.signInWithEmailAndPassword(username, password)
                 .addOnCompleteListener(baseActivity, signInCompleteListener)
-                .addOnFailureListener(baseActivity, signInFailListener)
                 .addOnCanceledListener(baseActivity, signCancelListener);
     }
 
