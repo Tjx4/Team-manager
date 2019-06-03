@@ -14,14 +14,37 @@ public class SharedPrefsHelper {
     private AppCompatActivity activity;
     private UserModel baseUserModel;
     private char userStatus;
-    //Constants
+
     private static final String USERSTATUS = "user_status";
+    private static final String USER = "user";
     private static final String WORKER = "worker";
     private static final String SUPERVISOR = "supervisor";
 
     public SharedPrefsHelper(AppCompatActivity activity) {
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(activity);
         this.activity = activity;
+    }
+
+    public void setLinkedUser(UserModel user){
+        if(user == null)
+            return;
+
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        String connectionsJSONString = new Gson().toJson(user);
+        editor.putString(USER, connectionsJSONString);
+        editor.commit();
+    }
+
+    public UserModel getLinkedUser(){
+        String json = sharedPreferences.getString(USER, "");
+
+        Gson gson = new Gson();
+        UserModel userModel = gson.fromJson(json, UserModel.class);
+
+        if (userModel == null)
+            userModel = new UserModel();
+
+        return userModel;
     }
 
     public void setWorker(WorkerModel worker){

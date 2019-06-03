@@ -39,7 +39,7 @@ public class RegistrationActivity extends BaseActionBarActivity implements Regis
 
     @Override
     protected void setActionbarActivityDependencies() {
-        currentActionBar.setTitle(" "+context.getString(R.string.create_account_message));
+        currentActionBar.setTitle(" "+getString(R.string.create_account_message));
         currentActionBar.setLogo(R.drawable.ic_register_light);
         currentActionBar.setDisplayUseLogoEnabled(true);
         currentActionBar.setDisplayShowHomeEnabled(true);
@@ -144,7 +144,7 @@ public class RegistrationActivity extends BaseActionBarActivity implements Regis
 
     @Override
     public void showRegisterError() {
-        notificationHelper.showErrorDialog(context.getString(R.string.register_error), context.getString(R.string.register_error_message));
+        notificationHelper.showErrorDialog(getString(R.string.register_error), getString(R.string.register_error_message));
     }
 
     @Override

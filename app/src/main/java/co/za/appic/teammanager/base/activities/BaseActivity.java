@@ -1,6 +1,6 @@
 package co.za.appic.teammanager.base.activities;
 
-import android.content.Context;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -18,21 +18,22 @@ import co.za.appic.teammanager.helpers.TransitionHelper;
 
 public abstract class BaseActivity extends AppCompatActivity implements DaggerActivity {
 
-    protected Context context;
     protected BasePresenter presenter;
+    protected boolean isNewActivity;
+
     protected PermissionsHelper permissionsHelper;
     protected DialogFragmentHelper dialogFragment;
     protected NotificationHelper notificationHelper;
     protected TransitionHelper transitionHelper;
-    protected boolean isNewActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        context = this;
+
         permissionsHelper = new PermissionsHelper(this);
         notificationHelper = new NotificationHelper(this);
         transitionHelper = new TransitionHelper(this);
+
         setBaseActivityDependencies();
 
         try {

@@ -9,6 +9,7 @@ import co.za.appic.teammanager.R;
 import co.za.appic.teammanager.base.presenters.BaseFirebaseAuthPresenter;
 import co.za.appic.teammanager.helpers.StringValidationHelper;
 import co.za.appic.teammanager.models.SupervisorModel;
+import co.za.appic.teammanager.models.UserModel;
 import co.za.appic.teammanager.models.WorkerModel;
 
 public class SignInPresenter extends BaseFirebaseAuthPresenter  {
@@ -18,6 +19,14 @@ public class SignInPresenter extends BaseFirebaseAuthPresenter  {
     public SignInPresenter(SignInView signInView){
         super(signInView);
         this.signInView = signInView;
+    }
+
+    public void setCurrentLinkedUser(UserModel user){
+        sharedPrefsHelper.setLinkedUser(user);
+    }
+
+    public UserModel getCurrentLinkedUser(){
+        return sharedPrefsHelper.getLinkedUser();
     }
 
     public void SignInUser(String username, String password) {

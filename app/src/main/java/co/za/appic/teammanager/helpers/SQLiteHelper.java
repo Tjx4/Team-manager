@@ -7,7 +7,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import java.util.ArrayList;
 import java.util.List;
-
 import co.za.appic.teammanager.enums.EmployeeType;
 import co.za.appic.teammanager.models.UserModel;
 

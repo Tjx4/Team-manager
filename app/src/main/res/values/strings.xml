@@ -32,4 +32,5 @@
     <string name="supervisor">Supervisor</string>
     <string name="email">Email</string>
     <string name="signin_technical_error">Sorry we are experiencing technical problems</string>
+    <string name="user_greeting_message">Hi %1$s  please enter your password to continue</string>
 </resources>

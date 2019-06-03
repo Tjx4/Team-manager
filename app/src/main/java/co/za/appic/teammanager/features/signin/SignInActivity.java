@@ -27,6 +27,7 @@ public class SignInActivity extends BaseNoActionBarActivity implements DaggerAct
 
     private EditText usernameTxt;
     private EditText passwordTxt;
+    private TextView linkedUserTv;
     private TextView usernameErrorTv;
     private TextView passwordErrorTv;
 
@@ -53,6 +54,7 @@ public class SignInActivity extends BaseNoActionBarActivity implements DaggerAct
     protected void initViews() {
         usernameTxt = findViewById(R.id.txtUsername);
         passwordTxt = findViewById(R.id.txtPassword);
+        linkedUserTv = findViewById(R.id.tvLinkedUser);
         usernameErrorTv = findViewById(R.id.tvUsernameError);
         passwordErrorTv = findViewById(R.id.tvPasswordError);
     }
@@ -90,6 +92,7 @@ public class SignInActivity extends BaseNoActionBarActivity implements DaggerAct
         Bundle payload = new Bundle();
         payload.putString(Constants.NAME, user.getName());
         NavigationHelper.goToActivityWithPayload(this ,dashboard, payload, transitionHelper.fadeInActivity());
+        finish();
     }
 
     @Override
@@ -115,7 +118,34 @@ public class SignInActivity extends BaseNoActionBarActivity implements DaggerAct
 
     @Override
     public void showSigningInDialog() {
-        showLoadingDialog(context.getString(R.string.signing_in));
+        showLoadingDialog(getString(R.string.signing_in));
+    }
+
+    @Override
+    public void getLinkedUserOREnterUsername() {
+        UserModel currentLinkedUser = getPresenter().getCurrentLinkedUser();
+
+        if(currentLinkedUser == null) {
+            enterUsernameAndPassword();
+        }
+        else{
+            setLinkedUserAndPassword(currentLinkedUser);
+        }
+    }
+
+    @Override
+    public void enterUsernameAndPassword() {
+        usernameTxt.setVisibility(View.VISIBLE);
+        linkedUserTv.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void setLinkedUserAndPassword(UserModel linkedUser) {
+        usernameTxt.setVisibility(View.GONE);
+        linkedUserTv.setVisibility(View.VISIBLE);
+
+        String greetingMessage = getResources().getString(R.string.user_greeting_message, linkedUser.getName());
+        linkedUserTv.setText(greetingMessage);
     }
 
     @Override

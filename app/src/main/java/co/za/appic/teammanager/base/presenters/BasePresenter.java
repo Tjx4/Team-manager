@@ -9,8 +9,10 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import co.za.appic.teammanager.base.activities.BaseActivity;
 import co.za.appic.teammanager.base.views.BaseView;
+import co.za.appic.teammanager.helpers.SQLiteHelper;
 import co.za.appic.teammanager.helpers.SharedPrefsHelper;
 import co.za.appic.teammanager.helpers.GlideHelper;
+import co.za.appic.teammanager.models.UserModel;
 
 public abstract class BasePresenter {
 
@@ -22,10 +24,12 @@ public abstract class BasePresenter {
     protected FirebaseDatabase firebaseDatabase;
     protected FirebaseUser firebaseUser;
     public StorageReference firebaseStorage;
+    protected SQLiteHelper sQLiteOpenHelper;
 
     public BasePresenter(BaseView baseView) {
         this.baseView = baseView;
         context = (AppCompatActivity)baseView;
+        sQLiteOpenHelper = new SQLiteHelper((BaseActivity)baseView);
         sharedPrefsHelper = new SharedPrefsHelper((BaseActivity)baseView);
         glideHelper = new GlideHelper((BaseActivity)baseView);
         firebaseDatabase = FirebaseDatabase.getInstance();
