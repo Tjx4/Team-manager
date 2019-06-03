@@ -1,57 +1,37 @@
 package co.za.appic.teammanager.helpers;
 
-import android.content.Context;
 import co.za.appic.teammanager.R;
 
 public class TransitionHelper {
-    private int inAnimation;
-    private int outAnimation;
-    private Context context;
+    private static int inAnimation;
+    private static int outAnimation;
 
-    public  TransitionHelper(Context context) {
-        this.context = context;
-    }
-
-    public int getInAnimation() {
-        return inAnimation;
-    }
-    public void setInAnimation(int inAnimation) {
-        this.inAnimation = inAnimation;
-    }
-    public int getOutAnimation() {
-        return outAnimation;
-    }
-    public void setOutAnimation(int outAnimation) {
-        this.outAnimation = outAnimation;
+    private static int[] getTransitions(int inTransition, int outTransition) {
+        return new int[]{inTransition, outTransition};
     }
 
-    public TransitionHelper slideInActivity() {
-        return getTransitionAnimation(R.anim.slide_right, R.anim.no_transition);
+    public static int[] slideInActivity() {
+        return getTransitions(R.anim.slide_right, R.anim.no_transition);
     }
 
-    public TransitionHelper slideOutActivity() {
-        return getTransitionAnimation(R.anim.fade_in , R.anim.slide_out);
+    public static int[] slideOutActivity() {
+        return getTransitions(R.anim.fade_in, R.anim.slide_out);
     }
 
-    public TransitionHelper transitionInActivity() {
-        return getTransitionAnimation(R.anim.slide_out, R.anim.slide_in);
+    public static int[] transitionInActivity() {
+        return getTransitions(R.anim.slide_out, R.anim.slide_in);
     }
 
-    public TransitionHelper transitionOutActivity() {
-        return getTransitionAnimation(R.anim.slide_in, R.anim.slide_out);
+    public static int[] transitionOutActivity() {
+        return getTransitions(R.anim.slide_in, R.anim.slide_out);
     }
 
-    public TransitionHelper fadeInActivity() {
-        return getTransitionAnimation(R.anim.fade_in, R.anim.no_transition);
+    public static int[] fadeInActivity() {
+        return getTransitions(R.anim.fade_in, R.anim.no_transition);
     }
 
-    public TransitionHelper fadeOutActivity() {
-        return getTransitionAnimation(R.anim.no_transition, R.anim.fade_out);
+    public static int[] fadeOutActivity() {
+        return getTransitions(R.anim.no_transition, R.anim.fade_out);
     }
 
-    private TransitionHelper getTransitionAnimation(int inAnimation, int outAnimation) {
-        this.setInAnimation(inAnimation);
-        this.setOutAnimation(outAnimation);
-        return this;
-    }
 }

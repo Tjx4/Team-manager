@@ -11,6 +11,7 @@ import co.za.appic.teammanager.features.pending.PendingRegActivity;
 import co.za.appic.teammanager.features.registration.RegistrationActivity;
 import co.za.appic.teammanager.features.signin.SignInActivity;
 import co.za.appic.teammanager.helpers.NavigationHelper;
+import co.za.appic.teammanager.helpers.TransitionHelper;
 
 public class SplashActivity extends BaseAsyncActivity implements SplashView {
 
@@ -21,7 +22,7 @@ public class SplashActivity extends BaseAsyncActivity implements SplashView {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        NavigationHelper.goToActivityWithNoPayload(this, SignInActivity.class, transitionHelper.slideInActivity());
+        NavigationHelper.goToActivityWithNoPayload(this, SignInActivity.class, TransitionHelper.slideInActivity());
         // showSplashAndEnterApp();
 
         finish();
@@ -38,13 +39,13 @@ public class SplashActivity extends BaseAsyncActivity implements SplashView {
     @Override
     public void showSplashAndEnterApp() {
         if(getPresenter().sharedPrefsHelper.getUserStatus() == UserStatus.registered){
-            NavigationHelper.goToActivityWithNoPayload(this, SignInActivity.class, transitionHelper.slideInActivity());
+            NavigationHelper.goToActivityWithNoPayload(this, SignInActivity.class, TransitionHelper.slideInActivity());
         }
         else if(getPresenter().sharedPrefsHelper.getUserStatus() == UserStatus.pending){
-            NavigationHelper.goToActivityWithNoPayload(this, PendingRegActivity.class, transitionHelper.slideInActivity());
+            NavigationHelper.goToActivityWithNoPayload(this, PendingRegActivity.class, TransitionHelper.slideInActivity());
         }
         else{
-            NavigationHelper.goToActivityWithNoPayload(this, RegistrationActivity.class, transitionHelper.slideInActivity());
+            NavigationHelper.goToActivityWithNoPayload(this, RegistrationActivity.class, TransitionHelper.slideInActivity());
         }
     }
 

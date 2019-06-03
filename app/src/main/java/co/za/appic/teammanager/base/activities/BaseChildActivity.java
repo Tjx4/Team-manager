@@ -2,6 +2,7 @@ package co.za.appic.teammanager.base.activities;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import co.za.appic.teammanager.helpers.TransitionHelper;
 
 public abstract class BaseChildActivity extends BaseActionBarActivity{
 
@@ -24,7 +25,7 @@ public abstract class BaseChildActivity extends BaseActionBarActivity{
                 return true;
         }
 
-        transitionHelper.slideOutActivity();
+        TransitionHelper.slideOutActivity();
         return super.onOptionsItemSelected(item);
     }
 }

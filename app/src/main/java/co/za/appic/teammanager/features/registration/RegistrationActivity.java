@@ -17,6 +17,8 @@ import co.za.appic.teammanager.di.modules.RegistrationModule;
 import co.za.appic.teammanager.enums.EmployeeType;
 import co.za.appic.teammanager.features.signin.SignInActivity;
 import co.za.appic.teammanager.helpers.NavigationHelper;
+import co.za.appic.teammanager.helpers.NotificationHelper;
+import co.za.appic.teammanager.helpers.TransitionHelper;
 
 public class RegistrationActivity extends BaseActionBarActivity implements RegistrationView {
 
@@ -167,12 +169,12 @@ public class RegistrationActivity extends BaseActionBarActivity implements Regis
 
     @Override
     public void showRegisterError() {
-        notificationHelper.showErrorDialog(getString(R.string.register_error), getString(R.string.register_error_message));
+        NotificationHelper.showErrorDialog(this, getString(R.string.register_error), getString(R.string.register_error_message));
     }
 
     @Override
     public void showRegisterSuccessDialog(String name) {
-        AlertDialog.Builder ab = notificationHelper.getAlertDialogMessage(getString(R.string.register_success), getString(R.string.register_success_message, name));
+        AlertDialog.Builder ab = NotificationHelper.getAlertDialogMessage(this, getString(R.string.register_success), getString(R.string.register_success_message, name));
         ab.setNeutralButton(R.string.Signin, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
@@ -187,7 +189,7 @@ public class RegistrationActivity extends BaseActionBarActivity implements Regis
             }
         });
 
-        notificationHelper.showAlertMessage(ab);
+        NotificationHelper.showAlertMessage(this, ab);
     }
 
     @Override
@@ -212,7 +214,7 @@ public class RegistrationActivity extends BaseActionBarActivity implements Regis
 
     @Override
     public void proceedToLogin() {
-        NavigationHelper.goToActivityWithNoPayload(this , SignInActivity.class, transitionHelper.fadeInActivity());
+        NavigationHelper.goToActivityWithNoPayload(this , SignInActivity.class, TransitionHelper.fadeInActivity());
         finish();
     }
 

@@ -17,6 +17,8 @@ import co.za.appic.teammanager.di.modules.SignInModule;
 import co.za.appic.teammanager.features.dashboard.DashboardActivity;
 import co.za.appic.teammanager.features.registration.RegistrationActivity;
 import co.za.appic.teammanager.helpers.NavigationHelper;
+import co.za.appic.teammanager.helpers.NotificationHelper;
+import co.za.appic.teammanager.helpers.TransitionHelper;
 import co.za.appic.teammanager.models.SupervisorModel;
 import co.za.appic.teammanager.models.UserModel;
 import co.za.appic.teammanager.models.WorkerModel;
@@ -79,7 +81,7 @@ public class SignInActivity extends BaseNoActionBarActivity implements DaggerAct
 
     @Override
     public void onCreateNewAccountClicked(View view) {
-        NavigationHelper.goToActivityWithNoPayload(this, RegistrationActivity.class, transitionHelper.slideInActivity());
+        NavigationHelper.goToActivityWithNoPayload(this, RegistrationActivity.class, TransitionHelper.slideInActivity());
     }
 
     @Override
@@ -103,13 +105,13 @@ public class SignInActivity extends BaseNoActionBarActivity implements DaggerAct
     private void enterApp(UserModel user, Class dashboard) {
         Bundle payload = new Bundle();
         payload.putString(Constants.NAME, user.getName());
-        NavigationHelper.goToActivityWithPayload(this ,dashboard, payload, transitionHelper.fadeInActivity());
+        NavigationHelper.goToActivityWithPayload(this ,dashboard, payload, TransitionHelper.fadeInActivity());
         finish();
     }
 
     @Override
     public void showSignInError(String title, String message) {
-        notificationHelper.showErrorDialog(title, message);
+        NotificationHelper.showErrorDialog(this, title, message);
     }
 
     @Override

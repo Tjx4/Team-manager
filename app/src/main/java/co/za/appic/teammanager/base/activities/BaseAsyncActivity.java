@@ -5,6 +5,7 @@ import co.za.appic.teammanager.R;
 import co.za.appic.teammanager.fragments.LoadingSpinnerFragment;
 import co.za.appic.teammanager.fragments.NoInternetFragment;
 import co.za.appic.teammanager.helpers.DialogFragmentHelper;
+import co.za.appic.teammanager.helpers.NotificationHelper;
 
 public abstract class BaseAsyncActivity extends BaseActivity{
 
@@ -25,11 +26,11 @@ public abstract class BaseAsyncActivity extends BaseActivity{
 
     public void showLoadingDialog(String loadingMessage) {
         loadingDialogFragment = new LoadingSpinnerFragment();
-        notificationHelper.showFragmentDialog(loadingMessage, R.layout.fragment_loading_spinner, loadingDialogFragment);
+        NotificationHelper.showFragmentDialog(this, loadingMessage, R.layout.fragment_loading_spinner, loadingDialogFragment);
     }
 
     public void showDialogFragment(String title, int Layout, DialogFragmentHelper newFragment) {
-        notificationHelper.showFragmentDialog(title, Layout, newFragment);
+        NotificationHelper.showFragmentDialog(this, title, Layout, newFragment);
         dialogFragment = newFragment;
     }
 

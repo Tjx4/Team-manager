@@ -14,22 +14,13 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import java.util.concurrent.Callable;
-
 import co.za.appic.teammanager.R;
 import co.za.appic.teammanager.constants.Constants;
 
 public class NotificationHelper {
 
-    private Context context;
 
-    public  NotificationHelper(Context context) {
-        this.context = context;
-    }
-
-    public void showFragmentDialog(String title, int Layout, DialogFragmentHelper newFragment) {
-        AppCompatActivity activity = (AppCompatActivity)context;
+    public static void showFragmentDialog(AppCompatActivity activity, String title, int Layout, DialogFragmentHelper newFragment) {
         FragmentTransaction ft = activity.getSupportFragmentManager().beginTransaction();
         Bundle payload = new Bundle();
         payload.putString(Constants.TITLE, title);
@@ -39,22 +30,22 @@ public class NotificationHelper {
         newFragment.show(ft, "dialog");
     }
 
-    public void showShortToast(String message) {
-        Toast toast = getToast(message, Toast.LENGTH_SHORT);
+    public static void showShortToast(Context context, String message) {
+        Toast toast = getToast(context, message, Toast.LENGTH_SHORT);
         showTheToastIfNotNull(toast);
     }
 
-    public void showLongToast(String message) {
-        Toast toast = getToast(message, Toast.LENGTH_LONG);
+    public static void showLongToast(Context context, String message) {
+        Toast toast = getToast(context, message, Toast.LENGTH_LONG);
         showTheToastIfNotNull(toast);
     }
 
-    private void showTheToastIfNotNull(Toast toast){
+    private static void showTheToastIfNotNull(Toast toast){
         if (toast != null)
             toast.show();
     }
 
-    private Toast getToast(String message, int length) {
+    private static Toast getToast(Context context, String message, int length) {
         try {
             LayoutInflater inflater = ((Activity) context).getLayoutInflater();
             View layout = inflater.inflate(R.layout.custom_toast, (ViewGroup) ((Activity) context).findViewById(R.id.root));
@@ -71,7 +62,7 @@ public class NotificationHelper {
         }
     }
 
-    public void showAlertMessage(AlertDialog.Builder ab) {
+    public static void showAlertMessage(Context context, AlertDialog.Builder ab) {
         AlertDialog a = ab.create();
         a.requestWindowFeature(Window.FEATURE_NO_TITLE);
         a.show();
@@ -81,67 +72,67 @@ public class NotificationHelper {
         a.getButton(a.BUTTON_NEUTRAL).setTextColor(context.getResources().getColor(R.color.lightText));
     }
 
-    protected AlertDialog.Builder getAlertDialogSuccessMessage(String title, String message, String... buttonText) {
+    private static AlertDialog.Builder getAlertDialogSuccessMessage(Context context, String title, String message, String... buttonText) {
 
         String posiTiveButtonText = context.getResources().getString(R.string.ok);
 
         if (buttonText != null && buttonText.length > 0)
             posiTiveButtonText = buttonText[0];
 
-        AlertDialog.Builder ab = setupBasicMessage(title, message, posiTiveButtonText, false, false);
+        AlertDialog.Builder ab = setupBasicMessage(context, title, message, posiTiveButtonText, false, false);
         ab.setIcon(R.drawable.confirm_icon_light);
 
         return ab;
     }
 
-    protected void showAlertDialogSuccessMessage(String title, String message, String... buttonText) {
-        AlertDialog.Builder ab = getAlertDialogSuccessMessage(title, message, buttonText);
-        showAlertMessage(ab);
+    private static void showAlertDialogSuccessMessage(Context context, String title, String message, String... buttonText) {
+        AlertDialog.Builder ab = getAlertDialogSuccessMessage(context, title, message, buttonText);
+        showAlertMessage(context, ab);
     }
 
-    public void showAlertDialogMessage(String title, String message, String... buttonText) {
-        AlertDialog.Builder ab = getAlertDialogMessage(title,  message,  buttonText);
-        showAlertMessage(ab);
+    public static void showAlertDialogMessage(Context context, String title, String message, String... buttonText) {
+        AlertDialog.Builder ab = getAlertDialogMessage(context, title,  message,  buttonText);
+        showAlertMessage(context, ab);
     }
 
-    public AlertDialog.Builder getAlertDialogMessage(String title, String message, String... buttonText) {
+    public static AlertDialog.Builder getAlertDialogMessage(Context context, String title, String message, String... buttonText) {
         String posiTiveButtonText = context.getResources().getString(R.string.ok);
 
         if (buttonText != null && buttonText.length > 0)
             posiTiveButtonText = buttonText[0];
 
-        AlertDialog.Builder ab = setupBasicMessage(title, message, posiTiveButtonText, false, false);
+        AlertDialog.Builder ab = setupBasicMessage(context, title, message, posiTiveButtonText, false, false);
         ab.setIcon(R.drawable.confirm_icon_light);
         return ab;
     }
 
-    public void showErrorDialog(String title, String message, String... buttonText) {
+    public static void showErrorDialog(Context context, String title, String message, String... buttonText) {
         String posiTiveButtonText = context.getResources().getString(R.string.ok);
 
         if (buttonText != null && buttonText.length > 0)
             posiTiveButtonText = buttonText[0];
 
         message = (message != null && !message.isEmpty()) ? message : context.getResources().getString(R.string.generic_error_message);
-        AlertDialog.Builder ab = setupBasicMessage(title, message, posiTiveButtonText, false, false);
+        AlertDialog.Builder ab = setupBasicMessage(context, title, message, posiTiveButtonText, false, false);
         ab.setIcon(R.drawable.ic_error_light);
-        showAlertMessage(ab);
+        showAlertMessage(context, ab);
     }
 
-    protected void showConfirmDialog(String title, String message, boolean showNagativeButton, boolean showNutralButton) {
+    public void showConfirmDialog(Context context, String title, String message, boolean showNagativeButton, boolean showNutralButton) {
         String posiTiveButtonText = context.getResources().getString(R.string.confirm);
-        AlertDialog.Builder ab = setupBasicMessage(title, message, posiTiveButtonText, showNagativeButton, showNutralButton);
+        AlertDialog.Builder ab = setupBasicMessage(context, title, message, posiTiveButtonText, showNagativeButton, showNutralButton);
         ab.setIcon(R.drawable.confirm_icon_light);
-        showAlertMessage(ab);
+        showAlertMessage(context, ab);
     }
 
-    protected AlertDialog.Builder getAlertDialogConfirmMessage(String title, String message, boolean showNagativeButton, boolean showNutralButton) {
+    protected AlertDialog.Builder getAlertDialogConfirmMessage(Context context, String title, String message, boolean showNagativeButton, boolean showNutralButton) {
         String posiTiveButtonText = context.getResources().getString(R.string.confirm);
-        AlertDialog.Builder ab = setupBasicMessage(title, message, posiTiveButtonText, showNagativeButton, showNutralButton);
+        AlertDialog.Builder ab = setupBasicMessage(context, title, message, posiTiveButtonText, showNagativeButton, showNutralButton);
         ab.setIcon(R.drawable.confirm_icon_light);
         return ab;
     }
 
-    protected AlertDialog.Builder setupBasicMessage(String title, String message, String posiTiveButtonText, boolean showNagativeButton, boolean showNutralButton) {
+    protected static AlertDialog.Builder setupBasicMessage(Context context, String title, String message, String posiTiveButtonText, boolean showNagativeButton, boolean showNutralButton) {
 
         AlertDialog.Builder ab = new AlertDialog.Builder(context, R.style.AlertDialogCustom);
         ab.setMessage(message)
@@ -171,7 +162,7 @@ public class NotificationHelper {
         return ab;
     }
 
-    private AlertDialog.Builder setupProperBasicMessage(String title, String message) {
+    private AlertDialog.Builder setupProperBasicMessage(Context context, String title, String message) {
         AlertDialog.Builder ab = new AlertDialog.Builder(context, R.style.AlertDialogCustom);
         ab.setTitle(title).setMessage(message);
         return ab;

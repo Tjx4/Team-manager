@@ -10,21 +10,16 @@ import static android.Manifest.permission.ACCESS_COARSE_LOCATION;
 
 public class PermissionsHelper {
 
-    public AppCompatActivity activity;
-    public final String ACCESS_FINE_LOCATION = Manifest.permission.ACCESS_FINE_LOCATION;
+    public static final String ACCESS_FINE_LOCATION = Manifest.permission.ACCESS_FINE_LOCATION;
 
-    public PermissionsHelper(AppCompatActivity activity) {
-        this.activity = activity;
-    }
-
-    public boolean isPermissionGranted(String permision) {
+    public static boolean isPermissionGranted(AppCompatActivity activity, String permision) {
         if(isbellowMashMellow() )
             return true;
 
         return activity.checkSelfPermission(permision) == PackageManager.PERMISSION_GRANTED;
     }
 
-    public void requestAccessFineLocationPermission() {
+    public static void requestAccessFineLocationPermission(AppCompatActivity activity) {
         if(isbellowMashMellow() )
             return;
 
@@ -38,7 +33,7 @@ public class PermissionsHelper {
         }
     }
 
-    public void requestAccessCoarseLocationPermission() {
+    public static void requestAccessCoarseLocationPermission(AppCompatActivity activity) {
         if(isbellowMashMellow() )
             return;
 
@@ -52,7 +47,7 @@ public class PermissionsHelper {
         }
     }
 
-    public void requestReadPhoneStatePermission() {
+    public static void requestReadPhoneStatePermission(AppCompatActivity activity) {
         if(isbellowMashMellow() )
             return;
 
@@ -66,7 +61,7 @@ public class PermissionsHelper {
         }
     }
 
-    public void requestTelePhonyPermission() {
+    public static void requestTelePhonyPermission(AppCompatActivity activity) {
         if(isbellowMashMellow() )
             return;
 
@@ -80,7 +75,7 @@ public class PermissionsHelper {
         }
     }
 
-    public void requestWriteStoragePermission() {
+    public static void requestWriteStoragePermission(AppCompatActivity activity) {
         if(isbellowMashMellow() )
             return;
 
@@ -94,8 +89,7 @@ public class PermissionsHelper {
         }
     }
 
-
-    public boolean isbellowMashMellow() {
+    public static boolean isbellowMashMellow() {
         return Build.VERSION.SDK_INT < 23;
     }
 }

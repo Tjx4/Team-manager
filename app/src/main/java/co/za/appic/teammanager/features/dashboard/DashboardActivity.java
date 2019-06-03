@@ -9,6 +9,7 @@ import co.za.appic.teammanager.base.activities.BaseActionBarActivity;
 import co.za.appic.teammanager.di.components.AppComponent;
 import co.za.appic.teammanager.features.signin.SignInActivity;
 import co.za.appic.teammanager.helpers.NavigationHelper;
+import co.za.appic.teammanager.helpers.TransitionHelper;
 
 public class DashboardActivity extends BaseActionBarActivity implements DashboardView  {
 
@@ -72,7 +73,7 @@ public class DashboardActivity extends BaseActionBarActivity implements Dashboar
 
         switch (itemId){
             case R.id.action_signout:
-                NavigationHelper.goToActivityWithNoPayload(this , SignInActivity.class,  transitionHelper.slideOutActivity());
+                NavigationHelper.goToActivityWithNoPayload(this , SignInActivity.class,  TransitionHelper.slideOutActivity());
                 finish();
                 break;
         }
