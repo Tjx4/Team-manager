@@ -80,11 +80,13 @@ public class SignInPresenter extends BaseFirebaseAuthPresenter  {
                     fetchCurrentSupervisor(clientId);
                 }
 
+                signInView.hideLoader();
                 UserRef.removeEventListener(this);
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
+                signInView.hideLoader();
                 fetchCurrentSupervisor(clientId);
                 UserRef.removeEventListener(this);
             }
@@ -116,11 +118,13 @@ public class SignInPresenter extends BaseFirebaseAuthPresenter  {
                     signInView.showSignInError(context.getString(R.string.signin_error), context.getString(R.string.signin_technical_error));
                 }
 
+                signInView.hideLoader();
                 UserRef.removeEventListener(this);
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
+                signInView.hideLoader();
                 signInView.showSignInError(context.getString(R.string.signin_error), context.getString(R.string.signin_technical_error));
                 UserRef.removeEventListener(this);
             }
