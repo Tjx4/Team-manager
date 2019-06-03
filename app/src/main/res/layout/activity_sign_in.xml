@@ -98,14 +98,12 @@
             android:layout_weight="1"
             style="@style/lightLabelButton"
             android:text="@string/create_new_account"
-            android:layout_marginTop="14dp"
             android:onClick="onCreateNewAccountClicked"/>
 
         <Button
             android:layout_weight="1"
             style="@style/lightLabelButton"
             android:text="Switch user"
-            android:layout_marginTop="14dp"
             android:onClick="onSwitchUserButtonClicked"/>
 
     </LinearLayout>
