@@ -13,7 +13,7 @@ public class StringValidationHelper {
     }
 
     public static boolean isValidUsername(String username){
-        return isValidCell(username) || isValidEmail(username) ;
+        return isValidMobileNo(username) || isValidEmail(username) ;
     }
 
     public static boolean isValidSurname(String surname){
@@ -44,7 +44,7 @@ public class StringValidationHelper {
         return !gender.isEmpty();
     }
 
-    public static boolean isValidCell(String cellNumber){
+    public static boolean isValidMobileNo(String cellNumber){
         if(cellNumber == null)
             return false;
 

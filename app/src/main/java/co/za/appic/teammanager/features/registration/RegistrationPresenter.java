@@ -28,54 +28,53 @@ public class RegistrationPresenter extends BaseFirebaseAuthPresenter  {
         newUser.setGender(gender);
     }
 
-    public void registerNewUser(String name, String surname, String email, String password, String confirmedPassword) {
+    public void registerNewUser(String name, String surname, String mobile, String email, String password, String confirmedPassword) {
         if(isBusy)
             return;
 
         boolean isValidName = StringValidationHelper.isValidName(name);
-
         if(!isValidName){
             registrationView.showInvalidName();
             return;
         }
 
         boolean isValidSurname = StringValidationHelper.isValidName(surname);
-
         if(!isValidSurname){
             registrationView.showInvalidSurname();
             return;
         }
 
-        boolean isValidGender =  newUser.getEmployeeType() != null;
-
+        boolean isValidGender =  newUser.getGender() == 'm' || newUser.getGender() == 'f';
         if(!isValidGender){
             registrationView.showInvalidGender();
             return;
         }
 
-        boolean isValidEmail = StringValidationHelper.isValidEmail(email);
+        boolean isValidMobile = StringValidationHelper.isValidMobileNo(mobile);
+        if(!isValidMobile){
+            registrationView.showInvalidMobile();
+            return;
+        }
 
+        boolean isValidEmail = StringValidationHelper.isValidEmail(email);
         if(!isValidEmail){
             registrationView.showInvalidEmail();
             return;
         }
 
         boolean isValidPassword = StringValidationHelper.isValidPassword(password);
-
         if(!isValidPassword){
             registrationView.showInvalidPassword();
             return;
         }
 
         boolean isPasswordConfirmed = StringValidationHelper.isMatchPasswords(password, confirmedPassword);
-
         if(!isPasswordConfirmed){
             registrationView.showInvalidConfirmPassword();
             return;
         }
 
         boolean isValidUserType = newUser.getEmployeeType() != null;
-
         if(!isValidUserType){
             registrationView.showInvalidUserType();
             return;

@@ -91,11 +91,12 @@ public class RegistrationActivity extends BaseActionBarActivity implements Regis
 
         String name = nameTxt.getText().toString();
         String surName = surNameTxt.getText().toString();
+        String mobile = mobileNumberTxt.getText().toString();
         String email = emailTxt.getText().toString();
         String password = passwordTxt.getText().toString();
         String confirmedPassword = confirmPasswordTxt.getText().toString();
 
-        getPresenter().registerNewUser(name, surName, email, password, confirmedPassword);
+        getPresenter().registerNewUser(name, surName, mobile, email, password, confirmedPassword);
     }
 
     @Override
