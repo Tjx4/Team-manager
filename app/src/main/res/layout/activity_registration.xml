@@ -24,87 +24,142 @@
                 android:focusableInTouchMode="true"
                 android:orientation="vertical">
 
+                <LinearLayout
+                    style="@style/reg_detail_separator"
+                    android:id="@+id/personalDetailsContainer">
 
-                <EditText
-                    android:id="@+id/txtName"
-                    style="@style/mediumDarkEditText"
-                    android:hint="@string/name"/>
+                    <EditText
+                        android:id="@+id/txtName"
+                        style="@style/mediumDarkEditText"
+                        android:hint="@string/name"/>
 
-                <TextView
-                    android:id="@+id/tvNameError"
-                    style="@style/smallErrorLabel"
-                    android:text="Error"/>
+                    <TextView
+                        android:id="@+id/tvNameError"
+                        style="@style/smallErrorLabel"
+                        android:text="Error"/>
 
-                <EditText
-                    android:id="@+id/txtSurname"
-                    style="@style/mediumDarkEditText"
-                    android:hint="@string/surname"/>
+                    <EditText
+                        android:id="@+id/txtSurname"
+                        style="@style/mediumDarkEditText"
+                        android:hint="@string/surname"/>
 
-                <TextView
-                    android:id="@+id/tvSurnameNameError"
-                    style="@style/smallErrorLabel"
-                    android:text="Error"/>
+                    <TextView
+                        android:id="@+id/tvSurnameNameError"
+                        style="@style/smallErrorLabel"
+                        android:text="Error"/>
 
-                <EditText
-                    android:id="@+id/txtEmail"
-                    style="@style/mediumDarkEditText"
-                    android:hint="@string/email"/>
+                    <RadioGroup
+                        android:layout_gravity="center"
+                        android:orientation="horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
 
-                <TextView
-                    android:id="@+id/tvEmailError"
-                    style="@style/smallErrorLabel"
-                    android:text="Error"/>
+                        <RadioButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Male"
+                            android:textColor="@color/darkText"
+                            android:onClick="onMaleClicked"/>
 
-                <EditText
-                    android:id="@+id/txtPassword"
-                    style="@style/mediumDarkEditText"
-                    android:hint="@string/password"
-                    android:inputType="textPassword"/>
+                        <RadioButton
+                            android:layout_marginLeft="20dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Female"
+                            android:textColor="@color/darkText"
+                            android:onClick="onFemaleClicked"/>
 
-                <TextView
-                    android:id="@+id/tvPasswordError"
-                    style="@style/smallErrorLabel"
-                    android:text="Error"/>
+                    </RadioGroup>
 
-                <EditText
-                    android:id="@+id/txtConfirmPassword"
-                    style="@style/mediumDarkEditText"
-                    android:hint="@string/confirm_password"
-                    android:inputType="textPassword"/>
+                    <TextView
+                        android:id="@+id/tvGenderError"
+                        style="@style/smallErrorLabel"
+                        android:text="Error"/>
 
-                <TextView
-                    android:id="@+id/tvConfirmPasswordError"
-                    style="@style/smallErrorLabel"
-                    android:text="Error"/>
+                </LinearLayout>
 
+                <LinearLayout
+                    style="@style/reg_detail_separator"
+                    android:id="@+id/contactDetailsContainer">
 
-                <RadioGroup
-                    android:layout_gravity="center"
-                    android:orientation="horizontal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                    <EditText
+                        android:id="@+id/txtMobileNumber"
+                        style="@style/mediumDarkEditText"
+                        android:hint="@string/mobile_number"
+                        android:inputType="number"/>
 
-                   <RadioButton
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="@string/worker"
-                       android:textColor="@color/darkText"
-                       android:onClick="onWorkerClicked"/>
+                    <TextView
+                        android:id="@+id/tvMobileNumberError"
+                        style="@style/smallErrorLabel"
+                        android:text="Error"/>
 
-                   <RadioButton
-                       android:layout_marginLeft="20dp"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="@string/supervisor"
-                       android:textColor="@color/darkText"
-                       android:onClick="onSupervisorClicked"/>
+                    <EditText
+                        android:id="@+id/txtEmail"
+                        style="@style/mediumDarkEditText"
+                        android:hint="@string/email"/>
 
-                </RadioGroup>
+                    <TextView
+                        android:id="@+id/tvEmailError"
+                        style="@style/smallErrorLabel"
+                        android:text="Error"/>
 
-                <TextView
-                    android:id="@+id/tvEmployeeTypeError"
-                    style="@style/smallErrorLabel"
-                    android:text="Error"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/reg_detail_separator"
+                    android:id="@+id/securityDetailsContainer">
+
+                    <EditText
+                        android:id="@+id/txtPassword"
+                        style="@style/mediumDarkEditText"
+                        android:hint="@string/password"
+                        android:inputType="textPassword"/>
+
+                    <TextView
+                        android:id="@+id/tvPasswordError"
+                        style="@style/smallErrorLabel"
+                        android:text="Error"/>
+
+                    <EditText
+                        android:id="@+id/txtConfirmPassword"
+                        style="@style/mediumDarkEditText"
+                        android:hint="@string/confirm_password"
+                        android:inputType="textPassword"/>
+
+                    <TextView
+                        android:id="@+id/tvConfirmPasswordError"
+                        style="@style/smallErrorLabel"
+                        android:text="Error"/>
+
+                    <RadioGroup
+                        android:layout_gravity="center"
+                        android:orientation="horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                       <RadioButton
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:text="@string/worker"
+                           android:textColor="@color/darkText"
+                           android:onClick="onWorkerClicked"/>
+
+                       <RadioButton
+                           android:layout_marginLeft="20dp"
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:text="@string/supervisor"
+                           android:textColor="@color/darkText"
+                           android:onClick="onSupervisorClicked"/>
+
+                    </RadioGroup>
+
+                    <TextView
+                        android:id="@+id/tvEmployeeTypeError"
+                        style="@style/smallErrorLabel"
+                        android:text="Error"/>
+
+                </LinearLayout>
 
                 <Button
                     style="@style/mediumGreenButton"

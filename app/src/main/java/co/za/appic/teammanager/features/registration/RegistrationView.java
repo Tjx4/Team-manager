@@ -11,6 +11,8 @@ public interface RegistrationView extends BaseView {
     void showRegisterSuccessDialog(String name);
     void showInvalidName();
     void showInvalidSurname();
+    void showInvalidGender();
+    void showInvalidMobile();
     void showInvalidEmail();
     void showInvalidPassword();
     void showInvalidConfirmPassword();
@@ -18,4 +20,7 @@ public interface RegistrationView extends BaseView {
     void hideValidationLabels();
     void onWorkerClicked(View view);
     void onSupervisorClicked(View view);
+    void onMaleClicked(View view);
+    void onFemaleClicked(View view);
+    void proceedToLogin();
 }

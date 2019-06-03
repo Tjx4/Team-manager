@@ -24,6 +24,10 @@ public class RegistrationPresenter extends BaseFirebaseAuthPresenter  {
         newUser.setEmployeeType(employeeType);
     }
 
+    public void setGender(char gender) {
+        newUser.setGender(gender);
+    }
+
     public void registerNewUser(String name, String surname, String email, String password, String confirmedPassword) {
         if(isBusy)
             return;
@@ -39,6 +43,13 @@ public class RegistrationPresenter extends BaseFirebaseAuthPresenter  {
 
         if(!isValidSurname){
             registrationView.showInvalidSurname();
+            return;
+        }
+
+        boolean isValidGender =  newUser.getEmployeeType() != null;
+
+        if(!isValidGender){
+            registrationView.showInvalidGender();
             return;
         }
 

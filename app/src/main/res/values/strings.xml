@@ -12,6 +12,8 @@
     <string name="signin_error">Signin error</string>
     <string name="signin_error_message">SignIn error please check your details</string>
     <string name="register_error">Register error</string>
+    <string name="register_success">Registration complete</string>
+    <string name="register_success_message">Congratulations %1$s you are now part of team manager</string>
     <string name="register_error_message">Register error please check your details</string>
     <string name="invalid_username_message">Please enter a valid username !</string>
     <string name="invalid_name_message">Please enter a valid name !</string>
@@ -38,4 +40,7 @@
     <string name="no">No</string>
     <string name="ok">Ok</string>
     <string name="confirm">Confirm</string>
+    <string name="invalid_gender">Please select your gender</string>
+    <string name="mobile_number">Mobile number</string>
+    <string name="invalid_mobile_message">Please enter a valid mobile number</string>
 </resources>

@@ -1,6 +1,8 @@
 package co.za.appic.teammanager.features.registration;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -13,6 +15,8 @@ import co.za.appic.teammanager.di.components.AppComponent;
 import co.za.appic.teammanager.di.components.DaggerRegistrationComponent;
 import co.za.appic.teammanager.di.modules.RegistrationModule;
 import co.za.appic.teammanager.enums.EmployeeType;
+import co.za.appic.teammanager.features.signin.SignInActivity;
+import co.za.appic.teammanager.helpers.NavigationHelper;
 
 public class RegistrationActivity extends BaseActionBarActivity implements RegistrationView {
 
@@ -21,12 +25,15 @@ public class RegistrationActivity extends BaseActionBarActivity implements Regis
 
     private EditText nameTxt;
     private EditText passwordTxt;
+    private EditText mobileNumberTxt;
     private EditText emailTxt;
     private EditText surNameTxt;
     private EditText confirmPasswordTxt;
 
     private TextView nameErrorTv;
     private TextView surnameErrorTv;
+    private TextView genderErrorTv;
+    private TextView mobileNumberErrorTv;
     private TextView emailErrorTv;
     private TextView passwordErrorTv;
     private TextView confirmPasswordErrorTv;
@@ -56,11 +63,14 @@ public class RegistrationActivity extends BaseActionBarActivity implements Regis
         nameTxt = findViewById(R.id.txtName);
         surNameTxt = findViewById(R.id.txtSurname);
         passwordTxt = findViewById(R.id.txtPassword);
+        mobileNumberTxt = findViewById(R.id.txtMobileNumber);
         emailTxt = findViewById(R.id.txtEmail);
         confirmPasswordTxt = findViewById(R.id.txtConfirmPassword);
 
         nameErrorTv = findViewById(R.id.tvNameError);
         surnameErrorTv = findViewById(R.id.tvSurnameNameError);
+        genderErrorTv = findViewById(R.id.tvGenderError);
+        mobileNumberErrorTv = findViewById(R.id.tvMobileNumberError);
         emailErrorTv = findViewById(R.id.tvEmailError);
         passwordErrorTv = findViewById(R.id.tvPasswordError);
         confirmPasswordErrorTv = findViewById(R.id.tvConfirmPasswordError);
@@ -118,6 +128,16 @@ public class RegistrationActivity extends BaseActionBarActivity implements Regis
     }
 
     @Override
+    public void showInvalidGender() {
+        showValidationError(genderErrorTv, getString(R.string.invalid_gender));
+    }
+
+    @Override
+    public void showInvalidMobile() {
+        showValidationError(mobileNumberErrorTv, getString(R.string.invalid_mobile_message));
+    }
+
+    @Override
     public void showInvalidEmail() {
         showValidationError(emailErrorTv, getString(R.string.invalid_email_message));
     }
@@ -149,7 +169,22 @@ public class RegistrationActivity extends BaseActionBarActivity implements Regis
 
     @Override
     public void showRegisterSuccessDialog(String name) {
-        // show
+        AlertDialog.Builder ab = notificationHelper.getAlertDialogMessage(getString(R.string.register_success), getString(R.string.register_success_message, name));
+        ab.setNeutralButton(R.string.Signin, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                proceedToLogin();
+            }
+        });
+
+        ab.setOnDismissListener(new DialogInterface.OnDismissListener(){
+            @Override
+            public void onDismiss(DialogInterface dialogInterface) {
+                proceedToLogin();
+            }
+        });
+
+        notificationHelper.showAlertMessage(ab);
     }
 
     @Override
@@ -160,6 +195,22 @@ public class RegistrationActivity extends BaseActionBarActivity implements Regis
     @Override
     public void onSupervisorClicked(View view) {
         getPresenter().setUserType(EmployeeType.supervisor);
+    }
+
+    @Override
+    public void onMaleClicked(View view) {
+        getPresenter().setGender('m');
+    }
+
+    @Override
+    public void onFemaleClicked(View view) {
+        getPresenter().setGender('f');
+    }
+
+    @Override
+    public void proceedToLogin() {
+        NavigationHelper.goToActivityWithNoPayload(this , SignInActivity.class, transitionHelper.fadeInActivity());
+        finish();
     }
 
     @Override

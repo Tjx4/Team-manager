@@ -108,4 +108,11 @@
         <item name="android:color">#cccccc</item>
     </style>
 
+    <style name="reg_detail_separator">
+        <item name="android:layout_marginTop">@dimen/medium_margin</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
 </resources>

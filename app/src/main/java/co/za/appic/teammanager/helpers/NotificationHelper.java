@@ -71,7 +71,7 @@ public class NotificationHelper {
         }
     }
 
-    protected void showAlertMessage(AlertDialog.Builder ab) {
+    public void showAlertMessage(AlertDialog.Builder ab) {
         AlertDialog a = ab.create();
         a.requestWindowFeature(Window.FEATURE_NO_TITLE);
         a.show();
@@ -100,6 +100,11 @@ public class NotificationHelper {
     }
 
     public void showAlertDialogMessage(String title, String message, String... buttonText) {
+        AlertDialog.Builder ab = getAlertDialogMessage(title,  message,  buttonText);
+        showAlertMessage(ab);
+    }
+
+    public AlertDialog.Builder getAlertDialogMessage(String title, String message, String... buttonText) {
         String posiTiveButtonText = context.getResources().getString(R.string.ok);
 
         if (buttonText != null && buttonText.length > 0)
@@ -107,7 +112,7 @@ public class NotificationHelper {
 
         AlertDialog.Builder ab = setupBasicMessage(title, message, posiTiveButtonText, false, false);
         ab.setIcon(R.drawable.confirm_icon_light);
-        showAlertMessage(ab);
+        return ab;
     }
 
     public void showErrorDialog(String title, String message, String... buttonText) {
