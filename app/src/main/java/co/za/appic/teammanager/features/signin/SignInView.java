@@ -10,10 +10,11 @@ public interface SignInView extends BaseView {
     SignInPresenter getPresenter();
     void onSignInButtonClicked(View view);
     void onCreateNewAccountClicked(View view);
+    void onSwitchUserButtonClicked(View view);
     void enterAppAsSupervisor(SupervisorModel supervisor);
     void enterAppAsWorker(WorkerModel worker);
     void showSignInError(String title, String message);
-    void getLinkedUserOREnterUsername();
+    void showLinkedUserOREnterUsername();
     void setLinkedUserAndPassword(UserModel linkedUser);
     void enterUsernameAndPassword();
     void showInvalidUsername();

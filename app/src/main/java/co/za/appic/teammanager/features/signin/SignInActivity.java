@@ -36,7 +36,7 @@ public class SignInActivity extends BaseNoActionBarActivity implements DaggerAct
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getLinkedUserOREnterUsername();
+        showLinkedUserOREnterUsername();
     }
 
     @Override
@@ -83,6 +83,10 @@ public class SignInActivity extends BaseNoActionBarActivity implements DaggerAct
     }
 
     @Override
+    public void onSwitchUserButtonClicked(View view) {
+    }
+
+    @Override
     public void enterAppAsSupervisor(SupervisorModel supervisor) {
         enterApp(supervisor,  DashboardActivity.class);
     }
@@ -126,7 +130,7 @@ public class SignInActivity extends BaseNoActionBarActivity implements DaggerAct
     }
 
     @Override
-    public void getLinkedUserOREnterUsername() {
+    public void showLinkedUserOREnterUsername() {
         UserModel currentLinkedUser = getPresenter().getCurrentLinkedUser();
 
         if(currentLinkedUser == null) {

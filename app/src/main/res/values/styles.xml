@@ -88,7 +88,7 @@
         <item name="android:textColor">@color/lightestText</item>
     </style>
     <style name="lightLabelButton" parent="mediumTeamManagerButton">
-        <item name="android:background">@android:color/transparent</item>
+        <item name="android:background">@drawable/light_labelbutton_backgroud</item>
         <item name="android:textColor">@color/lightestText</item>
     </style>
 

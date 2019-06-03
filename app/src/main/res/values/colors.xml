@@ -14,10 +14,12 @@
     <color name="darkerText">#333</color>
     <color name="darkestText">#000</color>
 
+    <color name="transBlack">#BA000000</color>
     <color name="darkBackground">#000</color>
     <color name="lightBackground">#FFF</color>
 
     <color name="greenButtonBackground">#26AE61</color>
+    <color name="greenButtonBackgroundClicked">#45AD72</color>
     <color name="greenButtonBorderColor">#156636</color>
 
 </resources>
