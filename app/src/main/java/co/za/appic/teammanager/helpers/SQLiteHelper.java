@@ -7,6 +7,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import java.util.ArrayList;
 import java.util.List;
+
+import co.za.appic.teammanager.enums.EmployeeType;
 import co.za.appic.teammanager.models.UserModel;
 
 public class SQLiteHelper extends SQLiteOpenHelper {
@@ -14,7 +16,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "geartronix_db";
     private static final String TABLE_USERS = "users";
-    private static final String ID = "id";
+    private static final String EMPLOYEE_ID = "id";
     private static final String NAME = "name";
     private static final String SURNAME = "surname";
     private static final String GENDER = "gender";
@@ -29,7 +31,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         String CREATE_CONTACTS_TABLE = "CREATE TABLE " + TABLE_USERS + "("
-                + ID + " INTEGER PRIMARY KEY,"
+                + EMPLOYEE_ID + " TEXT PRIMARY KEY,"
                 + NAME + " TEXT,"
                 + SURNAME + " TEXT,"
                 + GENDER + " TEXT,"
@@ -44,10 +46,12 @@ public class SQLiteHelper extends SQLiteOpenHelper {
             SQLiteDatabase db = this.getWritableDatabase();
 
             ContentValues values = new ContentValues();
-            values.put(ID, user.getEmployeeId());
+            values.put(EMPLOYEE_ID, user.getEmployeeId());
             values.put(NAME, user.getName());
             values.put(SURNAME, user.getSurname());
             values.put(GENDER, user.getGender()+"");
+            values.put(MOBILENUMBER, user.getMobileNumber());
+            values.put(EMAIL, user.getEmail());
             values.put(MEMBERTYPE, user.getEmployeeType().getUserId());
 
             db.insert(TABLE_USERS, null, values);
@@ -59,11 +63,11 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         }
     }
 
-    public UserModel getUser(int id) {
+    public UserModel getUser(String employeeId) {
         UserModel user = null;
         try {
             SQLiteDatabase db = this.getReadableDatabase();
-            Cursor cursor = db.query(TABLE_USERS, getFieldsArray(), ID + "=?", new String[] { String.valueOf(id) }, null, null, null, null);
+            Cursor cursor = db.query(TABLE_USERS, getFieldsArray(), EMPLOYEE_ID + "=?", new String[] { String.valueOf(employeeId) }, null, null, null, null);
             user = getUserFromCursor(cursor);
         }
         catch (Exception e){
@@ -81,7 +85,9 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 
         user.setEmployeeId(cursor.getString(0));
         user.setName(cursor.getString(1));
-        user.setGender(cursor.getString(2).charAt(0));
+        user.setSurname(cursor.getString(2));
+        user.setGender(cursor.getString(3).charAt(0));
+        user.setEmployeeType(EmployeeType.values()[cursor.getInt(4)]);
 
         return user;
     }
@@ -96,9 +102,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 
         if (cursor.moveToFirst()) {
             do {
-                UserModel user = new UserModel();
-                user.setEmployeeId(cursor.getString(0));
-
+                UserModel user = getUserFromCursor(cursor);
                 userList.add(user);
             } while (cursor.moveToNext());
         }
@@ -110,14 +114,11 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         String selectQuery = "SELECT  * FROM " + TABLE_USERS;
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
-        UserModel user = new UserModel();
+        UserModel user = null;
 
         if (cursor.moveToFirst()) {
             do {
-                user.setEmployeeId(cursor.getString(0));
-                user.setName(cursor.getString(2));
-                user.setGender(cursor.getString(4).charAt(0));
-
+                user = getUserFromCursor(cursor);
                 break;
             } while (cursor.moveToNext());
         }
@@ -133,13 +134,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 
         if (cursor.moveToFirst()) {
             do {
-                UserModel user = new UserModel();
-                user.setEmployeeId(cursor.getString(0));
-                user.setName(cursor.getString(2));
-                user.setGender(cursor.getString(4).charAt(0));
-
-                user.setMobileNumber(cursor.getString(5));
-
+                UserModel user = getUserFromCursor(cursor);
                 userList.add(user);
             } while (cursor.moveToNext());
         }
@@ -152,19 +147,24 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
+        values.put(EMPLOYEE_ID, user.getEmployeeId());
         values.put(NAME, user.getName());
+        values.put(SURNAME, user.getSurname());
+        values.put(GENDER, user.getGender()+"");
         values.put(MOBILENUMBER, user.getMobileNumber());
+        values.put(EMAIL, user.getEmail());
+        values.put(MEMBERTYPE, user.getEmployeeType().getUserId());
 
-        return db.update(TABLE_USERS, values, ID + " = ?", new String[] { String.valueOf(user.getEmployeeId()) });
+        return db.update(TABLE_USERS, values, EMPLOYEE_ID + " = ?", new String[] { String.valueOf(user.getEmployeeId()) });
     }
 
     public void deleteUser(UserModel user) {
         deleteUserByid(user.getEmployeeId());
     }
 
-    public void deleteUserByid(String id) {
+    public void deleteUserByid(String employeeId) {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(TABLE_USERS, ID + " = ?", new String[] { String.valueOf(id) });
+        db.delete(TABLE_USERS, EMPLOYEE_ID + " = ?", new String[] { String.valueOf(employeeId) });
         db.close();
     }
 
@@ -174,14 +174,12 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     }
 
     private String[] getFieldsArray(){
-        return new String[] { ID, NAME, GENDER, MOBILENUMBER, EMAIL, MEMBERTYPE};
+        return new String[] {EMPLOYEE_ID, NAME, SURNAME, GENDER, MOBILENUMBER, EMAIL, MEMBERTYPE};
     }
 
     public boolean isExistUser(UserModel user) {
         SQLiteDatabase db = this.getReadableDatabase();
-
-        Cursor cursor = db.query(TABLE_USERS, getFieldsArray(), ID + "=?", new String[] { String.valueOf(user.getEmployeeId()) }, null, null, null, null);
-
+        Cursor cursor = db.query(TABLE_USERS, getFieldsArray(), EMPLOYEE_ID + "=?", new String[] { user.getEmployeeId() }, null, null, null, null);
         return  cursor != null && cursor.getCount() > 0;
     }
 
