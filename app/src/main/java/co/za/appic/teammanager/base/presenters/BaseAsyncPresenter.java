@@ -54,7 +54,7 @@ public abstract class BaseAsyncPresenter extends BasePresenter {
         user.setMobile(mobile);
         String email = chatSnapshot.child(Constants.DB_EMAIL).getValue().toString();
         user.setEmail(email);
-        int employeeType = (int)chatSnapshot.child(Constants.DB_EMPLOYEE_TYPE).getValue();
+        int employeeType = Integer.parseInt(chatSnapshot.child(Constants.DB_EMPLOYEE_TYPE).getValue().toString());
         user.setEmployeeType(EmployeeType.values()[employeeType]);
     }
 }
