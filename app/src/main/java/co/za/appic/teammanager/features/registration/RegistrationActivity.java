@@ -103,9 +103,11 @@ public class RegistrationActivity extends BaseActionBarActivity implements Regis
     public void hideValidationLabels() {
         nameErrorTv.setVisibility(View.INVISIBLE);
         surnameErrorTv.setVisibility(View.INVISIBLE);
+        mobileNumberErrorTv.setVisibility(View.INVISIBLE);
         emailErrorTv.setVisibility(View.INVISIBLE);
         passwordErrorTv.setVisibility(View.INVISIBLE);
         confirmPasswordErrorTv.setVisibility(View.INVISIBLE);
+        employeeTypeErrorTv.setVisibility(View.INVISIBLE);
     }
 
     @Override
