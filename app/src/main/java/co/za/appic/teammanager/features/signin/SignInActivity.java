@@ -139,7 +139,7 @@ public class SignInActivity extends BaseNoActionBarActivity implements DaggerAct
     public void showLinkedUserOREnterUsername() {
         UserModel currentLinkedUser = getPresenter().getCurrentLinkedUser();
 
-        if(currentLinkedUser != null && currentLinkedUser.getEmail() != null) {
+        if(currentLinkedUser != null) {
             setLinkedUserAndPassword(currentLinkedUser);
         }
         else{

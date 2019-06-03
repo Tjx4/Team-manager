@@ -22,7 +22,15 @@ public class SignInPresenter extends BaseFirebaseAuthPresenter  {
     }
 
     public UserModel getCurrentLinkedUser(){
-        return sharedPrefsHelper.getLinkedUser();
+        UserModel currentLinkedUser = sharedPrefsHelper.getLinkedUser();
+
+        if(currentLinkedUser == null)
+            return null;
+
+        if(currentLinkedUser.getEmail() == null)
+            return null;
+
+         return currentLinkedUser;
     }
 
     public void SignInUser(String username, String password) {
