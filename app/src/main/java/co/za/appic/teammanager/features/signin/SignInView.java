@@ -15,7 +15,6 @@ public interface SignInView extends BaseView {
     void enterAppAsSupervisor(SupervisorModel supervisor);
     void enterAppAsWorker(WorkerModel worker);
     void showSignInError(String title, String message);
-    void showLinkedUserOREnterUsername();
     void setLinkedUserAndPassword(UserModel linkedUser);
     void enterUsernameAndPassword();
     void showInvalidUsername();

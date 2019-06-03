@@ -83,4 +83,8 @@ public abstract class BaseFirebaseAuthPresenter extends BaseAsyncPresenter {
         sharedPrefsHelper.setLinkedUser(user);
     }
 
+    protected UserModel getCurrentLinkedUser(){
+        return sharedPrefsHelper.getLinkedUser();
+    }
+
 }

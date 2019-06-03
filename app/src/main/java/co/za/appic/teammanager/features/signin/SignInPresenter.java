@@ -21,16 +21,15 @@ public class SignInPresenter extends BaseFirebaseAuthPresenter  {
         this.signInView = signInView;
     }
 
-    public UserModel getCurrentLinkedUser(){
-        UserModel currentLinkedUser = sharedPrefsHelper.getLinkedUser();
+    public void showLinkedUserOREnterUsername() {
+        UserModel currentLinkedUser = getCurrentLinkedUser();
 
-        if(currentLinkedUser == null)
-            return null;
-
-        if(currentLinkedUser.getEmail() == null)
-            return null;
-
-         return currentLinkedUser;
+        if(currentLinkedUser != null && currentLinkedUser.getEmail() == null) {
+            signInView.setLinkedUserAndPassword(currentLinkedUser);
+        }
+        else{
+            signInView.enterUsernameAndPassword();
+        }
     }
 
     public void SignInUser(String username, String password) {

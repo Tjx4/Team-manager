@@ -38,7 +38,7 @@ public class SignInActivity extends BaseNoActionBarActivity implements DaggerAct
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        showLinkedUserOREnterUsername();
+        getPresenter().showLinkedUserOREnterUsername();
     }
 
     @Override
@@ -73,7 +73,6 @@ public class SignInActivity extends BaseNoActionBarActivity implements DaggerAct
     @Override
     public void onSignInButtonClicked(View view) {
         hideValidationLabels();
-
         String username = usernameTxt.getText().toString();
         String password = passwordTxt.getText().toString();
         getPresenter().SignInUser(username, password);
@@ -133,18 +132,6 @@ public class SignInActivity extends BaseNoActionBarActivity implements DaggerAct
     @Override
     public void showSigningInDialog() {
         showLoadingDialog(getString(R.string.signing_in));
-    }
-
-    @Override
-    public void showLinkedUserOREnterUsername() {
-        UserModel currentLinkedUser = getPresenter().getCurrentLinkedUser();
-
-        if(currentLinkedUser != null) {
-            setLinkedUserAndPassword(currentLinkedUser);
-        }
-        else{
-            enterUsernameAndPassword();
-        }
     }
 
     @Override
