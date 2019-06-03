@@ -93,15 +93,16 @@ public class SignInActivity extends BaseNoActionBarActivity implements DaggerAct
 
     @Override
     public void enterAppAsSupervisor(SupervisorModel supervisor) {
-        enterApp(supervisor,  DashboardActivity.class);
+        hideLoaderAndEnterApp(supervisor,  DashboardActivity.class);
     }
 
     @Override
     public void enterAppAsWorker(WorkerModel worker) {
-        enterApp(worker,  DashboardActivity.class);
+        hideLoaderAndEnterApp(worker,  DashboardActivity.class);
     }
 
-    private void enterApp(UserModel user, Class dashboard) {
+    private void hideLoaderAndEnterApp(UserModel user, Class dashboard) {
+        hideLoader();
         Bundle payload = new Bundle();
         payload.putString(Constants.NAME, user.getName());
         NavigationHelper.goToActivityWithPayload(this ,dashboard, payload, TransitionHelper.fadeInActivity());
@@ -109,7 +110,8 @@ public class SignInActivity extends BaseNoActionBarActivity implements DaggerAct
     }
 
     @Override
-    public void showSignInError(String title, String message) {
+    public void closeLoaderAndShowSignInError(String title, String message) {
+        hideLoader();
         NotificationHelper.showErrorDialog(this, title, message);
     }
 

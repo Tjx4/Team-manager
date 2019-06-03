@@ -7,6 +7,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import co.za.appic.teammanager.R;
 import co.za.appic.teammanager.base.presenters.BaseFirebaseAuthPresenter;
+import co.za.appic.teammanager.constants.Constants;
 import co.za.appic.teammanager.helpers.StringValidationHelper;
 import co.za.appic.teammanager.models.SupervisorModel;
 import co.za.appic.teammanager.models.UserModel;
@@ -24,7 +25,7 @@ public class SignInPresenter extends BaseFirebaseAuthPresenter  {
     public void showLinkedUserOREnterUsername() {
         UserModel currentLinkedUser = getCurrentLinkedUser();
 
-        if(currentLinkedUser != null && currentLinkedUser.getEmail() == null) {
+        if(currentLinkedUser != null && currentLinkedUser.getEmail() != null) {
             signInView.setLinkedUserAndPassword(currentLinkedUser);
         }
         else{
@@ -63,11 +64,11 @@ public class SignInPresenter extends BaseFirebaseAuthPresenter  {
     protected void onFirebaseSignInFailure() {
         super.onFirebaseSignInFailure();
         signInView.hideLoader();
-        signInView.showSignInError(context.getString(R.string.signin_error), context.getString(R.string.signin_error_message));
+        signInView.closeLoaderAndShowSignInError(context.getString(R.string.signin_error), context.getString(R.string.signin_error_message));
     }
 
     private void fetchCurrentWorker(final String clientId) {
-        final DatabaseReference UserRef = FirebaseDatabase.getInstance().getReference().child("workers").child(clientId);
+        final DatabaseReference UserRef = FirebaseDatabase.getInstance().getReference().child(Constants.WORKERS_TABLE).child(clientId);
         ValueEventListener listener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -103,7 +104,7 @@ public class SignInPresenter extends BaseFirebaseAuthPresenter  {
 
     private void fetchCurrentSupervisor(String stylistId) {
 
-        final DatabaseReference UserRef = FirebaseDatabase.getInstance().getReference().child("supervisors").child(stylistId);
+        final DatabaseReference UserRef = FirebaseDatabase.getInstance().getReference().child(Constants.SUPERVISORS_TABLE).child(stylistId);
         ValueEventListener listener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -116,21 +117,19 @@ public class SignInPresenter extends BaseFirebaseAuthPresenter  {
                         signInView.enterAppAsSupervisor(supervisor);
                     }
                     else {
-                        signInView.showSignInError(context.getString(R.string.signin_error), context.getString(R.string.signin_technical_error));
+                        signInView.closeLoaderAndShowSignInError(context.getString(R.string.signin_error), context.getString(R.string.signin_technical_error));
                     }
                 }
                 catch (Exception e){
-                    signInView.showSignInError(context.getString(R.string.signin_error), context.getString(R.string.signin_technical_error));
+                    signInView.closeLoaderAndShowSignInError(context.getString(R.string.signin_error), context.getString(R.string.signin_technical_error));
                 }
 
-                signInView.hideLoader();
                 UserRef.removeEventListener(this);
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                signInView.hideLoader();
-                signInView.showSignInError(context.getString(R.string.signin_error), context.getString(R.string.signin_technical_error));
+                signInView.closeLoaderAndShowSignInError(context.getString(R.string.signin_error), context.getString(R.string.signin_technical_error));
                 UserRef.removeEventListener(this);
             }
         };
