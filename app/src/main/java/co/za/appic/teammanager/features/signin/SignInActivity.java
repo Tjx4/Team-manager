@@ -83,6 +83,10 @@ public class SignInActivity extends BaseNoActionBarActivity implements DaggerAct
     }
 
     @Override
+    public void onForgotPasswordButtonClicked(View view) {
+    }
+
+    @Override
     public void onSwitchUserButtonClicked(View view) {
     }
 

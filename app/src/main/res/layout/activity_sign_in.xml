@@ -80,6 +80,11 @@
                     android:text="@string/Signin"
                     android:onClick="onSignInButtonClicked"/>
 
+                <Button
+                    android:layout_marginTop="13dp"
+                    style="@style/lightLabelButton"
+                    android:text="Forgot password"
+                    android:onClick="onForgotPasswordButtonClicked"/>
 
             </LinearLayout>
 
@@ -103,7 +108,7 @@
         <Button
             android:layout_weight="3"
             style="@style/lightLabelButton"
-            android:text="Switch user"
+            android:text="@string/switch_user"
             android:onClick="onSwitchUserButtonClicked"/>
 
     </LinearLayout>
