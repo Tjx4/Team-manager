@@ -3,11 +3,13 @@ package co.za.appic.teammanager.models;
 import co.za.appic.teammanager.enums.EmployeeType;
 
 public class UserModel {
+
+    private String fbId;
+    private String employeeId;
     private String name;
     private char gender;
     private String surname;
     private String email;
-    private String employeeId;
     private String mobile;
     protected EmployeeType employeeType;
 
@@ -65,5 +67,13 @@ public class UserModel {
 
     public void setMobile(String mobile) {
         this.mobile = mobile;
+    }
+
+    public String getFbId() {
+        return fbId;
+    }
+
+    public void setFbId(String fbId) {
+        this.fbId = fbId;
     }
 }

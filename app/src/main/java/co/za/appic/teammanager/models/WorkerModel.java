@@ -8,11 +8,6 @@ public class WorkerModel extends UserModel {
 
     private List<String> teams;
 
-    @Override
-    public EmployeeType getEmployeeType() {
-        return EmployeeType.worker;
-    }
-
     public List<String> getTeams() {
         return teams;
     }

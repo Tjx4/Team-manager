@@ -2,6 +2,7 @@ package co.za.appic.teammanager.base.presenters;
 
 import com.google.firebase.database.DataSnapshot;
 import co.za.appic.teammanager.base.views.BaseView;
+import co.za.appic.teammanager.constants.Constants;
 import co.za.appic.teammanager.enums.EmployeeType;
 import co.za.appic.teammanager.models.SupervisorModel;
 import co.za.appic.teammanager.models.UserModel;
@@ -41,15 +42,19 @@ public abstract class BaseAsyncPresenter extends BasePresenter {
     }
 
     protected void setCommonUserDetails(DataSnapshot chatSnapshot, UserModel user) {
-        String employeeId = chatSnapshot.child("employeeId").getValue().toString();
+        String employeeId = chatSnapshot.child(Constants.DB_EMPLOYEE_ID).getValue().toString();
         user.setEmployeeId(employeeId);
-        String name = chatSnapshot.child("name").getValue().toString();
+        String name = chatSnapshot.child(Constants.DB_NAME).getValue().toString();
         user.setName(name);
-        String surname = chatSnapshot.child("surname").getValue().toString();
+        String surname = chatSnapshot.child(Constants.DB_SURNAME).getValue().toString();
         user.setSurname(surname);
-        String email = chatSnapshot.child("email").getValue().toString();
-        user.setEmail(email);
-        String mobile = chatSnapshot.child("mobile").getValue().toString();
+        char gender = chatSnapshot.child(Constants.DB_GENDER).getValue().toString().charAt(0);
+        user.setGender(gender);
+        String mobile = chatSnapshot.child(Constants.DB_MOBILE).getValue().toString();
         user.setMobile(mobile);
+        String email = chatSnapshot.child(Constants.DB_EMAIL).getValue().toString();
+        user.setEmail(email);
+        int employeeType = (int)chatSnapshot.child(Constants.DB_EMPLOYEE_TYPE).getValue();
+        user.setEmployeeType(EmployeeType.values()[employeeType]);
     }
 }

@@ -2,6 +2,7 @@ package co.za.appic.teammanager.features.registration;
 
 import com.google.firebase.database.DatabaseReference;
 import co.za.appic.teammanager.base.presenters.BaseFirebaseAuthPresenter;
+import co.za.appic.teammanager.constants.Constants;
 import co.za.appic.teammanager.enums.EmployeeType;
 import co.za.appic.teammanager.helpers.StringHelper;
 import co.za.appic.teammanager.helpers.StringValidationHelper;
@@ -85,6 +86,7 @@ public class RegistrationPresenter extends BaseFirebaseAuthPresenter  {
         newUser.setName(name);
         newUser.setSurname(surname);
         newUser.setEmail(email);
+        newUser.setMobile(mobile);
 
         registrationView.showRegisteringDialog();
         registerUserOnFireBase(email, password, (RegistrationActivity)registrationView);
@@ -98,10 +100,10 @@ public class RegistrationPresenter extends BaseFirebaseAuthPresenter  {
 
         switch (employeeType){
             case worker:
-                addWorkerToDB((WorkerModel) newUser);
+                addWorkerToDB();
                 break;
             case supervisor:
-                addSupervisorToDB((SupervisorModel) newUser);
+                addSupervisorToDB();
                 break;
         }
 
@@ -112,41 +114,63 @@ public class RegistrationPresenter extends BaseFirebaseAuthPresenter  {
     @Override
     protected void onFirebaseRegisterFailure() {
         isBusy = false;
-
         registrationView.showRegisterError();
     }
 
-    private void addSupervisorToDB(SupervisorModel supervisor) {
+    private void addSupervisorToDB() {
         String supervisorEmployeeId = StringHelper.getSupervisorEmployeeId();
-        supervisor.setEmployeeId(supervisorEmployeeId);
+        newUser.setEmployeeId(supervisorEmployeeId);
 
-        DatabaseReference clientDbRef =  firebaseDatabase.getReference("supervisors");
-        DatabaseReference user = clientDbRef.child(supervisorEmployeeId);
-        user.setValue(supervisorEmployeeId);
+        SupervisorModel supervisor = new SupervisorModel();
+        setBasicUserDetails(supervisor);
 
+        DatabaseReference clientDbRef = firebaseDatabase.getReference(Constants.SUPERVISORS_TABLE);
+        DatabaseReference user = clientDbRef.child(supervisor.getFbId());
+        user.setValue(supervisor.getFbId());
         addCommonData(supervisor, user);
     }
 
-    private void addWorkerToDB(WorkerModel worker) {
+    private void addWorkerToDB() {
         String workerEmployeeId = StringHelper.getWorkerEmployeeId();
-        worker.setEmployeeId(workerEmployeeId);
+        newUser.setEmployeeId(workerEmployeeId);
 
-        DatabaseReference clientDbRef =  firebaseDatabase.getReference("supervisors");
-        DatabaseReference user = clientDbRef.child(workerEmployeeId);
-        user.setValue(workerEmployeeId);
+        WorkerModel worker = new WorkerModel();
+        setBasicUserDetails(worker);
 
+        DatabaseReference clientDbRef = firebaseDatabase.getReference(Constants.WORKERS_TABLE);
+        DatabaseReference user = clientDbRef.child(worker.getFbId());
+        user.setValue(worker.getFbId());
         addCommonData(worker, user);
 
-        DatabaseReference name = user.child("teams");
-        name.setValue(true);
+        DatabaseReference teams = user.child(Constants.DB_TEAMS);
+        teams.setValue(true);
+    }
+
+    private void setBasicUserDetails(UserModel user) {
+        String fbid = firebaseUser.getUid();
+        user.setFbId(fbid);
+        user.setName(newUser.getName());
+        user.setSurname(newUser.getSurname());
+        user.setGender(newUser.getGender());
+        user.setMobile(newUser.getMobile());
+        user.setEmail(newUser.getEmail());
+        user.setEmployeeType(newUser.getEmployeeType());
     }
 
     private void addCommonData(UserModel newUser, DatabaseReference dbUserRef) {
-        DatabaseReference name = dbUserRef.child("name");
+        DatabaseReference employeeId = dbUserRef.child(Constants.DB_EMPLOYEE_ID);
+        employeeId.setValue(newUser.getEmployeeId());
+        DatabaseReference name = dbUserRef.child(Constants.DB_NAME);
         name.setValue(newUser.getName());
-        DatabaseReference surname = dbUserRef.child("surname");
+        DatabaseReference surname = dbUserRef.child(Constants.DB_SURNAME);
         surname.setValue(newUser.getSurname());
-        DatabaseReference email = dbUserRef.child("email");
+        DatabaseReference gender = dbUserRef.child(Constants.DB_GENDER);
+        gender.setValue(newUser.getGender());
+        DatabaseReference mobile = dbUserRef.child(Constants.DB_MOBILE);
+        mobile.setValue(newUser.getMobile());
+        DatabaseReference email = dbUserRef.child(Constants.DB_EMAIL);
         email.setValue(newUser.getEmail());
+        DatabaseReference employeeType = dbUserRef.child(Constants.DB_EMPLOYEE_TYPE);
+        employeeType.setValue(newUser.getEmployeeType().getUserId());
     }
 }
