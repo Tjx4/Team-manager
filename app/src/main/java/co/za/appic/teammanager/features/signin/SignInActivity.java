@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import javax.inject.Inject;
 import co.za.appic.teammanager.R;
@@ -30,10 +31,12 @@ public class SignInActivity extends BaseNoActionBarActivity implements DaggerAct
     private TextView linkedUserTv;
     private TextView usernameErrorTv;
     private TextView passwordErrorTv;
+    private LinearLayout anonymouseUserContainer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getLinkedUserOREnterUsername();
     }
 
     @Override
@@ -57,6 +60,7 @@ public class SignInActivity extends BaseNoActionBarActivity implements DaggerAct
         linkedUserTv = findViewById(R.id.tvLinkedUser);
         usernameErrorTv = findViewById(R.id.tvUsernameError);
         passwordErrorTv = findViewById(R.id.tvPasswordError);
+        anonymouseUserContainer = findViewById(R.id.llAnonymouseUserContainer);
     }
 
     @Override
@@ -135,17 +139,18 @@ public class SignInActivity extends BaseNoActionBarActivity implements DaggerAct
 
     @Override
     public void enterUsernameAndPassword() {
-        usernameTxt.setVisibility(View.VISIBLE);
+        anonymouseUserContainer.setVisibility(View.VISIBLE);
         linkedUserTv.setVisibility(View.GONE);
     }
 
     @Override
     public void setLinkedUserAndPassword(UserModel linkedUser) {
-        usernameTxt.setVisibility(View.GONE);
+        anonymouseUserContainer.setVisibility(View.GONE);
         linkedUserTv.setVisibility(View.VISIBLE);
 
         String greetingMessage = getResources().getString(R.string.user_greeting_message, linkedUser.getName());
         linkedUserTv.setText(greetingMessage);
+        usernameTxt.setText(linkedUser.getEmail());
     }
 
     @Override

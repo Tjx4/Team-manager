@@ -95,6 +95,7 @@ public class RegistrationPresenter extends BaseFirebaseAuthPresenter  {
                 break;
         }
 
+        setCurrentLinkedUser(newUser);
         registrationView.showRegisterSuccessDialog(newUser.getName());
     }
 

@@ -9,6 +9,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import co.za.appic.teammanager.base.activities.BaseActivity;
 import co.za.appic.teammanager.base.views.BaseView;
+import co.za.appic.teammanager.models.UserModel;
 
 public abstract class BaseFirebaseAuthPresenter extends BaseAsyncPresenter {
 
@@ -86,4 +87,9 @@ public abstract class BaseFirebaseAuthPresenter extends BaseAsyncPresenter {
 
     protected void onFirebaseRegisterSuccessfull() {}
     protected void onFirebaseRegisterFailure() {}
+
+    public void setCurrentLinkedUser(UserModel user){
+        sharedPrefsHelper.setLinkedUser(user);
+    }
+
 }

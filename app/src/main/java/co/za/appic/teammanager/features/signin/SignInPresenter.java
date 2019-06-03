@@ -21,10 +21,6 @@ public class SignInPresenter extends BaseFirebaseAuthPresenter  {
         this.signInView = signInView;
     }
 
-    public void setCurrentLinkedUser(UserModel user){
-        sharedPrefsHelper.setLinkedUser(user);
-    }
-
     public UserModel getCurrentLinkedUser(){
         return sharedPrefsHelper.getLinkedUser();
     }
