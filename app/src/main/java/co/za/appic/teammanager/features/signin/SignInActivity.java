@@ -85,10 +85,12 @@ public class SignInActivity extends BaseNoActionBarActivity implements DaggerAct
 
     @Override
     public void onForgotPasswordButtonClicked(View view) {
+        NotificationHelper.showShortToast(this, getString(R.string.demo_unavailable_feature_message));
     }
 
     @Override
     public void onSwitchUserButtonClicked(View view) {
+        enterUsernameAndPassword();
     }
 
     @Override
