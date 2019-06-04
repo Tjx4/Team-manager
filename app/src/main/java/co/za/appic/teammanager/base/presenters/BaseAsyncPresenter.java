@@ -42,6 +42,8 @@ public abstract class BaseAsyncPresenter extends BasePresenter {
     }
 
     protected void setCommonUserDetails(DataSnapshot chatSnapshot, UserModel user) {
+        String fbId = chatSnapshot.getKey();
+        user.setFbId(fbId);
         String employeeId = chatSnapshot.child(Constants.DB_EMPLOYEE_ID).getValue().toString();
         user.setEmployeeId(employeeId);
         String name = chatSnapshot.child(Constants.DB_NAME).getValue().toString();

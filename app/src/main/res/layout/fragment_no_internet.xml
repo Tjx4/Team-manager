@@ -14,13 +14,13 @@
 
         <TextView
             android:gravity="center"
-            style="@style/largeWhiteLabel"
+            style="@style/largeLightLabel"
             android:text="@string/no_internet"/>
 
         <TextView
             android:gravity="center"
             android:layout_marginTop="15dp"
-            style="@style/mediumWhiteLabel"
+            style="@style/mediumLightLabel"
             android:text="@string/no_internet_message"/>
     </LinearLayout>
 

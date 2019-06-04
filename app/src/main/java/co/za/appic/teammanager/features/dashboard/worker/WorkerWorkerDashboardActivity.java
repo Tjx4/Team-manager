@@ -5,6 +5,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.TextView;
+
 import javax.inject.Inject;
 import co.za.appic.teammanager.R;
 import co.za.appic.teammanager.di.components.AppComponent;
@@ -19,6 +21,7 @@ public class WorkerWorkerDashboardActivity extends SharedDashboardActivity imple
 
     @Inject
     WorkerDashboardPresenter workerDashboardPresenter;
+    private TextView wolcomeMessageTv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +47,7 @@ public class WorkerWorkerDashboardActivity extends SharedDashboardActivity imple
 
     @Override
     protected int getLayoutResource() {
-        return R.layout.activity_dashboard;
+        return R.layout.activity_worker_dashboard;
     }
 
     @Override
@@ -54,9 +57,10 @@ public class WorkerWorkerDashboardActivity extends SharedDashboardActivity imple
 
     @Override
     protected void initViews() {
-        setSlideMenuDependencies(this,  getResources().getString(R.string.app_name), R.layout.activity_dashboard, false);
+        setSlideMenuDependencies(this,  getResources().getString(R.string.app_name), R.layout.activity_worker_dashboard, false);
         parentLayout = getMainLayout().inflate();
 
+        wolcomeMessageTv = parentLayout.findViewById(R.id.tvWolcomeMessage);
     }
 
     @Override
@@ -75,6 +79,11 @@ public class WorkerWorkerDashboardActivity extends SharedDashboardActivity imple
     @Override
     public WorkerDashboardPresenter getPresenter() {
         return workerDashboardPresenter;
+    }
+
+    @Override
+    public void showWelcomeMessage(String message) {
+        wolcomeMessageTv.setText(message);
     }
 
     @Override

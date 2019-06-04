@@ -8,17 +8,10 @@
     tools:context=".features.dashboard.worker.WorkerWorkerDashboardActivity">
 
     <TextView
-        style="@style/largeLabel"
+        android:id="@+id/tvWolcomeMessage"
+        style="@style/mediumDarkLabel"
         android:layout_gravity="center_horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Profile"/>
-
-    <TextView
-        style="@style/largeLabel"
-        android:layout_gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:padding="20dp"
         android:text="Profile"/>
 
 </FrameLayout>

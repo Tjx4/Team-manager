@@ -28,6 +28,10 @@ public class WorkerDashboardPresenter extends SharedDashboardPresenter {
         syncTasks(worker.getFbId());
     }
 
+    public WorkerModel getWorker() {
+        return worker;
+    }
+
     public void syncTasks(final String workerId) {
         DatabaseReference tasksRef = FirebaseDatabase.getInstance().getReference().child(Constants.TASKS);
         Query query = tasksRef.orderByChild(Constants.WORKER).equalTo(workerId);
@@ -56,11 +60,11 @@ public class WorkerDashboardPresenter extends SharedDashboardPresenter {
                         currentTask.setSupervisor(supervisor);
 
                         int priorityId = Integer.parseInt(chatSnapshot.child(Constants.PRIORITY).getValue().toString());
-                        PriorityLevel priority = PriorityLevel.values()[priorityId];
+                        PriorityLevel priority = PriorityLevel.values()[--priorityId];
                         currentTask.setPriority(priority);
 
                         int taskStatusId = Integer.parseInt(chatSnapshot.child(Constants.TASK_STATUS).getValue().toString());
-                        TaskStatus taskStatus = TaskStatus.values()[taskStatusId];
+                        TaskStatus taskStatus = TaskStatus.values()[--taskStatusId];
                         currentTask.setTaskStatus(taskStatus);
 
                         switch (taskStatus){
@@ -78,6 +82,10 @@ public class WorkerDashboardPresenter extends SharedDashboardPresenter {
                     }
                 }
 
+                int pendingTasksCount = pendingTasks.size();
+                int completedTasksCount =  completedTasks.size();
+                String welcomeMessage = "Hi "+worker.getName()+" you have "+pendingTasksCount+" pending tasks and "+completedTasksCount+" completed tasks";
+                workerDashboardView.showWelcomeMessage(welcomeMessage);
             }
 
             @Override

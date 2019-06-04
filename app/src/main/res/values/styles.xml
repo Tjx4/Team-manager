@@ -30,25 +30,31 @@
         <item name="android:textSize">@dimen/large_text_size</item>
         <item name="android:textStyle">bold</item>
     </style>
-
-    <style name="largeWhiteLabel" parent="largeLabel">
+    <style name="largeLightLabel" parent="largeLabel">
         <item name="android:textColor">@color/lightestText</item>
+    </style>
+    <style name="largeDarktLabel" parent="largeLabel">
+        <item name="android:textColor">@color/darkestText</item>
     </style>
 
     <style name="mediumLabel" parent="teamManagerTextView">
         <item name="android:textSize">@dimen/medium_text_size</item>
     </style>
-
-    <style name="mediumWhiteLabel" parent="mediumLabel">
-        <item name="android:textColor">@color/lightestText</item>
+    <style name="mediumLightLabel" parent="mediumLabel">
+        <item name="android:textColor">@color/lighterText</item>
+    </style>
+    <style name="mediumDarkLabel" parent="mediumLabel">
+        <item name="android:textColor">@color/darkerText</item>
     </style>
 
     <style name="smallLabel" parent="teamManagerTextView">
         <item name="android:textSize">@dimen/small_text_size</item>
     </style>
-
-    <style name="smallWhiteLabel" parent="smallLabel">
-        <item name="android:textColor">@color/lightestText</item>
+    <style name="smallLightLabel" parent="smallLabel">
+        <item name="android:textColor">@color/lightText</item>
+    </style>
+    <style name="smallDarkLabel" parent="smallLabel">
+        <item name="android:textColor">@color/darkText</item>
     </style>
 
     <style name="smallErrorLabel" parent="smallLabel">
