@@ -5,6 +5,7 @@
     android:id="@+id/workerDashboardParentLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/lighterBackground"
     tools:context=".features.dashboard.worker.WorkerWorkerDashboardActivity">
 
     <LinearLayout
@@ -38,7 +39,7 @@
                         style="@style/mediumDarkLabel"
                         android:layout_gravity="center_horizontal"
                         android:gravity="center"
-                        android:text="Pending Tasks"/>
+                        android:text="@string/pending_tasks"/>
 
                     <TextView
                         android:id="@+id/tvPendingCount"
@@ -59,7 +60,7 @@
                         style="@style/mediumDarkLabel"
                         android:layout_gravity="center_horizontal"
                         android:gravity="center"
-                        android:text="Completed Tasks"/>
+                        android:text="@string/completed_tasks"/>
 
                     <TextView
                         android:id="@+id/tvCompletedCount"

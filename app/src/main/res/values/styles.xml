@@ -135,8 +135,8 @@
         <item name="android:textColor">#cccccc</item>
         <item name="android:typeface">monospace</item>
         <item name="android:textSize">@dimen/medium_text_size</item>
-        <item name="android:background">@color/darkBackground</item>
-        <item name="android:windowBackground">@color/darkBackground</item>
+        <item name="android:background">@color/darkestBackground</item>
+        <item name="android:windowBackground">@color/darkestBackground</item>
         <item name="android:color">#cccccc</item>
     </style>
 

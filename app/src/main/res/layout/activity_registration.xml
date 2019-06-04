@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/lightBackground"
+    android:background="@color/lighterBackground"
     android:animateLayoutChanges="true"
     tools:context=".features.registration.RegistrationActivity">
 
