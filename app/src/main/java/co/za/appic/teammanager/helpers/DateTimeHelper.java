@@ -1,5 +1,7 @@
 package co.za.appic.teammanager.helpers;
 
+import java.sql.Time;
+import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -17,6 +19,13 @@ public class DateTimeHelper {
         SimpleDateFormat formatedDate = new SimpleDateFormat("MMMM");
         String StringDate = formatedDate.format(new Date());
         return StringDate;
+    }
+
+    public static String getTimeFromTp(int hr,int min) {
+        Time tme = new Time(hr,min,0);//seconds by default set to zero
+        Format formatter;
+        formatter = new SimpleDateFormat("h:mm a");
+        return formatter.format(tme);
     }
 
     public static String getYearAndMonth() {

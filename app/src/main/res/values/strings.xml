@@ -72,4 +72,7 @@
     <string name="task_description">Describe your the task...</string>
     <string name="set_task_priority">Set task priority</string>
     <string name="dialo_def_tag">dialog</string>
+    <string name="new_task">New Task</string>
+    <string name="choose_due_date">Choose due date</string>
+    <string name="choose_time_due">Choose time due</string>
 </resources>

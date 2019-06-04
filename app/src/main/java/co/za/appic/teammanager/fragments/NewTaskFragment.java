@@ -6,13 +6,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioGroup;
-
+import android.widget.TimePicker;
 import co.za.appic.teammanager.R;
 import co.za.appic.teammanager.enums.PriorityLevel;
-import co.za.appic.teammanager.enums.TaskStatus;
 import co.za.appic.teammanager.features.dashboard.supervisor.SupervisorDashboardActivity;
+import co.za.appic.teammanager.helpers.DateTimeHelper;
 import co.za.appic.teammanager.models.TaskModel;
 
 public class NewTaskFragment extends BaseDialogFragment {
@@ -22,6 +23,9 @@ public class NewTaskFragment extends BaseDialogFragment {
     private EditText descriptionTxt;
     private SupervisorDashboardActivity supervisorDashboardActivity;
     private TaskModel taskModel;
+    private DatePicker dueDateDp;
+    private TimePicker dueTimeTp;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -51,12 +55,16 @@ public class NewTaskFragment extends BaseDialogFragment {
             }
         });
 
+        dueDateDp = parentView.findViewById(R.id.dueDateDp);
+        dueTimeTp = parentView.findViewById(R.id.dueTimeDp);
+
         createTaskBtn = parentView.findViewById(R.id.btnCreateTask);
         createTaskBtn.setOnClickListener(new Button.OnClickListener(){
 
             @Override
             public void onClick(View view) {
 
+                taskModel.setDescription(descriptionTxt.getText().toString());
                 boolean idValiddescription = taskModel.getDescription() != null && !taskModel.getDescription().isEmpty();
                 if(idValiddescription){
                     return;
@@ -66,6 +74,16 @@ public class NewTaskFragment extends BaseDialogFragment {
                 if(!isValidPriority){
                     return;
                 }
+
+                int year = dueDateDp.getYear();
+                int month = dueDateDp.getMonth() + 1;
+                int day = dueDateDp.getDayOfMonth();
+                String dueDate = day+"/"+month+"/"+year;
+
+                int hourOfDay = dueTimeTp.getCurrentHour();
+                int minute = dueTimeTp.getCurrentMinute();
+                String dueTime = DateTimeHelper.getTimeFromTp(hourOfDay, minute);
+                taskModel.setDueDateTime(dueDate+" "+dueTime);
 
                 supervisorDashboardActivity.getPresenter().createTask(taskModel);
             }
