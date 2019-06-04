@@ -5,6 +5,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+
+import javax.inject.Inject;
+
 import co.za.appic.teammanager.R;
 import co.za.appic.teammanager.di.components.AppComponent;
 import co.za.appic.teammanager.di.components.DaggerDashboardComponent;
@@ -16,6 +19,7 @@ import co.za.appic.teammanager.helpers.TransitionHelper;
 
 public class WorkerWorkerDashboardActivity extends SharedDashboardActivity implements WorkerDashboardView {
 
+    @Inject
     WorkerDashboardPresenter workerDashboardPresenter;
 
     @Override
@@ -47,7 +51,7 @@ public class WorkerWorkerDashboardActivity extends SharedDashboardActivity imple
 
     @Override
     protected ViewGroup getParentLayout() {
-        return  (FrameLayout) findViewById(R.id.workerDashboardParentLayout);
+        return (FrameLayout) findViewById(R.id.workerDashboardParentLayout);
     }
 
     @Override
@@ -122,7 +126,6 @@ public class WorkerWorkerDashboardActivity extends SharedDashboardActivity imple
             case R.id.action_tasks:
                 viewTasks();
                 break;
-
         }
         return true;
     }

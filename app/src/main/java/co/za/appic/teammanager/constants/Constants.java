@@ -19,4 +19,10 @@ public class Constants {
     public static final String DB_EMAIL = "email";
     public static final String DB_EMPLOYEE_TYPE = "employeeType";
     public static final String DB_TEAMS = "teams";
+    public static final String TASKS = "tasks";
+    public static final String WORKER = "worker";
+    public static final String SUPERVISOR = "supervisor";
+    public static final String TASK_STATUS = "taskStatus";
+    public static final String TASK_DESCRIPTION = "description";
+    public static final String PRIORITY = "priority";
 }

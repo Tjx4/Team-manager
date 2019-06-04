@@ -52,6 +52,13 @@ public class SharedPrefsHelper {
         editor.commit();
     }
 
+    public WorkerModel getWorker(){
+        String json = sharedPreferences.getString(WORKER, "");
+        Gson gson = new Gson();
+        WorkerModel workerModel = gson.fromJson(json, WorkerModel.class);
+        return workerModel;
+    }
+
     public void setSupervisor(SupervisorModel supervisor){
         if(supervisor == null)
             return;
@@ -60,6 +67,13 @@ public class SharedPrefsHelper {
         String connectionsJSONString = new Gson().toJson(supervisor);
         editor.putString(SUPERVISOR, connectionsJSONString);
         editor.commit();
+    }
+
+    public SupervisorModel getSupervisor(){
+        String json = sharedPreferences.getString(SUPERVISOR, "");
+        Gson gson = new Gson();
+        SupervisorModel supervisorModel = gson.fromJson(json, SupervisorModel.class);
+        return supervisorModel;
     }
 
    public void setUserStatus(UserStatus userStatus){
