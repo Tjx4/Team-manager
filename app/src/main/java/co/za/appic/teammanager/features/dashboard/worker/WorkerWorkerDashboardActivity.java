@@ -5,9 +5,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-
 import javax.inject.Inject;
-
 import co.za.appic.teammanager.R;
 import co.za.appic.teammanager.di.components.AppComponent;
 import co.za.appic.teammanager.di.components.DaggerDashboardComponent;

@@ -78,6 +78,7 @@ public class SignInPresenter extends BaseFirebaseAuthPresenter  {
 
                     if(worker != null){
                         sharedPrefsHelper.setLinkedUser(worker);
+                        sharedPrefsHelper.setWorker(worker);
                         signInView.enterAppAsWorker(worker);
                     }
                     else {
@@ -114,6 +115,7 @@ public class SignInPresenter extends BaseFirebaseAuthPresenter  {
 
                     if(supervisor != null){
                         sharedPrefsHelper.setLinkedUser(supervisor);
+                        sharedPrefsHelper.setSupervisor(supervisor);
                         signInView.enterAppAsSupervisor(supervisor);
                     }
                     else {
