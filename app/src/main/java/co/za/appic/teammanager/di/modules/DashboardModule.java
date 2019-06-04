@@ -1,7 +1,7 @@
 package co.za.appic.teammanager.di.modules;
 
-import co.za.appic.teammanager.features.dashboard.WorkerDashboardPresenter;
-import co.za.appic.teammanager.features.dashboard.WorkerDashboardView;
+import co.za.appic.teammanager.features.dashboard.worker.WorkerDashboardPresenter;
+import co.za.appic.teammanager.features.dashboard.worker.WorkerDashboardView;
 import dagger.Module;
 import dagger.Provides;
 

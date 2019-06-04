@@ -1,4 +1,4 @@
-package co.za.appic.teammanager.features.dashboard;
+package co.za.appic.teammanager.features.dashboard.worker;
 
 import co.za.appic.teammanager.base.views.BaseView;
 
@@ -7,4 +7,6 @@ public interface WorkerDashboardView extends BaseView {
     void viewPendingTasks();
     void viewCompletedTasks();
     void viewTasks();
+    void begginTask();
+    void endTask();
 }

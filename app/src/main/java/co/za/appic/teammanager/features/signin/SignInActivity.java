@@ -14,7 +14,7 @@ import co.za.appic.teammanager.di.components.AppComponent;
 import co.za.appic.teammanager.di.components.DaggerSignInComponent;
 import co.za.appic.teammanager.di.interfaces.DaggerActivity;
 import co.za.appic.teammanager.di.modules.SignInModule;
-import co.za.appic.teammanager.features.dashboard.WorkerWorkerDashboardActivity;
+import co.za.appic.teammanager.features.dashboard.worker.WorkerWorkerDashboardActivity;
 import co.za.appic.teammanager.features.registration.RegistrationActivity;
 import co.za.appic.teammanager.helpers.NavigationHelper;
 import co.za.appic.teammanager.helpers.NotificationHelper;

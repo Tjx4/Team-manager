@@ -1,23 +1,20 @@
-package co.za.appic.teammanager.features.dashboard;
+package co.za.appic.teammanager.features.dashboard.worker;
 
 import android.os.Bundle;
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import co.za.appic.teammanager.R;
-import co.za.appic.teammanager.base.activities.BaseSlideMenuActivity;
 import co.za.appic.teammanager.di.components.AppComponent;
 import co.za.appic.teammanager.di.components.DaggerDashboardComponent;
 import co.za.appic.teammanager.di.modules.DashboardModule;
-import co.za.appic.teammanager.features.history.HistoryActivity;
-import co.za.appic.teammanager.features.profile.ProfileActivity;
+import co.za.appic.teammanager.features.dashboard.shared.SharedDashboardActivity;
 import co.za.appic.teammanager.features.signin.SignInActivity;
 import co.za.appic.teammanager.helpers.NavigationHelper;
 import co.za.appic.teammanager.helpers.TransitionHelper;
 
-public class WorkerWorkerDashboardActivity extends BaseSlideMenuActivity implements WorkerDashboardView {
+public class WorkerWorkerDashboardActivity extends SharedDashboardActivity implements WorkerDashboardView {
 
     WorkerDashboardPresenter workerDashboardPresenter;
 
@@ -27,17 +24,9 @@ public class WorkerWorkerDashboardActivity extends BaseSlideMenuActivity impleme
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-
-        if(isNewActivity)
-            return;
-
-        overridePendingTransition(TransitionHelper.slideOutActivity()[0], TransitionHelper.slideOutActivity()[1]);
-    }
-
-    @Override
     protected boolean handleSlideMenuItemClicked(MenuItem item) {
+        super.handleSlideMenuItemClicked(item);
+
         int itemId = item.getItemId();
 
         switch (itemId){
@@ -47,13 +36,6 @@ public class WorkerWorkerDashboardActivity extends BaseSlideMenuActivity impleme
                 finish();
                 break;
 
-            case R.id.action_profile:
-                NavigationHelper.goToActivityWithNoPayload(this , ProfileActivity.class,  TransitionHelper.slideInActivity());
-                break;
-
-            case R.id.action_history:
-                NavigationHelper.goToActivityWithNoPayload(this , HistoryActivity.class,  TransitionHelper.slideInActivity());
-                break;
         }
         return true;
     }
@@ -66,11 +48,6 @@ public class WorkerWorkerDashboardActivity extends BaseSlideMenuActivity impleme
     @Override
     protected ViewGroup getParentLayout() {
         return  (FrameLayout) findViewById(R.id.workerDashboardParentLayout);
-    }
-
-    @Override
-    protected int getSideMenu() {
-        return  R.menu.dashboard_side_menu;
     }
 
     @Override
@@ -114,12 +91,13 @@ public class WorkerWorkerDashboardActivity extends BaseSlideMenuActivity impleme
     }
 
     @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == android.view.KeyEvent.KEYCODE_BACK) {
-            moveTaskToBack(true);
-            return true;
-        }
-        return super.onKeyDown(keyCode, event);
+    public void begginTask() {
+
+    }
+
+    @Override
+    public void endTask() {
+
     }
 
     @Override
@@ -137,6 +115,12 @@ public class WorkerWorkerDashboardActivity extends BaseSlideMenuActivity impleme
         switch (itemId){
             case R.id.action_pending_tasks:
                 viewPendingTasks();
+                break;
+            case R.id.action_completed_tasks:
+                viewCompletedTasks();
+                break;
+            case R.id.action_tasks:
+                viewTasks();
                 break;
 
         }

@@ -5,7 +5,7 @@
     android:id="@+id/workerDashboardParentLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".features.dashboard.WorkerWorkerDashboardActivity">
+    tools:context=".features.dashboard.worker.WorkerWorkerDashboardActivity">
 
     <TextView
         style="@style/largeLabel"

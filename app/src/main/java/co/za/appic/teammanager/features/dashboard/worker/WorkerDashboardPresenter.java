@@ -1,8 +1,8 @@
-package co.za.appic.teammanager.features.dashboard;
+package co.za.appic.teammanager.features.dashboard.worker;
 
-import co.za.appic.teammanager.base.presenters.BaseFirebaseAuthPresenter;
+import co.za.appic.teammanager.features.dashboard.shared.SharedDashboardPresenter;
 
-public class WorkerDashboardPresenter extends BaseFirebaseAuthPresenter {
+public class WorkerDashboardPresenter extends SharedDashboardPresenter {
     private WorkerDashboardView workerDashboardView;
 
     public WorkerDashboardPresenter(WorkerDashboardView workerDashboardView) {
