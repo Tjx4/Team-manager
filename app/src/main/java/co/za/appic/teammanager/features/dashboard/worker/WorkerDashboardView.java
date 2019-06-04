@@ -6,6 +6,8 @@ import co.za.appic.teammanager.base.views.BaseView;
 public interface WorkerDashboardView extends BaseView {
     WorkerDashboardPresenter getPresenter();
     void showWelcomeMessage(String message);
+    void showCheckingTasks();
+    void showTasks();
     void showPendingTaskCount(String pendingTasksCount);
     void showCompletedTaskCount(String completedTaskCount);
     void onViewPendingTasksClicked(View view);

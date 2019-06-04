@@ -100,9 +100,9 @@ public class WorkerDashboardPresenter extends SharedDashboardPresenter {
     }
 
     private void showTaskStats() {
+        workerDashboardView.showTasks();
         int pendingTasksCount = pendingTasks.size();
         workerDashboardView.showPendingTaskCount(String.valueOf(pendingTasksCount));
-
         int completedTasksCount = completedTasks.size();
         workerDashboardView.showCompletedTaskCount(String.valueOf(completedTasksCount));
     }

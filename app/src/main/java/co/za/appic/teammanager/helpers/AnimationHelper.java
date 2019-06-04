@@ -14,7 +14,7 @@ public class AnimationHelper {
         anim.setDuration(50);
         anim.setStartOffset(20);
         anim.setRepeatMode(Animation.REVERSE);
-        anim.setRepeatCount(Animation.INFINITE);
+        anim.setRepeatCount(1);
         view.startAnimation(anim);
     }
 }

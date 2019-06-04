@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/workerDashboardParentLayout"
+    android:animateLayoutChanges="true"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/lighterBackground"
@@ -24,52 +25,84 @@
             android:layout_height="wrap_content">
 
             <LinearLayout
-                android:padding="20dp"
-                android:orientation="horizontal"
+                android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <LinearLayout
-                    android:layout_weight="1"
                     android:orientation="vertical"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/llCheckingMessage"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:onClick="onViewPendingTasksClicked">
+                    android:layout_margin="20dp">
 
                     <TextView
                         style="@style/mediumDarkLabel"
-                        android:layout_gravity="center_horizontal"
                         android:gravity="center"
-                        android:text="@string/pending_tasks"/>
+                        android:layout_marginBottom="2dp"
+                        android:text="@string/checking_tasks_please_wait"/>
 
-                    <TextView
-                        android:id="@+id/tvPendingCount"
-                        style="@style/xlargeDarktLabel"
-                        android:layout_gravity="center_horizontal"
-                        android:gravity="center"
-                        android:text="0"/>
+                    <com.wang.avi.AVLoadingIndicatorView
+                        android:id="@+id/progressBarLoading"
+                        android:layout_gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:indicatorName="allScaleMultipleIndicator"
+                        app:indicatorColor="@color/darkText"/>
 
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_weight="1"
-                    android:orientation="vertical"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:onClick="onViewCompletedTasksClicked">
+                    android:id="@+id/llTasksContainer"
+                    android:visibility="gone"
+                    android:padding="20dp"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-                    <TextView
-                        style="@style/mediumDarkLabel"
-                        android:layout_gravity="center_horizontal"
-                        android:gravity="center"
-                        android:text="@string/completed_tasks"/>
+                    <LinearLayout
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:onClick="onViewPendingTasksClicked">
 
-                    <TextView
-                        android:id="@+id/tvCompletedCount"
-                        style="@style/xlargeDarktLabel"
-                        android:layout_gravity="center_horizontal"
-                        android:gravity="center"
-                        android:text="0"/>
+                        <TextView
+                            style="@style/mediumDarkLabel"
+                            android:layout_gravity="center_horizontal"
+                            android:gravity="center"
+                            android:text="@string/pending_tasks"/>
+
+                        <TextView
+                            android:id="@+id/tvPendingCount"
+                            style="@style/xlargeDarktLabel"
+                            android:layout_gravity="center_horizontal"
+                            android:gravity="center"
+                            android:text="0"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:onClick="onViewCompletedTasksClicked">
+
+                        <TextView
+                            style="@style/mediumDarkLabel"
+                            android:layout_gravity="center_horizontal"
+                            android:gravity="center"
+                            android:text="@string/completed_tasks"/>
+
+                        <TextView
+                            android:id="@+id/tvCompletedCount"
+                            style="@style/xlargeDarktLabel"
+                            android:layout_gravity="center_horizontal"
+                            android:gravity="center"
+                            android:text="0"/>
+
+                    </LinearLayout>
 
                 </LinearLayout>
 

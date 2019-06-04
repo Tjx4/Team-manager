@@ -6,6 +6,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import javax.inject.Inject;
 import co.za.appic.teammanager.R;
@@ -23,13 +24,17 @@ public class WorkerWorkerDashboardActivity extends SharedDashboardActivity imple
 
     @Inject
     WorkerDashboardPresenter workerDashboardPresenter;
+
     private TextView wolcomeMessageTv;
     private TextView pendingCountTv;
     private TextView completedCounteTv;
+    private LinearLayout checkingMessageLl;
+    private LinearLayout tasksContainerLl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        showCheckingTasks();
     }
 
     @Override
@@ -66,6 +71,8 @@ public class WorkerWorkerDashboardActivity extends SharedDashboardActivity imple
         wolcomeMessageTv = parentLayout.findViewById(R.id.tvWolcomeMessage);
         pendingCountTv = parentLayout.findViewById(R.id.tvPendingCount);
         completedCounteTv = parentLayout.findViewById(R.id.tvCompletedCount);
+        checkingMessageLl = parentLayout.findViewById(R.id.llCheckingMessage);
+        tasksContainerLl = parentLayout.findViewById(R.id.llTasksContainer);
     }
 
     @Override
@@ -89,6 +96,18 @@ public class WorkerWorkerDashboardActivity extends SharedDashboardActivity imple
     @Override
     public void showWelcomeMessage(String message) {
         wolcomeMessageTv.setText(message);
+    }
+
+    @Override
+    public void showCheckingTasks() {
+        checkingMessageLl.setVisibility(View.VISIBLE);
+        tasksContainerLl.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void showTasks() {
+        checkingMessageLl.setVisibility(View.GONE);
+        tasksContainerLl.setVisibility(View.VISIBLE);
     }
 
     @Override
