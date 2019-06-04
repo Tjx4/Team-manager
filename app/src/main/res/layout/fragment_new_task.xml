@@ -5,18 +5,14 @@
     android:layout_height="wrap_content"
     tools:context=".fragments.NewTaskFragment">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_margin="20dp"
+            android:layout_margin="30dp"
             android:background="@color/lighterBackground"
             android:orientation="vertical"
-            android:padding="10dp">
+            android:padding="20dp">
 
             <TextView
                 android:id="@+id/tvCompletedCount"
@@ -49,7 +45,9 @@
                 <TextView
                     android:id="@+id/tvWolcomeMessage"
                     style="@style/mediumDarkLabel"
-                    android:layout_margin="2dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginBottom="20dp"
                     android:gravity="center"
                     android:text="@string/set_task_priority" />
 
@@ -98,6 +96,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:visibility="gone"
                 android:layout_marginTop="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -113,9 +112,7 @@
                     android:id="@+id/dueDateDp"
                     style="@style/MyDatePickerStyle"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@color/cardview_light_background" />
+                    android:layout_height="wrap_content" />
 
                 <TextView
                     style="@style/mediumDarkLabel"
@@ -127,20 +124,17 @@
                     android:id="@+id/dueTimeDp"
                     style="@style/MyDatePickerStyle"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@color/cardview_light_background"
-                    android:visibility="gone" />
+                    android:layout_height="wrap_content"/>
 
                 <Button
                     android:id="@+id/btnCreateTask"
                     style="@style/mediumGreenButton"
+                    android:layout_marginTop="10dp"
                     android:text="Create task" />
 
             </LinearLayout>
 
         </LinearLayout>
 
-    </ScrollView>
 
 </FrameLayout>

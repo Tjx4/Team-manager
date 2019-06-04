@@ -68,11 +68,13 @@
     <string name="history">History</string>
     <string name="title_activity_supervisor_dashboard">SupervisorDashboardActivity</string>
     <string name="worker_welcome_message">Welcome %1$s please review your tasks and complete the pending ones</string>
+    <string name="supervisor_welcome_message">Welcome %1$s please create tasks for your subordinates</string>
     <string name="checking_tasks_please_wait">Checking tasks please wait...</string>
-    <string name="task_description">Describe your the task...</string>
+    <string name="task_description">Describe the task...</string>
     <string name="set_task_priority">Set task priority</string>
     <string name="dialo_def_tag">dialog</string>
-    <string name="new_task">New Task</string>
+    <string name="new_task">Enter task details</string>
     <string name="choose_due_date">Choose due date</string>
     <string name="choose_time_due">Choose time due</string>
+    <string name="this_feature_is_not_available_in_demo_mode">This feature is not available in demo mode</string>
 </resources>

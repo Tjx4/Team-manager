@@ -5,5 +5,6 @@ import co.za.appic.teammanager.base.views.BaseView;
 
 public interface SupervisorDashboardView extends BaseView {
     SupervisorDashboardPresenter getPresenter();
-    void onCreateNewtaskClicked(View view);
+    void onCreateNewTaskClicked(View view);
+    void showWelcomeMessage(String welcomeMessage);
 }

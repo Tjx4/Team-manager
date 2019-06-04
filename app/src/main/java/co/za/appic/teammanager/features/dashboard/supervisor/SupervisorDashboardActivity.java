@@ -15,6 +15,7 @@ import co.za.appic.teammanager.di.modules.SupervisorDashboardModule;
 import co.za.appic.teammanager.features.dashboard.shared.SharedDashboardActivity;
 import co.za.appic.teammanager.features.signin.SignInActivity;
 import co.za.appic.teammanager.fragments.NewTaskFragment;
+import co.za.appic.teammanager.helpers.AnimationHelper;
 import co.za.appic.teammanager.helpers.DialogFragmentHelper;
 import co.za.appic.teammanager.helpers.NavigationHelper;
 import co.za.appic.teammanager.helpers.TransitionHelper;
@@ -84,10 +85,16 @@ public class SupervisorDashboardActivity extends SharedDashboardActivity impleme
     }
 
     @Override
-    public void onCreateNewtaskClicked(View view) {
+    public void onCreateNewTaskClicked(View view) {
+        AnimationHelper.blinkView(view);
         NewTaskFragment newTaskFragment  = new NewTaskFragment();
         DialogFragmentHelper.showFragment(this, null, getResources().getString(R.string.create_task), R.layout.fragment_new_task, newTaskFragment);
         dialogFragment = newTaskFragment;
+    }
+
+    @Override
+    public void showWelcomeMessage(String welcomeMessage) {
+        wolcomeMessageTv.setText(welcomeMessage);
     }
 
     @Override
@@ -105,7 +112,7 @@ public class SupervisorDashboardActivity extends SharedDashboardActivity impleme
         switch (itemId){
 
             case R.id.action_create_task:
-                onCreateNewtaskClicked(null);
+                onCreateNewTaskClicked(null);
                 break;
         }
         return true;

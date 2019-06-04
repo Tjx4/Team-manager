@@ -2,6 +2,8 @@ package co.za.appic.teammanager.features.dashboard.supervisor;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import co.za.appic.teammanager.R;
 import co.za.appic.teammanager.constants.Constants;
 import co.za.appic.teammanager.enums.TaskStatus;
 import co.za.appic.teammanager.features.dashboard.shared.SharedDashboardPresenter;
@@ -17,6 +19,12 @@ public class SupervisorDashboardPresenter extends SharedDashboardPresenter {
         super(supervisorDashboardView);
         this.supervisorDashboardView = supervisorDashboardView;
         supervisorModel = sharedPrefsHelper.getSupervisor();
+        greetSupervisor();
+    }
+
+    private void greetSupervisor() {
+        String welcomeMessage = context.getResources().getString(R.string.supervisor_welcome_message, supervisorModel.getName());
+        supervisorDashboardView.showWelcomeMessage(welcomeMessage);
     }
 
     public void createTask(final TaskModel taskModel) {

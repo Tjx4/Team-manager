@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/workerDashboardParentLayout"
     android:animateLayoutChanges="true"
+    android:background="@color/lighterBackground"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/lighterBackground"
     tools:context=".features.dashboard.worker.WorkerWorkerDashboardActivity">
 
     <LinearLayout
