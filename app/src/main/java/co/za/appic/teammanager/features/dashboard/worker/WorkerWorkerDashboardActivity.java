@@ -15,6 +15,7 @@ import co.za.appic.teammanager.di.modules.DashboardModule;
 import co.za.appic.teammanager.features.dashboard.shared.SharedDashboardActivity;
 import co.za.appic.teammanager.features.signin.SignInActivity;
 import co.za.appic.teammanager.helpers.NavigationHelper;
+import co.za.appic.teammanager.helpers.NotificationHelper;
 import co.za.appic.teammanager.helpers.TransitionHelper;
 
 public class WorkerWorkerDashboardActivity extends SharedDashboardActivity implements WorkerDashboardView {
@@ -88,17 +89,17 @@ public class WorkerWorkerDashboardActivity extends SharedDashboardActivity imple
 
     @Override
     public void viewPendingTasks() {
-
+        NotificationHelper.showShortToast(this, "viewPendingTasks");
     }
 
     @Override
     public void viewCompletedTasks() {
-
+        NotificationHelper.showShortToast(this, "viewCompletedTasks");
     }
 
     @Override
     public void viewTasks() {
-
+        NotificationHelper.showShortToast(this, "viewTasks");
     }
 
     @Override

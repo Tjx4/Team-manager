@@ -11,7 +11,7 @@
     <item
         android:id="@+id/action_history"
         android:icon="@drawable/ic_history_light"
-        android:title="@string/view_profile"
+        android:title="@string/history"
         app:showAsAction="never"/>
 
     <item

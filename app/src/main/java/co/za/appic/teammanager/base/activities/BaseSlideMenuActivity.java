@@ -26,15 +26,12 @@ public abstract class BaseSlideMenuActivity extends BaseNoActionBarActivity impl
     protected NavigationView navigationView;
     protected View parentLayout;
     protected FrameLayout placeHolderView;
-
-    @SuppressWarnings("StatementWithEmptyBody")
+    protected DrawerLayout drawer;
 
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         return handleSlideMenuItemClicked(item);
     }
-
-    protected abstract boolean handleSlideMenuItemClicked(MenuItem item);
 
     @Override
     public void onBackPressed() {
@@ -92,7 +89,7 @@ public abstract class BaseSlideMenuActivity extends BaseNoActionBarActivity impl
         toolbar.setTitle("");
         activity.setSupportActionBar(toolbar);
 
-        DrawerLayout drawer = (DrawerLayout) activity.findViewById(R.id.drawer_layout);
+        drawer = (DrawerLayout) activity.findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(activity, drawer, toolbar,
                 R.string.navigation_drawer_open,
                 R.string.navigation_drawer_close);
@@ -103,16 +100,29 @@ public abstract class BaseSlideMenuActivity extends BaseNoActionBarActivity impl
         navigationView.setNavigationItemSelectedListener((NavigationView.OnNavigationItemSelectedListener) activity);
         navigationView.inflateMenu(getSideMenu());
 
-        //RelativeLayout mainFramelayout = (RelativeLayout) getParentLayout();
-        //dd.setContentDescription("za.co.geartronix.activities.DashBoardActivity");
         slideMenu = navigationView.getMenu();
+    }
+
+    protected boolean handleSlideMenuItemClicked(MenuItem item) {
+        return true;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if(isNewActivity)
+            return;
+
+        slideMenu.close();
+        //drawer.closeDrawers();
     }
 
     protected void hidePlaceHoderView(){
         placeHolderView.setVisibility(View.GONE);
     }
+
     protected abstract int getLayoutResource();
     protected abstract ViewGroup getParentLayout();
     protected abstract int getSideMenu();
-
 }
