@@ -4,15 +4,19 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import co.za.appic.teammanager.R;
-import co.za.appic.teammanager.base.activities.BaseActionBarActivity;
+import co.za.appic.teammanager.base.activities.BaseSlideMenuActivity;
 import co.za.appic.teammanager.di.components.AppComponent;
+import co.za.appic.teammanager.di.components.DaggerDashboardComponent;
+import co.za.appic.teammanager.di.modules.DashboardModule;
 import co.za.appic.teammanager.features.profile.ProfileActivity;
 import co.za.appic.teammanager.features.signin.SignInActivity;
 import co.za.appic.teammanager.helpers.NavigationHelper;
 import co.za.appic.teammanager.helpers.TransitionHelper;
 
-public class DashboardActivity extends BaseActionBarActivity implements DashboardView  {
+public class DashboardActivity extends BaseSlideMenuActivity implements DashboardView  {
 
     DashboardPresenter dashboardPresenter;
 
@@ -32,28 +36,49 @@ public class DashboardActivity extends BaseActionBarActivity implements Dashboar
     }
 
     @Override
-    protected void setBaseActivityDependencies() {
-        setContentView(R.layout.activity_dashboard);
-        initViews();
+    protected boolean handleSlideMenuItemClicked(MenuItem item) {
+        int itemId = item.getItemId();
+
+        switch (itemId){
+            case R.id.action_signout:
+
+                break;
+        }
+        return true;
+    }
+
+    @Override
+    protected int getLayoutResource() {
+        return  R.layout.activity_dashboard;
+    }
+
+    @Override
+    protected ViewGroup getParentLayout() {
+        return  (FrameLayout) findViewById(R.id.workerDashboardParentLayout);
+    }
+
+    @Override
+    protected int getSideMenu() {
+        return  R.menu.dashboard_side_menu;
     }
 
     @Override
     protected void initViews() {
-    }
-
-    @Override
-    protected void setActionbarActivityDependencies() {
+        setSlideMenuDependencies(this,  getResources().getString(R.string.app_name), R.layout.activity_dashboard, false, true);
 
     }
 
     @Override
     public void hideLoader() {
-
+        hideLoadingDialog();
     }
 
     @Override
     public void setupComponent(AppComponent appComponent) {
-
+        DaggerDashboardComponent.builder().appComponent(appComponent)
+                .dashboardModule(new DashboardModule(this))
+                .build()
+                .inject(this);
     }
 
     @Override
