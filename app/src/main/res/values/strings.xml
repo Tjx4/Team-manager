@@ -69,4 +69,7 @@
     <string name="title_activity_supervisor_dashboard">SupervisorDashboardActivity</string>
     <string name="worker_welcome_message">Welcome %1$s please review your tasks and complete the pending ones</string>
     <string name="checking_tasks_please_wait">Checking tasks please wait...</string>
+    <string name="task_description">Describe your the task...</string>
+    <string name="set_task_priority">Set task priority</string>
+    <string name="dialo_def_tag">dialog</string>
 </resources>

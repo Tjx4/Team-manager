@@ -3,6 +3,7 @@ package co.za.appic.teammanager.features.dashboard.supervisor;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.TextView;
@@ -13,6 +14,8 @@ import co.za.appic.teammanager.di.components.DaggerSupervisorDashboardComponent;
 import co.za.appic.teammanager.di.modules.SupervisorDashboardModule;
 import co.za.appic.teammanager.features.dashboard.shared.SharedDashboardActivity;
 import co.za.appic.teammanager.features.signin.SignInActivity;
+import co.za.appic.teammanager.fragments.NewTaskFragment;
+import co.za.appic.teammanager.helpers.DialogFragmentHelper;
 import co.za.appic.teammanager.helpers.NavigationHelper;
 import co.za.appic.teammanager.helpers.TransitionHelper;
 
@@ -80,6 +83,12 @@ public class SupervisorDashboardActivity extends SharedDashboardActivity impleme
         return supervisorDashboardPresenter;
     }
 
+    @Override
+    public void onCreateNewtaskClicked(View view) {
+        NewTaskFragment newTaskFragment  = new NewTaskFragment();
+        DialogFragmentHelper.showFragment(this, null, getResources().getString(R.string.create_task), R.layout.fragment_new_task, newTaskFragment);
+        dialogFragment = newTaskFragment;
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -95,6 +104,9 @@ public class SupervisorDashboardActivity extends SharedDashboardActivity impleme
 
         switch (itemId){
 
+            case R.id.action_create_task:
+                onCreateNewtaskClicked(null);
+                break;
         }
         return true;
     }

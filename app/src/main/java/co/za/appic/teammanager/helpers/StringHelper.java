@@ -60,8 +60,7 @@ public class StringHelper {
         return result;
     }
 
-    public static String getUniqueString()
-    {
+    public static String getUniqueString() {
         String uniqueString = UUID.randomUUID().toString();
         return uniqueString;
     }

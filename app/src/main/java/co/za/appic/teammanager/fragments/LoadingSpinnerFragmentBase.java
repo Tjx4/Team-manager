@@ -1,9 +1,7 @@
 package co.za.appic.teammanager.fragments;
 
 import android.app.Dialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,9 +9,8 @@ import android.widget.TextView;
 import com.wang.avi.AVLoadingIndicatorView;
 import co.za.appic.teammanager.R;
 import co.za.appic.teammanager.constants.Constants;
-import co.za.appic.teammanager.helpers.DialogFragmentHelper;
 
-public class LoadingSpinnerFragment extends DialogFragmentHelper {
+public class LoadingSpinnerFragmentBase extends BaseDialogFragment {
     private TextView loadingTxt;
     private AVLoadingIndicatorView loader;
 

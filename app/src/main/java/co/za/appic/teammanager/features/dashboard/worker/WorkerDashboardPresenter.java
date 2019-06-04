@@ -39,8 +39,8 @@ public class WorkerDashboardPresenter extends SharedDashboardPresenter {
         //UserRef.keepSynced(true);
         //UserRef.addValueEventListener(new ValueEventListener()
 
-        DatabaseReference tasksRef = FirebaseDatabase.getInstance().getReference().child(Constants.TASKS);
-        Query query = tasksRef.orderByChild(Constants.WORKER).equalTo(workerId);
+        DatabaseReference tasksRef = FirebaseDatabase.getInstance().getReference().child(Constants.DB_TASKS);
+        Query query = tasksRef.orderByChild(Constants.DB_WORKER).equalTo(workerId);
         query.keepSynced(true);
         query.addValueEventListener(new ValueEventListener() {
             @Override
@@ -56,20 +56,20 @@ public class WorkerDashboardPresenter extends SharedDashboardPresenter {
                         String id =  chatSnapshot.getKey();
                         currentTask.setId(id);
 
-                        String description = chatSnapshot.child(Constants.TASK_DESCRIPTION).getValue().toString();
+                        String description = chatSnapshot.child(Constants.BB_TASK_DESCRIPTION).getValue().toString();
                         currentTask.setDescription(description);
 
-                        String worker = chatSnapshot.child(Constants.WORKER).getValue().toString();
+                        String worker = chatSnapshot.child(Constants.DB_WORKER).getValue().toString();
                         currentTask.setWorker(worker);
 
-                        String supervisor = chatSnapshot.child(Constants.SUPERVISOR).getValue().toString();
+                        String supervisor = chatSnapshot.child(Constants.DB_SUPERVISOR).getValue().toString();
                         currentTask.setSupervisor(supervisor);
 
-                        int priorityId = Integer.parseInt(chatSnapshot.child(Constants.PRIORITY).getValue().toString());
+                        int priorityId = Integer.parseInt(chatSnapshot.child(Constants.DB_TASK_PRIORITY).getValue().toString());
                         PriorityLevel priority = PriorityLevel.values()[--priorityId];
                         currentTask.setPriority(priority);
 
-                        int taskStatusId = Integer.parseInt(chatSnapshot.child(Constants.TASK_STATUS).getValue().toString());
+                        int taskStatusId = Integer.parseInt(chatSnapshot.child(Constants.DB_TASK_STATUS).getValue().toString());
                         TaskStatus taskStatus = TaskStatus.values()[--taskStatusId];
                         currentTask.setTaskStatus(taskStatus);
 

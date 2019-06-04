@@ -16,11 +16,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 import co.za.appic.teammanager.R;
 import co.za.appic.teammanager.constants.Constants;
+import co.za.appic.teammanager.fragments.BaseDialogFragment;
 
 public class NotificationHelper {
 
 
-    public static void showFragmentDialog(AppCompatActivity activity, String title, int Layout, DialogFragmentHelper newFragment) {
+    public static void showFragmentDialog(AppCompatActivity activity, String title, int Layout, BaseDialogFragment newFragment) {
         FragmentTransaction ft = activity.getSupportFragmentManager().beginTransaction();
         Bundle payload = new Bundle();
         payload.putString(Constants.TITLE, title);

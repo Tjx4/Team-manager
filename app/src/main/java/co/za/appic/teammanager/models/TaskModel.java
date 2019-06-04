@@ -11,6 +11,7 @@ public class TaskModel {
     private PriorityLevel priority;
     private TaskStatus taskStatus;
     private String creationDateTime;
+    private String dueDateTime;
     private String completionDateTime;
 
     public String getId() {
@@ -75,5 +76,13 @@ public class TaskModel {
 
     public void setCompletionDateTime(String completionDateTime) {
         this.completionDateTime = completionDateTime;
+    }
+
+    public String getDueDateTime() {
+        return dueDateTime;
+    }
+
+    public void setDueDateTime(String dueDateTime) {
+        this.dueDateTime = dueDateTime;
     }
 }

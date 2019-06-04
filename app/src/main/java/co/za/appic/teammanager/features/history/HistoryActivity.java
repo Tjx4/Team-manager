@@ -20,7 +20,7 @@ public class HistoryActivity extends BaseChildActivity {
     @Override
     protected void setActionbarActivityDependencies() {
         super.setActionbarActivityDependencies();
-        currentActionBar.setTitle(getResources().getString(R.string.profile));
+        currentActionBar.setTitle(getResources().getString(R.string.history));
     }
 
     @Override

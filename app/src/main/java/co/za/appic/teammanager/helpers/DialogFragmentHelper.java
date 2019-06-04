@@ -1,72 +1,23 @@
 package co.za.appic.teammanager.helpers;
 
-import android.content.Context;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.support.v4.app.DialogFragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
-import android.widget.AdapterView;
-import android.widget.ListView;
 import co.za.appic.teammanager.R;
 import co.za.appic.teammanager.constants.Constants;
+import co.za.appic.teammanager.fragments.BaseDialogFragment;
 
-public class DialogFragmentHelper extends DialogFragment {
-    protected View clickedView;
-    protected AppCompatActivity activity;
+public class DialogFragmentHelper {
 
-    static DialogFragmentHelper newInstance() {
-        return new DialogFragmentHelper();
-    }
+    public static void showFragment(AppCompatActivity activity, Bundle payload, String title, int Layout, BaseDialogFragment newFragment) {
+        if(payload == null)
+            payload = new Bundle();
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-        getDialog().requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getDialog().getWindow().getAttributes().windowAnimations =  R.style.DialogTheme;
+        payload.putString(Constants.TITLE, title);
+        payload.putInt(Constants.LAYOUT, Layout);
 
-        int layout = getArguments().getInt(Constants.LAYOUT);
-        View v = inflater.inflate(layout, container, false);
-        return v;
-    }
-
-    protected void setViewClickEvents(View[] views) {
-        for(View view : views){
-            if(view == null)
-                continue;
-
-            view.setOnClickListener(new View.OnClickListener(){
-                @Override
-                public void onClick(View v) {
-                    onFragmentViewClickedEvent(v);
-                }
-            });
-        }
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        activity = (AppCompatActivity) context;
-    }
-
-    public void hideLoaderAndShowEnterMessage() {
-
-    }
-
-    protected void setListviewClickEvents(ListView listView) {
-        listView.setOnItemClickListener(new ListView.OnItemClickListener(){
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                onFragmentViewClickedEvent(view);
-            }
-        });
-    }
-
-    protected void onFragmentViewClickedEvent(View view) {
-        getDialog().dismiss();
+        FragmentTransaction ft = activity.getSupportFragmentManager().beginTransaction();
+        newFragment.setArguments(payload);
+        newFragment.show(ft, activity.getResources().getString(R.string.dialo_def_tag));
     }
 }

@@ -2,14 +2,14 @@ package co.za.appic.teammanager.base.activities;
 
 import android.os.Bundle;
 import co.za.appic.teammanager.R;
-import co.za.appic.teammanager.fragments.LoadingSpinnerFragment;
-import co.za.appic.teammanager.fragments.NoInternetFragment;
-import co.za.appic.teammanager.helpers.DialogFragmentHelper;
+import co.za.appic.teammanager.fragments.LoadingSpinnerFragmentBase;
+import co.za.appic.teammanager.fragments.NoInternetFragmentBase;
+import co.za.appic.teammanager.fragments.BaseDialogFragment;
 import co.za.appic.teammanager.helpers.NotificationHelper;
 
 public abstract class BaseAsyncActivity extends BaseActivity{
 
-    private LoadingSpinnerFragment loadingDialogFragment;
+    private LoadingSpinnerFragmentBase loadingDialogFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,11 +25,11 @@ public abstract class BaseAsyncActivity extends BaseActivity{
     }
 
     public void showLoadingDialog(String loadingMessage) {
-        loadingDialogFragment = new LoadingSpinnerFragment();
+        loadingDialogFragment = new LoadingSpinnerFragmentBase();
         NotificationHelper.showFragmentDialog(this, loadingMessage, R.layout.fragment_loading_spinner, loadingDialogFragment);
     }
 
-    public void showDialogFragment(String title, int Layout, DialogFragmentHelper newFragment) {
+    public void showDialogFragment(String title, int Layout, BaseDialogFragment newFragment) {
         NotificationHelper.showFragmentDialog(this, title, Layout, newFragment);
         dialogFragment = newFragment;
     }
@@ -40,7 +40,7 @@ public abstract class BaseAsyncActivity extends BaseActivity{
     }
 
     protected void showNoInternetActivity() {
-        dialogFragment = new NoInternetFragment();
+        dialogFragment = new NoInternetFragmentBase();
         showDialogFragment(getString(R.string.no_internet), R.layout.fragment_no_internet , dialogFragment);
     }
 }

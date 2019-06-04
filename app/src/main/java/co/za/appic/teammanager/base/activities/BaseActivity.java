@@ -10,13 +10,13 @@ import co.za.appic.teammanager.MyApplication;
 import co.za.appic.teammanager.base.presenters.BasePresenter;
 import co.za.appic.teammanager.constants.Constants;
 import co.za.appic.teammanager.di.interfaces.DaggerActivity;
-import co.za.appic.teammanager.helpers.DialogFragmentHelper;
+import co.za.appic.teammanager.fragments.BaseDialogFragment;
 
 public abstract class BaseActivity extends AppCompatActivity implements DaggerActivity {
 
     protected BasePresenter presenter;
     protected boolean isNewActivity;
-    protected DialogFragmentHelper dialogFragment;
+    protected BaseDialogFragment dialogFragment;
 
 
     @Override

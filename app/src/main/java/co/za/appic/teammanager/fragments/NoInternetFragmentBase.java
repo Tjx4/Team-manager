@@ -4,9 +4,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import co.za.appic.teammanager.helpers.DialogFragmentHelper;
 
-public class NoInternetFragment extends DialogFragmentHelper {
+public class NoInternetFragmentBase extends BaseDialogFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
