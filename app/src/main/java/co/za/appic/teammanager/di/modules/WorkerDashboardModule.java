@@ -6,15 +6,15 @@ import dagger.Module;
 import dagger.Provides;
 
 @Module
-public class DashboardModule {
+public class WorkerDashboardModule {
     private WorkerDashboardView workerDashboardView;
 
-    public DashboardModule(WorkerDashboardView workerDashboardView) {
+    public WorkerDashboardModule(WorkerDashboardView workerDashboardView) {
         this.workerDashboardView = workerDashboardView;
     }
 
     @Provides
-    public WorkerDashboardView provideDashboardView() {
+    public WorkerDashboardView provideWorkerDashboardView() {
         return workerDashboardView;
     }
 

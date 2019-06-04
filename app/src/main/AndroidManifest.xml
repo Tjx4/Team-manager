@@ -13,7 +13,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
+        <activity
+            android:name=".features.dashboard.supervisor.SupervisorDashboardActivity"
+            android:label="@string/title_activity_supervisor_dashboard"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity android:name=".features.pending.PendingRegActivity" />
         <activity
             android:name=".features.signin.SignInActivity"
@@ -30,12 +33,13 @@
         <activity android:name=".features.history.HistoryActivity" />
         <activity
             android:name=".features.dashboard.worker.WorkerWorkerDashboardActivity"
-            android:theme="@style/AppTheme.NoActionBar"  />
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".features.splash.SplashActivity"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

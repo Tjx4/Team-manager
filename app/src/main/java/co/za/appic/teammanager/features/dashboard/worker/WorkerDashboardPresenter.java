@@ -33,6 +33,10 @@ public class WorkerDashboardPresenter extends SharedDashboardPresenter {
     }
 
     public void syncTasks(final String workerId) {
+        //DatabaseReference UserRef = FirebaseDatabase.getInstance().getReference().child("stylists");
+        //UserRef.keepSynced(true);
+        //UserRef.addValueEventListener(new ValueEventListener()
+
         DatabaseReference tasksRef = FirebaseDatabase.getInstance().getReference().child(Constants.TASKS);
         Query query = tasksRef.orderByChild(Constants.WORKER).equalTo(workerId);
         query.keepSynced(true);

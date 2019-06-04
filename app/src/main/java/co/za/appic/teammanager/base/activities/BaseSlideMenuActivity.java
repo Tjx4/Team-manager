@@ -114,8 +114,7 @@ public abstract class BaseSlideMenuActivity extends BaseNoActionBarActivity impl
         if(isNewActivity)
             return;
 
-        slideMenu.close();
-        //drawer.closeDrawers();
+        drawer.closeDrawers();
     }
 
     protected void hidePlaceHoderView(){

@@ -1,4 +1,4 @@
-package co.za.appic.teammanager.features.dashboard.worker;
+package co.za.appic.teammanager.features.dashboard.supervisor;
 
 import android.os.Bundle;
 import android.view.Menu;
@@ -9,18 +9,17 @@ import android.widget.TextView;
 import javax.inject.Inject;
 import co.za.appic.teammanager.R;
 import co.za.appic.teammanager.di.components.AppComponent;
-import co.za.appic.teammanager.di.components.DaggerWorkerDashboardComponent;
-import co.za.appic.teammanager.di.modules.WorkerDashboardModule;
+import co.za.appic.teammanager.di.components.DaggerSupervisorDashboardComponent;
+import co.za.appic.teammanager.di.modules.SupervisorDashboardModule;
 import co.za.appic.teammanager.features.dashboard.shared.SharedDashboardActivity;
 import co.za.appic.teammanager.features.signin.SignInActivity;
 import co.za.appic.teammanager.helpers.NavigationHelper;
-import co.za.appic.teammanager.helpers.NotificationHelper;
 import co.za.appic.teammanager.helpers.TransitionHelper;
 
-public class WorkerWorkerDashboardActivity extends SharedDashboardActivity implements WorkerDashboardView {
+public class SupervisorDashboardActivity extends SharedDashboardActivity implements SupervisorDashboardView  {
 
     @Inject
-    WorkerDashboardPresenter workerDashboardPresenter;
+    SupervisorDashboardPresenter supervisorDashboardPresenter;
     private TextView wolcomeMessageTv;
 
     @Override
@@ -40,23 +39,24 @@ public class WorkerWorkerDashboardActivity extends SharedDashboardActivity imple
                 NavigationHelper.goToActivityWithNoPayload(this , SignInActivity.class,  TransitionHelper.slideOutActivity());
                 finish();
                 break;
+
         }
         return true;
     }
 
     @Override
     protected int getLayoutResource() {
-        return R.layout.activity_worker_dashboard;
+        return R.layout.activity_supervisor_dashboard;
     }
 
     @Override
     protected ViewGroup getParentLayout() {
-        return (FrameLayout) findViewById(R.id.workerDashboardParentLayout);
+        return (FrameLayout) findViewById(R.id.supervisorDashboardParentLayout);
     }
 
     @Override
     protected void initViews() {
-        setSlideMenuDependencies(this,  getResources().getString(R.string.app_name), R.layout.activity_worker_dashboard, false);
+        setSlideMenuDependencies(this,  getResources().getString(R.string.app_name), R.layout.activity_supervisor_dashboard, false);
         parentLayout = getMainLayout().inflate();
 
         wolcomeMessageTv = parentLayout.findViewById(R.id.tvWolcomeMessage);
@@ -69,50 +69,21 @@ public class WorkerWorkerDashboardActivity extends SharedDashboardActivity imple
 
     @Override
     public void setupComponent(AppComponent appComponent) {
-        DaggerWorkerDashboardComponent.builder().appComponent(appComponent)
-                .workerDashboardModule(new WorkerDashboardModule(this))
+        DaggerSupervisorDashboardComponent.builder().appComponent(appComponent)
+                .supervisorDashboardModule(new SupervisorDashboardModule(this))
                 .build()
                 .inject(this);
     }
 
     @Override
-    public WorkerDashboardPresenter getPresenter() {
-        return workerDashboardPresenter;
+    public SupervisorDashboardPresenter getPresenter() {
+        return supervisorDashboardPresenter;
     }
 
-    @Override
-    public void showWelcomeMessage(String message) {
-        wolcomeMessageTv.setText(message);
-    }
-
-    @Override
-    public void viewPendingTasks() {
-        NotificationHelper.showShortToast(this, "viewPendingTasks");
-    }
-
-    @Override
-    public void viewCompletedTasks() {
-        NotificationHelper.showShortToast(this, "viewCompletedTasks");
-    }
-
-    @Override
-    public void viewTasks() {
-        NotificationHelper.showShortToast(this, "viewTasks");
-    }
-
-    @Override
-    public void begginTask() {
-
-    }
-
-    @Override
-    public void endTask() {
-
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.worker_dashboard_menu, menu);
+        getMenuInflater().inflate(R.menu.supervisor_dashboard_menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -123,15 +94,7 @@ public class WorkerWorkerDashboardActivity extends SharedDashboardActivity imple
         int itemId = item.getItemId();
 
         switch (itemId){
-            case R.id.action_pending_tasks:
-                viewPendingTasks();
-                break;
-            case R.id.action_completed_tasks:
-                viewCompletedTasks();
-                break;
-            case R.id.action_tasks:
-                viewTasks();
-                break;
+
         }
         return true;
     }
