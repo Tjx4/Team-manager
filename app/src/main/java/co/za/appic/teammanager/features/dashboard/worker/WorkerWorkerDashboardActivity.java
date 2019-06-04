@@ -3,6 +3,7 @@ package co.za.appic.teammanager.features.dashboard.worker;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.TextView;
@@ -13,6 +14,7 @@ import co.za.appic.teammanager.di.components.DaggerWorkerDashboardComponent;
 import co.za.appic.teammanager.di.modules.WorkerDashboardModule;
 import co.za.appic.teammanager.features.dashboard.shared.SharedDashboardActivity;
 import co.za.appic.teammanager.features.signin.SignInActivity;
+import co.za.appic.teammanager.helpers.AnimationHelper;
 import co.za.appic.teammanager.helpers.NavigationHelper;
 import co.za.appic.teammanager.helpers.NotificationHelper;
 import co.za.appic.teammanager.helpers.TransitionHelper;
@@ -100,28 +102,32 @@ public class WorkerWorkerDashboardActivity extends SharedDashboardActivity imple
     }
 
     @Override
-    public void viewPendingTasks() {
-        NotificationHelper.showShortToast(this, "viewPendingTasks");
+    public void onViewPendingTasksClicked(View view) {
+        AnimationHelper.blinkView(view);
+        NotificationHelper.showShortToast(this, "onViewPendingTasksClicked");
     }
 
     @Override
-    public void viewCompletedTasks() {
-        NotificationHelper.showShortToast(this, "viewCompletedTasks");
+    public void onViewCompletedTasksClicked(View view) {
+        AnimationHelper.blinkView(view);
+        NotificationHelper.showShortToast(this, "onViewCompletedTasksClicked");
     }
 
     @Override
-    public void viewTasks() {
-        NotificationHelper.showShortToast(this, "viewTasks");
+    public void onHomeClicked(View view) {
+        NotificationHelper.showShortToast(this, "onHomeClicked");
     }
 
     @Override
-    public void begginTask() {
-
+    public void onBeginTaskClicked(View view) {
+        AnimationHelper.blinkView(view);
+        NotificationHelper.showShortToast(this, "onBeginTaskClicked");
     }
 
     @Override
-    public void endTask() {
-
+    public void onEndTaskClicked(View view) {
+        AnimationHelper.blinkView(view);
+        NotificationHelper.showShortToast(this, "onEndTaskClicked");
     }
 
     @Override
@@ -138,13 +144,13 @@ public class WorkerWorkerDashboardActivity extends SharedDashboardActivity imple
 
         switch (itemId){
             case R.id.action_pending_tasks:
-                viewPendingTasks();
+                onViewPendingTasksClicked(null);
                 break;
             case R.id.action_completed_tasks:
-                viewCompletedTasks();
+                onViewCompletedTasksClicked(null);
                 break;
             case R.id.action_tasks:
-                viewTasks();
+                onHomeClicked(null);
                 break;
         }
         return true;
