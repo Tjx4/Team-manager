@@ -16,9 +16,9 @@ import co.za.appic.teammanager.features.signin.SignInActivity;
 import co.za.appic.teammanager.helpers.NavigationHelper;
 import co.za.appic.teammanager.helpers.TransitionHelper;
 
-public class DashboardActivity extends BaseSlideMenuActivity implements DashboardView  {
+public class WorkerWorkerDashboardActivity extends BaseSlideMenuActivity implements WorkerDashboardView {
 
-    DashboardPresenter dashboardPresenter;
+    WorkerDashboardPresenter workerDashboardPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,8 +83,8 @@ public class DashboardActivity extends BaseSlideMenuActivity implements Dashboar
     }
 
     @Override
-    public DashboardPresenter getPresenter() {
-        return dashboardPresenter;
+    public WorkerDashboardPresenter getPresenter() {
+        return workerDashboardPresenter;
     }
 
     @Override

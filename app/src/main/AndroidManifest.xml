@@ -25,11 +25,11 @@
         <activity android:name=".features.profile.ProfileActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".features.dashboard.DashboardActivity" />
+                android:value=".features.dashboard.WorkerWorkerDashboardActivity" />
         </activity>
         <activity android:name=".features.history.HistoryActivity" />
         <activity
-            android:name=".features.dashboard.DashboardActivity"
+            android:name=".features.dashboard.WorkerWorkerDashboardActivity"
             android:theme="@style/AppTheme.NoActionBar"  />
         <activity
             android:name=".features.splash.SplashActivity"

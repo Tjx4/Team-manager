@@ -1,25 +1,25 @@
 package co.za.appic.teammanager.di.modules;
 
-import co.za.appic.teammanager.features.dashboard.DashboardPresenter;
-import co.za.appic.teammanager.features.dashboard.DashboardView;
+import co.za.appic.teammanager.features.dashboard.WorkerDashboardPresenter;
+import co.za.appic.teammanager.features.dashboard.WorkerDashboardView;
 import dagger.Module;
 import dagger.Provides;
 
 @Module
 public class DashboardModule {
-    private DashboardView dashboardView;
+    private WorkerDashboardView workerDashboardView;
 
-    public DashboardModule(DashboardView dashboardView) {
-        this.dashboardView = dashboardView;
+    public DashboardModule(WorkerDashboardView workerDashboardView) {
+        this.workerDashboardView = workerDashboardView;
     }
 
     @Provides
-    public DashboardView provideDashboardView() {
-        return dashboardView;
+    public WorkerDashboardView provideDashboardView() {
+        return workerDashboardView;
     }
 
     @Provides
-    static DashboardPresenter providePresenter(DashboardView dashboardView) {
-        return new DashboardPresenter(dashboardView);
+    static WorkerDashboardPresenter providePresenter(WorkerDashboardView workerDashboardView) {
+        return new WorkerDashboardPresenter(workerDashboardView);
     }
 }

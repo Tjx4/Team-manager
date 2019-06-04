@@ -14,7 +14,7 @@ import co.za.appic.teammanager.di.components.AppComponent;
 import co.za.appic.teammanager.di.components.DaggerSignInComponent;
 import co.za.appic.teammanager.di.interfaces.DaggerActivity;
 import co.za.appic.teammanager.di.modules.SignInModule;
-import co.za.appic.teammanager.features.dashboard.DashboardActivity;
+import co.za.appic.teammanager.features.dashboard.WorkerWorkerDashboardActivity;
 import co.za.appic.teammanager.features.registration.RegistrationActivity;
 import co.za.appic.teammanager.helpers.NavigationHelper;
 import co.za.appic.teammanager.helpers.NotificationHelper;
@@ -95,12 +95,12 @@ public class SignInActivity extends BaseNoActionBarActivity implements DaggerAct
 
     @Override
     public void enterAppAsSupervisor(SupervisorModel supervisor) {
-        hideLoaderAndEnterApp(supervisor,  DashboardActivity.class);
+        hideLoaderAndEnterApp(supervisor,  WorkerWorkerDashboardActivity.class);
     }
 
     @Override
     public void enterAppAsWorker(WorkerModel worker) {
-        hideLoaderAndEnterApp(worker,  DashboardActivity.class);
+        hideLoaderAndEnterApp(worker,  WorkerWorkerDashboardActivity.class);
     }
 
     private void hideLoaderAndEnterApp(UserModel user, Class dashboard) {
