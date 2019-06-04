@@ -15,7 +15,7 @@ public class TransitionHelper {
     }
 
     public static int[] slideOutActivity() {
-        return getTransitions(R.anim.fade_in, R.anim.slide_out);
+        return getTransitions(R.anim.no_transition, R.anim.slide_left);
     }
 
     public static int[] transitionInActivity() {

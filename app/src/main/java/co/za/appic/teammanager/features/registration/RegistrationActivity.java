@@ -178,13 +178,7 @@ public class RegistrationActivity extends BaseActionBarActivity implements Regis
     public void showRegisterSuccessDialog(String name) {
         hideLoader();
 
-        AlertDialog.Builder ab = NotificationHelper.getAlertDialogMessage(this, getString(R.string.register_success), getString(R.string.register_success_message, name));
-        ab.setNeutralButton(R.string.Signin, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                dialogInterface.dismiss();
-            }
-        });
+        AlertDialog.Builder ab = NotificationHelper.getAlertDialogMessage(this, getString(R.string.register_success), getString(R.string.register_success_message, name), "Sign In");
 
         ab.setOnDismissListener(new DialogInterface.OnDismissListener(){
             @Override

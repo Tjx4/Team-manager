@@ -21,10 +21,7 @@ public class SplashActivity extends BaseAsyncActivity implements SplashView {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        NavigationHelper.goToActivityWithNoPayload(this, SignInActivity.class, TransitionHelper.slideInActivity());
-        // showSplashAndEnterApp();
-
+        checkUserStatusAndNavigate();
         finish();
     }
 
@@ -37,16 +34,20 @@ public class SplashActivity extends BaseAsyncActivity implements SplashView {
     }
 
     @Override
-    public void showSplashAndEnterApp() {
-        if(getPresenter().sharedPrefsHelper.getUserStatus() == UserStatus.registered){
-            NavigationHelper.goToActivityWithNoPayload(this, SignInActivity.class, TransitionHelper.slideInActivity());
+    public void checkUserStatusAndNavigate() {
+
+        switch (getPresenter().sharedPrefsHelper.getUserStatus()){
+            case registered:
+                NavigationHelper.goToActivityWithNoPayload(this, SignInActivity.class, TransitionHelper.fadeInActivity());
+                break;
+            case pending:
+                NavigationHelper.goToActivityWithNoPayload(this, PendingRegActivity.class, TransitionHelper.fadeInActivity());
+                break;
+            default:
+                NavigationHelper.goToActivityWithNoPayload(this, RegistrationActivity.class, TransitionHelper.fadeInActivity());
+                break;
         }
-        else if(getPresenter().sharedPrefsHelper.getUserStatus() == UserStatus.pending){
-            NavigationHelper.goToActivityWithNoPayload(this, PendingRegActivity.class, TransitionHelper.slideInActivity());
-        }
-        else{
-            NavigationHelper.goToActivityWithNoPayload(this, RegistrationActivity.class, TransitionHelper.slideInActivity());
-        }
+
     }
 
     @Override

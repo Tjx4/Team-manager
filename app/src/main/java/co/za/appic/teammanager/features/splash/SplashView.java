@@ -4,5 +4,5 @@ import co.za.appic.teammanager.base.views.BaseView;
 
 public interface SplashView extends BaseView {
     SplashPresenter getPresenter();
-    void showSplashAndEnterApp();
+    void checkUserStatusAndNavigate();
 }

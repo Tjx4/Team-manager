@@ -22,6 +22,16 @@ public class DashboardActivity extends BaseActionBarActivity implements Dashboar
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+
+        if(isNewActivity)
+            return;
+
+        overridePendingTransition(TransitionHelper.slideOutActivity()[0], TransitionHelper.slideOutActivity()[1]);
+    }
+
+    @Override
     protected void setBaseActivityDependencies() {
         setContentView(R.layout.activity_dashboard);
         initViews();

@@ -28,6 +28,12 @@ public abstract class BaseActivity extends AppCompatActivity implements DaggerAc
         setupComponent(MyApplication.get(this).component());
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        isNewActivity = false;
+    }
+
     private void getActivityTransition() {
         try {
             int[] activityTransition = getIntent().getBundleExtra(Constants.PAYLOAD_KEY).getIntArray(Constants.ACTIVITY_TRANSITION);

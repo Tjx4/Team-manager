@@ -4,6 +4,8 @@ import com.google.firebase.database.DatabaseReference;
 import co.za.appic.teammanager.base.presenters.BaseFirebaseAuthPresenter;
 import co.za.appic.teammanager.constants.Constants;
 import co.za.appic.teammanager.enums.EmployeeType;
+import co.za.appic.teammanager.enums.UserStatus;
+import co.za.appic.teammanager.helpers.SharedPrefsHelper;
 import co.za.appic.teammanager.helpers.StringHelper;
 import co.za.appic.teammanager.helpers.StringValidationHelper;
 import co.za.appic.teammanager.models.SupervisorModel;
@@ -108,6 +110,7 @@ public class RegistrationPresenter extends BaseFirebaseAuthPresenter  {
         }
 
         setCurrentLinkedUser(newUser);
+        sharedPrefsHelper.setUserStatus(UserStatus.registered);
         registrationView.showRegisterSuccessDialog(newUser.getName());
     }
 
@@ -149,6 +152,7 @@ public class RegistrationPresenter extends BaseFirebaseAuthPresenter  {
     private void setBasicUserDetails(UserModel user) {
         String fbid = firebaseUser.getUid();
         user.setFbId(fbid);
+        user.setEmployeeId(newUser.getEmployeeId());
         user.setName(newUser.getName());
         user.setSurname(newUser.getSurname());
         user.setGender(newUser.getGender());
