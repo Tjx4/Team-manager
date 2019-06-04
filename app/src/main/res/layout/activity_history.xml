@@ -8,7 +8,8 @@
 
     <TextView
         style="@style/largeLabel"
-        android:layout_gravity="center"
+        android:layout_gravity="center_horizontal"
+        android:padding="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/this_feature_is_not_available_in_demo_mode"/>

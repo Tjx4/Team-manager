@@ -2,7 +2,6 @@ package co.za.appic.teammanager.features.dashboard.supervisor;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
 import co.za.appic.teammanager.R;
 import co.za.appic.teammanager.constants.Constants;
 import co.za.appic.teammanager.enums.TaskStatus;
