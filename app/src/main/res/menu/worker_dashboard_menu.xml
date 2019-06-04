@@ -6,4 +6,11 @@
         android:icon="@drawable/ic_back_light"
         android:title="Sign out"
         app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/action_profile"
+        android:icon="@drawable/ic_profile_light"
+        android:title="@string/view_profile"
+        app:showAsAction="never"/>
+
 </menu>

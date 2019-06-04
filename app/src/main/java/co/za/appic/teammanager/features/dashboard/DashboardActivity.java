@@ -7,6 +7,7 @@ import android.view.MenuItem;
 import co.za.appic.teammanager.R;
 import co.za.appic.teammanager.base.activities.BaseActionBarActivity;
 import co.za.appic.teammanager.di.components.AppComponent;
+import co.za.appic.teammanager.features.profile.ProfileActivity;
 import co.za.appic.teammanager.features.signin.SignInActivity;
 import co.za.appic.teammanager.helpers.NavigationHelper;
 import co.za.appic.teammanager.helpers.TransitionHelper;
@@ -74,6 +75,11 @@ public class DashboardActivity extends BaseActionBarActivity implements Dashboar
         switch (itemId){
             case R.id.action_signout:
                 NavigationHelper.goToActivityWithNoPayload(this , SignInActivity.class,  TransitionHelper.slideOutActivity());
+                finish();
+                break;
+
+            case R.id.action_profile:
+                NavigationHelper.goToActivityWithNoPayload(this , ProfileActivity.class,  TransitionHelper.slideInActivity());
                 finish();
                 break;
         }
