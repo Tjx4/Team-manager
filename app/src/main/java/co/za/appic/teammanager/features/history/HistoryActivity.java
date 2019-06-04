@@ -10,12 +10,17 @@ public class HistoryActivity extends BaseChildActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_history);
     }
 
     @Override
     protected void setBaseActivityDependencies() {
+        setContentView(R.layout.activity_history);
+    }
 
+    @Override
+    protected void setActionbarActivityDependencies() {
+        super.setActionbarActivityDependencies();
+        currentActionBar.setTitle(getResources().getString(R.string.profile));
     }
 
     @Override

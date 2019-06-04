@@ -10,11 +10,11 @@ public class AnimationHelper {
         if(view == null)
             return;
 
-        Animation anim = new AlphaAnimation(0.0f, 1.0f);
-        anim.setDuration(50);
+        Animation anim = new AlphaAnimation(0.7f, 1.0f);
+        anim.setDuration(60);
         anim.setStartOffset(20);
         anim.setRepeatMode(Animation.REVERSE);
-        anim.setRepeatCount(1);
+        anim.setRepeatCount(0);
         view.startAnimation(anim);
     }
 }

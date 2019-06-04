@@ -30,7 +30,11 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".features.dashboard.worker.WorkerWorkerDashboardActivity" />
         </activity>
-        <activity android:name=".features.history.HistoryActivity" />
+        <activity android:name=".features.history.HistoryActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".features.dashboard.worker.WorkerWorkerDashboardActivity" />
+        </activity>
         <activity
             android:name=".features.dashboard.worker.WorkerWorkerDashboardActivity"
             android:theme="@style/AppTheme.NoActionBar" />

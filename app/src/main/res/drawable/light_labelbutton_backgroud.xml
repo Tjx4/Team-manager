@@ -15,11 +15,11 @@
         <shape
             android:shape="rectangle"
             android:padding="10dp">
-            <solid android:color="@color/transBlack"/>
+            <solid android:color="@android:color/transparent"/>
 
             <stroke
                 android:width="0dp"
-                android:color="@color/transBlack" />
+                android:color="@android:color/transparent" />
         </shape>
     </item>
 </selector>
