@@ -68,22 +68,10 @@ public abstract class BaseSlideMenuActivity extends BaseNoActionBarActivity impl
         return currentPageLayout;
     }
 
-    protected void setSlideMenuDependencies(BaseActivity activity, String title, int pageLayout, boolean showIcon, boolean showPlaceholderView) {
+    protected void setSlideMenuDependencies(BaseActivity activity, String title, int pageLayout, boolean showIcon) {
         setcurrentActivityCoordinator();
         setMainLayout(pageLayout);
         toolbar = activity.findViewById(R.id.toolbar);
-
-        /*
-        if(userNormalTitle){
-            toolbar.setTitle(title);
-        }
-        else{
-            TextView mTitle = toolbar.findViewById(R.id.toolbar_title);
-            mTitle.setTypeface(Typeface.create("sans-serif-thin",Typeface.NORMAL));
-            mTitle.setText(title);
-            toolbar.setTitle("");
-        }
-        */
 
         TextView mTitle = toolbar.findViewById(R.id.toolbar_title);
         ImageView logo = toolbar.findViewById(R.id.toolbar_logo);
@@ -92,7 +80,7 @@ public abstract class BaseSlideMenuActivity extends BaseNoActionBarActivity impl
             mTitle.setVisibility(View.GONE);
         }
         else{
-            mTitle.setTypeface(Typeface.create("sans-serif-thin",Typeface.NORMAL));
+            // mTitle.setTypeface(Typeface.create("sans-serif-thin",Typeface.NORMAL));
             mTitle.setText(title);
 
             mTitle.setVisibility(View.VISIBLE);
@@ -104,16 +92,8 @@ public abstract class BaseSlideMenuActivity extends BaseNoActionBarActivity impl
             logo.setVisibility(View.GONE);
 
         toolbar.setTitle("");
-
         activity.setSupportActionBar(toolbar);
-        /*
-        placeHolderView = activity.findViewById(R.id.flPlaceHolder);
 
-        if(showPlaceholderView)
-        {
-            placeHolderView.setVisibility(View.VISIBLE);
-        }
-        */
         DrawerLayout drawer = (DrawerLayout) activity.findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(activity, drawer, toolbar,
                 R.string.navigation_drawer_open,

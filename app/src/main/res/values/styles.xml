@@ -28,6 +28,7 @@
 
     <style name="largeLabel" parent="teamManagerTextView">
         <item name="android:textSize">@dimen/large_text_size</item>
+        <item name="android:textStyle">bold</item>
     </style>
 
     <style name="largeWhiteLabel" parent="largeLabel">
@@ -117,7 +118,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">#cccccc</item>
         <item name="android:typeface">monospace</item>
-        <item name="android:textSize">17sp</item>
+        <item name="android:textSize">@dimen/medium_text_size</item>
         <item name="android:background">@color/darkBackground</item>
         <item name="android:windowBackground">@color/darkBackground</item>
         <item name="android:color">#cccccc</item>
@@ -142,6 +143,12 @@
     <style name="MyToolBarTheme">
         <item name="android:background">@color/colorPrimary</item>
         <item name="android:icon">@mipmap/ic_launcher</item>
+        <item name="android:color">@color/lightestText</item>
+        <item name="android:keyTextColor">@color/lightestText</item>
+        <item name="android:textColor">@color/lightestText</item>
+        <item name="android:textColorPrimary">@color/lightestText</item>
+        <item name="android:textColorSecondary">@color/lightestText</item>
+        <item name="android:textColorTertiary">@color/lightestText</item>
     </style>
 
 </resources>

@@ -3,6 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
+        android:id="@+id/action_profile"
+        android:icon="@drawable/ic_profile_light"
+        android:title="@string/view_profile"
+        app:showAsAction="never"/>
+
+    <item
         android:id="@+id/action_sign_out"
         android:icon="@drawable/ic_signout_light"
         android:title="@string/sign_out"

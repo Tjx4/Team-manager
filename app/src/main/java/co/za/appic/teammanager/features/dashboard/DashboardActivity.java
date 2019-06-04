@@ -49,7 +49,7 @@ public class DashboardActivity extends BaseSlideMenuActivity implements Dashboar
 
     @Override
     protected int getLayoutResource() {
-        return  R.layout.activity_dashboard;
+        return R.layout.activity_dashboard;
     }
 
     @Override
@@ -64,7 +64,8 @@ public class DashboardActivity extends BaseSlideMenuActivity implements Dashboar
 
     @Override
     protected void initViews() {
-        setSlideMenuDependencies(this,  getResources().getString(R.string.app_name), R.layout.activity_dashboard, false, true);
+        setSlideMenuDependencies(this,  getResources().getString(R.string.app_name), R.layout.activity_dashboard, false);
+        parentLayout = getMainLayout().inflate();
 
     }
 

@@ -9,16 +9,6 @@
     android:fitsSystemWindows="true"
     tools:openDrawer="start">
 
-    <!--
-    <FrameLayout
-        android:id="@+id/flPlaceHolder"
-        android:background="@drawable/placeholder_screen_background"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="gone"/>
-
-    -->
-
     <android.support.design.widget.CoordinatorLayout
         android:id="@+id/clCurrentActivity"
         android:layout_width="match_parent"
@@ -30,7 +20,6 @@
             android:theme="@style/AppTheme.AppBarOverlay"
             app:elevation="0dp">
 
-            <!-- TODO: get how toolbar height  -->
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
@@ -42,7 +31,6 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
-
 
                     <ImageView
                         android:visibility="visible"
@@ -58,31 +46,21 @@
                         app:srcCompat="@mipmap/ic_launcher" />
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text=""
+                        android:id="@+id/toolbar_title"
+                        style="@style/largeLabel"
                         android:layout_centerVertical="true"
                         android:layout_toRightOf="@+id/toolbar_logo"
-                        android:layout_marginEnd="0dp"
-                        android:layout_marginRight="0dp"
-                        android:layout_marginLeft="0dp"
-                        android:layout_marginStart="0dp"
-                        android:textColor="#000"
-                        android:gravity="center"
-                        android:textSize="17dp"
-                        android:id="@+id/toolbar_title"/>
+                        android:layout_margin="0dp"/>
 
                 </RelativeLayout>
-
-
 
             </android.support.v7.widget.Toolbar>
 
         </android.support.design.widget.AppBarLayout>
 
-        <!-- TODO: Set content page -->
         <ViewStub
             android:id="@+id/pageLayout"
+            android:layout_marginTop="@dimen/slide_toolbar_height"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 
@@ -93,10 +71,9 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:background="@android:color/black"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header_home"
-        app:itemIconTint="@color/lightText"
-        app:itemTextColor="@color/lightText" />
+        app:itemIconTint="@color/darkText"
+        app:itemTextColor="@color/darkText" />
 
 </android.support.v4.widget.DrawerLayout>
