@@ -18,7 +18,7 @@ public abstract class BaseAsyncActivity extends BaseActivity{
 
     public void onBackPressed() {
         super.onBackPressed();
-        presenter.handleBackButtonPressed();
+        //presenter.handleBackButtonPressed();
 
         if(dialogFragment != null)
             dialogFragment.dismiss();

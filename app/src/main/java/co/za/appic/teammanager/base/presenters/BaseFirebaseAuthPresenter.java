@@ -12,6 +12,9 @@ import co.za.appic.teammanager.models.UserModel;
 
 public abstract class BaseFirebaseAuthPresenter extends BaseAsyncPresenter {
 
+
+    protected FirebaseAuth.AuthStateListener firebaseAuthListener;
+
     public BaseFirebaseAuthPresenter(BaseView baseView) {
         super(baseView);
     }
@@ -84,6 +87,20 @@ public abstract class BaseFirebaseAuthPresenter extends BaseAsyncPresenter {
 
     protected UserModel getCurrentLinkedUser(){
         return sharedPrefsHelper.getLinkedUser();
+    }
+
+    protected void removeAuthFromFirebase() {
+        if(firebaseAuthListener == null || firebaseAuth == null)
+            return;
+
+        firebaseAuth.removeAuthStateListener(firebaseAuthListener);
+    }
+
+    protected void addAuthToFirebase() {
+        if(firebaseAuthListener == null || firebaseAuth == null)
+            return;
+
+        firebaseAuth.addAuthStateListener(firebaseAuthListener);
     }
 
 }

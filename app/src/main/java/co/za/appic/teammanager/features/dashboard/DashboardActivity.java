@@ -74,13 +74,13 @@ public class DashboardActivity extends BaseActionBarActivity implements Dashboar
 
         switch (itemId){
             case R.id.action_signout:
+                getPresenter().signOutFromFirebase();
                 NavigationHelper.goToActivityWithNoPayload(this , SignInActivity.class,  TransitionHelper.slideOutActivity());
                 finish();
                 break;
 
             case R.id.action_profile:
                 NavigationHelper.goToActivityWithNoPayload(this , ProfileActivity.class,  TransitionHelper.slideInActivity());
-                finish();
                 break;
         }
         return true;
