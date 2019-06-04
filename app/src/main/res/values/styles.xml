@@ -25,16 +25,20 @@
     <style name="xlargeLabel" parent="teamManagerTextView">
         <item name="android:textSize">@dimen/xlarge_text_size</item>
     </style>
+    <style name="xlargeLightLabel" parent="xlargeLabel">
+        <item name="android:textColor">@color/lightestText</item>
+    </style>
+    <style name="xlargeDarktLabel" parent="xlargeLabel">
+        <item name="android:textColor">@color/darkestText</item>
+    </style>
 
     <style name="largeLabel" parent="teamManagerTextView">
         <item name="android:textSize">@dimen/large_text_size</item>
         <item name="android:textStyle">bold</item>
     </style>
-
     <style name="largeLightLabel" parent="largeLabel">
         <item name="android:textColor">@color/lightestText</item>
     </style>
-
     <style name="largeDarktLabel" parent="largeLabel">
         <item name="android:textColor">@color/darkestText</item>
     </style>

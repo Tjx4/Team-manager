@@ -8,6 +8,8 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
+
+import co.za.appic.teammanager.R;
 import co.za.appic.teammanager.constants.Constants;
 import co.za.appic.teammanager.enums.PriorityLevel;
 import co.za.appic.teammanager.enums.TaskStatus;
@@ -86,10 +88,8 @@ public class WorkerDashboardPresenter extends SharedDashboardPresenter {
                     }
                 }
 
-                int pendingTasksCount = pendingTasks.size();
-                int completedTasksCount =  completedTasks.size();
-                String welcomeMessage = "Hi "+worker.getName()+" you have "+pendingTasksCount+" pending tasks and "+completedTasksCount+" completed tasks";
-                workerDashboardView.showWelcomeMessage(welcomeMessage);
+                greetWorker();
+                showTaskStats();
             }
 
             @Override
@@ -97,6 +97,19 @@ public class WorkerDashboardPresenter extends SharedDashboardPresenter {
 
             }
         });
+    }
+
+    private void showTaskStats() {
+        int pendingTasksCount = pendingTasks.size();
+        workerDashboardView.showPendingTaskCount(String.valueOf(pendingTasksCount));
+
+        int completedTasksCount = completedTasks.size();
+        workerDashboardView.showCompletedTaskCount(String.valueOf(completedTasksCount));
+    }
+
+    private void greetWorker() {
+        String welcomeMessage = context.getResources().getString(R.string.worker_welcome_message, worker.getName());
+        workerDashboardView.showWelcomeMessage(welcomeMessage);
     }
 
     public List<TaskModel> getPendingTasks() {

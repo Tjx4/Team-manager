@@ -22,6 +22,8 @@ public class WorkerWorkerDashboardActivity extends SharedDashboardActivity imple
     @Inject
     WorkerDashboardPresenter workerDashboardPresenter;
     private TextView wolcomeMessageTv;
+    private TextView pendingCountTv;
+    private TextView completedCounteTv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +62,8 @@ public class WorkerWorkerDashboardActivity extends SharedDashboardActivity imple
         parentLayout = getMainLayout().inflate();
 
         wolcomeMessageTv = parentLayout.findViewById(R.id.tvWolcomeMessage);
+        pendingCountTv = parentLayout.findViewById(R.id.tvPendingCount);
+        completedCounteTv = parentLayout.findViewById(R.id.tvCompletedCount);
     }
 
     @Override
@@ -83,6 +87,16 @@ public class WorkerWorkerDashboardActivity extends SharedDashboardActivity imple
     @Override
     public void showWelcomeMessage(String message) {
         wolcomeMessageTv.setText(message);
+    }
+
+    @Override
+    public void showPendingTaskCount(String pendingTasksCount) {
+        pendingCountTv.setText(pendingTasksCount);
+    }
+
+    @Override
+    public void showCompletedTaskCount(String completedTaskCount) {
+        completedCounteTv.setText(completedTaskCount);
     }
 
     @Override

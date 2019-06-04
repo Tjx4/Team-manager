@@ -7,10 +7,73 @@
     android:layout_height="match_parent"
     tools:context=".features.dashboard.worker.WorkerWorkerDashboardActivity">
 
-    <TextView
-        android:id="@+id/tvWolcomeMessage"
-        style="@style/mediumDarkLabel"
-        android:layout_gravity="center_horizontal"
-        android:padding="20dp"/>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tvWolcomeMessage"
+            style="@style/mediumDarkLabel"
+            android:layout_gravity="center"
+            android:layout_margin="20dp"/>
+
+        <android.support.v7.widget.CardView
+            android:layout_margin="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:padding="20dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        style="@style/mediumDarkLabel"
+                        android:layout_gravity="center_horizontal"
+                        android:gravity="center"
+                        android:text="Pending Tasks"/>
+
+                    <TextView
+                        android:id="@+id/tvPendingCount"
+                        style="@style/xlargeDarktLabel"
+                        android:layout_gravity="center_horizontal"
+                        android:gravity="center"
+                        android:text="0"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        style="@style/mediumDarkLabel"
+                        android:layout_gravity="center_horizontal"
+                        android:gravity="center"
+                        android:text="Completed Tasks"/>
+
+                    <TextView
+                        android:id="@+id/tvCompletedCount"
+                        style="@style/xlargeDarktLabel"
+                        android:layout_gravity="center_horizontal"
+                        android:gravity="center"
+                        android:text="0"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+    </LinearLayout>
+
 
 </FrameLayout>

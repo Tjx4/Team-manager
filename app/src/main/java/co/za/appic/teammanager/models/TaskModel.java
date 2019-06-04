@@ -10,6 +10,8 @@ public class TaskModel {
     private String worker;
     private PriorityLevel priority;
     private TaskStatus taskStatus;
+    private String creationDateTime;
+    private String completionDateTime;
 
     public String getId() {
         return id;
@@ -57,5 +59,21 @@ public class TaskModel {
 
     public void setWorker(String worker) {
         this.worker = worker;
+    }
+
+    public String getCreationDateTime() {
+        return creationDateTime;
+    }
+
+    public void setCreationDateTime(String creationDateTime) {
+        this.creationDateTime = creationDateTime;
+    }
+
+    public String getCompletionDateTime() {
+        return completionDateTime;
+    }
+
+    public void setCompletionDateTime(String completionDateTime) {
+        this.completionDateTime = completionDateTime;
     }
 }
