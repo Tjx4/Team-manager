@@ -11,6 +11,7 @@ import co.za.appic.teammanager.base.activities.BaseSlideMenuActivity;
 import co.za.appic.teammanager.di.components.AppComponent;
 import co.za.appic.teammanager.di.components.DaggerDashboardComponent;
 import co.za.appic.teammanager.di.modules.DashboardModule;
+import co.za.appic.teammanager.features.history.HistoryActivity;
 import co.za.appic.teammanager.features.profile.ProfileActivity;
 import co.za.appic.teammanager.features.signin.SignInActivity;
 import co.za.appic.teammanager.helpers.NavigationHelper;
@@ -41,7 +42,17 @@ public class WorkerWorkerDashboardActivity extends BaseSlideMenuActivity impleme
 
         switch (itemId){
             case R.id.action_signout:
+                getPresenter().signOutFromFirebase();
+                NavigationHelper.goToActivityWithNoPayload(this , SignInActivity.class,  TransitionHelper.slideOutActivity());
+                finish();
+                break;
 
+            case R.id.action_profile:
+                NavigationHelper.goToActivityWithNoPayload(this , ProfileActivity.class,  TransitionHelper.slideInActivity());
+                break;
+
+            case R.id.action_history:
+                NavigationHelper.goToActivityWithNoPayload(this , HistoryActivity.class,  TransitionHelper.slideInActivity());
                 break;
         }
         return true;
@@ -88,6 +99,21 @@ public class WorkerWorkerDashboardActivity extends BaseSlideMenuActivity impleme
     }
 
     @Override
+    public void viewPendingTasks() {
+
+    }
+
+    @Override
+    public void viewCompletedTasks() {
+
+    }
+
+    @Override
+    public void viewTasks() {
+
+    }
+
+    @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == android.view.KeyEvent.KEYCODE_BACK) {
             moveTaskToBack(true);
@@ -109,15 +135,10 @@ public class WorkerWorkerDashboardActivity extends BaseSlideMenuActivity impleme
         int itemId = item.getItemId();
 
         switch (itemId){
-            case R.id.action_signout:
-                getPresenter().signOutFromFirebase();
-                NavigationHelper.goToActivityWithNoPayload(this , SignInActivity.class,  TransitionHelper.slideOutActivity());
-                finish();
+            case R.id.action_pending_tasks:
+                viewPendingTasks();
                 break;
 
-            case R.id.action_profile:
-                NavigationHelper.goToActivityWithNoPayload(this , ProfileActivity.class,  TransitionHelper.slideInActivity());
-                break;
         }
         return true;
     }

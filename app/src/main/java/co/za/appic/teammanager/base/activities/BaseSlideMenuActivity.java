@@ -1,6 +1,5 @@
 package co.za.appic.teammanager.base.activities;
 
-import android.graphics.Typeface;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -48,7 +47,6 @@ public abstract class BaseSlideMenuActivity extends BaseNoActionBarActivity impl
 
     public void setcurrentActivityCoordinator() {
         currentActivityCL = (CoordinatorLayout) ((BaseActivity) this).findViewById(R.id.clCurrentActivity);
-        //currentActivityCL.setContext(getcurrentActivityCoordinator());
     }
 
     @Override
@@ -108,13 +106,11 @@ public abstract class BaseSlideMenuActivity extends BaseNoActionBarActivity impl
         //RelativeLayout mainFramelayout = (RelativeLayout) getParentLayout();
         //dd.setContentDescription("za.co.geartronix.activities.DashBoardActivity");
         slideMenu = navigationView.getMenu();
-
-
     }
+
     protected void hidePlaceHoderView(){
         placeHolderView.setVisibility(View.GONE);
     }
-
     protected abstract int getLayoutResource();
     protected abstract ViewGroup getParentLayout();
     protected abstract int getSideMenu();

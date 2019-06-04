@@ -62,4 +62,8 @@
     <string name="view_profile">View profile</string>
     <string name="profile">Profile</string>
     <string name="sign_out">Sign out</string>
+    <string name="pending_tasks">Pending tasks</string>
+    <string name="tasks">Tasks</string>
+    <string name="completed_tasks">Completed tasks</string>
+    <string name="create_task">Create task</string>
 </resources>
