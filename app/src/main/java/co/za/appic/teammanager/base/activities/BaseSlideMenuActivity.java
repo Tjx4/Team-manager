@@ -74,9 +74,7 @@ public abstract class BaseSlideMenuActivity extends BaseNoActionBarActivity impl
             mTitle.setVisibility(View.GONE);
         }
         else{
-            // mTitle.setTypeface(Typeface.create("sans-serif-thin",Typeface.NORMAL));
             mTitle.setText(title);
-
             mTitle.setVisibility(View.VISIBLE);
         }
 
