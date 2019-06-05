@@ -232,6 +232,13 @@ public class WorkerWorkerDashboardActivity extends SharedDashboardActivity imple
 
     @Override
     public void onItemClick(View view, TaskModel tasks) {
+        TaskModel currentActiveTask = getPresenter().getActiveTask();
+        if(currentActiveTask != null){
+            NotificationHelper.showShortToast(this, getResources().getString(R.string.complete_active_message));
+            showActiveTask(currentActiveTask);
+            return;
+        }
+
        getPresenter().setActiveTask(tasks);
        showActiveTask(tasks);
     }

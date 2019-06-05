@@ -101,4 +101,5 @@
     <string name="task_completed">Task completed</string>
     <string name="complete_task">Complete task</string>
     <string name="active_task">Active task</string>
+    <string name="complete_active_message">Please complete this task before moving on to another</string>
 </resources>
