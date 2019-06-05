@@ -18,6 +18,7 @@ import co.za.appic.teammanager.fragments.NewTaskFragment;
 import co.za.appic.teammanager.helpers.AnimationHelper;
 import co.za.appic.teammanager.helpers.DialogFragmentHelper;
 import co.za.appic.teammanager.helpers.NavigationHelper;
+import co.za.appic.teammanager.helpers.NotificationHelper;
 import co.za.appic.teammanager.helpers.TransitionHelper;
 
 public class SupervisorDashboardActivity extends SharedDashboardActivity implements SupervisorDashboardView  {
@@ -95,6 +96,12 @@ public class SupervisorDashboardActivity extends SharedDashboardActivity impleme
     @Override
     public void showWelcomeMessage(String welcomeMessage) {
         wolcomeMessageTv.setText(welcomeMessage);
+    }
+
+    @Override
+    public void hideNewTaskDialogAndShowSuccessMessage() {
+        dialogFragment.dismiss();
+        NotificationHelper.showErrorDialog(this, getString(R.string.successful), getString(R.string.task_creation_success_message));
     }
 
     @Override

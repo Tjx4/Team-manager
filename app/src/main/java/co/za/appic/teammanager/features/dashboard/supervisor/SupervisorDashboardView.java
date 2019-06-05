@@ -7,4 +7,5 @@ public interface SupervisorDashboardView extends BaseView {
     SupervisorDashboardPresenter getPresenter();
     void onCreateNewTaskClicked(View view);
     void showWelcomeMessage(String welcomeMessage);
+    void hideNewTaskDialogAndShowSuccessMessage();
 }

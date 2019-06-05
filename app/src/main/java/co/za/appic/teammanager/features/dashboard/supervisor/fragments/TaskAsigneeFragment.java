@@ -71,11 +71,16 @@ public class TaskAsigneeFragment extends BaseCreateTaskFragment  implements Work
         workerErrorTv.setVisibility(View.VISIBLE);
     }
 
+    public void hideValidationLabels() {
+        workerErrorTv.setVisibility(View.INVISIBLE);
+    }
+
     @Override
     public void onItemClick(View view, int position) {
         WorkerModel worker = workers.get(position);
         TaskModel taskModel = newTaskFragment.taskModel;
         taskModel.setWorker(worker.getFbId());
+        hideValidationLabels();
     }
 
 }

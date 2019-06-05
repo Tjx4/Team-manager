@@ -15,6 +15,7 @@ import co.za.appic.teammanager.constants.Constants;
 import co.za.appic.teammanager.enums.PriorityLevel;
 import co.za.appic.teammanager.enums.TaskStatus;
 import co.za.appic.teammanager.features.dashboard.shared.SharedDashboardPresenter;
+import co.za.appic.teammanager.helpers.DateTimeHelper;
 import co.za.appic.teammanager.helpers.StringHelper;
 import co.za.appic.teammanager.models.SupervisorModel;
 import co.za.appic.teammanager.models.TaskModel;
@@ -72,6 +73,7 @@ public class SupervisorDashboardPresenter extends SharedDashboardPresenter {
     public void createTask(final TaskModel taskModel) {
         taskModel.setTaskStatus(TaskStatus.pending);
         taskModel.setSupervisor(supervisorModel.getFbId());
+        taskModel.setCreationDateTime(DateTimeHelper.getYearMonthDayAndTime());
 
         DatabaseReference tasksRef = FirebaseDatabase.getInstance().getReference().child(Constants.DB_TASKS);
         String newTaskId = StringHelper.getUniqueString();
@@ -93,5 +95,6 @@ public class SupervisorDashboardPresenter extends SharedDashboardPresenter {
         DatabaseReference dueDate = serviceId.child(Constants.DB_TASK_DUE_DATE);
         dueDate.setValue(taskModel.getDueDateTime());
 
+        supervisorDashboardView.hideNewTaskDialogAndShowSuccessMessage();
     }
 }
