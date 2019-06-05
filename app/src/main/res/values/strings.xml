@@ -91,4 +91,7 @@
     <string name="task_creation_success_message">The task was created successfully</string>
     <string name="successful">Successful</string>
     <string name="new_task_message">You have a new task waiting</string>
+    <string name="main_view">Main view</string>
+    <string name="task_started">Task started</string>
+    <string name="task_ended">Task ended</string>
 </resources>

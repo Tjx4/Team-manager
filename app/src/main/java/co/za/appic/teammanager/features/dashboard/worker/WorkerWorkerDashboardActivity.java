@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.List;
@@ -28,7 +29,7 @@ import co.za.appic.teammanager.helpers.NotificationHelper;
 import co.za.appic.teammanager.helpers.TransitionHelper;
 import co.za.appic.teammanager.models.TaskModel;
 
-public class WorkerWorkerDashboardActivity extends SharedDashboardActivity implements WorkerDashboardView,  WorkersViewAdapter.ItemClickListener {
+public class WorkerWorkerDashboardActivity extends SharedDashboardActivity implements WorkerDashboardView, TaskViewAdapter.ItemClickListener {
 
     @Inject
     WorkerDashboardPresenter workerDashboardPresenter;
@@ -41,6 +42,8 @@ public class WorkerWorkerDashboardActivity extends SharedDashboardActivity imple
     private RecyclerView tasksRv;
     private LinearLayout homeContentLl;
     private boolean showPushnotifiaction;
+    private TextView tasksTitleTv;
+    private RelativeLayout tasksContainerRl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,6 +106,8 @@ public class WorkerWorkerDashboardActivity extends SharedDashboardActivity imple
         checkingMessageLl = parentLayout.findViewById(R.id.llCheckingMessage);
         tasksContainerLl = parentLayout.findViewById(R.id.llTasksContainer);
         homeContentLl = parentLayout.findViewById(R.id.llHomeContent);
+        tasksTitleTv = parentLayout.findViewById(R.id.tvTasksTitle);
+        tasksContainerRl = parentLayout.findViewById(R.id.rlTasksContainer);
 
         tasksRv = parentLayout.findViewById(R.id.lstTasks);
         tasksRv.setLayoutManager(new LinearLayoutManager(this));
@@ -156,18 +161,22 @@ public class WorkerWorkerDashboardActivity extends SharedDashboardActivity imple
     @Override
     public void onViewPendingTasksClicked(View view) {
         AnimationHelper.blinkView(view);
-        tasksRv.setVisibility(View.VISIBLE);
+        tasksContainerRl.setVisibility(View.VISIBLE);
         homeContentLl.setVisibility(View.GONE);
-        NotificationHelper.showShortToast(this, "Pending Tasks view");
+        String tasksMessage = getResources().getString(R.string.pending_tasks);
+        tasksTitleTv.setText(tasksMessage);
+        NotificationHelper.showShortToast(this, getResources().getString(R.string.pending_tasks));
         showTasks( getPresenter().getPendingTasks());
     }
 
     @Override
     public void onViewCompletedTasksClicked(View view) {
         AnimationHelper.blinkView(view);
-        tasksRv.setVisibility(View.VISIBLE);
+        tasksContainerRl.setVisibility(View.VISIBLE);
         homeContentLl.setVisibility(View.GONE);
-        NotificationHelper.showShortToast(this, "Completed Tasks view");
+        String tasksMessage = getResources().getString(R.string.completed_tasks);
+        tasksTitleTv.setText(tasksMessage);
+        NotificationHelper.showShortToast(this, getResources().getString(R.string.completed_tasks));
         showTasks( getPresenter().getCompletedTasks());
     }
 
@@ -181,28 +190,28 @@ public class WorkerWorkerDashboardActivity extends SharedDashboardActivity imple
 
     @Override
     public void showTasks(List<TaskModel> tasks) {
-        TaskViewAdapter workersViewAdapter = new TaskViewAdapter(this, tasks);
-        workersViewAdapter.setClickListener(this);
-        tasksRv.setAdapter(workersViewAdapter);
+        TaskViewAdapter taskViewAdapter = new TaskViewAdapter(this, tasks);
+        taskViewAdapter.setClickListener(this);
+        tasksRv.setAdapter(taskViewAdapter);
     }
 
     @Override
     public void onHomeClicked(View view) {
-        tasksRv.setVisibility(View.GONE);
+        tasksContainerRl.setVisibility(View.GONE);
         homeContentLl.setVisibility(View.VISIBLE);
-        NotificationHelper.showShortToast(this, "Main view");
+        NotificationHelper.showShortToast(this, getResources().getString(R.string.main_view));
     }
 
     @Override
     public void onBeginTaskClicked(View view) {
         AnimationHelper.blinkView(view);
-        NotificationHelper.showShortToast(this, "Task started");
+        NotificationHelper.showShortToast(this,getResources().getString(R.string.task_started));
     }
 
     @Override
     public void onEndTaskClicked(View view) {
         AnimationHelper.blinkView(view);
-        NotificationHelper.showShortToast(this, "Task ended");
+        NotificationHelper.showShortToast(this, getResources().getString(R.string.task_ended));
     }
 
     @Override

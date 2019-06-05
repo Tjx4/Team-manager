@@ -14,7 +14,7 @@ public class TaskViewAdapter extends RecyclerView.Adapter<TaskViewAdapter.ViewHo
 
     private List<TaskModel> tasks;
     private LayoutInflater mInflater;
-    private WorkersViewAdapter.ItemClickListener mClickListener;
+    private TaskViewAdapter.ItemClickListener mClickListener;
 
     public TaskViewAdapter(Context context, List<TaskModel> tasks) {
         this.mInflater = LayoutInflater.from(context);
@@ -23,7 +23,7 @@ public class TaskViewAdapter extends RecyclerView.Adapter<TaskViewAdapter.ViewHo
 
     @Override
     public TaskViewAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = mInflater.inflate(R.layout.asignee_layout, parent, false);
+        View view = mInflater.inflate(R.layout.task_layout, parent, false);
         return new TaskViewAdapter.ViewHolder(view);
     }
 
@@ -31,7 +31,7 @@ public class TaskViewAdapter extends RecyclerView.Adapter<TaskViewAdapter.ViewHo
     public void onBindViewHolder(TaskViewAdapter.ViewHolder holder, int position) {
         String description = tasks.get(position).getDescription();
         holder.decriptionTv.setText(description);
-        String dueDate = tasks.get(position).getDueDateTime();
+        String dueDate = "Due on "+tasks.get(position).getDueDateTime();
         holder.dueDateTv.setText(dueDate);
     }
 
@@ -62,7 +62,7 @@ public class TaskViewAdapter extends RecyclerView.Adapter<TaskViewAdapter.ViewHo
         return tasks.get(id).getDescription();
     }
 
-    public void setClickListener(WorkersViewAdapter.ItemClickListener itemClickListener) {
+    public void setClickListener(TaskViewAdapter.ItemClickListener itemClickListener) {
         this.mClickListener = itemClickListener;
     }
 
