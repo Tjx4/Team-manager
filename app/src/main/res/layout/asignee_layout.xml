@@ -24,5 +24,4 @@
         android:layout_marginLeft="10dp"
         android:text="Employee name"/>
 
-
 </RelativeLayout>

@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import co.za.appic.teammanager.R;
 import co.za.appic.teammanager.enums.PriorityLevel;
 import co.za.appic.teammanager.models.TaskModel;
@@ -17,6 +18,8 @@ public class TaskDescriptionAndPriorityFragment extends BaseCreateTaskFragment {
     private EditText descriptionTxt;
     private Button nextBtn;
     private RadioGroup priorityRg;
+    private TextView descriptionErrorTv;
+    private TextView priorityErrorTv;
 
     public static Fragment newInstance(Activity context, Bundle bundle) {
         return Fragment.instantiate(context, TaskDescriptionAndPriorityFragment.class.getName(), bundle);
@@ -32,6 +35,9 @@ public class TaskDescriptionAndPriorityFragment extends BaseCreateTaskFragment {
 
     @Override
     protected void initViews(View parentView) {
+        descriptionErrorTv = parentView.findViewById(R.id.txtDescription);
+        priorityErrorTv = parentView.findViewById(R.id.txtDescription);
+
         descriptionTxt = parentView.findViewById(R.id.txtDescription);
 
         priorityRg = parentView.findViewById(R.id.rdogPriority);
@@ -58,17 +64,20 @@ public class TaskDescriptionAndPriorityFragment extends BaseCreateTaskFragment {
 
             @Override
             public void onClick(View view) {
+                hideValidationLabels();
 
                 TaskModel taskModel = newTaskFragment.taskModel;
 
                 taskModel.setDescription(descriptionTxt.getText().toString());
                 boolean idValiddescription = taskModel.getDescription() != null && !taskModel.getDescription().isEmpty();
                 if(!idValiddescription){
+                    showInvalidDescription();
                     return;
                 }
 
                 boolean isValidPriority = taskModel.getPriority() != null;
                 if(!isValidPriority){
+                    showInvalidPriority();
                     return;
                 }
 
@@ -76,4 +85,20 @@ public class TaskDescriptionAndPriorityFragment extends BaseCreateTaskFragment {
             }
         });
     }
+
+    public void showInvalidDescription() {
+        descriptionErrorTv.setText(getString(R.string.invalid_usertype_task_description));
+        descriptionErrorTv.setVisibility(View.VISIBLE);
+    }
+
+    public void showInvalidPriority() {
+        priorityErrorTv.setText(getString(R.string.invalid_usertype_priority));
+        priorityErrorTv.setVisibility(View.VISIBLE);
+    }
+
+    public void hideValidationLabels() {
+        descriptionErrorTv.setVisibility(View.INVISIBLE);
+        priorityErrorTv.setVisibility(View.INVISIBLE);
+    }
+
 }

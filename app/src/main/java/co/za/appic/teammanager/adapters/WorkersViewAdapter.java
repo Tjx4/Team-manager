@@ -31,13 +31,9 @@ public class WorkersViewAdapter extends RecyclerView.Adapter<WorkersViewAdapter.
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         String name = workers.get(position).getName();
-        String surname = workers.get(position).getName();
-        String fullName = name+""+surname;
+        String surname = workers.get(position).getSurname();
+        String fullName = name+" "+surname;
         holder.fullNameTv.setText(fullName);
-
-        String propic = workers.get(position).getName();
-        //holder.profPicImgv.(fullName);
-        //GlideHelper
     }
 
     @Override

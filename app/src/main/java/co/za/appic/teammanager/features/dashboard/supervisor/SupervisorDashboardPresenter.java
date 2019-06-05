@@ -44,7 +44,7 @@ public class SupervisorDashboardPresenter extends SharedDashboardPresenter {
                 for (DataSnapshot chatSnapshot: dataSnapshot.getChildren()) {
 
                     try{
-                        WorkerModel worker = getWorkerFromDataSnapshot(dataSnapshot);
+                        WorkerModel worker = getWorkerFromDataSnapshot(chatSnapshot);
                         workers.add(worker);
                     }
                     catch (Exception e){

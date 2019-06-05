@@ -4,6 +4,7 @@ package co.za.appic.teammanager.features.dashboard.supervisor.fragments;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,11 +36,12 @@ public class TaskAsigneeFragment extends BaseCreateTaskFragment  implements Work
 
     @Override
     protected void initViews(View parentView) {
+        lstAsigneesRv = parentView.findViewById(R.id.lstAsignees);
+        lstAsigneesRv.setLayoutManager(new LinearLayoutManager(supervisorDashboardActivity));
+
         workers = supervisorDashboardActivity.getPresenter().getWorkers();
         WorkersViewAdapter workersViewAdapter = new WorkersViewAdapter(supervisorDashboardActivity, workers);
         workersViewAdapter.setClickListener(this);
-
-        lstAsigneesRv = parentView.findViewById(R.id.lstAsignees);
         lstAsigneesRv.setAdapter(workersViewAdapter);
 
         createTaskBtn = parentView.findViewById(R.id.btnCreateTask);
