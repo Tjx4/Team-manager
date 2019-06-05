@@ -22,6 +22,7 @@ public class TaskAsigneeFragment extends BaseCreateTaskFragment  implements Work
 
     private Button createTaskBtn;
     private TextView workerErrorTv;
+    private TextView assigneeTv;
     private RecyclerView lstAsigneesRv;
     private List<WorkerModel> workers;
 
@@ -40,6 +41,7 @@ public class TaskAsigneeFragment extends BaseCreateTaskFragment  implements Work
     @Override
     protected void initViews(View parentView) {
         workerErrorTv = parentView.findViewById(R.id.tVworkerError);
+        assigneeTv = parentView.findViewById(R.id.tvAssignee);
 
         lstAsigneesRv = parentView.findViewById(R.id.lstAsignees);
         lstAsigneesRv.setLayoutManager(new LinearLayoutManager(supervisorDashboardActivity));
@@ -69,6 +71,7 @@ public class TaskAsigneeFragment extends BaseCreateTaskFragment  implements Work
     public void showInvalidAsignee() {
         workerErrorTv.setText(getString(R.string.invalid_usertype_task_asignee));
         workerErrorTv.setVisibility(View.VISIBLE);
+        assigneeTv.setVisibility(View.INVISIBLE);
     }
 
     public void hideValidationLabels() {
@@ -81,6 +84,9 @@ public class TaskAsigneeFragment extends BaseCreateTaskFragment  implements Work
         TaskModel taskModel = newTaskFragment.taskModel;
         taskModel.setWorker(worker.getFbId());
         hideValidationLabels();
+        String selectedWorker = "You are assigning to "+ worker.getName()+" "+worker.getSurname();
+        assigneeTv.setText(selectedWorker);
+        assigneeTv.setVisibility(View.VISIBLE);
     }
 
 }

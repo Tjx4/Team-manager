@@ -9,7 +9,7 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/lstAsignees"
         android:layout_alignParentTop="true"
-        android:layout_above="@+id/tVworkerError"
+        android:layout_above="@+id/tvAssignee"
         android:layout_width="match_parent"
         android:layout_height="400dp"/>
 
@@ -19,6 +19,14 @@
         android:layout_above="@+id/btnCreateTask"
         style="@style/smallErrorLabel"
         android:text="Error"/>
+
+
+    <TextView
+        android:id="@+id/tvAssignee"
+        style="@style/mediumDarkLabel"
+        android:layout_above="@+id/btnCreateTask"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"/>
 
     <Button
         android:id="@+id/btnCreateTask"
