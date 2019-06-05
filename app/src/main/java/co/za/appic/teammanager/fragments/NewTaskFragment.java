@@ -13,7 +13,6 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-
 import java.util.ArrayList;
 import java.util.List;
 import co.za.appic.teammanager.R;
@@ -123,25 +122,25 @@ public class NewTaskFragment extends BaseDialogFragment implements BaseCreateTas
             }
 
             ViewPagerFragmentModel step1 = new ViewPagerFragmentModel();
-            step1.setTitle("Enter task details");
+            step1.setTitle(supervisorDashboardActivity.getResources().getString(R.string.details_frag_title));
             step1.setFragment(new TaskDescriptionAndPriorityFragment());
             stepFragments.add(step1);
             currentPagerAdapter.addFragment(step1.getFragment(), step1.getTitle());
 
             ViewPagerFragmentModel step2 = new ViewPagerFragmentModel();
-            step2.setTitle("What date do you want it to be due");
+            step2.setTitle(supervisorDashboardActivity.getResources().getString(R.string.date_frag_title));
             step2.setFragment(new TaskDueDateFragment());
             stepFragments.add(step2);
             currentPagerAdapter.addFragment(step2.getFragment(), step2.getTitle());
 
             ViewPagerFragmentModel step3 = new ViewPagerFragmentModel();
-            step3.setTitle("What time do you want it to be done by");
+            step3.setTitle(supervisorDashboardActivity.getResources().getString(R.string.time_frag_title));
             step3.setFragment(new TaskDueTimeFragment());
             stepFragments.add(step3);
             currentPagerAdapter.addFragment(step3.getFragment(), step3.getTitle());
 
             ViewPagerFragmentModel step4 = new ViewPagerFragmentModel();
-            step4.setTitle("Select assignee");
+            step4.setTitle(supervisorDashboardActivity.getResources().getString(R.string.select_assignee_frag));
             step4.setFragment(new TaskAsigneeFragment());
             stepFragments.add(step4);
             currentPagerAdapter.addFragment(step4.getFragment(), step4.getTitle());
