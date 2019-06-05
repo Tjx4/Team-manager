@@ -1,6 +1,5 @@
 package co.za.appic.teammanager.features.dashboard.supervisor.fragments;
 
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -11,14 +10,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-
 import java.util.List;
 import co.za.appic.teammanager.R;
 import co.za.appic.teammanager.adapters.WorkersViewAdapter;
 import co.za.appic.teammanager.models.TaskModel;
 import co.za.appic.teammanager.models.WorkerModel;
 
-public class TaskAsigneeFragment extends BaseCreateTaskFragment  implements WorkersViewAdapter.ItemClickListener{
+public class TaskAsigneeFragment extends BaseCreateTaskFragment implements WorkersViewAdapter.ItemClickListener{
 
     private Button createTaskBtn;
     private TextView workerErrorTv;

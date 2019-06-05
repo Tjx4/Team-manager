@@ -10,6 +10,7 @@
     tools:context=".features.dashboard.worker.WorkerWorkerDashboardActivity">
 
     <LinearLayout
+        android:id="@+id/llHomeContent"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -110,5 +111,13 @@
 
         </android.support.v7.widget.CardView>
     </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:visibility="gone"
+        android:id="@+id/lstTasks"
+        android:layout_alignParentTop="true"
+        android:layout_above="@+id/tvAssignee"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
 </FrameLayout>

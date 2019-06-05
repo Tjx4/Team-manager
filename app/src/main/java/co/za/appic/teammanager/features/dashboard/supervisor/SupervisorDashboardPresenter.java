@@ -83,9 +83,9 @@ public class SupervisorDashboardPresenter extends SharedDashboardPresenter {
         DatabaseReference description = serviceId.child(Constants.BB_TASK_DESCRIPTION);
         description.setValue(taskModel.getDescription());
         DatabaseReference taskStatus = serviceId.child(Constants.DB_TASK_STATUS);
-        taskStatus.setValue(taskModel.getTaskStatus());
+        taskStatus.setValue(taskModel.getTaskStatus().getId());
         DatabaseReference priority = serviceId.child(Constants.DB_TASK_PRIORITY);
-        priority.setValue(taskModel.getPriority());
+        priority.setValue(taskModel.getPriority().getId());
         DatabaseReference worker = serviceId.child(Constants.DB_WORKER);
         worker.setValue(taskModel.getWorker());
         DatabaseReference supervisor = serviceId.child(Constants.DB_SUPERVISOR);

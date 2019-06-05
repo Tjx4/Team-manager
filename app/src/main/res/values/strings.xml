@@ -89,4 +89,5 @@
     <string name="select_assignee_frag">Select assignee</string>
     <string name="task_creation_success_message">The task was created successfully</string>
     <string name="successful">Successful</string>
+    <string name="new_task_message">You have a new task waiting</string>
 </resources>

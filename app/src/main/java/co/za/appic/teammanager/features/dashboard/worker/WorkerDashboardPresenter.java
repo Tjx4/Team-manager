@@ -8,7 +8,6 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
-
 import co.za.appic.teammanager.R;
 import co.za.appic.teammanager.constants.Constants;
 import co.za.appic.teammanager.enums.PriorityLevel;
@@ -35,16 +34,17 @@ public class WorkerDashboardPresenter extends SharedDashboardPresenter {
     }
 
     public void syncTasks(final String workerId) {
-        //DatabaseReference UserRef = FirebaseDatabase.getInstance().getReference().child("stylists");
-        //UserRef.keepSynced(true);
-        //UserRef.addValueEventListener(new ValueEventListener()
-
         DatabaseReference tasksRef = FirebaseDatabase.getInstance().getReference().child(Constants.DB_TASKS);
         Query query = tasksRef.orderByChild(Constants.DB_WORKER).equalTo(workerId);
         query.keepSynced(true);
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+
+                if(pendingTasks == null){
+
+                }
+
                 pendingTasks = new ArrayList<>();
                 completedTasks = new ArrayList<>();
 
