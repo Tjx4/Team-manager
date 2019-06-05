@@ -38,8 +38,8 @@ public class TaskDescriptionAndPriorityFragment extends BaseCreateTaskFragment {
     protected void initViews(View parentView) {
         descriptionErrorTv = parentView.findViewById(R.id.tvDescriptionError);
         priorityErrorTv = parentView.findViewById(R.id.tvPriorityError);
-
         descriptionTxt = parentView.findViewById(R.id.txtDescription);
+        descriptionTxt.bringToFront();
 
         priorityRg = parentView.findViewById(R.id.rdogPriority);
         priorityRg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
@@ -58,7 +58,7 @@ public class TaskDescriptionAndPriorityFragment extends BaseCreateTaskFragment {
                 }
             }
         });
-
+        priorityRg.bringToFront();
 
         nextBtn = parentView.findViewById(R.id.btnNextTaskStage);
         nextBtn.setOnClickListener(new Button.OnClickListener(){
@@ -85,6 +85,8 @@ public class TaskDescriptionAndPriorityFragment extends BaseCreateTaskFragment {
                 onStageSetisfied(taskModel);
             }
         });
+
+
     }
 
     @Override

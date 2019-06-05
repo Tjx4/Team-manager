@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import co.za.appic.teammanager.R;
 
-public abstract class BasePagerFragment  extends Fragment {
+public abstract class BasePagerFragment extends Fragment {
     protected View parentView;
     protected int index;
 

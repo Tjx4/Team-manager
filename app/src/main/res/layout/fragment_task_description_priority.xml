@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/rlDetailsContainer"
-    android:background="@color/lighterBackground"
     android:padding="0dp"
+    android:minHeight="500dp"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="match_parent">
 
     <Button
         android:id="@+id/btnNextTaskStage"
@@ -14,8 +14,8 @@
         android:text="Next" />
 
     <LinearLayout
+        android:id="@+id/lLDiscritpionContainer"
         android:layout_alignParentTop="true"
-        android:layout_above="@+id/btnNextTaskStage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/lighterBackground"
