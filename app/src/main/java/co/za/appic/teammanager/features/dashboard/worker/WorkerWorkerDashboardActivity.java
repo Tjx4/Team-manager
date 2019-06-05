@@ -182,7 +182,7 @@ public class WorkerWorkerDashboardActivity extends SharedDashboardActivity imple
         onViewTasks(view, tasksMessage, getResources().getString(R.string.completed_tasks), completedTasks);
     }
 
-    public void onViewTasks(View view, String tasksMessage, String toastMessage, List<TaskModel> tasks) {
+    private void onViewTasks(View view, String tasksMessage, String toastMessage, List<TaskModel> tasks) {
         AnimationHelper.blinkView(view);
         tasksContainerRl.setVisibility(View.VISIBLE);
         homeContentLl.setVisibility(View.INVISIBLE);
@@ -258,4 +258,13 @@ public class WorkerWorkerDashboardActivity extends SharedDashboardActivity imple
         return true;
     }
 
+    @Override
+    public void onBackPressed() {
+        if(!isMainView && dialogFragment == null){
+                onHomeClicked(null);
+        }
+        else{
+            super.onBackPressed();
+        }
+    }
 }

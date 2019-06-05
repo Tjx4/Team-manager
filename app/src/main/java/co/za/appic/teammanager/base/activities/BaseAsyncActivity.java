@@ -20,8 +20,10 @@ public abstract class BaseAsyncActivity extends BaseActivity{
         super.onBackPressed();
         //presenter.handleBackButtonPressed();
 
-        if(dialogFragment != null)
+        if(dialogFragment != null) {
             dialogFragment.dismiss();
+            dialogFragment = null;
+        }
     }
 
     public void showLoadingDialog(String loadingMessage) {
