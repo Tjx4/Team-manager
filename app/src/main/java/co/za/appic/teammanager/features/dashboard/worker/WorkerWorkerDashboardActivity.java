@@ -1,8 +1,6 @@
 package co.za.appic.teammanager.features.dashboard.worker;
 
-import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.KeyEvent;
@@ -10,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -21,6 +20,7 @@ import co.za.appic.teammanager.adapters.TaskViewAdapter;
 import co.za.appic.teammanager.di.components.AppComponent;
 import co.za.appic.teammanager.di.components.DaggerWorkerDashboardComponent;
 import co.za.appic.teammanager.di.modules.WorkerDashboardModule;
+import co.za.appic.teammanager.enums.TaskStatus;
 import co.za.appic.teammanager.features.dashboard.shared.SharedDashboardActivity;
 import co.za.appic.teammanager.features.signin.SignInActivity;
 import co.za.appic.teammanager.helpers.AnimationHelper;
@@ -46,6 +46,10 @@ public class WorkerWorkerDashboardActivity extends SharedDashboardActivity imple
     private boolean isMainView;
     private TextView tasksTitleTv;
     private RelativeLayout tasksContainerRl;
+    private Button startTaskBtn;
+    private Button completeTaskBtn;
+    private TextView activeTaskDescriptionTxt;
+    private TextView activeTakDueDateTxt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,6 +116,10 @@ public class WorkerWorkerDashboardActivity extends SharedDashboardActivity imple
         activeTaskContainer = parentLayout.findViewById(R.id.flActiveTaskContainer);
         tasksTitleTv = parentLayout.findViewById(R.id.tvTasksTitle);
         tasksContainerRl = parentLayout.findViewById(R.id.rlTasksContainer);
+        startTaskBtn = parentLayout.findViewById(R.id.btnStartTask);
+        completeTaskBtn = parentLayout.findViewById(R.id.btnFinishTask);
+        activeTaskDescriptionTxt = parentLayout.findViewById(R.id.txtActiveTaskDescription);
+        activeTakDueDateTxt = parentLayout.findViewById(R.id.txtActiveTakDueDate);
 
         tasksRv = parentLayout.findViewById(R.id.lstTasks);
         tasksRv.setLayoutManager(new LinearLayoutManager(this));
@@ -193,19 +201,17 @@ public class WorkerWorkerDashboardActivity extends SharedDashboardActivity imple
         AnimationHelper.blinkView(view);
         tasksContainerRl.setVisibility(View.VISIBLE);
         homeContentLl.setVisibility(View.INVISIBLE);
-        activeTaskContainer.setVisibility(View.GONE);
+        activeTaskContainer.setVisibility(View.INVISIBLE);
         tasksTitleTv.setText(tasksMessage);
-        NotificationHelper.showShortToast(this, toastMessage);
         showTasks(tasks);
         isMainView = false;
     }
 
     @Override
     public void onHomeClicked(View view) {
-        tasksContainerRl.setVisibility(View.GONE);
+        tasksContainerRl.setVisibility(View.INVISIBLE);
         homeContentLl.setVisibility(View.VISIBLE);
-        activeTaskContainer.setVisibility(View.GONE);
-        NotificationHelper.showShortToast(this, getResources().getString(R.string.main_view));
+        activeTaskContainer.setVisibility(View.INVISIBLE);
         isMainView = true;
     }
 
@@ -227,40 +233,42 @@ public class WorkerWorkerDashboardActivity extends SharedDashboardActivity imple
     @Override
     public void onItemClick(View view, TaskModel tasks) {
        getPresenter().setActiveTask(tasks);
-        showActiveTask(tasks);
+       showActiveTask(tasks);
     }
 
     @Override
     public void showActiveTask(TaskModel tasks) {
-        tasksContainerRl.setVisibility(View.GONE);
-        homeContentLl.setVisibility(View.GONE);
+        tasksContainerRl.setVisibility(View.INVISIBLE);
+        homeContentLl.setVisibility(View.INVISIBLE);
         activeTaskContainer.setVisibility(View.VISIBLE);
+
+        if(getPresenter().getActiveTask().getTaskStatus() == TaskStatus.inprogress){
+            startTaskBtn.setVisibility(View.INVISIBLE);
+            completeTaskBtn.setVisibility(View.VISIBLE);
+        }
+        else {
+            startTaskBtn.setVisibility(View.VISIBLE);
+            completeTaskBtn.setVisibility(View.INVISIBLE);
+        }
+
+        activeTaskDescriptionTxt.setText(getPresenter().getActiveTask().getDescription());
+        activeTakDueDateTxt.setText(getPresenter().getActiveTask().getDueDateTime());
     }
 
     @Override
     public void onStartTaskButtonClicked(View view) {
-        view.setVisibility(View.GONE);
+        startTaskBtn.setVisibility(View.INVISIBLE);
+        completeTaskBtn.setVisibility(View.VISIBLE);
         getPresenter().putTaskInProgress();
     }
 
     @Override
     public void onFinishTaskButtonClicked(View view) {
-        view.setVisibility(View.GONE);
+        startTaskBtn.setVisibility(View.VISIBLE);
+        completeTaskBtn.setVisibility(View.INVISIBLE);
         getPresenter().completeTask();
         onHomeClicked(view);
         NotificationHelper.showShortToast(this, getResources().getString(R.string.task_completed));
-    }
-
-   @Override
-    public void onBeginTaskClicked(View view) {
-        AnimationHelper.blinkView(view);
-        NotificationHelper.showShortToast(this,getResources().getString(R.string.task_started));
-    }
-
-    @Override
-    public void onEndTaskClicked(View view) {
-        AnimationHelper.blinkView(view);
-        NotificationHelper.showShortToast(this, getResources().getString(R.string.task_ended));
     }
 
     @Override
@@ -281,6 +289,9 @@ public class WorkerWorkerDashboardActivity extends SharedDashboardActivity imple
                 break;
             case R.id.action_completed_tasks:
                 onViewCompletedTasksClicked(null);
+                break;
+           case R.id.action_active_tasks:
+                showActiveTask(getPresenter().getActiveTask());
                 break;
             case R.id.action_tasks:
                 onHomeClicked(null);

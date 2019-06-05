@@ -100,4 +100,5 @@
     <string name="start_task">Start task</string>
     <string name="task_completed">Task completed</string>
     <string name="complete_task">Complete task</string>
+    <string name="active_task">Active task</string>
 </resources>

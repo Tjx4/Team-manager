@@ -19,8 +19,6 @@ public interface WorkerDashboardView extends BaseView {
     void showTasks(List<TaskModel> tasks);
     void showActiveTask(TaskModel task);
     void onHomeClicked(View view);
-    void onBeginTaskClicked(View view);
-    void onEndTaskClicked(View view);
     void notifyUserOfnewTask();
     void onStartTaskButtonClicked(View view);
     void onFinishTaskButtonClicked(View view);

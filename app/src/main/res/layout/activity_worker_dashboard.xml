@@ -164,7 +164,7 @@
                         android:src="@drawable/ic_tasks_dark"/>
 
                     <TextView
-                        android:id="@+id/txtTaskDescription"
+                        android:id="@+id/txtActiveTaskDescription"
                         style="@style/mediumDarkLabel"
                         android:layout_toRightOf="@+id/imgUserProfpic"
                         android:layout_alignParentRight="true"
@@ -176,7 +176,7 @@
                 </RelativeLayout>
 
                 <TextView
-                    android:id="@+id/txtTakDueDate"
+                    android:id="@+id/txtActiveTakDueDate"
                     style="@style/smallDarkLabel"
                     android:layout_below="@+id/detailsContainer"
                     android:layout_alignParentStart="true"
@@ -186,18 +186,18 @@
 
                 <Button
                     android:id="@+id/btnStartTask"
-                    android:layout_below="@+id/txtTakDueDate"
+                    android:layout_below="@+id/txtActiveTakDueDate"
                     android:layout_marginTop="14dp"
-                    style="@style/lightLabelButton"
+                    style="@style/mediumGreenButton"
                     android:text="@string/start_task"
                     android:onClick="onStartTaskButtonClicked"/>
 
                 <Button
                     android:id="@+id/btnFinishTask"
                     android:visibility="gone"
-                    android:layout_below="@+id/txtTakDueDate"
+                    android:layout_below="@+id/txtActiveTakDueDate"
                     android:layout_marginTop="14dp"
-                    style="@style/lightLabelButton"
+                    style="@style/mediumGreenButton"
                     android:text="@string/complete_task"
                     android:onClick="onFinishTaskButtonClicked"/>
 

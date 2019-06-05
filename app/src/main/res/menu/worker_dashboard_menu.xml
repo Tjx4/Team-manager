@@ -21,5 +21,11 @@
         android:title="@string/completed_tasks"
         app:showAsAction="never"/>
 
+    <item
+        android:id="@+id/action_active_tasks"
+        android:icon="@drawable/ic_tasks_light"
+        android:title="@string/active_task"
+        app:showAsAction="never"/>
+
 
 </menu>

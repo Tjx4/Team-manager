@@ -33,6 +33,10 @@ public class TaskViewAdapter extends RecyclerView.Adapter<TaskViewAdapter.ViewHo
         String description = tasks.get(position).getDescription();
         holder.decriptionTv.setText(description);
         String dueDate = "Due on "+tasks.get(position).getDueDateTime();
+
+        if(tasks.get(position).getTaskStatus() == TaskStatus.completed)
+            holder.dueDateTv.setVisibility(View.INVISIBLE);
+
         holder.dueDateTv.setText(dueDate);
     }
 

@@ -187,8 +187,6 @@ public class WorkerDashboardPresenter extends SharedDashboardPresenter {
         DatabaseReference tasksRef = FirebaseDatabase.getInstance().getReference().child(Constants.DB_TASKS);
         String newTaskId = activeTask.getId();
         DatabaseReference taskRef = tasksRef.child(newTaskId);
-        taskRef.setValue(newTaskId);
-
         DatabaseReference taskStatusRef = taskRef.child(Constants.DB_TASK_STATUS);
         taskStatusRef.setValue(activeTask.getTaskStatus().getId());
     }
