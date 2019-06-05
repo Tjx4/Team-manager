@@ -16,6 +16,7 @@
         <activity
             android:name=".features.dashboard.supervisor.SupervisorDashboardActivity"
             android:label="@string/title_activity_supervisor_dashboard"
+            android:windowSoftInputMode="adjustPan"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity android:name=".features.pending.PendingRegActivity" />
         <activity
@@ -37,7 +38,8 @@
         </activity>
         <activity
             android:name=".features.dashboard.worker.WorkerWorkerDashboardActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".features.splash.SplashActivity"
             android:theme="@style/SplashTheme">

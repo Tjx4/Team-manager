@@ -12,6 +12,7 @@
         android:background="@color/lighterBackground"
         android:layout_gravity="center"
         android:layout_margin="20dp"
+        android:padding="10dp"
         tools:context=".fragments.NewTaskFragment">
 
         <RelativeLayout
@@ -38,10 +39,12 @@
 
             <TextView
                 android:id="@+id/tvTitle"
-                android:layout_toRightOf="@+id/imgBtnback"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
+                android:gravity="center"
                 style="@style/mediumDarkLabel"/>
 
         </RelativeLayout>
@@ -50,7 +53,7 @@
             android:layout_below="@+id/btnbackTitleContainser"
             android:id="@+id/taskTabs"
             android:layout_width="match_parent"
-            android:layout_height="400dp"
+            android:layout_height="520dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginBottom="15dp"

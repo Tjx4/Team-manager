@@ -28,7 +28,8 @@ public class TaskAsigneeFragment extends BaseCreateTaskFragment {
 
     @Override
     protected void initViews(View parentView) {
-        createTaskBtn = parentView.findViewById(R.id.btnNext);
+        createTaskBtn = parentView.findViewById(R.id.btnCreateTask);
+        createTaskBtn = parentView.findViewById(R.id.btnCreateTask);
         createTaskBtn.setOnClickListener(new Button.OnClickListener(){
 
             @Override
