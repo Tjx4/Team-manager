@@ -164,8 +164,7 @@ public class WorkerWorkerDashboardActivity extends SharedDashboardActivity imple
         String tasksMessage = getResources().getString(R.string.no_pending_tasks);
 
         if(pendingTasksCount > 0)
-            tasksMessage = "You have "+pendingTasks+" pending task"+((pendingTasksCount == 1)? "" : "s");
-
+            tasksMessage = "You have "+pendingTasksCount+" pending task"+((pendingTasksCount == 1)? "" : "s");
 
         onViewTasks(view, tasksMessage, getResources().getString(R.string.pending_tasks), pendingTasks);
     }
@@ -178,7 +177,7 @@ public class WorkerWorkerDashboardActivity extends SharedDashboardActivity imple
         String tasksMessage = getResources().getString(R.string.no_completed_tasks);
 
         if(completedTaskCount > 0)
-            tasksMessage = "You have "+completedTasks+" completed task"+((completedTaskCount == 1)? "" : "s");
+            tasksMessage = "You have "+completedTaskCount+" completed task"+((completedTaskCount == 1)? "" : "s");
 
         onViewTasks(view, tasksMessage, getResources().getString(R.string.completed_tasks), completedTasks);
     }
@@ -186,7 +185,7 @@ public class WorkerWorkerDashboardActivity extends SharedDashboardActivity imple
     public void onViewTasks(View view, String tasksMessage, String toastMessage, List<TaskModel> tasks) {
         AnimationHelper.blinkView(view);
         tasksContainerRl.setVisibility(View.VISIBLE);
-        homeContentLl.setVisibility(View.GONE);
+        homeContentLl.setVisibility(View.INVISIBLE);
         tasksTitleTv.setText(tasksMessage);
         NotificationHelper.showShortToast(this, toastMessage);
         showTasks(tasks);
