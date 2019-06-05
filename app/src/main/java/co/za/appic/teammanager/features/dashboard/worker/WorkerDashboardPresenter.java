@@ -69,6 +69,12 @@ public class WorkerDashboardPresenter extends SharedDashboardPresenter {
                         PriorityLevel priority = PriorityLevel.values()[--priorityId];
                         currentTask.setPriority(priority);
 
+                        String dueDate = chatSnapshot.child(Constants.DB_TASK_DUE_DATE).getValue().toString();
+                        currentTask.setDueDateTime(dueDate);
+
+                        String creationDate = chatSnapshot.child(Constants.DB_TASK_CREATION_DATE).getValue().toString();
+                        currentTask.setCreationDateTime(creationDate);
+
                         int taskStatusId = Integer.parseInt(chatSnapshot.child(Constants.DB_TASK_STATUS).getValue().toString());
                         TaskStatus taskStatus = TaskStatus.values()[--taskStatusId];
                         currentTask.setTaskStatus(taskStatus);

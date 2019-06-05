@@ -11,13 +11,10 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import java.util.List;
-
 import javax.inject.Inject;
 import co.za.appic.teammanager.R;
 import co.za.appic.teammanager.adapters.TaskViewAdapter;
-import co.za.appic.teammanager.adapters.WorkersViewAdapter;
 import co.za.appic.teammanager.di.components.AppComponent;
 import co.za.appic.teammanager.di.components.DaggerWorkerDashboardComponent;
 import co.za.appic.teammanager.di.modules.WorkerDashboardModule;
@@ -42,6 +39,7 @@ public class WorkerWorkerDashboardActivity extends SharedDashboardActivity imple
     private RecyclerView tasksRv;
     private LinearLayout homeContentLl;
     private boolean showPushnotifiaction;
+    private boolean isMainView;
     private TextView tasksTitleTv;
     private RelativeLayout tasksContainerRl;
 
@@ -163,10 +161,14 @@ public class WorkerWorkerDashboardActivity extends SharedDashboardActivity imple
         AnimationHelper.blinkView(view);
         tasksContainerRl.setVisibility(View.VISIBLE);
         homeContentLl.setVisibility(View.GONE);
-        String tasksMessage = getResources().getString(R.string.pending_tasks);
+
+        int  pendingTasks =  getPresenter().getPendingTasks().size();
+        String tasksMessage = "You have "+pendingTasks+" pending tasks";
         tasksTitleTv.setText(tasksMessage);
+
         NotificationHelper.showShortToast(this, getResources().getString(R.string.pending_tasks));
         showTasks( getPresenter().getPendingTasks());
+        isMainView = false;
     }
 
     @Override
@@ -174,10 +176,22 @@ public class WorkerWorkerDashboardActivity extends SharedDashboardActivity imple
         AnimationHelper.blinkView(view);
         tasksContainerRl.setVisibility(View.VISIBLE);
         homeContentLl.setVisibility(View.GONE);
-        String tasksMessage = getResources().getString(R.string.completed_tasks);
+
+        int completedTasks = getPresenter().getCompletedTasks().size();
+        String tasksMessage = "You have "+completedTasks+" completed tasks";
         tasksTitleTv.setText(tasksMessage);
+
         NotificationHelper.showShortToast(this, getResources().getString(R.string.completed_tasks));
         showTasks( getPresenter().getCompletedTasks());
+        isMainView = false;
+    }
+
+    @Override
+    public void onHomeClicked(View view) {
+        tasksContainerRl.setVisibility(View.GONE);
+        homeContentLl.setVisibility(View.VISIBLE);
+        NotificationHelper.showShortToast(this, getResources().getString(R.string.main_view));
+        isMainView = true;
     }
 
     @Override
@@ -196,10 +210,8 @@ public class WorkerWorkerDashboardActivity extends SharedDashboardActivity imple
     }
 
     @Override
-    public void onHomeClicked(View view) {
-        tasksContainerRl.setVisibility(View.GONE);
-        homeContentLl.setVisibility(View.VISIBLE);
-        NotificationHelper.showShortToast(this, getResources().getString(R.string.main_view));
+    public void onItemClick(View view, int position) {
+
     }
 
     @Override
@@ -240,8 +252,4 @@ public class WorkerWorkerDashboardActivity extends SharedDashboardActivity imple
         return true;
     }
 
-    @Override
-    public void onItemClick(View view, int position) {
-
-    }
 }
