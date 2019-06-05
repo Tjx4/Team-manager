@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/llDetailsContainer"
+    android:layout_margin="2dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/txtDescription"
+        style="@style/mediumDarkEditText"
+        android:layout_height="120dp"
+        android:gravity="top"
+        android:hint="@string/task_description"
+        android:padding="19dp"
+        android:singleLine="false"
+        android:textColorHint="@color/greyHint" />
+
+    <TextView
+        android:id="@+id/tvDescriptionError"
+        style="@style/smallErrorLabel"
+        android:text="Error" />
+
+    <TextView
+        android:id="@+id/tvWolcomeMessage"
+        style="@style/mediumDarkLabel"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+        android:gravity="center"
+        android:text="@string/set_task_priority" />
+
+    <RadioGroup
+        android:id="@+id/rdogPriority"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rdoLow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Low"
+            android:textColor="@color/darkerText" />
+
+        <RadioButton
+            android:id="@+id/rdoMedium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="Medium"
+            android:textColor="@color/darkerText" />
+
+        <RadioButton
+            android:id="@+id/rdoHigh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="High"
+            android:textColor="@color/darkerText" />
+
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/tvPriorityError"
+        style="@style/smallErrorLabel"
+        android:text="Error" />
+
+    <Button
+        android:id="@+id/btnNextTaskStage"
+        style="@style/mediumGreenButton"
+        android:text="Next" />
+
+
+</LinearLayout>
