@@ -3,6 +3,7 @@ package co.za.appic.teammanager.features.dashboard.worker;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -47,6 +48,7 @@ public class WorkerWorkerDashboardActivity extends SharedDashboardActivity imple
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         showCheckingTasks();
+        isMainView = true;
     }
 
     @Override
@@ -259,9 +261,20 @@ public class WorkerWorkerDashboardActivity extends SharedDashboardActivity imple
     }
 
     @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if(!isMainView && dialogFragment == null){
+            onHomeClicked(null);
+            return false;
+        }
+        else{
+            return super.onKeyDown(keyCode, event);
+        }
+    }
+
+    @Override
     public void onBackPressed() {
         if(!isMainView && dialogFragment == null){
-                onHomeClicked(null);
+            onHomeClicked(null);
         }
         else{
             super.onBackPressed();
