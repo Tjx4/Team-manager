@@ -8,9 +8,9 @@ public class Constants {
     public static final String LAYOUT = "layout";
     public static final String PAYLOAD_KEY = "payload";
     public static final String ACTIVITY_TRANSITION = "acticity_transition";
-    public static final String WORKERS_TABLE = "workers";
-    public static final String SUPERVISORS_TABLE = "supervisors";
     //DB fields
+    public static final String SUPERVISORS_TABLE = "supervisors";
+    public static final String WORKERS_TABLE = "workers";
     public static final String DB_EMPLOYEE_ID = "employeeId";
     public static final String DB_NAME = "name";
     public static final String DB_SURNAME = "surname";

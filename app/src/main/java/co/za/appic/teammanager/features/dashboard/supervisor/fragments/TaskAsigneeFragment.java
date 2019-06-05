@@ -47,6 +47,12 @@ public class TaskAsigneeFragment extends BaseCreateTaskFragment  implements Work
 
             @Override
             public void onClick(View view) {
+
+                boolean isValidWorker = newTaskFragment.taskModel.getWorker() != null;
+                if(!isValidWorker){
+                    return;
+                }
+
                 newTaskFragment.onCreateTaskButtonClicked(view);
             }
         });
