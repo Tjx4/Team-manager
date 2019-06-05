@@ -24,7 +24,7 @@ public class Constants {
     public static final String DB_WORKER = "worker";
     public static final String DB_SUPERVISOR = "supervisor";
     public static final String DB_TASK_STATUS = "taskStatus";
-    public static final String BB_TASK_DESCRIPTION = "description";
+    public static final String DB_TASK_DESCRIPTION = "description";
     public static final String DB_TASK_PRIORITY = "priority";
     public static final String DB_TASK_CREATION_DATE = "creationDate";
     public static final String DB_TASK_DUE_DATE = "dueDate";

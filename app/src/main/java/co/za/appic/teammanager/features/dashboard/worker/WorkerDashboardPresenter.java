@@ -57,7 +57,7 @@ public class WorkerDashboardPresenter extends SharedDashboardPresenter {
                         String id =  chatSnapshot.getKey();
                         currentTask.setId(id);
 
-                        String description = chatSnapshot.child(Constants.BB_TASK_DESCRIPTION).getValue().toString();
+                        String description = chatSnapshot.child(Constants.DB_TASK_DESCRIPTION).getValue().toString();
                         currentTask.setDescription(description);
 
                         String worker = chatSnapshot.child(Constants.DB_WORKER).getValue().toString();
@@ -171,6 +171,26 @@ public class WorkerDashboardPresenter extends SharedDashboardPresenter {
 
     public void setActiveTask(TaskModel activeTask) {
         this.activeTask = activeTask;
+    }
+
+    public void putTaskInProgress() {
+        activeTask.setTaskStatus(TaskStatus.inprogress);
+        updateTask();
+    }
+
+    public void completeTask() {
+        activeTask.setTaskStatus(TaskStatus.completed);
+        updateTask();
+    }
+
+    private void updateTask() {
+        DatabaseReference tasksRef = FirebaseDatabase.getInstance().getReference().child(Constants.DB_TASKS);
+        String newTaskId = activeTask.getId();
+        DatabaseReference taskRef = tasksRef.child(newTaskId);
+        taskRef.setValue(newTaskId);
+
+        DatabaseReference taskStatusRef = taskRef.child(Constants.DB_TASK_STATUS);
+        taskStatusRef.setValue(activeTask.getTaskStatus().getId());
     }
 
     public TaskModel getActiveTask() {

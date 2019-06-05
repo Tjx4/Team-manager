@@ -4,7 +4,6 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -12,7 +11,6 @@ import java.util.List;
 
 import co.za.appic.teammanager.R;
 import co.za.appic.teammanager.constants.Constants;
-import co.za.appic.teammanager.enums.PriorityLevel;
 import co.za.appic.teammanager.enums.TaskStatus;
 import co.za.appic.teammanager.features.dashboard.shared.SharedDashboardPresenter;
 import co.za.appic.teammanager.helpers.DateTimeHelper;
@@ -80,7 +78,7 @@ public class SupervisorDashboardPresenter extends SharedDashboardPresenter {
         DatabaseReference serviceId = tasksRef.child(newTaskId);
         serviceId.setValue(newTaskId);
 
-        DatabaseReference description = serviceId.child(Constants.BB_TASK_DESCRIPTION);
+        DatabaseReference description = serviceId.child(Constants.DB_TASK_DESCRIPTION);
         description.setValue(taskModel.getDescription());
         DatabaseReference taskStatus = serviceId.child(Constants.DB_TASK_STATUS);
         taskStatus.setValue(taskModel.getTaskStatus().getId());

@@ -96,4 +96,8 @@
     <string name="task_ended">Task ended</string>
     <string name="no_pending_tasks">You have no pending task</string>
     <string name="no_completed_tasks">You have no completed task</string>
+    <string name="forgot_password">Forgot password</string>
+    <string name="start_task">Start task</string>
+    <string name="task_completed">Task completed</string>
+    <string name="complete_task">Complete task</string>
 </resources>

@@ -41,6 +41,7 @@ public class WorkerWorkerDashboardActivity extends SharedDashboardActivity imple
     private LinearLayout tasksContainerLl;
     private RecyclerView tasksRv;
     private LinearLayout homeContentLl;
+    private FrameLayout activeTaskContainer;
     private boolean showPushnotifiaction;
     private boolean isMainView;
     private TextView tasksTitleTv;
@@ -108,6 +109,7 @@ public class WorkerWorkerDashboardActivity extends SharedDashboardActivity imple
         checkingMessageLl = parentLayout.findViewById(R.id.llCheckingMessage);
         tasksContainerLl = parentLayout.findViewById(R.id.llTasksContainer);
         homeContentLl = parentLayout.findViewById(R.id.llHomeContent);
+        activeTaskContainer = parentLayout.findViewById(R.id.flActiveTaskContainer);
         tasksTitleTv = parentLayout.findViewById(R.id.tvTasksTitle);
         tasksContainerRl = parentLayout.findViewById(R.id.rlTasksContainer);
 
@@ -160,6 +162,7 @@ public class WorkerWorkerDashboardActivity extends SharedDashboardActivity imple
         completedCounteTv.setText(completedTaskCount);
     }
 
+
     @Override
     public void onViewPendingTasksClicked(View view) {
         List<TaskModel>  pendingTasks =  getPresenter().getPendingTasks();
@@ -190,6 +193,7 @@ public class WorkerWorkerDashboardActivity extends SharedDashboardActivity imple
         AnimationHelper.blinkView(view);
         tasksContainerRl.setVisibility(View.VISIBLE);
         homeContentLl.setVisibility(View.INVISIBLE);
+        activeTaskContainer.setVisibility(View.GONE);
         tasksTitleTv.setText(tasksMessage);
         NotificationHelper.showShortToast(this, toastMessage);
         showTasks(tasks);
@@ -200,6 +204,7 @@ public class WorkerWorkerDashboardActivity extends SharedDashboardActivity imple
     public void onHomeClicked(View view) {
         tasksContainerRl.setVisibility(View.GONE);
         homeContentLl.setVisibility(View.VISIBLE);
+        activeTaskContainer.setVisibility(View.GONE);
         NotificationHelper.showShortToast(this, getResources().getString(R.string.main_view));
         isMainView = true;
     }
@@ -220,11 +225,33 @@ public class WorkerWorkerDashboardActivity extends SharedDashboardActivity imple
     }
 
     @Override
-    public void onItemClick(View view, int position) {
-       //getPresenter().setActiveTask();
+    public void onItemClick(View view, TaskModel tasks) {
+       getPresenter().setActiveTask(tasks);
+        showActiveTask(tasks);
     }
 
     @Override
+    public void showActiveTask(TaskModel tasks) {
+        tasksContainerRl.setVisibility(View.GONE);
+        homeContentLl.setVisibility(View.GONE);
+        activeTaskContainer.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void onStartTaskButtonClicked(View view) {
+        view.setVisibility(View.GONE);
+        getPresenter().putTaskInProgress();
+    }
+
+    @Override
+    public void onFinishTaskButtonClicked(View view) {
+        view.setVisibility(View.GONE);
+        getPresenter().completeTask();
+        onHomeClicked(view);
+        NotificationHelper.showShortToast(this, getResources().getString(R.string.task_completed));
+    }
+
+   @Override
     public void onBeginTaskClicked(View view) {
         AnimationHelper.blinkView(view);
         NotificationHelper.showShortToast(this,getResources().getString(R.string.task_started));

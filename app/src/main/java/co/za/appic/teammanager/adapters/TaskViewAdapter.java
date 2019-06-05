@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import java.util.List;
 import co.za.appic.teammanager.R;
+import co.za.appic.teammanager.enums.TaskStatus;
 import co.za.appic.teammanager.models.TaskModel;
 
 public class TaskViewAdapter extends RecyclerView.Adapter<TaskViewAdapter.ViewHolder> {
@@ -53,8 +54,13 @@ public class TaskViewAdapter extends RecyclerView.Adapter<TaskViewAdapter.ViewHo
 
         @Override
         public void onClick(View view) {
+            TaskModel taskModel = tasks.get(getAdapterPosition());
+
+            if(taskModel.getTaskStatus() == TaskStatus.completed)
+                return;
+
             if (mClickListener != null)
-                mClickListener.onItemClick(view, getAdapterPosition());
+                mClickListener.onItemClick(view, taskModel);
         }
     }
 
@@ -67,6 +73,6 @@ public class TaskViewAdapter extends RecyclerView.Adapter<TaskViewAdapter.ViewHo
     }
 
     public interface ItemClickListener {
-        void onItemClick(View view, int position);
+        void onItemClick(View view, TaskModel taskModel);
     }
 }
