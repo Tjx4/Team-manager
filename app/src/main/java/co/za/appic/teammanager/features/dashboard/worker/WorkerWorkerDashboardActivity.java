@@ -158,31 +158,38 @@ public class WorkerWorkerDashboardActivity extends SharedDashboardActivity imple
 
     @Override
     public void onViewPendingTasksClicked(View view) {
-        AnimationHelper.blinkView(view);
-        tasksContainerRl.setVisibility(View.VISIBLE);
-        homeContentLl.setVisibility(View.GONE);
+        List<TaskModel>  pendingTasks =  getPresenter().getPendingTasks();
+        int pendingTasksCount = pendingTasks.size();
 
-        int  pendingTasks =  getPresenter().getPendingTasks().size();
-        String tasksMessage = "You have "+pendingTasks+" pending tasks";
-        tasksTitleTv.setText(tasksMessage);
+        String tasksMessage = getResources().getString(R.string.no_pending_tasks);
 
-        NotificationHelper.showShortToast(this, getResources().getString(R.string.pending_tasks));
-        showTasks( getPresenter().getPendingTasks());
-        isMainView = false;
+        if(pendingTasksCount > 0)
+            tasksMessage = "You have "+pendingTasks+" pending task"+((pendingTasksCount == 1)? "" : "s");
+
+
+        onViewTasks(view, tasksMessage, getResources().getString(R.string.pending_tasks), pendingTasks);
     }
 
     @Override
     public void onViewCompletedTasksClicked(View view) {
+        List<TaskModel> completedTasks = getPresenter().getCompletedTasks();
+        int completedTaskCount = completedTasks.size();
+
+        String tasksMessage = getResources().getString(R.string.no_completed_tasks);
+
+        if(completedTaskCount > 0)
+            tasksMessage = "You have "+completedTasks+" completed task"+((completedTaskCount == 1)? "" : "s");
+
+        onViewTasks(view, tasksMessage, getResources().getString(R.string.completed_tasks), completedTasks);
+    }
+
+    public void onViewTasks(View view, String tasksMessage, String toastMessage, List<TaskModel> tasks) {
         AnimationHelper.blinkView(view);
         tasksContainerRl.setVisibility(View.VISIBLE);
         homeContentLl.setVisibility(View.GONE);
-
-        int completedTasks = getPresenter().getCompletedTasks().size();
-        String tasksMessage = "You have "+completedTasks+" completed tasks";
         tasksTitleTv.setText(tasksMessage);
-
-        NotificationHelper.showShortToast(this, getResources().getString(R.string.completed_tasks));
-        showTasks( getPresenter().getCompletedTasks());
+        NotificationHelper.showShortToast(this, toastMessage);
+        showTasks(tasks);
         isMainView = false;
     }
 

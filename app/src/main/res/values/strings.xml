@@ -94,4 +94,6 @@
     <string name="main_view">Main view</string>
     <string name="task_started">Task started</string>
     <string name="task_ended">Task ended</string>
+    <string name="no_pending_tasks">You have no pending task</string>
+    <string name="no_completed_tasks">You have no completed task</string>
 </resources>
