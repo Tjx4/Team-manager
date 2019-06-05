@@ -181,6 +181,7 @@ public class WorkerDashboardPresenter extends SharedDashboardPresenter {
     public void completeTask() {
         activeTask.setTaskStatus(TaskStatus.completed);
         updateTask();
+        activeTask = null;
     }
 
     private void updateTask() {
