@@ -40,6 +40,7 @@
     <string name="user_greeting_message">Hi %1$s  please enter your password to continue</string>
     <string name="create_new_account">Create new account</string>
     <string name="generic_error_message">Error message</string>
+    <string name="generic_success_message">Success message</string>
     <string name="no">No</string>
     <string name="ok">Ok</string>
     <string name="confirm">Confirm</string>
@@ -87,5 +88,5 @@
     <string name="details_frag_title">Enter task details</string>
     <string name="select_assignee_frag">Select assignee</string>
     <string name="task_creation_success_message">The task was created successfully</string>
-    <string name="successful">Successfully</string>
+    <string name="successful">Successful</string>
 </resources>

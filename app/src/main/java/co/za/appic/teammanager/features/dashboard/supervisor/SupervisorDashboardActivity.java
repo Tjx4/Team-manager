@@ -101,7 +101,7 @@ public class SupervisorDashboardActivity extends SharedDashboardActivity impleme
     @Override
     public void hideNewTaskDialogAndShowSuccessMessage() {
         dialogFragment.dismiss();
-        NotificationHelper.showErrorDialog(this, getString(R.string.successful), getString(R.string.task_creation_success_message));
+        NotificationHelper.showSuccessDialog(this, getString(R.string.successful), getString(R.string.task_creation_success_message));
     }
 
     @Override

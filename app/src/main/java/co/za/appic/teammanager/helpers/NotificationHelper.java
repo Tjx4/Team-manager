@@ -93,11 +93,6 @@ public class NotificationHelper {
         return ab;
     }
 
-    private static void showAlertDialogSuccessMessage(Context context, String title, String message, String... buttonText) {
-        AlertDialog.Builder ab = getAlertDialogSuccessMessage(context, title, message, buttonText);
-        showAlertMessage(context, ab);
-    }
-
     public static void showAlertDialogMessage(Context context, String title, String message, String... buttonText) {
         AlertDialog.Builder ab = getAlertDialogMessage(context, title,  message,  buttonText);
         showAlertMessage(context, ab);
@@ -125,6 +120,19 @@ public class NotificationHelper {
         ab.setIcon(R.drawable.ic_error_light);
         showAlertMessage(context, ab);
     }
+
+    public static void showSuccessDialog(Context context, String title, String message, String... buttonText) {
+        String posiTiveButtonText = context.getResources().getString(R.string.ok);
+
+        if (buttonText != null && buttonText.length > 0)
+            posiTiveButtonText = buttonText[0];
+
+        message = (message != null && !message.isEmpty()) ? message : context.getResources().getString(R.string.generic_success_message);
+        AlertDialog.Builder ab = setupBasicMessage(context, title, message, posiTiveButtonText, false, false);
+        ab.setIcon(R.drawable.ic_success_light);
+        showAlertMessage(context, ab);
+    }
+
 
     public void showConfirmDialog(Context context, String title, String message, boolean showNagativeButton, boolean showNutralButton) {
         String posiTiveButtonText = context.getResources().getString(R.string.confirm);
