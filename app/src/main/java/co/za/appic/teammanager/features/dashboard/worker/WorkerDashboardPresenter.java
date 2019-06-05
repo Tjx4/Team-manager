@@ -21,6 +21,7 @@ public class WorkerDashboardPresenter extends SharedDashboardPresenter {
     private List<String> capturedTasks;
     private List<TaskModel> pendingTasks;
     private List<TaskModel> completedTasks;
+    private TaskModel activeTask;
     private WorkerModel worker;
     private boolean isNewAvailable;
     private boolean isInitial;
@@ -166,6 +167,14 @@ public class WorkerDashboardPresenter extends SharedDashboardPresenter {
 
     public List<TaskModel> getCompletedTasks() {
        return completedTasks;
+    }
+
+    public void setActiveTask(TaskModel activeTask) {
+        this.activeTask = activeTask;
+    }
+
+    public TaskModel getActiveTask() {
+        return activeTask;
     }
 
 }

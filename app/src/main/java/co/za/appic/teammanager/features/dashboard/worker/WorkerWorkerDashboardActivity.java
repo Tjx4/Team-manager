@@ -1,6 +1,8 @@
 package co.za.appic.teammanager.features.dashboard.worker;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.KeyEvent;
@@ -219,7 +221,7 @@ public class WorkerWorkerDashboardActivity extends SharedDashboardActivity imple
 
     @Override
     public void onItemClick(View view, int position) {
-
+       //getPresenter().setActiveTask();
     }
 
     @Override

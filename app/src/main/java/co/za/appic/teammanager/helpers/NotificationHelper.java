@@ -121,6 +121,13 @@ public class NotificationHelper {
         return ab;
     }
 
+    public static AlertDialog.Builder getSelectionDialog(Context context, String title, String message, String posiTiveButtonText) {
+
+        AlertDialog.Builder ab = setupBasicMessage(context, title, message, posiTiveButtonText, false, false);
+        ab.setIcon(R.drawable.confirm_icon_light);
+        return ab;
+    }
+
     public static void showErrorDialog(Context context, String title, String message, String... buttonText) {
         String posiTiveButtonText = context.getResources().getString(R.string.ok);
 

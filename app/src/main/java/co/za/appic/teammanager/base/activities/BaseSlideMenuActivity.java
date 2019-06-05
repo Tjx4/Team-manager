@@ -18,7 +18,6 @@ import co.za.appic.teammanager.R;
 
 public abstract class BaseSlideMenuActivity extends BaseNoActionBarActivity implements NavigationView.OnNavigationItemSelectedListener{
 
-    protected int menu2;
     protected ViewStub currentPageLayout;
     protected CoordinatorLayout currentActivityCL;
     protected Toolbar toolbar;
