@@ -209,7 +209,7 @@ public class NotificationHelper {
                 .setSmallIcon(icon)
                 .setContentTitle(title)
                 .setContentText(message)
-                .setAutoCancel(true)
+                .setAutoCancel(false)
                 .setSound(notificationSound)
                 .setContentIntent(pendingIntent);
 

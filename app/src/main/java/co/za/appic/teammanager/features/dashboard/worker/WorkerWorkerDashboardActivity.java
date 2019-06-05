@@ -172,9 +172,9 @@ public class WorkerWorkerDashboardActivity extends SharedDashboardActivity imple
     }
 
     @Override
-    public void notifyUserOfnewTask(TaskModel taskModel){
+    public void notifyUserOfnewTask(){
         if(showPushnotifiaction)
-            NotificationHelper.showPushNotification(this, R.drawable.ic_notify, getResources().getString(R.string.new_task), getResources().getString(R.string.new_task_message));
+            NotificationHelper.showPushNotification(this, R.drawable.ic_notify, getResources().getString(R.string.new_task_title), getResources().getString(R.string.new_task_message));
         else
             NotificationHelper.showShortToast(this, getResources().getString(R.string.new_task_message));
     }

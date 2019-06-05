@@ -18,9 +18,12 @@ import co.za.appic.teammanager.models.WorkerModel;
 
 public class WorkerDashboardPresenter extends SharedDashboardPresenter {
     private WorkerDashboardView workerDashboardView;
+    private List<String> capturedTasks;
     private List<TaskModel> pendingTasks;
     private List<TaskModel> completedTasks;
     private WorkerModel worker;
+    private boolean isNewAvailable;
+    private boolean isInitial;
 
     public WorkerDashboardPresenter(WorkerDashboardView workerDashboardView) {
         super(workerDashboardView);
@@ -34,17 +37,14 @@ public class WorkerDashboardPresenter extends SharedDashboardPresenter {
     }
 
     public void syncTasks(final String workerId) {
+        capturedTasks = new ArrayList<>();
         DatabaseReference tasksRef = FirebaseDatabase.getInstance().getReference().child(Constants.DB_TASKS);
         Query query = tasksRef.orderByChild(Constants.DB_WORKER).equalTo(workerId);
         query.keepSynced(true);
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-
-                if(pendingTasks == null){
-
-                }
-
+                isInitial = pendingTasks == null;
                 pendingTasks = new ArrayList<>();
                 completedTasks = new ArrayList<>();
 
@@ -88,6 +88,7 @@ public class WorkerDashboardPresenter extends SharedDashboardPresenter {
                     }
                 }
 
+                checkForNewPendingTasks();
                 greetWorker();
                 showTaskStats();
             }
@@ -99,17 +100,58 @@ public class WorkerDashboardPresenter extends SharedDashboardPresenter {
         });
     }
 
+    private void checkForNewPendingTasks() {
+        boolean isNew;
+        int newFound = 0;
+
+        for(TaskModel currentTask : pendingTasks){
+            String taskId = currentTask.getId();
+            if(!isInitial){
+
+                isNew = !capturedTasks.contains(taskId);
+
+                if(isNew){
+                    capturedTasks.add(taskId);
+                    ++newFound;
+                }
+            }
+            else {
+                capturedTasks.add(taskId);
+            }
+        }
+
+        isNewAvailable = newFound > 0;
+    }
+
     private void showTaskStats() {
         workerDashboardView.showTasks();
         int pendingTasksCount = pendingTasks.size();
         workerDashboardView.showPendingTaskCount(String.valueOf(pendingTasksCount));
         int completedTasksCount = completedTasks.size();
         workerDashboardView.showCompletedTaskCount(String.valueOf(completedTasksCount));
+
+        if(isNewAvailable)
+            workerDashboardView.notifyUserOfnewTask();
     }
 
     private void greetWorker() {
         String welcomeMessage = context.getResources().getString(R.string.worker_welcome_message, worker.getName());
         workerDashboardView.showWelcomeMessage(welcomeMessage);
+    }
+
+    private boolean isTaskCaptured(List<TaskModel> tasks, TaskModel newTask) {
+        boolean isTaskCaptured = false;
+
+        for(TaskModel task : tasks){
+            String taskId = task.getId();
+            String currentTuskId = newTask.getId();
+
+            if(taskId.equals(currentTuskId)){
+                isTaskCaptured = true;
+                break;
+            }
+        }
+        return isTaskCaptured;
     }
 
     public List<TaskModel> getPendingTasks() {
