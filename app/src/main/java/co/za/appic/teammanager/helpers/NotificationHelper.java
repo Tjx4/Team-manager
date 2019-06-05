@@ -196,16 +196,16 @@ public class NotificationHelper {
         return ab;
     }
 
-    public static void showPushNotification(Activity activity, int icon, String title, String message){
-        Intent intent = new Intent(activity, WorkerWorkerDashboardActivity.class);
+    public static void showPushNotification(Context context, int icon, String title, String message){
+        Intent intent = new Intent(context, WorkerWorkerDashboardActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
-        PendingIntent pendingIntent = PendingIntent.getActivity(activity, 0, intent, PendingIntent.FLAG_ONE_SHOT);
+        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_ONE_SHOT);
 
         //Sound
         Uri notificationSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
 
-        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(activity)
+        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(context)
                 .setSmallIcon(icon)
                 .setContentTitle(title)
                 .setContentText(message)
@@ -213,7 +213,7 @@ public class NotificationHelper {
                 .setSound(notificationSound)
                 .setContentIntent(pendingIntent);
 
-        NotificationManager notificationManager = (NotificationManager) activity.getSystemService(Context.NOTIFICATION_SERVICE);
+        NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         notificationManager.notify(0, notificationBuilder.build());
 
     }
