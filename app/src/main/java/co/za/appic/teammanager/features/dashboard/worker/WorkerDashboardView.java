@@ -1,9 +1,7 @@
 package co.za.appic.teammanager.features.dashboard.worker;
 
 import android.view.View;
-
 import java.util.List;
-
 import co.za.appic.teammanager.base.views.BaseView;
 import co.za.appic.teammanager.models.TaskModel;
 
@@ -22,4 +20,5 @@ public interface WorkerDashboardView extends BaseView {
     void notifyUserOfnewTask();
     void onStartTaskButtonClicked(View view);
     void onFinishTaskButtonClicked(View view);
+    void onContinueTaskClicked(View view);
 }

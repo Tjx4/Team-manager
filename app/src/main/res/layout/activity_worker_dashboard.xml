@@ -110,6 +110,40 @@
             </LinearLayout>
 
         </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/cvContinueTaskContainer"
+            android:visibility="invisible"
+            android:layout_margin="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:layout_margin="20dp"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onContinueTaskClicked">
+
+                <TextView
+                    android:id="@+id/tvContinueTask"
+                    style="@style/mediumDarkLabel"
+                    android:gravity="center"
+                    android:layout_centerVertical="true"
+                    android:layout_width="wrap_content"
+                    android:text="@string/continue_current_task"/>
+
+                <ImageView
+                    android:id="@+id/imgContinue"
+                    android:layout_toRightOf="@+id/tvContinueTask"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_continue_dark"/>
+            </RelativeLayout>
+
+        </android.support.v7.widget.CardView>
     </LinearLayout>
 
     <RelativeLayout

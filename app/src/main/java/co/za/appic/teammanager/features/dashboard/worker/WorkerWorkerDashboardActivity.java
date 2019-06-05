@@ -1,6 +1,7 @@
 package co.za.appic.teammanager.features.dashboard.worker;
 
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.KeyEvent;
@@ -41,6 +42,7 @@ public class WorkerWorkerDashboardActivity extends SharedDashboardActivity imple
     private LinearLayout tasksContainerLl;
     private RecyclerView tasksRv;
     private LinearLayout homeContentLl;
+    private CardView continueTaskContainerCv;
     private FrameLayout activeTaskContainer;
     private boolean showPushnotifiaction;
     private boolean isMainView;
@@ -113,6 +115,7 @@ public class WorkerWorkerDashboardActivity extends SharedDashboardActivity imple
         checkingMessageLl = parentLayout.findViewById(R.id.llCheckingMessage);
         tasksContainerLl = parentLayout.findViewById(R.id.llTasksContainer);
         homeContentLl = parentLayout.findViewById(R.id.llHomeContent);
+        continueTaskContainerCv = parentLayout.findViewById(R.id.cvContinueTaskContainer);
         activeTaskContainer = parentLayout.findViewById(R.id.flActiveTaskContainer);
         tasksTitleTv = parentLayout.findViewById(R.id.tvTasksTitle);
         tasksContainerRl = parentLayout.findViewById(R.id.rlTasksContainer);
@@ -213,6 +216,8 @@ public class WorkerWorkerDashboardActivity extends SharedDashboardActivity imple
         homeContentLl.setVisibility(View.VISIBLE);
         activeTaskContainer.setVisibility(View.INVISIBLE);
         isMainView = true;
+        int cardVisibility = (getPresenter().getActiveTask() != null)? View.VISIBLE : View.INVISIBLE ;
+        continueTaskContainerCv.setVisibility(cardVisibility);
     }
 
     @Override
@@ -231,7 +236,7 @@ public class WorkerWorkerDashboardActivity extends SharedDashboardActivity imple
     }
 
     @Override
-    public void onItemClick(View view, TaskModel tasks) {
+    public void onItemClick(View view, TaskModel task) {
         TaskModel currentActiveTask = getPresenter().getActiveTask();
         if(currentActiveTask != null){
             NotificationHelper.showShortToast(this, getResources().getString(R.string.complete_active_message));
@@ -239,8 +244,13 @@ public class WorkerWorkerDashboardActivity extends SharedDashboardActivity imple
             return;
         }
 
-       getPresenter().setActiveTask(tasks);
-       showActiveTask(tasks);
+       getPresenter().setActiveTask(task);
+       showActiveTask(task);
+    }
+
+    @Override
+    public void onContinueTaskClicked(View view) {
+        showActiveTask(getPresenter().getActiveTask());
     }
 
     @Override
