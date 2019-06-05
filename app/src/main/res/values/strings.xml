@@ -80,11 +80,11 @@
     <string name="new_task">Enter task details</string>
     <string name="new_task_title">New task</string>
     <string name="choose_due_date">Choose due date</string>
-    <string name="choose_time_due">Choose time due</string>
+    <string name="choose_time_due">Choose dueTime due</string>
     <string name="this_feature_is_not_available_in_demo_mode">This feature is not available in demo mode</string>
     <string name="please_wait">Please wait...</string>
     <string name="next">Next</string>
-    <string name="time_frag_title">Choose cut off time</string>
+    <string name="time_frag_title">Choose cut off dueTime</string>
     <string name="date_frag_title">Choose due date</string>
     <string name="details_frag_title">Enter task details</string>
     <string name="select_assignee_frag">Select assignee</string>

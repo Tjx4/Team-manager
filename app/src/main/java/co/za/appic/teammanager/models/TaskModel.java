@@ -12,6 +12,8 @@ public class TaskModel {
     private TaskStatus taskStatus;
     private String creationDateTime;
     private String dueDateTime;
+    private String dueTime;
+    private String dueDay;
     private String completionDateTime;
 
     public String getId() {
@@ -84,5 +86,21 @@ public class TaskModel {
 
     public void setDueDateTime(String dueDateTime) {
         this.dueDateTime = dueDateTime;
+    }
+
+    public String getDueTime() {
+        return dueTime;
+    }
+
+    public void setDueTime(String dueTime) {
+        this.dueTime = dueTime;
+    }
+
+    public String getDueDay() {
+        return dueDay;
+    }
+
+    public void setDueDay(String dueDay) {
+        this.dueDay = dueDay;
     }
 }

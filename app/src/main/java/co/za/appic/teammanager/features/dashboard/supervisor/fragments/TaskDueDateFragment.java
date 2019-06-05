@@ -43,9 +43,9 @@ public class TaskDueDateFragment extends BaseCreateTaskFragment {
                 int year = dueDateDp.getYear();
                 int month = dueDateDp.getMonth() + 1;
                 int day = dueDateDp.getDayOfMonth();
-                String dueDate = day+"/"+month+"/"+year;
+                String dueDay = day+"/"+month+"/"+year;
+                taskModel.setDueDay(dueDay);
 
-                taskModel.setDueDateTime(dueDate);
                 onStageSetisfied(taskModel);
             }
         });

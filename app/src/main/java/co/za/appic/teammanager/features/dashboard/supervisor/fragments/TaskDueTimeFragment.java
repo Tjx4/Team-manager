@@ -43,9 +43,10 @@ public class TaskDueTimeFragment extends BaseCreateTaskFragment {
                 int hourOfDay = dueTimeTp.getCurrentHour();
                 int minute = dueTimeTp.getCurrentMinute();
                 String dueTime = DateTimeHelper.getTimeFromTp(hourOfDay, minute);
-
-                String dateTime = taskModel.getDueDateTime()+" "+dueTime;
+                taskModel.setDueTime(dueTime);
+                String dateTime = taskModel.getDueDay()+" "+taskModel.getDueTime();
                 taskModel.setDueDateTime(dateTime);
+
                 onStageSetisfied(taskModel);
             }
         });
