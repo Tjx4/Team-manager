@@ -115,12 +115,6 @@ public class NewTaskFragment extends BaseDialogFragment implements BaseCreateTas
         @Override
         protected SectionsPagerAdapter doInBackground(Boolean... booleans) {
 
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-
             ViewPagerFragmentModel step1 = new ViewPagerFragmentModel();
             step1.setTitle(supervisorDashboardActivity.getResources().getString(R.string.details_frag_title));
             step1.setFragment(new TaskDescriptionAndPriorityFragment());
