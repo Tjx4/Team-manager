@@ -18,6 +18,7 @@
         android:layout_above="@+id/btnNextTaskStage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/lighterBackground"
         android:orientation="vertical">
         <EditText
             android:id="@+id/txtDescription"

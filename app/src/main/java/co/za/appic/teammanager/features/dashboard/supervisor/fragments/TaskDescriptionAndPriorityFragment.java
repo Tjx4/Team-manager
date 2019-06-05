@@ -35,8 +35,8 @@ public class TaskDescriptionAndPriorityFragment extends BaseCreateTaskFragment {
 
     @Override
     protected void initViews(View parentView) {
-        descriptionErrorTv = parentView.findViewById(R.id.txtDescription);
-        priorityErrorTv = parentView.findViewById(R.id.txtDescription);
+        descriptionErrorTv = parentView.findViewById(R.id.tvDescriptionError);
+        priorityErrorTv = parentView.findViewById(R.id.tvPriorityError);
 
         descriptionTxt = parentView.findViewById(R.id.txtDescription);
 
@@ -84,6 +84,12 @@ public class TaskDescriptionAndPriorityFragment extends BaseCreateTaskFragment {
                 onStageSetisfied(taskModel);
             }
         });
+    }
+
+    @Override
+    protected void onStageSetisfied(TaskModel taskModel) {
+        super.onStageSetisfied(taskModel);
+        hideValidationLabels();
     }
 
     public void showInvalidDescription() {

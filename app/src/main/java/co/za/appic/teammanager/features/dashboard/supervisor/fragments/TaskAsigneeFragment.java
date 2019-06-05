@@ -10,6 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
+
 import java.util.List;
 import co.za.appic.teammanager.R;
 import co.za.appic.teammanager.adapters.WorkersViewAdapter;
@@ -19,6 +21,7 @@ import co.za.appic.teammanager.models.WorkerModel;
 public class TaskAsigneeFragment extends BaseCreateTaskFragment  implements WorkersViewAdapter.ItemClickListener{
 
     private Button createTaskBtn;
+    private TextView workerErrorTv;
     private RecyclerView lstAsigneesRv;
     private List<WorkerModel> workers;
 
@@ -36,6 +39,8 @@ public class TaskAsigneeFragment extends BaseCreateTaskFragment  implements Work
 
     @Override
     protected void initViews(View parentView) {
+        workerErrorTv = parentView.findViewById(R.id.tVworkerError);
+
         lstAsigneesRv = parentView.findViewById(R.id.lstAsignees);
         lstAsigneesRv.setLayoutManager(new LinearLayoutManager(supervisorDashboardActivity));
 
@@ -52,12 +57,18 @@ public class TaskAsigneeFragment extends BaseCreateTaskFragment  implements Work
 
                 boolean isValidWorker = newTaskFragment.taskModel.getWorker() != null;
                 if(!isValidWorker){
+                    showInvalidAsignee();
                     return;
                 }
 
                 newTaskFragment.onCreateTaskButtonClicked(view);
             }
         });
+    }
+
+    public void showInvalidAsignee() {
+        workerErrorTv.setText(getString(R.string.invalid_usertype_task_asignee));
+        workerErrorTv.setVisibility(View.VISIBLE);
     }
 
     @Override

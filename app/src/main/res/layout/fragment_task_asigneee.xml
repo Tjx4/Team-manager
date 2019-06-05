@@ -9,9 +9,16 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/lstAsignees"
         android:layout_alignParentTop="true"
-        android:layout_above="@+id/btnCreateTask"
+        android:layout_above="@+id/tVworkerError"
         android:layout_width="match_parent"
         android:layout_height="400dp"/>
+
+    <TextView
+        android:gravity="center"
+        android:id="@+id/tVworkerError"
+        android:layout_above="@+id/btnCreateTask"
+        style="@style/smallErrorLabel"
+        android:text="Error"/>
 
     <Button
         android:id="@+id/btnCreateTask"

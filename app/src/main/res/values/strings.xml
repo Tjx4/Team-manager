@@ -23,6 +23,7 @@
     <string name="invalid_password_confirm_message">Your passwords do not match !</string>
     <string name="invalid_usertype_message">Please select a employeeType</string>
     <string name="invalid_usertype_task_description">Please describe the task</string>
+    <string name="invalid_usertype_task_asignee">Please select an assignee</string>
     <string name="invalid_usertype_priority">Please select a priority</string>
     <string name="register">Register</string>
     <string name="name">Name</string>
