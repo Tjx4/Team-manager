@@ -2,6 +2,10 @@ package co.za.appic.teammanager.features.dashboard.supervisor;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import co.za.appic.teammanager.R;
 import co.za.appic.teammanager.constants.Constants;
 import co.za.appic.teammanager.enums.TaskStatus;
@@ -9,14 +13,17 @@ import co.za.appic.teammanager.features.dashboard.shared.SharedDashboardPresente
 import co.za.appic.teammanager.helpers.StringHelper;
 import co.za.appic.teammanager.models.SupervisorModel;
 import co.za.appic.teammanager.models.TaskModel;
+import co.za.appic.teammanager.models.WorkerModel;
 
 public class SupervisorDashboardPresenter extends SharedDashboardPresenter {
     private SupervisorDashboardView supervisorDashboardView;
     private SupervisorModel supervisorModel;
+    private List<WorkerModel> workers;
 
     public SupervisorDashboardPresenter(SupervisorDashboardView supervisorDashboardView) {
         super(supervisorDashboardView);
         this.supervisorDashboardView = supervisorDashboardView;
+        workers = new ArrayList<>();
         supervisorModel = sharedPrefsHelper.getSupervisor();
         greetSupervisor();
     }
@@ -24,6 +31,10 @@ public class SupervisorDashboardPresenter extends SharedDashboardPresenter {
     private void greetSupervisor() {
         String welcomeMessage = context.getResources().getString(R.string.supervisor_welcome_message, supervisorModel.getName());
         supervisorDashboardView.showWelcomeMessage(welcomeMessage);
+    }
+
+    public List<WorkerModel> getWorkers() {
+        return workers;
     }
 
     public void createTask(final TaskModel taskModel) {

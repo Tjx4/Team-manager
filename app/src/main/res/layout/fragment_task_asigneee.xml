@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     tools:context=".features.dashboard.supervisor.fragments.TaskAsigneeFragment">
 
-    <ListView
+    <android.support.v7.widget.RecyclerView
         android:id="@+id/lstAsignees"
         android:layout_alignParentTop="true"
         android:layout_above="@+id/btnCreateTask"
