@@ -30,7 +30,6 @@ public class TaskDescriptionAndPriorityFragment extends BaseCreateTaskFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View parentView = inflater.inflate(R.layout.fragment_task_description_priority, container, false);
         this.parentView = parentView;
-        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         initViews(parentView);
         return parentView;
     }

@@ -47,6 +47,7 @@ public class NewTaskFragment extends BaseDialogFragment implements BaseCreateTas
         View parentView = super.onCreateView( inflater,  container, savedInstanceState);
         getDialog().setCanceledOnTouchOutside(false);
         supervisorDashboardActivity = (SupervisorDashboardActivity)activity;
+        supervisorDashboardActivity.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 
         backImgBtn = parentView.findViewById(R.id.imgBtnback);
         backImgBtn.setOnClickListener(new Button.OnClickListener(){
