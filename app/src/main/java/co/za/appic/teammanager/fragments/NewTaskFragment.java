@@ -2,6 +2,7 @@ package co.za.appic.teammanager.fragments;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,9 +19,9 @@ import java.util.List;
 import co.za.appic.teammanager.R;
 import co.za.appic.teammanager.adapters.SectionsPagerAdapter;
 import co.za.appic.teammanager.customViews.StagedViewPager;
-import co.za.appic.teammanager.enums.PriorityLevel;
 import co.za.appic.teammanager.features.dashboard.supervisor.SupervisorDashboardActivity;
 import co.za.appic.teammanager.features.dashboard.supervisor.fragments.BaseCreateTaskFragment;
+import co.za.appic.teammanager.features.dashboard.supervisor.fragments.TaskAsigneeFragment;
 import co.za.appic.teammanager.features.dashboard.supervisor.fragments.TaskDescriptionAndPriorityFragment;
 import co.za.appic.teammanager.features.dashboard.supervisor.fragments.TaskDueDateFragment;
 import co.za.appic.teammanager.features.dashboard.supervisor.fragments.TaskDueTimeFragment;
@@ -29,11 +30,8 @@ import co.za.appic.teammanager.models.ViewPagerFragmentModel;
 
 public class NewTaskFragment extends BaseDialogFragment implements BaseCreateTaskFragment.IRequestRequestStylistFragment{
 
-
-
     private RadioGroup priorityRg;
     private TextView titleTv;
-    private Button createTaskBtn;
     private ImageButton backImgBtn;
     private LinearLayout loadingContainerLl;
     private SupervisorDashboardActivity supervisorDashboardActivity;
@@ -56,14 +54,13 @@ public class NewTaskFragment extends BaseDialogFragment implements BaseCreateTas
 
             @Override
             public void onClick(View v) {
+                --currentStage;
+
                 if(currentStage < 1){
                     backImgBtn.setVisibility(View.INVISIBLE);
                 }
-                else {
-                    --currentStage;
-                }
 
-                stagedViewPager.setCurrentItem(currentStage);
+                setStageAndTitle(currentStage);
 
             }
         });
@@ -71,34 +68,6 @@ public class NewTaskFragment extends BaseDialogFragment implements BaseCreateTas
         titleTv = parentView.findViewById(R.id.tvTitle);
         loadingContainerLl = parentView.findViewById(R.id.llLoadingContainer);
         stagedViewPager = parentView.findViewById(R.id.taskTabs);
-
-        priorityRg = parentView.findViewById(R.id.rdogPriority);
-        priorityRg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
-        {
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                switch(checkedId){
-                    case R.id.rdoLow:
-                        taskModel.setPriority(PriorityLevel.low);
-                        break;
-                    case R.id.rdoMedium:
-                        taskModel.setPriority(PriorityLevel.medium);
-                        break;
-                    case R.id.rdoHigh:
-                        taskModel.setPriority(PriorityLevel.high);
-                        break;
-                }
-            }
-        });
-
-        createTaskBtn = parentView.findViewById(R.id.btnCreateTask);
-        createTaskBtn.setOnClickListener(new Button.OnClickListener(){
-
-            @Override
-            public void onClick(View view) {
-
-                supervisorDashboardActivity.getPresenter().createTask(taskModel);
-            }
-        });
 
         taskModel = new TaskModel();
 
@@ -114,15 +83,25 @@ public class NewTaskFragment extends BaseDialogFragment implements BaseCreateTas
         getDialog().getWindow().setAttributes((android.view.WindowManager.LayoutParams) params);
     }
 
-
-    public void moveToNextCategoryStage() {
-        backImgBtn.setVisibility(View.INVISIBLE);
+    public void onCreateTaskButtonClicked(View view) {
+        supervisorDashboardActivity.getPresenter().createTask(taskModel);
     }
 
     public void moveToNextTimeStage(TaskModel taskModel) {
         ++currentStage;
-        stagedViewPager.setCurrentItem(currentStage);
+        setStageAndTitle(currentStage);
         backImgBtn.setVisibility(View.VISIBLE);
+    }
+
+    public void setStageAndTitle(int index) {
+        stagedViewPager.setCurrentItem(index);
+        titleTv.setText(stepFragments.get(index).getTitle());
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        new CreateStages().execute();
     }
 
     class CreateStages extends AsyncTask<Boolean, Integer , SectionsPagerAdapter> {
@@ -130,7 +109,6 @@ public class NewTaskFragment extends BaseDialogFragment implements BaseCreateTas
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-
             currentPagerAdapter = new SectionsPagerAdapter(getChildFragmentManager());
             stepFragments = new ArrayList<>();
         }
@@ -162,13 +140,18 @@ public class NewTaskFragment extends BaseDialogFragment implements BaseCreateTas
             stepFragments.add(step3);
             currentPagerAdapter.addFragment(step3.getFragment(), step3.getTitle());
 
+            ViewPagerFragmentModel step4 = new ViewPagerFragmentModel();
+            step4.setTitle("Select assignee");
+            step4.setFragment(new TaskAsigneeFragment());
+            stepFragments.add(step4);
+            currentPagerAdapter.addFragment(step4.getFragment(), step4.getTitle());
+
             return currentPagerAdapter;
         }
 
         @Override
         protected void onPostExecute(SectionsPagerAdapter sectionsPagerAdapter) {
             super.onPostExecute(sectionsPagerAdapter);
-
             loadingContainerLl.setVisibility(View.GONE);
 
             stagedViewPager.setAdapter(sectionsPagerAdapter);
@@ -180,9 +163,6 @@ public class NewTaskFragment extends BaseDialogFragment implements BaseCreateTas
 
                 @Override
                 public void onPageSelected(int position) {
-                    if(position == 0)
-                        moveToNextCategoryStage();
-
                     currentStage = position;
                 }
 
@@ -192,8 +172,8 @@ public class NewTaskFragment extends BaseDialogFragment implements BaseCreateTas
                 }
             });
 
+            setStageAndTitle(0);
         }
     }
-
 
 }

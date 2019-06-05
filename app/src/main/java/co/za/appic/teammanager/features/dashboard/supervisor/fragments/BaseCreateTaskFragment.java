@@ -5,10 +5,10 @@ import android.os.Bundle;
 import co.za.appic.teammanager.features.dashboard.supervisor.SupervisorDashboardActivity;
 import co.za.appic.teammanager.fragments.BasePagerFragment;
 import co.za.appic.teammanager.fragments.NewTaskFragment;
+import co.za.appic.teammanager.models.TaskModel;
 
 public abstract class BaseCreateTaskFragment extends BasePagerFragment {
 
-    protected abstract void onStageSetisfied(Object object);
     protected BaseCreateTaskFragment.IRequestRequestStylistFragment parentFragment;
     protected SupervisorDashboardActivity supervisorDashboardActivity;
     protected NewTaskFragment newTaskFragment;
@@ -17,6 +17,10 @@ public abstract class BaseCreateTaskFragment extends BasePagerFragment {
     public void onAttach(Context context) {
         super.onAttach(context);
         supervisorDashboardActivity = (SupervisorDashboardActivity) context;
+    }
+
+    protected void onStageSetisfied(TaskModel taskModel) {
+        newTaskFragment.moveToNextTimeStage(taskModel);
     }
 
     @Override

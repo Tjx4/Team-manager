@@ -63,7 +63,7 @@ public class TaskDescriptionAndPriorityFragment extends BaseCreateTaskFragment {
 
                 taskModel.setDescription(descriptionTxt.getText().toString());
                 boolean idValiddescription = taskModel.getDescription() != null && !taskModel.getDescription().isEmpty();
-                if(idValiddescription){
+                if(!idValiddescription){
                     return;
                 }
 
@@ -76,10 +76,4 @@ public class TaskDescriptionAndPriorityFragment extends BaseCreateTaskFragment {
             }
         });
     }
-
-    @Override
-    public void onStageSetisfied(Object object) {
-        newTaskFragment.moveToNextTimeStage((TaskModel) object);
-    }
-
 }

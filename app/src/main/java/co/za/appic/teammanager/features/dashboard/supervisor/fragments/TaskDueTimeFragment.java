@@ -51,8 +51,4 @@ public class TaskDueTimeFragment extends BaseCreateTaskFragment {
         });
     }
 
-    @Override
-    public void onStageSetisfied(Object object) {
-        newTaskFragment.moveToNextTimeStage((TaskModel) object);
-    }
 }

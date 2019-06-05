@@ -8,14 +8,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.DatePicker;
 import co.za.appic.teammanager.R;
-import co.za.appic.teammanager.models.TaskModel;
 
-public class TaskDueDateFragment extends BaseCreateTaskFragment {
+public class TaskAsigneeFragment extends BaseCreateTaskFragment {
 
-    private DatePicker dueDateDp;
-    private Button nextBtn;
+    private Button createTaskBtn;
 
     public static Fragment newInstance(Activity context, Bundle bundle) {
         return Fragment.instantiate(context, TaskDueDateFragment.class.getName(), bundle);
@@ -23,7 +20,7 @@ public class TaskDueDateFragment extends BaseCreateTaskFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View parentView = inflater.inflate(R.layout.fragment_task_due_date, container, false);
+        View parentView = inflater.inflate(R.layout.fragment_task_asigneee, container, false);
         this.parentView = parentView;
         initViews(parentView);
         return parentView;
@@ -31,22 +28,12 @@ public class TaskDueDateFragment extends BaseCreateTaskFragment {
 
     @Override
     protected void initViews(View parentView) {
-        dueDateDp = parentView.findViewById(R.id.dueDateDp);
-
-        nextBtn = parentView.findViewById(R.id.btnNext);
-        nextBtn.setOnClickListener(new Button.OnClickListener(){
+        createTaskBtn = parentView.findViewById(R.id.btnNext);
+        createTaskBtn.setOnClickListener(new Button.OnClickListener(){
 
             @Override
             public void onClick(View view) {
-                TaskModel taskModel = newTaskFragment.taskModel;
-
-                int year = dueDateDp.getYear();
-                int month = dueDateDp.getMonth() + 1;
-                int day = dueDateDp.getDayOfMonth();
-                String dueDate = day+"/"+month+"/"+year;
-
-                taskModel.setDueDateTime(dueDate);
-                onStageSetisfied(taskModel);
+                newTaskFragment.onCreateTaskButtonClicked(view);
             }
         });
     }
