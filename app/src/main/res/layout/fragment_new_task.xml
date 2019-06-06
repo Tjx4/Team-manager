@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".fragments.NewTaskFragment">
+    tools:context=".features.dashboard.supervisor.fragments.NewTaskFragment">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -13,7 +13,7 @@
         android:layout_gravity="center"
         android:layout_margin="20dp"
         android:padding="10dp"
-        tools:context=".fragments.NewTaskFragment">
+        tools:context=".features.dashboard.supervisor.fragments.NewTaskFragment">
 
         <RelativeLayout
             android:id="@+id/btnbackTitleContainser"

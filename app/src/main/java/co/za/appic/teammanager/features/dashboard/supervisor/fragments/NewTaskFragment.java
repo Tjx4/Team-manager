@@ -1,8 +1,10 @@
-package co.za.appic.teammanager.fragments;
+package co.za.appic.teammanager.features.dashboard.supervisor.fragments;
 
+import android.app.Activity;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,11 +21,7 @@ import co.za.appic.teammanager.R;
 import co.za.appic.teammanager.adapters.SectionsPagerAdapter;
 import co.za.appic.teammanager.customViews.StagedViewPager;
 import co.za.appic.teammanager.features.dashboard.supervisor.SupervisorDashboardActivity;
-import co.za.appic.teammanager.features.dashboard.supervisor.fragments.BaseCreateTaskFragment;
-import co.za.appic.teammanager.features.dashboard.supervisor.fragments.TaskAsigneeFragment;
-import co.za.appic.teammanager.features.dashboard.supervisor.fragments.TaskDescriptionAndPriorityFragment;
-import co.za.appic.teammanager.features.dashboard.supervisor.fragments.TaskDueDateFragment;
-import co.za.appic.teammanager.features.dashboard.supervisor.fragments.TaskDueTimeFragment;
+import co.za.appic.teammanager.fragments.BaseDialogFragment;
 import co.za.appic.teammanager.models.TaskModel;
 import co.za.appic.teammanager.models.ViewPagerFragmentModel;
 
@@ -41,6 +39,9 @@ public class NewTaskFragment extends BaseDialogFragment implements BaseCreateTas
     public TaskModel taskModel;
     public int currentStage;
 
+    public static NewTaskFragment newInstance(Activity context, Bundle bundle) {
+        return (NewTaskFragment)Fragment.instantiate(context, NewTaskFragment.class.getName(), bundle);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

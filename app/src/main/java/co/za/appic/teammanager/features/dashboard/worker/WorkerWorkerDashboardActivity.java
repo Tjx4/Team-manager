@@ -255,11 +255,16 @@ public class WorkerWorkerDashboardActivity extends SharedDashboardActivity imple
 
     @Override
     public void showActiveTask(TaskModel tasks) {
+        if(tasks == null){
+            NotificationHelper.showShortToast(this, getResources().getString(R.string.no_task_in_progress));
+            return;
+        }
+
         tasksContainerRl.setVisibility(View.INVISIBLE);
         homeContentLl.setVisibility(View.INVISIBLE);
         activeTaskContainer.setVisibility(View.VISIBLE);
 
-        if(getPresenter().getActiveTask().getTaskStatus() == TaskStatus.inprogress){
+        if(tasks.getTaskStatus() == TaskStatus.inprogress){
             startTaskBtn.setVisibility(View.INVISIBLE);
             completeTaskBtn.setVisibility(View.VISIBLE);
         }

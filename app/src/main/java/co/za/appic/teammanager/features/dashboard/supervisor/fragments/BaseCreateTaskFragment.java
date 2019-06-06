@@ -4,7 +4,6 @@ import android.content.Context;
 import android.os.Bundle;
 import co.za.appic.teammanager.features.dashboard.supervisor.SupervisorDashboardActivity;
 import co.za.appic.teammanager.fragments.BasePagerFragment;
-import co.za.appic.teammanager.fragments.NewTaskFragment;
 import co.za.appic.teammanager.models.TaskModel;
 
 public abstract class BaseCreateTaskFragment extends BasePagerFragment {

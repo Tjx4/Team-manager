@@ -1,10 +1,14 @@
 package co.za.appic.teammanager.base.activities;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import co.za.appic.teammanager.R;
 import co.za.appic.teammanager.fragments.LoadingSpinnerFragmentBase;
 import co.za.appic.teammanager.fragments.NoInternetFragmentBase;
 import co.za.appic.teammanager.fragments.BaseDialogFragment;
+import co.za.appic.teammanager.helpers.DialogFragmentHelper;
 import co.za.appic.teammanager.helpers.NotificationHelper;
 
 public abstract class BaseAsyncActivity extends BaseActivity{
@@ -16,6 +20,24 @@ public abstract class BaseAsyncActivity extends BaseActivity{
         super.onCreate(savedInstanceState);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(!isNetworkAvailable()){
+            NoInternetFragmentBase noInternetFragmentBase = NoInternetFragmentBase.newInstance(this, null);
+            DialogFragmentHelper.showFragment(this, null, "", R.layout.fragment_no_internet, noInternetFragmentBase);
+            dialogFragment = noInternetFragmentBase;
+        }
+    }
+
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+    }
+
+    @Override
     public void onBackPressed() {
         super.onBackPressed();
         //presenter.handleBackButtonPressed();

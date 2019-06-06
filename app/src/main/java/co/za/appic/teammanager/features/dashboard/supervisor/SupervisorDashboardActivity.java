@@ -14,7 +14,7 @@ import co.za.appic.teammanager.di.components.DaggerSupervisorDashboardComponent;
 import co.za.appic.teammanager.di.modules.SupervisorDashboardModule;
 import co.za.appic.teammanager.features.dashboard.shared.SharedDashboardActivity;
 import co.za.appic.teammanager.features.signin.SignInActivity;
-import co.za.appic.teammanager.fragments.NewTaskFragment;
+import co.za.appic.teammanager.features.dashboard.supervisor.fragments.NewTaskFragment;
 import co.za.appic.teammanager.helpers.AnimationHelper;
 import co.za.appic.teammanager.helpers.DialogFragmentHelper;
 import co.za.appic.teammanager.helpers.NavigationHelper;
@@ -88,7 +88,7 @@ public class SupervisorDashboardActivity extends SharedDashboardActivity impleme
     @Override
     public void onCreateNewTaskClicked(View view) {
         AnimationHelper.blinkView(view);
-        NewTaskFragment newTaskFragment  = new NewTaskFragment();
+        NewTaskFragment newTaskFragment  =  NewTaskFragment.newInstance(this, null);
         DialogFragmentHelper.showFragment(this, null, getResources().getString(R.string.create_task), R.layout.fragment_new_task, newTaskFragment);
         dialogFragment = newTaskFragment;
     }
