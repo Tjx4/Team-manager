@@ -34,8 +34,6 @@ public class SupervisorDashboardActivity extends SharedDashboardActivity impleme
 
     @Override
     protected boolean handleSlideMenuItemClicked(MenuItem item) {
-        super.handleSlideMenuItemClicked(item);
-
         int itemId = item.getItemId();
 
         switch (itemId){
@@ -46,7 +44,7 @@ public class SupervisorDashboardActivity extends SharedDashboardActivity impleme
                 break;
 
         }
-        return true;
+        return super.handleSlideMenuItemClicked(item);
     }
 
     @Override

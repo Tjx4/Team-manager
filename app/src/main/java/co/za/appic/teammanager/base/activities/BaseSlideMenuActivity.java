@@ -108,6 +108,9 @@ public abstract class BaseSlideMenuActivity extends BaseNoActionBarActivity impl
 
             @Override
             public void onDrawerClosed(View view) {
+                if(item == null)
+                    return;
+
                 handleSlideMenuItemClicked(item);
             }
 
@@ -126,6 +129,7 @@ public abstract class BaseSlideMenuActivity extends BaseNoActionBarActivity impl
     }
 
     protected boolean handleSlideMenuItemClicked(MenuItem item) {
+        this.item = null;
         return true;
     }
 

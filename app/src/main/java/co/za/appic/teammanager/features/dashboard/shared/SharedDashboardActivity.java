@@ -28,8 +28,6 @@ public abstract class SharedDashboardActivity extends BaseSlideMenuActivity {
 
     @Override
     protected boolean handleSlideMenuItemClicked(MenuItem item) {
-        super.handleSlideMenuItemClicked(item);
-
         int itemId = item.getItemId();
 
         switch (itemId){
@@ -41,7 +39,8 @@ public abstract class SharedDashboardActivity extends BaseSlideMenuActivity {
                 NavigationHelper.goToActivityWithNoPayload(this , HistoryActivity.class,  TransitionHelper.slideInActivity());
                 break;
         }
-        return true;
+
+        return super.handleSlideMenuItemClicked(item);
     }
 
     @Override
