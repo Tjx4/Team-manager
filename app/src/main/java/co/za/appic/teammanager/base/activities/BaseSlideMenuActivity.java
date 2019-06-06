@@ -26,11 +26,7 @@ public abstract class BaseSlideMenuActivity extends BaseNoActionBarActivity impl
     protected View parentLayout;
     protected FrameLayout placeHolderView;
     protected DrawerLayout drawer;
-
-    @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        return handleSlideMenuItemClicked(item);
-    }
+    protected MenuItem item;
 
     @Override
     public void onBackPressed() {
@@ -98,20 +94,41 @@ public abstract class BaseSlideMenuActivity extends BaseNoActionBarActivity impl
         navigationView.inflateMenu(getSideMenu());
 
         slideMenu = navigationView.getMenu();
+
+        drawer.setDrawerListener(new DrawerLayout.DrawerListener() {
+            @Override
+            public void onDrawerSlide(View view, float v) {
+
+            }
+
+            @Override
+            public void onDrawerOpened(View view) {
+
+            }
+
+            @Override
+            public void onDrawerClosed(View view) {
+                handleSlideMenuItemClicked(item);
+            }
+
+            @Override
+            public void onDrawerStateChanged(int i) {
+
+            }
+        });
     }
 
-    protected boolean handleSlideMenuItemClicked(MenuItem item) {
+
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        this.item = item;
+        drawer.closeDrawers();
         return true;
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
 
-        if(isNewActivity)
-            return;
-
-        drawer.closeDrawers();
+    protected boolean handleSlideMenuItemClicked(MenuItem item) {
+        return true;
     }
 
     protected void hidePlaceHoderView(){
