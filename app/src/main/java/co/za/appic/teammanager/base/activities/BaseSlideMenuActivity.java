@@ -118,14 +118,12 @@ public abstract class BaseSlideMenuActivity extends BaseNoActionBarActivity impl
         });
     }
 
-
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         this.item = item;
         drawer.closeDrawers();
         return true;
     }
-
 
     protected boolean handleSlideMenuItemClicked(MenuItem item) {
         return true;
