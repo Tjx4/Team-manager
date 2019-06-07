@@ -29,7 +29,6 @@ public class ProfileActivity extends BaseChildActivity implements ProfileView {
     private TextView genderTv;
     private EditText nameTxt;
     private EditText surnameTxt;
-    private EditText employeeTypeTxt;
     private GenderSelectorView genderGsv;
     private MenuItem editMenuItem;
     private MenuItem viewMenuItem;

@@ -2,7 +2,10 @@ package co.za.appic.teammanager.customViews;
 
 import android.content.Context;
 import android.os.Build;
+import android.util.AttributeSet;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
@@ -19,40 +22,26 @@ public class GenderSelectorView extends RelativeLayout {
     private RadioButton maleRdo;
     private RadioButton femaleRdo;
 
-    public GenderSelectorView(Context context) {
-        super(context);
+    public GenderSelectorView(Context context, AttributeSet attrs) {
+        super(context, attrs);
+        this.context = context;
         init(context);
     }
 
     private void init(Context context) {
+        addGenderIcon();
         addRadioGroup();
         addMaleRadioButton();
         addFemaleRadioButton();
-        addGenderIcon();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            this.setBackground(context.getResources().getDrawable(R.drawable.def_edittext_background));
-        }
     }
 
     public UserGender getSelectedGender(){
         return selectedGender;
     }
 
-    private void addRadioGroup(){
-        genderRadioGroup = new RadioGroup(context);
-        LayoutParams params = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
-        params.addRule(this.ALIGN_PARENT_RIGHT);
-        params.addRule(this.ALIGN_PARENT_END);
-        params.addRule(this.CENTER_VERTICAL);
-        params.setMargins(0,0, 0,0);
-        genderRadioGroup.setLayoutParams(params);
-
-        this.addView(genderRadioGroup);
-    }
-
     private void addGenderIcon(){
         selectedGenderIcon = new ImageView(context);
-        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
         params.addRule(this.ALIGN_PARENT_LEFT);
         params.addRule(this.ALIGN_PARENT_START);
         params.addRule(this.CENTER_VERTICAL);
@@ -60,24 +49,55 @@ public class GenderSelectorView extends RelativeLayout {
         params.height = (int) UnitConverterHelper.pixelToDp(40, context);
         params.setMargins(0,0, 0,0);
         selectedGenderIcon.setLayoutParams(params);
+        selectedGenderIcon.setImageResource(R.drawable.ic_menu_gallery);
 
-        this.addView(selectedGenderIcon);
+        addView(selectedGenderIcon);
+    }
+
+    private void addRadioGroup(){
+        genderRadioGroup = new RadioGroup(context);
+        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+        params.addRule(this.CENTER_VERTICAL);
+        params.addRule(RelativeLayout.RIGHT_OF, selectedGenderIcon.getId());
+        int leftMaring = (int) UnitConverterHelper.pixelToDp(20, context);
+        params.setMargins(leftMaring,0, 0,0);
+        genderRadioGroup.setLayoutParams(params);
+        genderRadioGroup.setOrientation(LinearLayout.HORIZONTAL);
+
+        addView(genderRadioGroup);
     }
 
     private void addMaleRadioButton(){
         maleRdo = new RadioButton(context);
-        LayoutParams params = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
+        LayoutParams params = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
         params.setMargins(0,0, 0,0);
         maleRdo.setLayoutParams(params);
+        maleRdo.setText("Male");
+        maleRdo.setOnClickListener(new RadioButton.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                selectedGender = UserGender.male;
+                selectedGenderIcon.setImageResource(R.drawable.ic_male_dark);
+            }
+        });
 
         genderRadioGroup.addView(maleRdo);
     }
 
     private void addFemaleRadioButton(){
         femaleRdo = new RadioButton(context);
-        LayoutParams params = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
-        params.setMargins(0,0, 0,0);
+        LayoutParams params = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+        int leftMaring = (int) UnitConverterHelper.pixelToDp(20, context);
+        params.setMargins(leftMaring,0, 0,0);
         femaleRdo.setLayoutParams(params);
+        femaleRdo.setText("Female");
+        femaleRdo.setOnClickListener(new RadioButton.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                selectedGender = UserGender.female;
+                selectedGenderIcon.setImageResource(R.drawable.ic_female_dark);
+            }
+        });
 
         genderRadioGroup.addView(femaleRdo);
     }
