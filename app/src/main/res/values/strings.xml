@@ -106,4 +106,8 @@
     <string name="no_task_in_progress">No task in progress</string>
     <string name="gender">Gender</string>
     <string name="employee_id">Employee Id</string>
+    <string name="enter_your_surname">Enter your surname...</string>
+    <string name="enter_your_name">Enter your name...</string>
+    <string name="full_names">Full names</string>
+    <string name="employee_type">Employee type</string>
 </resources>

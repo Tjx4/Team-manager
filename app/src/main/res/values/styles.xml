@@ -98,6 +98,9 @@
         <item name="android:textColor">@color/darkerText</item>
         <item name="android:textColorHint">@color/darkText</item>
     </style>
+    <style name="profileEditText" parent="mediumDarkEditText">
+        <item name="android:visibility">gone</item>
+    </style>
 
     <style name="teamManagerButton">
         <item name="android:background">@drawable/def_button_background</item>
@@ -145,7 +148,7 @@
     </style>
 
     <style name="reg_detail_separator">
-        <item name="android:layout_marginTop">@dimen/medium_margin</item>
+        <item name="android:layout_marginTop">@dimen/small_view_margin</item>
         <item name="android:orientation">vertical</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>

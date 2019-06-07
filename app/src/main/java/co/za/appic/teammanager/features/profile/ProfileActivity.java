@@ -3,6 +3,8 @@ package co.za.appic.teammanager.features.profile;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
+import android.widget.TextView;
 import javax.inject.Inject;
 import co.za.appic.teammanager.R;
 import co.za.appic.teammanager.base.activities.BaseChildActivity;
@@ -14,6 +16,15 @@ public class ProfileActivity extends BaseChildActivity implements ProfileView {
 
     @Inject
     ProfilePresenter profilePresenter;
+
+    private TextView employeeIdTv;
+    private TextView fullNamesTv;
+    private TextView employeeTypeTv;
+    private TextView genderTv;
+    private EditText nameTxt;
+    private EditText surnameTxt;
+    private EditText employeeTypeTxt;
+    // private GenderSelectorView genderGsv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +45,13 @@ public class ProfileActivity extends BaseChildActivity implements ProfileView {
 
     @Override
     protected void initViews() {
+        employeeIdTv = findViewById(R.id.tvEmployeeId);
+        fullNamesTv = findViewById(R.id.tvFullNames);
+        employeeTypeTv = findViewById(R.id.tvEmployeeType);
+        genderTv = findViewById(R.id.tvGender);
+        nameTxt = findViewById(R.id.txtName);
+        surnameTxt = findViewById(R.id.txtSurname);
+        // genderGsv = findViewById(R.id.txtGender);
     }
 
     @Override
@@ -60,11 +78,6 @@ public class ProfileActivity extends BaseChildActivity implements ProfileView {
     }
 
     @Override
-    public void hideLoader() {
-
-    }
-
-    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.profile_menu, menu);
         return super.onCreateOptionsMenu(menu);
@@ -84,7 +97,6 @@ public class ProfileActivity extends BaseChildActivity implements ProfileView {
             case R.id.action_view:
                 setViewMode();
                 break;
-
         }
         return true;
     }

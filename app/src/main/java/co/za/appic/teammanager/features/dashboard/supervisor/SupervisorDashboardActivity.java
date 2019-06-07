@@ -66,11 +66,6 @@ public class SupervisorDashboardActivity extends SharedDashboardActivity impleme
     }
 
     @Override
-    public void hideLoader() {
-        hideLoadingDialog();
-    }
-
-    @Override
     public void setupComponent(AppComponent appComponent) {
         DaggerSupervisorDashboardComponent.builder().appComponent(appComponent)
                 .supervisorDashboardModule(new SupervisorDashboardModule(this))

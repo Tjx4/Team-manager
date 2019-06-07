@@ -30,6 +30,10 @@ public abstract class BaseAsyncActivity extends BaseActivity{
         }
     }
 
+    public void hideLoader() {
+        hideLoadingDialog();
+    }
+
     private boolean isNetworkAvailable() {
         ConnectivityManager connectivityManager
                 = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
