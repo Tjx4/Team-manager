@@ -86,6 +86,10 @@ public class SharedPrefsHelper {
     }
 
     public UserStatus getUserStatus() {
+        UserModel linkedUser = getLinkedUser();
+        if(linkedUser != null)
+            return UserStatus.registered;
+
         int userIndex = sharedPreferences.getInt(USERSTATUS, 0);
         UserStatus userStatus = UserStatus.values()[userIndex];
 

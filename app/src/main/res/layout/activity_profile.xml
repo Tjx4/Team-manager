@@ -6,129 +6,135 @@
     android:layout_height="match_parent"
     tools:context=".features.profile.ProfileActivity">
 
-    <GridLayout
-        android:id="@+id/glEmployeeDetails"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:columnCount="2"
-        android:rowCount="7"
-        android:useDefaultMargins="true"
-        android:layout_gravity="center_horizontal">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-        <com.makeramen.roundedimageview.RoundedImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:src="@drawable/ic_profpic_dark"
-            android:layout_gravity="center"
-            app:riv_corner_radius="45dp"
-            android:scaleType="centerCrop"
-            android:layout_column="0"
-            android:layout_row="0"
-            android:layout_columnSpan="2"/>
-
-        <TextView
-            style="@style/profileLabels"
+        <GridLayout
+            android:id="@+id/glEmployeeDetails"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_column="0"
-            android:layout_row="1"
-            android:text="@string/employee_id"/>
+            android:layout_marginTop="20dp"
+            android:columnCount="2"
+            android:rowCount="7"
+            android:useDefaultMargins="true"
+            android:layout_gravity="center_horizontal">
 
-        <TextView
-            android:id="@+id/tvEmployeeId"
-            style="@style/mediumDarkLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_column="1"
-            android:layout_row="1"
-            android:text="GW001544"/>
+            <com.makeramen.roundedimageview.RoundedImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/ic_profpic_dark"
+                android:layout_gravity="center"
+                app:riv_corner_radius="45dp"
+                android:scaleType="centerCrop"
+                android:layout_column="0"
+                android:layout_row="0"
+                android:layout_columnSpan="2"/>
 
-        <TextView
-            style="@style/profileLabels"
-            android:layout_column="0"
-            android:layout_row="2"
-            android:text="@string/full_names"/>
+            <TextView
+                style="@style/profileLabels"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="0"
+                android:layout_row="1"
+                android:text="@string/employee_id"/>
 
-        <TextView
-            android:id="@+id/tvFullNames"
-            style="@style/mediumDarkLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:tag="v"
-            android:layout_column="1"
-            android:layout_row="2"
-            android:text="Name Surname"/>
+            <TextView
+                android:id="@+id/tvEmployeeId"
+                style="@style/mediumDarkLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="1"
+                android:layout_row="1"
+                android:text="GW001544"/>
 
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_column="0"
-            android:layout_row="3"
-            android:layout_columnSpan="2"
-            android:visibility="gone"
-            android:tag="e">
+            <TextView
+                style="@style/profileLabels"
+                android:layout_column="0"
+                android:layout_row="2"
+                android:text="@string/full_names"/>
 
-            <EditText
-                android:id="@+id/txtName"
-                style="@style/profileEditText"
-                android:hint="@string/enter_your_name"/>
+            <TextView
+                android:id="@+id/tvFullNames"
+                style="@style/mediumDarkLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:tag="v"
+                android:layout_column="1"
+                android:layout_row="2"
+                android:text="Name Surname"/>
 
-            <EditText
-                android:id="@+id/txtSurname"
-                style="@style/profileEditText"
-                android:layout_marginTop="@dimen/small_view_margin"
-                android:hint="@string/enter_your_surname"/>
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_column="0"
+                android:layout_row="3"
+                android:layout_columnSpan="2"
+                android:visibility="gone"
+                android:tag="e">
 
-        </LinearLayout>
+                <EditText
+                    android:id="@+id/txtName"
+                    style="@style/profileEditText"
+                    android:hint="@string/enter_your_name"/>
 
-        <TextView
-            style="@style/profileLabels"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_column="0"
-            android:layout_row="4"
-            android:text="@string/employee_type"/>
+                <EditText
+                    android:id="@+id/txtSurname"
+                    style="@style/profileEditText"
+                    android:layout_marginTop="@dimen/small_view_margin"
+                    android:hint="@string/enter_your_surname"/>
 
-        <TextView
-            android:id="@+id/tvEmployeeType"
-            style="@style/mediumDarkLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_column="1"
-            android:layout_row="4"
-            android:text="General worker"/>
+            </LinearLayout>
 
-        <TextView
-            style="@style/profileLabels"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_column="0"
-            android:layout_row="5"
-            android:text="@string/gender"/>
+            <TextView
+                style="@style/profileLabels"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="0"
+                android:layout_row="4"
+                android:text="@string/employee_type"/>
 
-        <TextView
-            android:id="@+id/tvGender"
-            style="@style/mediumDarkLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:tag="v"
-            android:layout_column="1"
-            android:layout_row="5"
-            android:text="Male"/>
+            <TextView
+                android:id="@+id/tvEmployeeType"
+                style="@style/mediumDarkLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="1"
+                android:layout_row="4"
+                android:text="General worker"/>
 
-        <co.za.appic.teammanager.customViews.GenderSelectorView
-            android:id="@+id/gsvGender"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_column="0"
-            android:layout_row="6"
-            android:layout_columnSpan="2"
-            android:visibility="gone"
-            android:tag="e"
-            android:background="@drawable/dark_edittext_background"/>
+            <TextView
+                style="@style/profileLabels"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="0"
+                android:layout_row="5"
+                android:text="@string/gender"/>
 
-    </GridLayout>
+            <TextView
+                android:id="@+id/tvGender"
+                style="@style/mediumDarkLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:tag="v"
+                android:layout_column="1"
+                android:layout_row="5"
+                android:text="Male"/>
+
+            <co.za.appic.teammanager.customViews.GenderSelectorView
+                android:id="@+id/gsvGender"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="0"
+                android:layout_row="6"
+                android:layout_columnSpan="2"
+                android:visibility="gone"
+                android:tag="e"
+                android:background="@drawable/dark_edittext_background"/>
+
+        </GridLayout>
+
+    </ScrollView>
 
 </FrameLayout>
