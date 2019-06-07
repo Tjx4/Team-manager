@@ -105,4 +105,5 @@
     <string name="continue_current_task">Continue current task</string>
     <string name="no_task_in_progress">No task in progress</string>
     <string name="gender">Gender</string>
+    <string name="employee_id">Employee Id</string>
 </resources>

@@ -46,23 +46,22 @@
     <style name="mediumLabel" parent="teamManagerTextView">
         <item name="android:textSize">@dimen/medium_text_size</item>
     </style>
-
     <style name="mediumLightLabel" parent="mediumLabel">
         <item name="android:textColor">@color/lighterText</item>
     </style>
-
     <style name="mediumDarkLabel" parent="mediumLabel">
         <item name="android:textColor">@color/darkerText</item>
+    </style>
+    <style name="profileLabels" parent="mediumDarkLabel">
+        <item name="android:layout_gravity">right</item>
     </style>
 
     <style name="smallLabel" parent="teamManagerTextView">
         <item name="android:textSize">@dimen/small_text_size</item>
     </style>
-
     <style name="smallLightLabel" parent="smallLabel">
         <item name="android:textColor">@color/lightText</item>
     </style>
-
     <style name="smallDarkLabel" parent="smallLabel">
         <item name="android:textColor">@color/darkText</item>
     </style>
