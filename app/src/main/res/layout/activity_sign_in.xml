@@ -77,7 +77,7 @@
 
                 <Button
                     style="@style/mediumGreenButton"
-                    android:text="@string/Signin"
+                    android:text="@string/signin"
                     android:onClick="onSignInButtonClicked"/>
 
                 <Button

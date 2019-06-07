@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Team manager</string>
     <string name="password">Password</string>
-    <string name="Signin">Sign In</string>
+    <string name="signin">Sign In</string>
     <string name="username">Username</string>
     <string name="welcome">Welcome</string>
     <string name="login_details_message">Please enter your login details to continue</string>

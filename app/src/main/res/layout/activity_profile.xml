@@ -44,85 +44,85 @@
             android:layout_row="1"
             android:text="GW001544"/>
 
-            <TextView
-                style="@style/profileLabels"
-                android:layout_column="0"
-                android:layout_row="2"
-                android:text="@string/full_names"/>
+        <TextView
+            style="@style/profileLabels"
+            android:layout_column="0"
+            android:layout_row="2"
+            android:text="@string/full_names"/>
 
-            <TextView
-                android:id="@+id/tvFullNames"
-                style="@style/mediumDarkLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:tag="v"
-                android:layout_column="1"
-                android:layout_row="2"
-                android:text="Name Surname"/>
+        <TextView
+            android:id="@+id/tvFullNames"
+            style="@style/mediumDarkLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:tag="v"
+            android:layout_column="1"
+            android:layout_row="2"
+            android:text="Name Surname"/>
 
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_column="1"
-                android:layout_row="3"
-                android:layout_columnSpan="2"
-                android:visibility="gone"
-                android:tag="e">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_column="0"
+            android:layout_row="3"
+            android:layout_columnSpan="2"
+            android:visibility="gone"
+            android:tag="e">
 
-                <EditText
-                    android:id="@+id/txtName"
-                    style="@style/profileEditText"
-                    android:hint="@string/enter_your_name"/>
+            <EditText
+                android:id="@+id/txtName"
+                style="@style/profileEditText"
+                android:hint="@string/enter_your_name"/>
 
-                <EditText
-                    android:id="@+id/txtSurname"
-                    style="@style/profileEditText"
-                    android:layout_marginTop="@dimen/small_view_margin"
-                    android:hint="@string/enter_your_surname"/>
+            <EditText
+                android:id="@+id/txtSurname"
+                style="@style/profileEditText"
+                android:layout_marginTop="@dimen/small_view_margin"
+                android:hint="@string/enter_your_surname"/>
 
-            </LinearLayout>
+        </LinearLayout>
 
-            <TextView
-                style="@style/profileLabels"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_column="0"
-                android:layout_row="4"
-                android:text="@string/employee_type"/>
+        <TextView
+            style="@style/profileLabels"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="0"
+            android:layout_row="4"
+            android:text="@string/employee_type"/>
 
-            <TextView
-                android:id="@+id/tvEmployeeType"
-                style="@style/mediumDarkLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_column="1"
-                android:layout_row="4"
-                android:text="General worker"/>
+        <TextView
+            android:id="@+id/tvEmployeeType"
+            style="@style/mediumDarkLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="1"
+            android:layout_row="4"
+            android:text="General worker"/>
 
-            <TextView
-                style="@style/profileLabels"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_column="0"
-                android:layout_row="5"
-                android:text="@string/gender"/>
+        <TextView
+            style="@style/profileLabels"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="0"
+            android:layout_row="5"
+            android:text="@string/gender"/>
 
-            <TextView
-                android:id="@+id/tvGender"
-                style="@style/mediumDarkLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:tag="v"
-                android:layout_column="1"
-                android:layout_row="5"
-                android:text="Male"/>
+        <TextView
+            android:id="@+id/tvGender"
+            style="@style/mediumDarkLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:tag="v"
+            android:layout_column="1"
+            android:layout_row="5"
+            android:text="Male"/>
 
         <co.za.appic.teammanager.customViews.GenderSelectorView
             android:id="@+id/gsvGender"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_column="1"
+            android:layout_column="0"
             android:layout_row="6"
             android:layout_columnSpan="2"
             android:visibility="gone"

@@ -16,6 +16,7 @@ import co.za.appic.teammanager.di.components.AppComponent;
 import co.za.appic.teammanager.di.components.DaggerRegistrationComponent;
 import co.za.appic.teammanager.di.modules.RegistrationModule;
 import co.za.appic.teammanager.enums.EmployeeType;
+import co.za.appic.teammanager.features.profile.ProfileActivity;
 import co.za.appic.teammanager.features.signin.SignInActivity;
 import co.za.appic.teammanager.helpers.NavigationHelper;
 import co.za.appic.teammanager.helpers.NotificationHelper;
@@ -228,6 +229,10 @@ public class RegistrationActivity extends BaseActionBarActivity implements Regis
 
         switch (itemId){
             case R.id.action_quit_reg:
+                finish();
+                break;
+            case R.id.action_signin:
+                NavigationHelper.goToActivityWithNoPayload(this, SignInActivity.class, TransitionHelper.fadeInActivity());
                 finish();
                 break;
         }

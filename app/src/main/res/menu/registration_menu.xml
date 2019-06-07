@@ -8,4 +8,10 @@
         android:title="@string/quit_registration"
         app:showAsAction="never"/>
 
+    <item
+        android:id="@+id/action_signin"
+        android:icon="@drawable/ic_signin_light"
+        android:title="@string/signin"
+        app:showAsAction="never"/>
+
 </menu>
