@@ -7,6 +7,7 @@ import co.za.appic.teammanager.di.components.AppComponent;
 import co.za.appic.teammanager.di.components.DaggerSplashComponent;
 import co.za.appic.teammanager.di.modules.SplashModule;
 import co.za.appic.teammanager.features.pending.PendingRegActivity;
+import co.za.appic.teammanager.features.profile.ProfileActivity;
 import co.za.appic.teammanager.features.registration.RegistrationActivity;
 import co.za.appic.teammanager.features.signin.SignInActivity;
 import co.za.appic.teammanager.helpers.NavigationHelper;
@@ -20,7 +21,8 @@ public class SplashActivity extends BaseAsyncActivity implements SplashView {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        checkUserStatusAndNavigate();
+        NavigationHelper.goToActivityWithNoPayload(this, ProfileActivity.class, TransitionHelper.fadeInActivity());
+        //checkUserStatusAndNavigate();
         finish();
     }
 
