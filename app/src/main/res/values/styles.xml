@@ -99,7 +99,10 @@
         <item name="android:textColorHint">@color/darkText</item>
     </style>
     <style name="profileEditText" parent="mediumDarkEditText">
-        <item name="android:visibility">gone</item>
+        <!--
+        <item name="android:layout_width">@dimen/small_view_margin</item>
+        <item name="android:layout_width">@dimen/small_view_margin</item>
+        -->
     </style>
 
     <style name="teamManagerButton">

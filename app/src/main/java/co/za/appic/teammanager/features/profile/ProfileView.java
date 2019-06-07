@@ -6,4 +6,6 @@ public interface ProfileView extends BaseView {
     ProfilePresenter getPresenter();
     void setEditMode();
     void setViewMode();
+    void toggleViews(char currentViewGroup);
+    void saveAndSetViewMode();
 }
