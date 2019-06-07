@@ -21,8 +21,7 @@ public class SplashActivity extends BaseAsyncActivity implements SplashView {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        NavigationHelper.goToActivityWithNoPayload(this, ProfileActivity.class, TransitionHelper.fadeInActivity());
-        //checkUserStatusAndNavigate();
+        checkUserStatusAndNavigate();
         finish();
     }
 

@@ -56,7 +56,7 @@ public class GenderSelectorView extends RelativeLayout {
         params.addRule(this.ALIGN_PARENT_START);
         params.addRule(this.CENTER_VERTICAL);
         params.width = (int) UnitConverterHelper.pixelToDp(35, context);
-        params.height = (int) UnitConverterHelper.pixelToDp(35, context);
+        params.height = (int) UnitConverterHelper.pixelToDp(30, context);
         int rightMargin = (int) UnitConverterHelper.pixelToDp(10, context);
         params.setMargins(0,0, rightMargin,0);
         selectedGenderIcon.setLayoutParams(params);

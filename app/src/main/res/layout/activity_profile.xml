@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:columnCount="2"
-        android:rowCount="5"
+        android:rowCount="6"
         android:useDefaultMargins="true"
         android:layout_gravity="center_horizontal">
 
@@ -65,9 +65,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_column="1"
+                android:layout_row="3"
+                android:layout_columnSpan="2"
                 android:visibility="gone"
-                android:tag="e"
-                android:layout_row="2">
+                android:tag="e">
 
                 <EditText
                     android:id="@+id/txtName"
@@ -87,7 +88,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_column="0"
-                android:layout_row="3"
+                android:layout_row="4"
                 android:text="@string/employee_type"/>
 
             <TextView
@@ -96,7 +97,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_column="1"
-                android:layout_row="3"
+                android:layout_row="4"
                 android:text="General worker"/>
 
             <TextView
@@ -104,7 +105,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_column="0"
-                android:layout_row="4"
+                android:layout_row="5"
                 android:text="@string/gender"/>
 
             <TextView
@@ -114,7 +115,7 @@
                 android:layout_height="wrap_content"
                 android:tag="v"
                 android:layout_column="1"
-                android:layout_row="4"
+                android:layout_row="5"
                 android:text="Male"/>
 
         <co.za.appic.teammanager.customViews.GenderSelectorView
@@ -122,7 +123,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_column="1"
-            android:layout_row="4"
+            android:layout_row="6"
+            android:layout_columnSpan="2"
             android:visibility="gone"
             android:tag="e"
             android:background="@drawable/dark_edittext_background"/>
