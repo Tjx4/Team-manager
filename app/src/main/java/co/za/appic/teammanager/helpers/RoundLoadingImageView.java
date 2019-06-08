@@ -27,7 +27,7 @@ public class RoundLoadingImageView extends RelativeLayout {
     private String loaderType, imageUrl;
     private float radius;
     private int loaderColor, loaderWidth, loaderHeiht;
-    private int defImage;
+    private String defImage;
 
     public RoundLoadingImageView(Context activity, AttributeSet attrs) {
         super(activity, attrs);
@@ -41,7 +41,7 @@ public class RoundLoadingImageView extends RelativeLayout {
             loaderColor = ta.getInteger(R.styleable.MyLoadingImageView_loaderColor, 0);
             imageUrl = ta.getString(R.styleable.MyLoadingImageView_imageUrl);
             radius = ta.getFloat(R.styleable.MyLoadingImageView_corner_radius, 0);
-            defImage = ta.getInt(R.styleable.MyLoadingImageView_defImage, 0);
+            defImage = ta.getString(R.styleable.MyLoadingImageView_defImage);
             loaderWidth = ta.getInteger(R.styleable.MyLoadingImageView_loaderWidth, 0);
             loaderHeiht = loaderWidth;
 
@@ -85,7 +85,8 @@ public class RoundLoadingImageView extends RelativeLayout {
 
     public void setImage(String url){
         try {
-            GlideHelper.loadImageFromInternet(context, url, imageView, defImage);
+            // defImage
+            GlideHelper.loadImageFromInternet(context, url, imageView, R.drawable.ic_profpic_dark);
             showImage();
         }
         catch (Exception e){
@@ -131,7 +132,6 @@ public class RoundLoadingImageView extends RelativeLayout {
         imageView.setVisibility(View.INVISIBLE);
         imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
         imageView.setBackgroundColor(Color.TRANSPARENT);
-        imageView.setImageResource(defImage);
 
         addView(imageView);
     }

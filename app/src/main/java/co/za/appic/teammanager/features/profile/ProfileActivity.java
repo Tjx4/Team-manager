@@ -75,7 +75,7 @@ public class ProfileActivity extends BaseChildActivity implements ProfileView {
 
     @Override
     public void showUserDetails(String employeeId, String names, String surnames, EmployeeType employeeType, UserGender gender, String ppUrl) {
-        //profilePicRli.setImageFromFirebaseStorage(getPresenter().getFirebaseStorage(), ppUrl);
+        profilePicRli.setImageFromFirebaseStorage(getPresenter().getFirebaseStorage(), ppUrl);
         loaderContainerLl.setVisibility(View.GONE);
         employeeDetailsGl.setVisibility(View.VISIBLE);
         employeeIdTv.setText(employeeId);

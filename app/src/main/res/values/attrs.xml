@@ -4,7 +4,7 @@
         <attr name="loaderType" format="string"/>
         <attr name="corner_radius" format="float"/>
         <attr name="imageUrl" format="string"/>
-        <attr name="defImage" format="integer"/>
+        <attr name="defImage" format="string"/>
         <attr name="loaderColor" format="color"/>
         <attr name="loaderWidth" format="integer"/>
     </declare-styleable>
