@@ -9,6 +9,9 @@ import android.widget.EditText;
 import android.widget.GridLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.google.firebase.storage.StorageReference;
+
 import javax.inject.Inject;
 import co.za.appic.teammanager.R;
 import co.za.appic.teammanager.base.activities.BaseChildActivity;
@@ -18,6 +21,8 @@ import co.za.appic.teammanager.di.components.DaggerProfileComponent;
 import co.za.appic.teammanager.di.modules.ProfileModule;
 import co.za.appic.teammanager.enums.EmployeeType;
 import co.za.appic.teammanager.enums.UserGender;
+import co.za.appic.teammanager.helpers.ImageHelper;
+import co.za.appic.teammanager.helpers.RoundLoadingImageView;
 
 public class ProfileActivity extends BaseChildActivity implements ProfileView {
 
@@ -26,6 +31,7 @@ public class ProfileActivity extends BaseChildActivity implements ProfileView {
 
     private GridLayout employeeDetailsGl;
     private LinearLayout loaderContainerLl;
+    private RoundLoadingImageView profilePicRli;
     private TextView employeeIdTv;
     private TextView fullNamesTv;
     private TextView employeeTypeTv;
@@ -56,6 +62,7 @@ public class ProfileActivity extends BaseChildActivity implements ProfileView {
     @Override
     protected void initViews() {
         loaderContainerLl = findViewById(R.id.llLoaderContainer);
+        profilePicRli = findViewById(R.id.rliProfilePic);
         employeeDetailsGl = findViewById(R.id.glEmployeeDetails);
         employeeIdTv = findViewById(R.id.tvEmployeeId);
         fullNamesTv = findViewById(R.id.tvFullNames);
@@ -67,7 +74,8 @@ public class ProfileActivity extends BaseChildActivity implements ProfileView {
     }
 
     @Override
-    public void showUserDetails(String employeeId, String names, String surnames, EmployeeType employeeType, UserGender gender) {
+    public void showUserDetails(String employeeId, String names, String surnames, EmployeeType employeeType, UserGender gender, String ppUrl) {
+        //profilePicRli.setImageFromFirebaseStorage(getPresenter().getFirebaseStorage(), ppUrl);
         loaderContainerLl.setVisibility(View.GONE);
         employeeDetailsGl.setVisibility(View.VISIBLE);
         employeeIdTv.setText(employeeId);

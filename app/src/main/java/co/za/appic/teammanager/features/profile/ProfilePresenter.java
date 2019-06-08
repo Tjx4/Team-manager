@@ -9,9 +9,8 @@ import co.za.appic.teammanager.base.presenters.BaseAsyncPresenter;
 import co.za.appic.teammanager.constants.Constants;
 import co.za.appic.teammanager.enums.UserGender;
 import co.za.appic.teammanager.helpers.ConverterHelper;
-import co.za.appic.teammanager.models.SupervisorModel;
+import co.za.appic.teammanager.helpers.ImageHelper;
 import co.za.appic.teammanager.models.UserModel;
-import co.za.appic.teammanager.models.WorkerModel;
 
 public class ProfilePresenter extends BaseAsyncPresenter {
 
@@ -27,7 +26,7 @@ public class ProfilePresenter extends BaseAsyncPresenter {
     }
 
     public void syncUser() {
-        String userId = firebaseAuth.getUid();
+        final String userId = firebaseAuth.getUid();
         DatabaseReference userRef = FirebaseDatabase.getInstance().getReference().child(user.getEmployeeType().getDbTable()).child(userId);
         userRef.keepSynced(true);
         userRef.addValueEventListener(new ValueEventListener() {
@@ -35,7 +34,8 @@ public class ProfilePresenter extends BaseAsyncPresenter {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 try{
                     UserModel user = getUserFromDataSnapshot(dataSnapshot);
-                    profileView.showUserDetails(user.getEmployeeId(), user.getName(), user.getSurname(), user.getEmployeeType(), user.getGender());
+                    String ppUrl = ImageHelper.getProfilePicPath(user);
+                    profileView.showUserDetails(user.getEmployeeId(), user.getName(), user.getSurname(), user.getEmployeeType(), user.getGender(), ppUrl);
                 }
                 catch (Exception e){
                 }

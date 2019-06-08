@@ -4,7 +4,7 @@ import co.za.appic.teammanager.enums.EmployeeType;
 import co.za.appic.teammanager.enums.UserGender;
 
 public class UserModel {
-
+    private String profilePicUrl;
     private String fbId;
     private String employeeId;
     private String name;
@@ -76,5 +76,13 @@ public class UserModel {
 
     public void setFbId(String fbId) {
         this.fbId = fbId;
+    }
+
+    public String getProfilePicUrl() {
+        return profilePicUrl;
+    }
+
+    public void setProfilePicUrl(String profilePicUrl) {
+        this.profilePicUrl = profilePicUrl;
     }
 }

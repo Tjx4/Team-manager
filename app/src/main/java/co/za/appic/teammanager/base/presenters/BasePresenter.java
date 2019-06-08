@@ -11,15 +11,12 @@ import co.za.appic.teammanager.base.activities.BaseActivity;
 import co.za.appic.teammanager.base.views.BaseView;
 import co.za.appic.teammanager.helpers.SQLiteHelper;
 import co.za.appic.teammanager.helpers.SharedPrefsHelper;
-import co.za.appic.teammanager.helpers.GlideHelper;
-import co.za.appic.teammanager.models.UserModel;
 
 public abstract class BasePresenter {
 
     protected Context context;
     private BaseView baseView;
     public SharedPrefsHelper sharedPrefsHelper;
-    public GlideHelper glideHelper;
     protected FirebaseAuth firebaseAuth;
     protected FirebaseDatabase firebaseDatabase;
     protected FirebaseUser firebaseUser;
@@ -31,7 +28,6 @@ public abstract class BasePresenter {
         context = (AppCompatActivity)baseView;
         sQLiteOpenHelper = new SQLiteHelper((BaseActivity)baseView);
         sharedPrefsHelper = new SharedPrefsHelper((BaseActivity)baseView);
-        glideHelper = new GlideHelper((BaseActivity)baseView);
         firebaseDatabase = FirebaseDatabase.getInstance();
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
@@ -40,5 +36,9 @@ public abstract class BasePresenter {
 
     public void handleBackButtonPressed(){
 
+    }
+
+    public StorageReference getFirebaseStorage() {
+        return firebaseStorage;
     }
 }

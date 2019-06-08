@@ -29,6 +29,7 @@
                     android:layout_marginBottom="2dp"
                     android:text="@string/loading_profile"/>
 
+                <!--
                 <com.wang.avi.AVLoadingIndicatorView
                     android:id="@+id/progressBarLoading"
                     android:layout_gravity="center"
@@ -36,6 +37,7 @@
                     android:layout_height="wrap_content"
                     app:indicatorName="allScaleMultipleIndicator"
                     app:indicatorColor="@color/darkText"/>
+                -->
 
             </LinearLayout>
 
@@ -73,19 +75,19 @@
 
                 </LinearLayout>
 
-                <com.makeramen.roundedimageview.RoundedImageView
-                    android:id="@+id/rmgPropic"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_toRightOf="@+id/llUploadPic"
-                    android:src="@drawable/ic_profpic_dark"
-                    android:layout_centerVertical="true"
-                    app:riv_corner_radius="45dp"
-                    android:scaleType="centerCrop"
+                <co.za.appic.teammanager.helpers.RoundLoadingImageView
+                    android:id="@+id/rliProfilePic"
+                    android:layout_width="140dp"
+                    android:layout_height="140dp"
+                    app:corner_radius="70"
+                    app:loaderType="BallPulseIndicator"
+                    app:loaderColor="@color/lightestText"
+                    app:loaderWidth="40"
+                    app:defImage="@drawable/ic_profpic_dark"
                     android:layout_gravity="center"
                     android:layout_column="1"
                     android:layout_row="0"
-                    android:layout_columnSpan="2"/>
+                    android:layout_columnSpan="2" />
 
                 <LinearLayout
                     android:id="@+id/llTakePic"
