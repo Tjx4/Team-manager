@@ -60,7 +60,7 @@ public class GenderSelectorView extends RelativeLayout {
         int rightMargin = (int) UnitConverterHelper.pixelToDp(10, context);
         params.setMargins(0,0, rightMargin,0);
         selectedGenderIcon.setLayoutParams(params);
-        selectedGenderIcon.setImageResource(R.drawable.ic_gender_dark);
+        selectedGenderIcon.setImageResource(R.mipmap.ic_gender_color);
         selectedGenderIcon.setId(getUniqId());
 
         addView(selectedGenderIcon);
@@ -88,7 +88,7 @@ public class GenderSelectorView extends RelativeLayout {
             @Override
             public void onClick(View view) {
                 selectedGender = UserGender.male;
-                selectedGenderIcon.setImageResource(R.drawable.ic_male_dark);
+                selectedGenderIcon.setImageResource(R.drawable.ic_male_color);
             }
         });
 
@@ -106,7 +106,7 @@ public class GenderSelectorView extends RelativeLayout {
             @Override
             public void onClick(View view) {
                 selectedGender = UserGender.female;
-                selectedGenderIcon.setImageResource(R.drawable.ic_female_dark);
+                selectedGenderIcon.setImageResource(R.drawable.ic_female_color);
             }
         });
 
