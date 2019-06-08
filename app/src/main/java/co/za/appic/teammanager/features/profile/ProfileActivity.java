@@ -51,6 +51,7 @@ public class ProfileActivity extends BaseChildActivity implements ProfileView {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getPresenter().syncUser();
     }
 
     @Override
@@ -97,7 +98,6 @@ public class ProfileActivity extends BaseChildActivity implements ProfileView {
     public void showContent() {
         loaderContainerLl.setVisibility(View.GONE);
         employeeDetailsGl.setVisibility(View.VISIBLE);
-        editMenuItem.setVisible(true);
     }
 
     @Override
@@ -191,8 +191,9 @@ public class ProfileActivity extends BaseChildActivity implements ProfileView {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.profile_menu, menu);
-        editMenuItem = menu.findItem(R.id.action_edit);
         viewMenuItem = menu.findItem(R.id.action_view);
+        editMenuItem = menu.findItem(R.id.action_edit);
+        editMenuItem.setVisible(true);
         return super.onCreateOptionsMenu(menu);
     }
 

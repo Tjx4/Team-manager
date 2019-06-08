@@ -29,7 +29,6 @@ public class ProfilePresenter extends BaseAsyncPresenter {
         super(profileView);
         this.profileView = profileView;
         user = sharedPrefsHelper.getLinkedUser();
-        syncUser();
     }
 
     public void syncUser() {

@@ -55,7 +55,6 @@ public class RoundLoadingImageView extends RelativeLayout {
         initViews();
         addLoader();
         addImage();
-        showLoader();
 
         this.post( new Runnable() {
             @Override
@@ -86,7 +85,7 @@ public class RoundLoadingImageView extends RelativeLayout {
         imageView.setVisibility(View.VISIBLE);
     }
 
-    public void setImage(String url){
+    public void showCurrentImage(String url){
         try {
             GlideHelper.loadImageFromInternet(context, url, imageView, defImage);
             showImage();
@@ -96,7 +95,7 @@ public class RoundLoadingImageView extends RelativeLayout {
         }
     }
 
-    public void setImage(int uri){
+    public void showCurrentImage(int uri){
         imageView.setImageResource(uri);
         showImage();
     }
@@ -139,18 +138,16 @@ public class RoundLoadingImageView extends RelativeLayout {
     }
 
     public void setImageFromFirebaseStorage(StorageReference firebaseStorage, String imageUrl) {
-        loaderView.setVisibility(View.VISIBLE);
-        imageView.setVisibility(View.INVISIBLE);
-
+        showLoader();
         firebaseStorage.child(imageUrl).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
-                setImage(uri.toString());
+                showCurrentImage(uri.toString());
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception exception) {
-                setImage(defImage);
+                showCurrentImage(defImage);
             }
         });
     }
