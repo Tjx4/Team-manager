@@ -20,16 +20,71 @@
             android:useDefaultMargins="true"
             android:layout_gravity="center_horizontal">
 
-            <com.makeramen.roundedimageview.RoundedImageView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:src="@drawable/ic_profpic_dark"
-                android:layout_gravity="center"
-                app:riv_corner_radius="45dp"
-                android:scaleType="centerCrop"
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_column="0"
                 android:layout_row="0"
-                android:layout_columnSpan="2"/>
+                android:layout_columnSpan="2"
+                android:layout_gravity="center">
+
+                <LinearLayout
+                    android:id="@+id/llUploadPic"
+                    android:visibility="gone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:tag="e"
+                    android:orientation="vertical"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginRight="@dimen/small_view_margin"
+                    android:onClick="onUploadPictureClicked">
+
+                    <com.makeramen.roundedimageview.RoundedImageView
+                        style="@style/propicUpdateIcons"
+                        app:riv_corner_radius="18dp"
+                        android:src="@drawable/ic_upload_pic_dark"/>
+
+                    <TextView
+                        style="@style/profileUpdateLabels"
+                        android:text="@string/upload_picture"/>
+
+                </LinearLayout>
+
+                <com.makeramen.roundedimageview.RoundedImageView
+                    android:id="@+id/rmgPropic"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_toRightOf="@+id/llUploadPic"
+                    android:src="@drawable/ic_profpic_dark"
+                    android:layout_centerVertical="true"
+                    app:riv_corner_radius="45dp"
+                    android:scaleType="centerCrop"/>
+
+                <LinearLayout
+                    android:id="@+id/llTakePic"
+                    android:visibility="gone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:tag="e"
+                    android:orientation="vertical"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/rmgPropic"
+                    android:layout_marginLeft="@dimen/small_view_margin"
+                    android:onClick="onTakePictureClicked">
+
+                    <com.makeramen.roundedimageview.RoundedImageView
+                        style="@style/propicUpdateIcons"
+                        app:riv_corner_radius="18dp"
+                        android:src="@drawable/ic_take_pic_dark"/>
+
+                    <TextView
+                        style="@style/profileUpdateLabels"
+                        android:text="@string/take_picture"/>
+                </LinearLayout>
+
+            </RelativeLayout>
+
 
             <TextView
                 style="@style/profileLabels"
@@ -37,6 +92,7 @@
                 android:layout_height="wrap_content"
                 android:layout_column="0"
                 android:layout_row="1"
+                android:tag="v"
                 android:text="@string/employee_id"/>
 
             <TextView
@@ -46,6 +102,7 @@
                 android:layout_height="wrap_content"
                 android:layout_column="1"
                 android:layout_row="1"
+                android:tag="v"
                 android:text="GW001544"/>
 
             <TextView
@@ -94,6 +151,7 @@
                 android:layout_height="wrap_content"
                 android:layout_column="0"
                 android:layout_row="4"
+                android:tag="v"
                 android:text="@string/employee_type"/>
 
             <TextView
@@ -103,6 +161,7 @@
                 android:layout_height="wrap_content"
                 android:layout_column="1"
                 android:layout_row="4"
+                android:tag="v"
                 android:text="General worker"/>
 
             <TextView

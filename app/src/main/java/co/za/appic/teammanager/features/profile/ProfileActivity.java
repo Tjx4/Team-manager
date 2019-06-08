@@ -103,6 +103,16 @@ public class ProfileActivity extends BaseChildActivity implements ProfileView {
     }
 
     @Override
+    public void onUploadPictureClicked(View view) {
+
+    }
+
+    @Override
+    public void onTakePictureClicked(View view) {
+
+    }
+
+    @Override
     public void toggleViews(char currentViewGroup) {
         int childCount = employeeDetailsGl.getChildCount();
 
