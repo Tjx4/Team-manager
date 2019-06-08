@@ -64,7 +64,7 @@ public class WorkerWorkerDashboardActivity extends SharedDashboardActivity imple
     protected void onResume() {
         super.onResume();
         showPushnotifiaction = false;
-        getPresenter().syncTasks();
+        getPresenter().updateUserAndSyncTasks();
     }
 
     @Override

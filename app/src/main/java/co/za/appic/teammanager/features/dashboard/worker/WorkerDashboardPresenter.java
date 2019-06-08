@@ -30,11 +30,15 @@ public class WorkerDashboardPresenter extends SharedDashboardPresenter {
         super(workerDashboardView);
         this.workerDashboardView = workerDashboardView;
         capturedTasks = new ArrayList<>();
-        worker = sharedPrefsHelper.getWorker();
     }
 
     public WorkerModel getWorker() {
         return worker;
+    }
+
+    public void updateUserAndSyncTasks() {
+        worker = sharedPrefsHelper.getWorker();
+        syncTasks();
     }
 
     public void syncTasks() {

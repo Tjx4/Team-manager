@@ -8,7 +8,10 @@ import com.google.firebase.database.ValueEventListener;
 import co.za.appic.teammanager.base.presenters.BaseAsyncPresenter;
 import co.za.appic.teammanager.constants.Constants;
 import co.za.appic.teammanager.enums.UserGender;
+import co.za.appic.teammanager.helpers.ConverterHelper;
+import co.za.appic.teammanager.models.SupervisorModel;
 import co.za.appic.teammanager.models.UserModel;
+import co.za.appic.teammanager.models.WorkerModel;
 
 public class ProfilePresenter extends BaseAsyncPresenter {
 
@@ -53,7 +56,7 @@ public class ProfilePresenter extends BaseAsyncPresenter {
         isEditMode = editMode;
     }
 
-    public void saveChanges(String updatedName, String updatedSurname, UserGender userGender){
+    public void saveChanges(String updatedName, String updatedSurname, UserGender updatedGender){
         String userId = firebaseAuth.getUid();
         DatabaseReference tableRef = FirebaseDatabase.getInstance().getReference().child(user.getEmployeeType().getDbTable());
         DatabaseReference userRef = tableRef.child(userId);
@@ -63,7 +66,20 @@ public class ProfilePresenter extends BaseAsyncPresenter {
         DatabaseReference surnameRef = userRef.child(Constants.DB_SURNAME);
         surnameRef.setValue(updatedSurname);
         DatabaseReference genderRef = userRef.child(Constants.DB_GENDER);
-        genderRef.setValue(userGender.getId());
+        genderRef.setValue(updatedGender.getId());
+
+        user.setName(updatedName);
+        user.setSurname(updatedSurname);
+        user.setGender(updatedGender);
+
+        switch (user.getEmployeeType()){
+            case worker:
+                sharedPrefsHelper.setWorker(ConverterHelper.getWorkerFromUser(user));
+                break;
+            case supervisor:
+                sharedPrefsHelper.setSupervisor(ConverterHelper.getSupervisorFromUser(user));
+                break;
+        }
     }
 
     public void updateProfilePic() {
