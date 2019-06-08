@@ -15,6 +15,7 @@ import co.za.appic.teammanager.customViews.GenderSelectorView;
 import co.za.appic.teammanager.di.components.AppComponent;
 import co.za.appic.teammanager.di.components.DaggerProfileComponent;
 import co.za.appic.teammanager.di.modules.ProfileModule;
+import co.za.appic.teammanager.enums.EmployeeType;
 import co.za.appic.teammanager.enums.UserGender;
 
 public class ProfileActivity extends BaseChildActivity implements ProfileView {
@@ -63,6 +64,18 @@ public class ProfileActivity extends BaseChildActivity implements ProfileView {
     }
 
     @Override
+    public void showUserDetails(String employeeId, String names, String surnames, EmployeeType employeeType, UserGender gender) {
+        employeeIdTv.setText(employeeId);
+        fullNamesTv.setText(names+""+surnames);
+        employeeTypeTv.setText(employeeType.getUserType());
+        genderTv.setText(gender.getGenderPronoun());
+
+        nameTxt.setText(names);
+        surnameTxt.setText(surnames);
+        genderGsv.setSelectedGender(gender);
+    }
+
+    @Override
     public void setupComponent(AppComponent appComponent) {
         DaggerProfileComponent.builder().appComponent(appComponent)
                 .profileModule(new ProfileModule(this))
@@ -80,6 +93,7 @@ public class ProfileActivity extends BaseChildActivity implements ProfileView {
         toggleViews('v');
         editMenuItem.setVisible(false);
         viewMenuItem.setVisible(true);
+        getPresenter().setEditMode(true);
     }
 
     @Override
@@ -87,6 +101,7 @@ public class ProfileActivity extends BaseChildActivity implements ProfileView {
         toggleViews('e');
         editMenuItem.setVisible(true);
         viewMenuItem.setVisible(false);
+        getPresenter().setEditMode(false);
     }
 
     @Override
@@ -149,7 +164,7 @@ public class ProfileActivity extends BaseChildActivity implements ProfileView {
                 break;
 
             case R.id.action_view:
-                setViewMode();
+                saveAndSetViewMode();
                 break;
         }
 
@@ -159,7 +174,7 @@ public class ProfileActivity extends BaseChildActivity implements ProfileView {
     @Override
     public void onBackPressed() {
         if(getPresenter().isEditMode()){
-            setViewMode();
+            saveAndSetViewMode();
         }
         else {
             super.onBackPressed();
@@ -169,7 +184,7 @@ public class ProfileActivity extends BaseChildActivity implements ProfileView {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == android.view.KeyEvent.KEYCODE_BACK && getPresenter().isEditMode()){
-            setViewMode();
+            saveAndSetViewMode();
             return true;
         }
         else {

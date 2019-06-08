@@ -16,6 +16,7 @@ import co.za.appic.teammanager.di.components.AppComponent;
 import co.za.appic.teammanager.di.components.DaggerRegistrationComponent;
 import co.za.appic.teammanager.di.modules.RegistrationModule;
 import co.za.appic.teammanager.enums.EmployeeType;
+import co.za.appic.teammanager.enums.UserGender;
 import co.za.appic.teammanager.features.profile.ProfileActivity;
 import co.za.appic.teammanager.features.signin.SignInActivity;
 import co.za.appic.teammanager.helpers.NavigationHelper;
@@ -201,12 +202,12 @@ public class RegistrationActivity extends BaseActionBarActivity implements Regis
 
     @Override
     public void onMaleClicked(View view) {
-        getPresenter().setGender('m');
+        getPresenter().setGender(UserGender.male);
     }
 
     @Override
     public void onFemaleClicked(View view) {
-        getPresenter().setGender('f');
+        getPresenter().setGender(UserGender.female);
     }
 
     @Override

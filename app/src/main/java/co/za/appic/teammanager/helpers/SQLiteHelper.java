@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import java.util.ArrayList;
 import java.util.List;
 import co.za.appic.teammanager.enums.EmployeeType;
+import co.za.appic.teammanager.enums.UserGender;
 import co.za.appic.teammanager.models.UserModel;
 
 public class SQLiteHelper extends SQLiteOpenHelper {
@@ -85,7 +86,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         user.setEmployeeId(cursor.getString(0));
         user.setName(cursor.getString(1));
         user.setSurname(cursor.getString(2));
-        user.setGender(cursor.getString(3).charAt(0));
+        user.setGender(UserGender.values()[cursor.getInt(3)]);
         user.setEmployeeType(EmployeeType.values()[cursor.getInt(4)]);
 
         return user;

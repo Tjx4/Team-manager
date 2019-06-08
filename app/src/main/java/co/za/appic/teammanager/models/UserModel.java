@@ -1,13 +1,14 @@
 package co.za.appic.teammanager.models;
 
 import co.za.appic.teammanager.enums.EmployeeType;
+import co.za.appic.teammanager.enums.UserGender;
 
 public class UserModel {
 
     private String fbId;
     private String employeeId;
     private String name;
-    private char gender;
+    private UserGender gender;
     private String surname;
     private String email;
     private String mobile;
@@ -53,11 +54,11 @@ public class UserModel {
         return employeeType;
     }
 
-    public char getGender() {
+    public UserGender getGender() {
         return gender;
     }
 
-    public void setGender(char gender) {
+    public void setGender(UserGender gender) {
         this.gender = gender;
     }
 

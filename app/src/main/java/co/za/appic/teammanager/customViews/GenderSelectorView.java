@@ -43,6 +43,19 @@ public class GenderSelectorView extends RelativeLayout {
         addFemaleRadioButton(context);
     }
 
+    public void setSelectedGender(UserGender selectedGender){
+        this.selectedGender = selectedGender;
+
+        switch(selectedGender){
+            case male:
+                maleRdo.setChecked(true);
+                break;
+            case female:
+                femaleRdo.setChecked(true);
+                break;
+        }
+    }
+
     public UserGender getSelectedGender(){
         return selectedGender;
     }

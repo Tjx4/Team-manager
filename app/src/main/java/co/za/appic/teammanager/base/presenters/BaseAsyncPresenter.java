@@ -4,6 +4,7 @@ import com.google.firebase.database.DataSnapshot;
 import co.za.appic.teammanager.base.views.BaseView;
 import co.za.appic.teammanager.constants.Constants;
 import co.za.appic.teammanager.enums.EmployeeType;
+import co.za.appic.teammanager.enums.UserGender;
 import co.za.appic.teammanager.models.SupervisorModel;
 import co.za.appic.teammanager.models.UserModel;
 import co.za.appic.teammanager.models.WorkerModel;
@@ -50,7 +51,7 @@ public abstract class BaseAsyncPresenter extends BasePresenter {
         user.setName(name);
         String surname = chatSnapshot.child(Constants.DB_SURNAME).getValue().toString();
         user.setSurname(surname);
-        char gender = chatSnapshot.child(Constants.DB_GENDER).getValue().toString().charAt(0);
+        UserGender gender = UserGender.values()[Integer.parseInt(chatSnapshot.child(Constants.DB_GENDER).getValue().toString())];
         user.setGender(gender);
         String mobile = chatSnapshot.child(Constants.DB_MOBILE).getValue().toString();
         user.setMobile(mobile);

@@ -4,8 +4,8 @@ import com.google.firebase.database.DatabaseReference;
 import co.za.appic.teammanager.base.presenters.BaseFirebaseAuthPresenter;
 import co.za.appic.teammanager.constants.Constants;
 import co.za.appic.teammanager.enums.EmployeeType;
+import co.za.appic.teammanager.enums.UserGender;
 import co.za.appic.teammanager.enums.UserStatus;
-import co.za.appic.teammanager.helpers.SharedPrefsHelper;
 import co.za.appic.teammanager.helpers.StringHelper;
 import co.za.appic.teammanager.helpers.StringValidationHelper;
 import co.za.appic.teammanager.models.SupervisorModel;
@@ -27,7 +27,7 @@ public class RegistrationPresenter extends BaseFirebaseAuthPresenter  {
         newUser.setEmployeeType(employeeType);
     }
 
-    public void setGender(char gender) {
+    public void setGender(UserGender gender) {
         newUser.setGender(gender);
     }
 
@@ -47,7 +47,7 @@ public class RegistrationPresenter extends BaseFirebaseAuthPresenter  {
             return;
         }
 
-        boolean isValidGender =  newUser.getGender() == 'm' || newUser.getGender() == 'f';
+        boolean isValidGender = newUser.getGender() == UserGender.male || newUser.getGender() == UserGender.female;
         if(!isValidGender){
             registrationView.showInvalidGender();
             return;

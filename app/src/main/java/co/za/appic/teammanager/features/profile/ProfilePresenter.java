@@ -14,6 +14,7 @@ public class ProfilePresenter extends BaseAsyncPresenter {
         super(profileView);
         this.profileView = profileView;
         user = sharedPrefsHelper.getLinkedUser();
+        profileView.showUserDetails(user.getEmployeeId(),  user.getName(), user.getSurname() , user.getEmployeeType(), user.getGender());
     }
 
     public boolean isEditMode() {
