@@ -17,12 +17,22 @@ public abstract class BaseAsyncPresenter extends BasePresenter {
         super(baseView);
     }
 
+    protected UserModel getUserFromDataSnapshot(DataSnapshot chatSnapshot) {
+        try {
+            UserModel userModel = new UserModel();
+            setCommonUserDetails(chatSnapshot, userModel);
+            return userModel;
+        }
+        catch (Exception e){
+            return null;
+        }
+    }
+
     protected WorkerModel getWorkerFromDataSnapshot(DataSnapshot chatSnapshot) {
         try {
             WorkerModel workerModel = new WorkerModel();
             setCommonUserDetails(chatSnapshot, workerModel);
-            workerModel.setEmployeeType(EmployeeType.worker);
-
+            // Set teams
             return workerModel;
         }
         catch (Exception e){
@@ -34,7 +44,6 @@ public abstract class BaseAsyncPresenter extends BasePresenter {
         try {
             SupervisorModel supervisorModel = new SupervisorModel();
             setCommonUserDetails(chatSnapshot, supervisorModel);
-            supervisorModel.setEmployeeType(EmployeeType.supervisor);
             return supervisorModel;
         }
         catch (Exception e){
@@ -52,7 +61,7 @@ public abstract class BaseAsyncPresenter extends BasePresenter {
         String surname = chatSnapshot.child(Constants.DB_SURNAME).getValue().toString();
         user.setSurname(surname);
         int gender = Integer.parseInt(chatSnapshot.child(Constants.DB_GENDER).getValue().toString());
-        user.setGender(UserGender.values()[gender]);
+        user.setGender(UserGender.values()[--gender]);
         String mobile = chatSnapshot.child(Constants.DB_MOBILE).getValue().toString();
         user.setMobile(mobile);
         String email = chatSnapshot.child(Constants.DB_EMAIL).getValue().toString();

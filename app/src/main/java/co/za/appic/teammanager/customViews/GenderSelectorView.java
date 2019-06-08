@@ -44,14 +44,14 @@ public class GenderSelectorView extends RelativeLayout {
     }
 
     public void setSelectedGender(UserGender selectedGender){
-        this.selectedGender = selectedGender;
-
         switch(selectedGender){
             case male:
                 maleRdo.setChecked(true);
+                setMale();
                 break;
             case female:
                 femaleRdo.setChecked(true);
+                setFemale();
                 break;
         }
     }
@@ -98,8 +98,7 @@ public class GenderSelectorView extends RelativeLayout {
         maleRdo.setOnClickListener(new RadioButton.OnClickListener(){
             @Override
             public void onClick(View view) {
-                selectedGender = UserGender.male;
-                selectedGenderIcon.setImageResource(R.drawable.ic_male_dark);
+                setMale();
             }
         });
 
@@ -116,12 +115,21 @@ public class GenderSelectorView extends RelativeLayout {
         femaleRdo.setOnClickListener(new RadioButton.OnClickListener(){
             @Override
             public void onClick(View view) {
-                selectedGender = UserGender.female;
-                selectedGenderIcon.setImageResource(R.drawable.ic_female_dark);
+                setFemale();
             }
         });
 
         genderRadioGroup.addView(femaleRdo);
+    }
+
+    private void setMale(){
+        selectedGender = UserGender.male;
+        selectedGenderIcon.setImageResource(R.drawable.ic_male_dark);
+    }
+
+    private void setFemale(){
+        selectedGender = UserGender.female;
+        selectedGenderIcon.setImageResource(R.drawable.ic_female_dark);
     }
 
     private static final AtomicInteger sNextGeneratedId = new AtomicInteger(1);

@@ -64,6 +64,7 @@ public class WorkerWorkerDashboardActivity extends SharedDashboardActivity imple
     protected void onResume() {
         super.onResume();
         showPushnotifiaction = false;
+        getPresenter().syncTasks();
     }
 
     @Override
@@ -108,7 +109,6 @@ public class WorkerWorkerDashboardActivity extends SharedDashboardActivity imple
     protected void initViews() {
         setSlideMenuDependencies(this,  getResources().getString(R.string.app_name), R.layout.activity_worker_dashboard, false);
         parentLayout = getMainLayout().inflate();
-
         wolcomeMessageTv = parentLayout.findViewById(R.id.tvWolcomeMessage);
         pendingCountTv = parentLayout.findViewById(R.id.tvPendingCount);
         completedCounteTv = parentLayout.findViewById(R.id.tvCompletedCount);

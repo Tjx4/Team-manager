@@ -29,16 +29,16 @@ public class WorkerDashboardPresenter extends SharedDashboardPresenter {
     public WorkerDashboardPresenter(WorkerDashboardView workerDashboardView) {
         super(workerDashboardView);
         this.workerDashboardView = workerDashboardView;
+        capturedTasks = new ArrayList<>();
         worker = sharedPrefsHelper.getWorker();
-        syncTasks(worker.getFbId());
     }
 
     public WorkerModel getWorker() {
         return worker;
     }
 
-    public void syncTasks(final String workerId) {
-        capturedTasks = new ArrayList<>();
+    public void syncTasks() {
+        String workerId = firebaseAuth.getUid();
         DatabaseReference tasksRef = FirebaseDatabase.getInstance().getReference().child(Constants.DB_TASKS);
         Query query = tasksRef.orderByChild(Constants.DB_WORKER).equalTo(workerId);
         query.keepSynced(true);

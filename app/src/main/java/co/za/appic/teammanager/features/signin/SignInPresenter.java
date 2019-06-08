@@ -105,7 +105,6 @@ public class SignInPresenter extends BaseFirebaseAuthPresenter  {
     }
 
     private void fetchCurrentSupervisor(String stylistId) {
-
         final DatabaseReference UserRef = FirebaseDatabase.getInstance().getReference().child(Constants.SUPERVISORS_TABLE).child(stylistId);
         ValueEventListener listener = new ValueEventListener() {
             @Override

@@ -7,6 +7,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.GridLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import javax.inject.Inject;
 import co.za.appic.teammanager.R;
@@ -24,6 +25,7 @@ public class ProfileActivity extends BaseChildActivity implements ProfileView {
     ProfilePresenter profilePresenter;
 
     private GridLayout employeeDetailsGl;
+    private LinearLayout loaderContainerLl;
     private TextView employeeIdTv;
     private TextView fullNamesTv;
     private TextView employeeTypeTv;
@@ -53,6 +55,7 @@ public class ProfileActivity extends BaseChildActivity implements ProfileView {
 
     @Override
     protected void initViews() {
+        loaderContainerLl = findViewById(R.id.llLoaderContainer);
         employeeDetailsGl = findViewById(R.id.glEmployeeDetails);
         employeeIdTv = findViewById(R.id.tvEmployeeId);
         fullNamesTv = findViewById(R.id.tvFullNames);
@@ -65,10 +68,12 @@ public class ProfileActivity extends BaseChildActivity implements ProfileView {
 
     @Override
     public void showUserDetails(String employeeId, String names, String surnames, EmployeeType employeeType, UserGender gender) {
+        loaderContainerLl.setVisibility(View.GONE);
+        employeeDetailsGl.setVisibility(View.VISIBLE);
         employeeIdTv.setText(employeeId);
         fullNamesTv.setText(names+" "+surnames);
         employeeTypeTv.setText(employeeType.getUserType());
-        genderTv.setText(gender.getGenderPronoun());
+        genderTv.setText(gender.getGender());
 
         nameTxt.setText(names);
         surnameTxt.setText(surnames);
@@ -106,7 +111,7 @@ public class ProfileActivity extends BaseChildActivity implements ProfileView {
 
     @Override
     public void saveAndSetViewMode() {
-        String updatedName = surnameTxt.getText().toString();
+        String updatedName = nameTxt.getText().toString();
         String updatedSurname = surnameTxt.getText().toString();
         UserGender userGender = genderGsv.getSelectedGender();
 
@@ -116,12 +121,12 @@ public class ProfileActivity extends BaseChildActivity implements ProfileView {
 
     @Override
     public void onUploadPictureClicked(View view) {
-
+        getPresenter().updateProfilePic();
     }
 
     @Override
     public void onTakePictureClicked(View view) {
-
+        getPresenter().updateProfilePic();
     }
 
     @Override
