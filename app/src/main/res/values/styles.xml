@@ -101,7 +101,7 @@
         <item name="android:textColorHint">@color/darkText</item>
     </style>
     <style name="profileEditText" parent="mediumDarkEditText">
-        <item name="android:layout_width">250dp</item>
+        <item name="android:layout_width">300dp</item>
     </style>
 
     <style name="teamManagerButton">
@@ -178,8 +178,8 @@
 
     <style name="propicUpdateIcons">
         <item name="android:layout_gravity">center</item>
-        <item name="android:layout_width">35dp</item>
-        <item name="android:layout_height">35dp</item>
+        <item name="android:layout_width">30dp</item>
+        <item name="android:layout_height">30dp</item>
         <item name="android:scaleType">centerCrop</item>
     </style>
 
