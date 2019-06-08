@@ -5,7 +5,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.ImageView;
+
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.StorageReference;
@@ -17,7 +17,7 @@ import co.za.appic.teammanager.models.UserModel;
 public class ImageHelper {
 
     public static String getProfilePicPath(UserModel user){
-        return getProfilePicRootPath(user) + user.getProfilePicUrl();
+        return getProfilePicRootPath(user) + user.getProfilePic();
     }
 
     public static String getProfilePicRootPath(UserModel user){

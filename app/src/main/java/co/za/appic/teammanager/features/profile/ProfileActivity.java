@@ -25,6 +25,7 @@ import co.za.appic.teammanager.di.components.DaggerProfileComponent;
 import co.za.appic.teammanager.di.modules.ProfileModule;
 import co.za.appic.teammanager.enums.EmployeeType;
 import co.za.appic.teammanager.enums.UserGender;
+import co.za.appic.teammanager.helpers.AnimationHelper;
 import co.za.appic.teammanager.helpers.ImageHelper;
 import co.za.appic.teammanager.helpers.RoundLoadingImageView;
 
@@ -141,6 +142,7 @@ public class ProfileActivity extends BaseChildActivity implements ProfileView {
 
     @Override
     public void onUploadPictureClicked(View view) {
+        AnimationHelper.blinkView(view);
         ImageHelper.getImageFromPhone(this);
     }
 

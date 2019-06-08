@@ -61,7 +61,7 @@ public abstract class BaseAsyncPresenter extends BasePresenter {
         String surname = chatSnapshot.child(Constants.DB_SURNAME).getValue().toString();
         user.setSurname(surname);
         String profilePic = chatSnapshot.child(Constants.DB_PROFILE_PIC).getValue().toString();
-        user.setProfilePicUrl(profilePic);
+        user.setProfilePic(profilePic);
         int gender = Integer.parseInt(chatSnapshot.child(Constants.DB_GENDER).getValue().toString());
         user.setGender(UserGender.values()[--gender]);
         String mobile = chatSnapshot.child(Constants.DB_MOBILE).getValue().toString();
