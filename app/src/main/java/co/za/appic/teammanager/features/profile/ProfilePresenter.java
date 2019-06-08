@@ -1,5 +1,8 @@
 package co.za.appic.teammanager.features.profile;
 
+import android.app.Activity;
+import android.graphics.Bitmap;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import com.google.firebase.database.DataSnapshot;
@@ -93,7 +96,17 @@ public class ProfilePresenter extends BaseAsyncPresenter {
         }
     }
 
-    public void updateProfilePic() {
+    public void updateProfilePic(Bitmap bitmap) {
+        String newProfPic = "propic.jpeg";
+        String imagePath = ImageHelper.getProfilePicRootPath(user)+newProfPic;
+        ImageHelper.uploadFromBitmap((AppCompatActivity) context, getFirebaseStorage(), bitmap, imagePath);
+
+        String userId = firebaseAuth.getUid();
+        DatabaseReference tableRef = FirebaseDatabase.getInstance().getReference().child(user.getEmployeeType().getDbTable());
+        DatabaseReference userRef = tableRef.child(userId);
+
+        DatabaseReference profPicRef = userRef.child(Constants.DB_PROFILE_PIC);
+        profPicRef.setValue(newProfPic);
 
     }
 }

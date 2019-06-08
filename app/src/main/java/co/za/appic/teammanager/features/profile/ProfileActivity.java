@@ -1,17 +1,21 @@
 package co.za.appic.teammanager.features.profile;
 
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.GridLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import com.google.firebase.storage.StorageReference;
-
+import java.io.IOException;
 import javax.inject.Inject;
 import co.za.appic.teammanager.R;
 import co.za.appic.teammanager.base.activities.BaseChildActivity;
@@ -41,6 +45,8 @@ public class ProfileActivity extends BaseChildActivity implements ProfileView {
     private GenderSelectorView genderGsv;
     private MenuItem editMenuItem;
     private MenuItem viewMenuItem;
+    private static Bitmap currentImageBitmap;
+    private static ImageView currentImageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,11 +93,11 @@ public class ProfileActivity extends BaseChildActivity implements ProfileView {
         profilePicRli.setImageFromFirebaseStorage(getPresenter().getFirebaseStorage(), ppUrl);
     }
 
-
     @Override
     public void showContent() {
         loaderContainerLl.setVisibility(View.GONE);
         employeeDetailsGl.setVisibility(View.VISIBLE);
+        editMenuItem.setVisible(true);
     }
 
     @Override
@@ -135,12 +141,12 @@ public class ProfileActivity extends BaseChildActivity implements ProfileView {
 
     @Override
     public void onUploadPictureClicked(View view) {
-        getPresenter().updateProfilePic();
+        ImageHelper.getImageFromPhone(this);
     }
 
     @Override
     public void onTakePictureClicked(View view) {
-        getPresenter().updateProfilePic();
+       // getPresenter().updateProfilePic();
     }
 
     @Override
@@ -160,6 +166,24 @@ public class ProfileActivity extends BaseChildActivity implements ProfileView {
             }
             else {
                 child.setVisibility(View.VISIBLE);
+            }
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK)
+        {
+            try {
+                Uri chosenImageUri = data.getData();
+                currentImageView = profilePicRli.getImageView();
+                currentImageBitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), chosenImageUri);
+                currentImageView.setImageBitmap(currentImageBitmap);
+                getPresenter().updateProfilePic(currentImageBitmap);
+
+            } catch (IOException e) {
+                Log.e("IMG_UPLOAD_ERROR", ""+e);
             }
         }
     }

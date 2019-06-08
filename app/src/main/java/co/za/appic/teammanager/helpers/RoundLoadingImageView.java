@@ -155,6 +155,10 @@ public class RoundLoadingImageView extends RelativeLayout {
         });
     }
 
+    public ImageView getImageView(){
+        return imageView;
+    }
+
     private final AtomicInteger sNextGeneratedId = new AtomicInteger(1);
 
     @SuppressLint("NewApi")
