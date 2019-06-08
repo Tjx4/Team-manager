@@ -1,5 +1,7 @@
 package co.za.appic.teammanager.features.profile;
 
+import android.util.Log;
+
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -10,6 +12,8 @@ import co.za.appic.teammanager.constants.Constants;
 import co.za.appic.teammanager.enums.UserGender;
 import co.za.appic.teammanager.helpers.ConverterHelper;
 import co.za.appic.teammanager.helpers.ImageHelper;
+
+import co.za.appic.teammanager.helpers.StringValidationHelper;
 import co.za.appic.teammanager.models.UserModel;
 
 public class ProfilePresenter extends BaseAsyncPresenter {
@@ -35,9 +39,11 @@ public class ProfilePresenter extends BaseAsyncPresenter {
                 try{
                     UserModel user = getUserFromDataSnapshot(dataSnapshot);
                     String ppUrl = ImageHelper.getProfilePicPath(user);
+                    profileView.showContent();
                     profileView.showUserDetails(user.getEmployeeId(), user.getName(), user.getSurname(), user.getEmployeeType(), user.getGender(), ppUrl);
                 }
                 catch (Exception e){
+                    Log.e("SYNC_USER_ERROR", ""+e);
                 }
             }
 
@@ -57,6 +63,11 @@ public class ProfilePresenter extends BaseAsyncPresenter {
     }
 
     public void saveChanges(String updatedName, String updatedSurname, UserGender updatedGender){
+
+        if(!StringValidationHelper.isValidName(updatedName) || !StringValidationHelper.isValidName(updatedSurname)){
+            return;
+        }
+
         String userId = firebaseAuth.getUid();
         DatabaseReference tableRef = FirebaseDatabase.getInstance().getReference().child(user.getEmployeeType().getDbTable());
         DatabaseReference userRef = tableRef.child(userId);

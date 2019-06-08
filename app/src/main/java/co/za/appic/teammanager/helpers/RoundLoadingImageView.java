@@ -27,7 +27,7 @@ public class RoundLoadingImageView extends RelativeLayout {
     private String loaderType, imageUrl;
     private float radius;
     private int loaderColor, loaderWidth, loaderHeiht;
-    private String defImage;
+    private int defImage;
 
     public RoundLoadingImageView(Context activity, AttributeSet attrs) {
         super(activity, attrs);
@@ -41,7 +41,7 @@ public class RoundLoadingImageView extends RelativeLayout {
             loaderColor = ta.getInteger(R.styleable.MyLoadingImageView_loaderColor, 0);
             imageUrl = ta.getString(R.styleable.MyLoadingImageView_imageUrl);
             radius = ta.getFloat(R.styleable.MyLoadingImageView_corner_radius, 0);
-            defImage = ta.getString(R.styleable.MyLoadingImageView_defImage);
+            defImage = getImageResFromURI(ta.getString(R.styleable.MyLoadingImageView_defImage));
             loaderWidth = ta.getInteger(R.styleable.MyLoadingImageView_loaderWidth, 0);
             loaderHeiht = loaderWidth;
 
@@ -52,21 +52,24 @@ public class RoundLoadingImageView extends RelativeLayout {
 
         ta.recycle();
 
+        initViews();
+        addLoader();
+        addImage();
+        showLoader();
+
         this.post( new Runnable() {
             @Override
             public void run() {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                     setBackground(context.getResources().getDrawable(R.drawable.loader_image_background));
                 }
-
-                initViews();
-                addLoader();
-                addImage();
-                showLoader();
             }
         });
     }
 
+    private int getImageResFromURI(String uri){
+        return R.drawable.ic_profpic_dark;
+    }
 
     private void initViews(){
         imageView = new RoundedImageView(context);
@@ -85,8 +88,7 @@ public class RoundLoadingImageView extends RelativeLayout {
 
     public void setImage(String url){
         try {
-            // defImage
-            GlideHelper.loadImageFromInternet(context, url, imageView, R.drawable.ic_profpic_dark);
+            GlideHelper.loadImageFromInternet(context, url, imageView, defImage);
             showImage();
         }
         catch (Exception e){
@@ -137,9 +139,7 @@ public class RoundLoadingImageView extends RelativeLayout {
     }
 
     public void setImageFromFirebaseStorage(StorageReference firebaseStorage, String imageUrl) {
-        AVLoadingIndicatorView loader = (AVLoadingIndicatorView) getChildAt(0);
-        loader.setVisibility(View.VISIBLE);
-        RoundedImageView imageView = (RoundedImageView) getChildAt(1);
+        loaderView.setVisibility(View.VISIBLE);
         imageView.setVisibility(View.INVISIBLE);
 
         firebaseStorage.child(imageUrl).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {

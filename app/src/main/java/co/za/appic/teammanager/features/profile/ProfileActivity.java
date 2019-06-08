@@ -75,9 +75,6 @@ public class ProfileActivity extends BaseChildActivity implements ProfileView {
 
     @Override
     public void showUserDetails(String employeeId, String names, String surnames, EmployeeType employeeType, UserGender gender, String ppUrl) {
-        profilePicRli.setImageFromFirebaseStorage(getPresenter().getFirebaseStorage(), ppUrl);
-        loaderContainerLl.setVisibility(View.GONE);
-        employeeDetailsGl.setVisibility(View.VISIBLE);
         employeeIdTv.setText(employeeId);
         fullNamesTv.setText(names+" "+surnames);
         employeeTypeTv.setText(employeeType.getUserType());
@@ -86,6 +83,15 @@ public class ProfileActivity extends BaseChildActivity implements ProfileView {
         nameTxt.setText(names);
         surnameTxt.setText(surnames);
         genderGsv.setSelectedGender(gender);
+
+        profilePicRli.setImageFromFirebaseStorage(getPresenter().getFirebaseStorage(), ppUrl);
+    }
+
+
+    @Override
+    public void showContent() {
+        loaderContainerLl.setVisibility(View.GONE);
+        employeeDetailsGl.setVisibility(View.VISIBLE);
     }
 
     @Override

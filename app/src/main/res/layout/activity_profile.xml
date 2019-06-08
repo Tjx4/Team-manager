@@ -28,7 +28,7 @@
                     android:gravity="center"
                     android:layout_marginBottom="2dp"
                     android:text="@string/loading_profile"/>
-                <!--
+
                 <com.wang.avi.AVLoadingIndicatorView
                     android:id="@+id/progressBarLoading"
                     android:layout_gravity="center"
@@ -36,7 +36,6 @@
                     android:layout_height="wrap_content"
                     app:indicatorName="allScaleMultipleIndicator"
                     app:indicatorColor="@color/darkText"/>
-                -->
 
             </LinearLayout>
 
