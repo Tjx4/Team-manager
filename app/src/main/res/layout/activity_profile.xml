@@ -28,7 +28,6 @@
                     android:gravity="center"
                     android:layout_marginBottom="2dp"
                     android:text="@string/loading_profile"/>
-
                 <!--
                 <com.wang.avi.AVLoadingIndicatorView
                     android:id="@+id/progressBarLoading"
@@ -79,10 +78,10 @@
                     android:id="@+id/rliProfilePic"
                     android:layout_width="140dp"
                     android:layout_height="140dp"
-                    app:corner_radius="60"
+                    app:corner_radius="70"
                     app:loaderType="BallPulseIndicator"
                     app:loaderColor="@color/lightestText"
-                    app:loaderWidth="60"
+                    app:loaderWidth="50"
                     app:defImage="@drawable/ic_profpic_dark"
                     android:layout_gravity="center"
                     android:layout_column="1"
