@@ -66,7 +66,7 @@ public class ProfileActivity extends BaseChildActivity implements ProfileView {
     @Override
     public void showUserDetails(String employeeId, String names, String surnames, EmployeeType employeeType, UserGender gender) {
         employeeIdTv.setText(employeeId);
-        fullNamesTv.setText(names+""+surnames);
+        fullNamesTv.setText(names+" "+surnames);
         employeeTypeTv.setText(employeeType.getUserType());
         genderTv.setText(gender.getGenderPronoun());
 
