@@ -30,12 +30,10 @@ public class GenderSelectorView extends RelativeLayout {
 
     private void init(Context context) {
         int width = (int) UnitConverterHelper.pixelToDp(230, context);
-        int height = (int) UnitConverterHelper.pixelToDp(45, context);
         int padding = (int) UnitConverterHelper.pixelToDp(20, context);
 
         RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
         params.width = width;
-        params.height = height;
         setLayoutParams(params);
         setPadding(padding, 0 , padding, 0);
 
@@ -56,11 +54,11 @@ public class GenderSelectorView extends RelativeLayout {
         params.addRule(this.ALIGN_PARENT_START);
         params.addRule(this.CENTER_VERTICAL);
         params.width = (int) UnitConverterHelper.pixelToDp(35, context);
-        params.height = (int) UnitConverterHelper.pixelToDp(30, context);
+        params.height = (int) UnitConverterHelper.pixelToDp(35, context);
         int rightMargin = (int) UnitConverterHelper.pixelToDp(10, context);
         params.setMargins(0,0, rightMargin,0);
         selectedGenderIcon.setLayoutParams(params);
-        selectedGenderIcon.setImageResource(R.mipmap.ic_gender_color);
+        selectedGenderIcon.setImageResource(R.drawable.ic_gender_dark);
         selectedGenderIcon.setId(getUniqId());
 
         addView(selectedGenderIcon);
@@ -88,7 +86,7 @@ public class GenderSelectorView extends RelativeLayout {
             @Override
             public void onClick(View view) {
                 selectedGender = UserGender.male;
-                selectedGenderIcon.setImageResource(R.drawable.ic_male_color);
+                selectedGenderIcon.setImageResource(R.drawable.ic_male_dark);
             }
         });
 
@@ -106,7 +104,7 @@ public class GenderSelectorView extends RelativeLayout {
             @Override
             public void onClick(View view) {
                 selectedGender = UserGender.female;
-                selectedGenderIcon.setImageResource(R.drawable.ic_female_color);
+                selectedGenderIcon.setImageResource(R.drawable.ic_female_dark);
             }
         });
 

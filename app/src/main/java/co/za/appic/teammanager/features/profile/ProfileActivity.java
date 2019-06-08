@@ -32,7 +32,6 @@ public class ProfileActivity extends BaseChildActivity implements ProfileView {
     private GenderSelectorView genderGsv;
     private MenuItem editMenuItem;
     private MenuItem viewMenuItem;
-    private MenuItem saveMenuItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,8 +79,7 @@ public class ProfileActivity extends BaseChildActivity implements ProfileView {
     public void setEditMode() {
         toggleViews('v');
         editMenuItem.setVisible(false);
-        viewMenuItem.setVisible(false);
-        saveMenuItem.setVisible(true);
+        viewMenuItem.setVisible(true);
     }
 
     @Override
@@ -89,7 +87,6 @@ public class ProfileActivity extends BaseChildActivity implements ProfileView {
         toggleViews('e');
         editMenuItem.setVisible(true);
         viewMenuItem.setVisible(false);
-        saveMenuItem.setVisible(false);
     }
 
     @Override
@@ -138,7 +135,6 @@ public class ProfileActivity extends BaseChildActivity implements ProfileView {
         getMenuInflater().inflate(R.menu.profile_menu, menu);
         editMenuItem = menu.findItem(R.id.action_edit);
         viewMenuItem = menu.findItem(R.id.action_view);
-        saveMenuItem = menu.findItem(R.id.action_save);
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -153,10 +149,6 @@ public class ProfileActivity extends BaseChildActivity implements ProfileView {
                 break;
 
             case R.id.action_view:
-                setViewMode();
-                break;
-
-            case R.id.action_save:
                 setViewMode();
                 break;
         }

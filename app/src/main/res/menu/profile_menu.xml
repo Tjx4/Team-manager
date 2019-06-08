@@ -14,11 +14,4 @@
         android:icon="@drawable/ic_view_light"
         android:title="View"
         app:showAsAction="always"/>
-
-    <item
-        android:visible="false"
-        android:id="@+id/action_save"
-        android:icon="@drawable/ic_save_light"
-        android:title="View"
-        app:showAsAction="always"/>
 </menu>
