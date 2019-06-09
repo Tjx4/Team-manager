@@ -26,10 +26,7 @@ public class AnimationHelper {
         for(int i  = 0; i < childCount; ++i){
             View currentChild = parentLayout.getChildAt(i);
 
-            if(currentChild.getId() == activeView.getId()){
-                currentChild.setVisibility(View.VISIBLE);
-            }
-            else{
+            if(currentChild.getId() != activeView.getId()){
                 TranslateAnimation anim = new TranslateAnimation(0, activeView.getWidth(), 0, 0);
                 anim.setDuration(0);
                 currentChild.setAnimation(anim);

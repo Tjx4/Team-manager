@@ -1,5 +1,6 @@
 package co.za.appic.teammanager.features.profile;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -27,6 +28,7 @@ import co.za.appic.teammanager.enums.EmployeeType;
 import co.za.appic.teammanager.enums.UserGender;
 import co.za.appic.teammanager.helpers.AnimationHelper;
 import co.za.appic.teammanager.helpers.ImageHelper;
+import co.za.appic.teammanager.helpers.PermissionsHelper;
 import co.za.appic.teammanager.helpers.RoundLoadingImageView;
 
 public class ProfileActivity extends BaseChildActivity implements ProfileView {
@@ -53,6 +55,10 @@ public class ProfileActivity extends BaseChildActivity implements ProfileView {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getPresenter().syncUser();
+
+        if(!PermissionsHelper.isWriteExternalStoragePermissionGranted(this)){
+            PermissionsHelper.requestWriteExternalStoragePermission(this);
+        }
     }
 
     @Override
@@ -148,7 +154,8 @@ public class ProfileActivity extends BaseChildActivity implements ProfileView {
 
     @Override
     public void onTakePictureClicked(View view) {
-       // getPresenter().updateProfilePic();
+        AnimationHelper.blinkView(view);
+        ImageHelper.getImageFromCamera(this);
     }
 
     @Override
@@ -175,18 +182,40 @@ public class ProfileActivity extends BaseChildActivity implements ProfileView {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
+        currentImageView = profilePicRli.getImageView();
+
+
         if (resultCode == RESULT_OK)
         {
-            try {
-                Uri chosenImageUri = data.getData();
-                currentImageView = profilePicRli.getImageView();
-                currentImageBitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), chosenImageUri);
-                currentImageView.setImageBitmap(currentImageBitmap);
-                getPresenter().updateProfilePic(currentImageBitmap);
 
-            } catch (IOException e) {
-                Log.e("IMG_UPLOAD_ERROR", ""+e);
+            if (requestCode == 1) {
+
             }
+
+            if (requestCode == 1) {
+                try {
+                    Bundle extras = data.getExtras();
+                    currentImageBitmap = (Bitmap) extras.get("data");
+                    currentImageView.setImageBitmap(currentImageBitmap);
+                    getPresenter().updateProfilePic(currentImageBitmap);
+                }
+                catch (Exception e) {
+                    Log.e("IMG_UPLOAD_ERROR", "Camera error: "+e);
+                }
+            }
+            else if (requestCode == 1) {
+                try {
+                    Uri chosenImageUri = data.getData();
+                    currentImageBitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), chosenImageUri);
+                    currentImageView.setImageBitmap(currentImageBitmap);
+                    getPresenter().updateProfilePic(currentImageBitmap);
+                }
+                catch (IOException e) {
+                    Log.e("IMG_UPLOAD_ERROR", "Upload error:"+e);
+                }
+            }
+
         }
     }
 

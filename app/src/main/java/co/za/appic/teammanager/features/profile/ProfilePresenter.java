@@ -41,6 +41,7 @@ public class ProfilePresenter extends BaseAsyncPresenter {
                 try{
                     UserModel user = getUserFromDataSnapshot(dataSnapshot);
                     String ppUrl = ImageHelper.getProfilePicPath(user);
+Log.e("LOGG", "ppUrl: "+ppUrl);
                     profileView.showContent();
                     profileView.showUserDetails(user.getEmployeeId(), user.getName(), user.getSurname(), user.getEmployeeType(), user.getGender(), ppUrl);
                 }
