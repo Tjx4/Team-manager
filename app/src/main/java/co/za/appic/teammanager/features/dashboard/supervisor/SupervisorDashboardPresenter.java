@@ -25,6 +25,9 @@ public class SupervisorDashboardPresenter extends SharedDashboardPresenter {
     public SupervisorDashboardPresenter(SupervisorDashboardView supervisorDashboardView) {
         super(supervisorDashboardView);
         this.supervisorDashboardView = supervisorDashboardView;
+    }
+
+    public void updateUserAndSyncTasks() {
         supervisorModel = sharedPrefsHelper.getSupervisor();
         syncWorkers();
         greetSupervisor();
@@ -57,7 +60,7 @@ public class SupervisorDashboardPresenter extends SharedDashboardPresenter {
         });
     }
 
-    private void greetSupervisor() {
+    public void greetSupervisor() {
         String welcomeMessage = context.getResources().getString(R.string.supervisor_welcome_message, supervisorModel.getName());
         supervisorDashboardView.showWelcomeMessage(welcomeMessage);
     }

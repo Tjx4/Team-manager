@@ -33,6 +33,11 @@ public class SupervisorDashboardActivity extends SharedDashboardActivity impleme
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        getPresenter().updateUserAndSyncTasks();
+    }
+    @Override
     protected boolean handleSlideMenuItemClicked(MenuItem item) {
         int itemId = item.getItemId();
 
