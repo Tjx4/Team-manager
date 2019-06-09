@@ -29,14 +29,10 @@ public class AnimationHelper {
 
             if(currentChild.getId() == activeView.getId()){
                 currentChild.setVisibility(View.VISIBLE);
-                TranslateAnimation anim = new TranslateAnimation(0, 0, 0, 0);
-                anim.setDuration(0);
-                currentChild.setAnimation(anim);
-                currentChild.startAnimation(anim);
             }
             else{
                 currentChild.setVisibility(View.GONE);
-                TranslateAnimation anim = new TranslateAnimation(0, -currentChild.getWidth(), 0, 0);
+                TranslateAnimation anim = new TranslateAnimation(0, -activeView.getWidth(), 0, 0);
                 anim.setDuration(0);
                 currentChild.setAnimation(anim);
                 currentChild.startAnimation(anim);
@@ -56,7 +52,6 @@ public class AnimationHelper {
         anim.setDuration(duration);
         anim.setAnimationListener(new Animation.AnimationListener() {
             public void onAnimationStart(Animation a) {
-                incomingView.setVisibility(View.VISIBLE);
             }
             public void onAnimationRepeat(Animation a) {
 
@@ -68,6 +63,7 @@ public class AnimationHelper {
                     View currentChild = parentLayout.getChildAt(i);
 
                     if(currentChild.getId() == incomingView.getId()){
+                        incomingView.setVisibility(View.VISIBLE);
                         TranslateAnimation anim = new TranslateAnimation(currentChild.getWidth(), 0, 0, 0);
                         anim.setDuration(duration);
                         currentChild.setAnimation(anim);
@@ -78,10 +74,6 @@ public class AnimationHelper {
                     }
                     else{
                         currentChild.setVisibility(View.GONE);
-                        TranslateAnimation anim = new TranslateAnimation(0, -currentChild.getWidth(), 0, 0);
-                        anim.setDuration(duration);
-                       // currentChild.setAnimation(anim);
-                        // currentChild.startAnimation(anim);
                     }
 
                 }
