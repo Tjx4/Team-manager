@@ -1,10 +1,8 @@
 package co.za.appic.teammanager.features.profile;
 
-import android.app.Activity;
 import android.graphics.Bitmap;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -15,7 +13,6 @@ import co.za.appic.teammanager.constants.Constants;
 import co.za.appic.teammanager.enums.UserGender;
 import co.za.appic.teammanager.helpers.ConverterHelper;
 import co.za.appic.teammanager.helpers.ImageHelper;
-
 import co.za.appic.teammanager.helpers.StringValidationHelper;
 import co.za.appic.teammanager.models.UserModel;
 
@@ -41,7 +38,6 @@ public class ProfilePresenter extends BaseAsyncPresenter {
                 try{
                     UserModel user = getUserFromDataSnapshot(dataSnapshot);
                     String ppUrl = ImageHelper.getProfilePicPath(user);
-Log.e("LOGG", "ppUrl: "+ppUrl);
                     profileView.showContent();
                     profileView.showUserDetails(user.getEmployeeId(), user.getName(), user.getSurname(), user.getEmployeeType(), user.getGender(), ppUrl);
                 }
