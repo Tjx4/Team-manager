@@ -73,9 +73,9 @@
 
                 <co.za.appic.teammanager.helpers.RoundLoadingImageView
                     android:id="@+id/rliProfilePic"
-                    android:layout_width="140dp"
-                    android:layout_height="140dp"
-                    app:corner_radius="70"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    app:corner_radius="75"
                     app:loaderType="BallPulseIndicator"
                     app:loaderColor="@color/lightestText"
                     app:loaderWidth="50"

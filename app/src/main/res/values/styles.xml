@@ -66,8 +66,10 @@
         <item name="android:textColor">@color/darkText</item>
     </style>
     <style name="profileUpdateLabels" parent="smallDarkLabel">
-        <item name="android:textSize">@dimen/xsmall_text_size</item>
-        <item name="android:layout_width">50dp</item>
+        <item name="android:textSize">@dimen/small_text_size</item>
+        <item name="android:layout_width">55dp</item>
+        <item name="android:layout_marginBottom">4dp</item>
+        <item name="android:gravity">center</item>
         <item name="android:layout_gravity">center</item>
     </style>
 
@@ -178,19 +180,19 @@
     </style>
 
     <style name="propicUpdateIcons">
+        <item name="android:background">@drawable/newpic_container_backgroud</item>
+        <item name="android:padding">9dp</item>
         <item name="android:layout_gravity">center</item>
-        <item name="android:layout_width">25dp</item>
-        <item name="android:layout_height">25dp</item>
+        <item name="android:layout_width">40dp</item>
+        <item name="android:layout_height">40dp</item>
         <item name="android:scaleType">centerCrop</item>
     </style>
 
     <style name="newPicContainer">
-        <item name="android:background">@drawable/newpic_container_backgroud</item>
         <item name="android:visibility">gone</item>
         <item name="android:orientation">vertical</item>
-        <item name="android:paddingTop">14dp</item>
-        <item name="android:layout_width">65dp</item>
-        <item name="android:layout_height">65dp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
     </style>
 
 </resources>
