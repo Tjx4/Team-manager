@@ -1,6 +1,5 @@
 package co.za.appic.teammanager.features.profile;
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -48,8 +47,6 @@ public class ProfileActivity extends BaseChildActivity implements ProfileView {
     private GenderSelectorView genderGsv;
     private MenuItem editMenuItem;
     private MenuItem viewMenuItem;
-    private static Bitmap currentImageBitmap;
-    private static ImageView currentImageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -183,37 +180,31 @@ public class ProfileActivity extends BaseChildActivity implements ProfileView {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        currentImageView = profilePicRli.getImageView();
-
-
         if (resultCode == RESULT_OK)
         {
+            Bitmap currentImageBitmap = null;
+            ImageView currentImageView = profilePicRli.getImageView();
 
-            if (requestCode == 1) {
+            try {
+                switch (requestCode) {
+                    case 1:
+                        Bundle extras = data.getExtras();
+                        currentImageBitmap = (Bitmap) extras.get("data");
+                        break;
+                    case 2:
+                        Uri chosenImageUri = data.getData();
+                        currentImageBitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), chosenImageUri);
+                        break;
+                }
 
-            }
-
-            if (requestCode == 1) {
-                try {
-                    Bundle extras = data.getExtras();
-                    currentImageBitmap = (Bitmap) extras.get("data");
+                if(currentImageBitmap != null){
                     currentImageView.setImageBitmap(currentImageBitmap);
                     getPresenter().updateProfilePic(currentImageBitmap);
                 }
-                catch (Exception e) {
-                    Log.e("IMG_UPLOAD_ERROR", "Camera error: "+e);
-                }
+
             }
-            else if (requestCode == 1) {
-                try {
-                    Uri chosenImageUri = data.getData();
-                    currentImageBitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), chosenImageUri);
-                    currentImageView.setImageBitmap(currentImageBitmap);
-                    getPresenter().updateProfilePic(currentImageBitmap);
-                }
-                catch (IOException e) {
-                    Log.e("IMG_UPLOAD_ERROR", "Upload error:"+e);
-                }
+            catch (Exception e) {
+                Log.e("IMG_ERROR", "Camera error: "+e);
             }
 
         }
