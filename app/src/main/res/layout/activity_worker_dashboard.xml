@@ -3,17 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/workerDashboardParentLayout"
-    android:animateLayoutChanges="true"
     android:background="@color/lighterBackground"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".features.dashboard.worker.WorkerWorkerDashboardActivity">
 
     <LinearLayout
-        android:id="@+id/llHomeContent"
+        android:id="@+id/llHomeContainer"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <TextView
             android:id="@+id/tvWolcomeMessage"
             style="@style/mediumDarkLabel"
@@ -145,6 +145,7 @@
             </RelativeLayout>
 
         </android.support.v7.widget.CardView>
+
     </LinearLayout>
 
     <RelativeLayout

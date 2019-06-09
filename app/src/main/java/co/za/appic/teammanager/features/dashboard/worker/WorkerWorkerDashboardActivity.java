@@ -35,6 +35,7 @@ public class WorkerWorkerDashboardActivity extends SharedDashboardActivity imple
     @Inject
     WorkerDashboardPresenter workerDashboardPresenter;
 
+    private View currentView;
     private TextView wolcomeMessageTv;
     private TextView pendingCountTv;
     private TextView completedCounteTv;
@@ -56,8 +57,8 @@ public class WorkerWorkerDashboardActivity extends SharedDashboardActivity imple
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        showCheckingTasks();
-        isMainView = true;
+        showLoadingTasks();
+        initActivity();
     }
 
     @Override
@@ -82,7 +83,6 @@ public class WorkerWorkerDashboardActivity extends SharedDashboardActivity imple
     @Override
     protected boolean handleSlideMenuItemClicked(MenuItem item) {
         super.handleSlideMenuItemClicked(item);
-
         int itemId = item.getItemId();
 
         switch (itemId){
@@ -114,7 +114,7 @@ public class WorkerWorkerDashboardActivity extends SharedDashboardActivity imple
         completedCounteTv = parentLayout.findViewById(R.id.tvCompletedCount);
         checkingMessageLl = parentLayout.findViewById(R.id.llCheckingMessage);
         tasksContainerLl = parentLayout.findViewById(R.id.llTasksContainer);
-        homeContentLl = parentLayout.findViewById(R.id.llHomeContent);
+        homeContentLl = parentLayout.findViewById(R.id.llHomeContainer);
         continueTaskContainerCv = parentLayout.findViewById(R.id.cvContinueTaskContainer);
         activeTaskContainer = parentLayout.findViewById(R.id.flActiveTaskContainer);
         tasksTitleTv = parentLayout.findViewById(R.id.tvTasksTitle);
@@ -126,6 +126,12 @@ public class WorkerWorkerDashboardActivity extends SharedDashboardActivity imple
 
         tasksRv = parentLayout.findViewById(R.id.lstTasks);
         tasksRv.setLayoutManager(new LinearLayoutManager(this));
+    }
+
+    private void initActivity() {
+        isMainView = true;
+        currentView = homeContentLl;
+        AnimationHelper.initializeViews(getParentLayout(), homeContentLl);
     }
 
     @Override
@@ -147,77 +153,114 @@ public class WorkerWorkerDashboardActivity extends SharedDashboardActivity imple
     }
 
     @Override
-    public void showWelcomeMessage(String message) {
-        wolcomeMessageTv.setText(message);
-    }
-
-    @Override
-    public void showCheckingTasks() {
+    public void showLoadingTasks() {
         checkingMessageLl.setVisibility(View.VISIBLE);
         tasksContainerLl.setVisibility(View.GONE);
     }
 
     @Override
-    public void showTasks() {
+    public void showTasksDashboard() {
         checkingMessageLl.setVisibility(View.GONE);
         tasksContainerLl.setVisibility(View.VISIBLE);
     }
 
     @Override
-    public void showPendingTaskCount(String pendingTasksCount) {
+    public void setWelcomeMessage(String message) {
+        wolcomeMessageTv.setText(message);
+    }
+
+    @Override
+    public void setPendingTaskCount(String pendingTasksCount) {
         pendingCountTv.setText(pendingTasksCount);
     }
 
     @Override
-    public void showCompletedTaskCount(String completedTaskCount) {
+    public void setCompletedTaskCount(String completedTaskCount) {
         completedCounteTv.setText(completedTaskCount);
     }
 
-
     @Override
     public void onViewPendingTasksClicked(View view) {
-        List<TaskModel>  pendingTasks =  getPresenter().getPendingTasks();
-        int pendingTasksCount = pendingTasks.size();
-
-        String tasksMessage = getResources().getString(R.string.no_pending_tasks);
-
-        if(pendingTasksCount > 0)
-            tasksMessage = "You have "+pendingTasksCount+" pending task"+((pendingTasksCount == 1)? "" : "s");
-
-        onViewTasks(view, tasksMessage, getResources().getString(R.string.pending_tasks), pendingTasks);
+        AnimationHelper.blinkView(view);
+        showPendingTasks();
     }
 
     @Override
     public void onViewCompletedTasksClicked(View view) {
+        AnimationHelper.blinkView(view);
+        showCompletedTasks();
+    }
+
+    @Override
+    public void showPendingTasks() {
+        List<TaskModel>  pendingTasks =  getPresenter().getPendingTasks();
+        int pendingTasksCount = pendingTasks.size();
+
+        String headerMessage = getResources().getString(R.string.no_pending_tasks);
+
+        if(pendingTasksCount > 0)
+            headerMessage = "You have "+pendingTasksCount+" pending task"+((pendingTasksCount == 1)? "" : "s");
+
+        showTaskListAndTitle(headerMessage, pendingTasks);
+    }
+
+    @Override
+    public void showCompletedTasks() {
         List<TaskModel> completedTasks = getPresenter().getCompletedTasks();
         int completedTaskCount = completedTasks.size();
 
-        String tasksMessage = getResources().getString(R.string.no_completed_tasks);
+        String headerMessage = getResources().getString(R.string.no_completed_tasks);
 
         if(completedTaskCount > 0)
-            tasksMessage = "You have "+completedTaskCount+" completed task"+((completedTaskCount == 1)? "" : "s");
+            headerMessage = "You have "+completedTaskCount+" completed task"+((completedTaskCount == 1)? "" : "s");
 
-        onViewTasks(view, tasksMessage, getResources().getString(R.string.completed_tasks), completedTasks);
+        showTaskListAndTitle(headerMessage, completedTasks);
     }
 
-    private void onViewTasks(View view, String tasksMessage, String toastMessage, List<TaskModel> tasks) {
-        AnimationHelper.blinkView(view);
-        tasksContainerRl.setVisibility(View.VISIBLE);
-        homeContentLl.setVisibility(View.INVISIBLE);
-        activeTaskContainer.setVisibility(View.INVISIBLE);
+    private void showTaskListAndTitle(String tasksMessage, List<TaskModel> tasks) {
         tasksTitleTv.setText(tasksMessage);
-        showTasks(tasks);
+        setCurrentTasksList(tasks);
         isMainView = false;
+transitionViews(tasksContainerRl);
+    }
+
+    @Override
+    public void setCurrentTasksList(List<TaskModel> tasks) {
+        TaskViewAdapter taskViewAdapter = new TaskViewAdapter(this, tasks);
+        taskViewAdapter.setClickListener(this);
+        tasksRv.setAdapter(taskViewAdapter);
     }
 
     @Override
     public void onHomeClicked(View view) {
-        tasksContainerRl.setVisibility(View.INVISIBLE);
-        homeContentLl.setVisibility(View.VISIBLE);
-        activeTaskContainer.setVisibility(View.INVISIBLE);
-        isMainView = true;
         int cardVisibility = (getPresenter().getActiveTask() != null)? View.VISIBLE : View.INVISIBLE ;
         continueTaskContainerCv.setVisibility(cardVisibility);
+
+        isMainView = true;
+
+        transitionViews(homeContentLl);
+    }
+
+    @Override
+    public void showActiveTask(TaskModel tasks) {
+        if(tasks == null){
+            NotificationHelper.showShortToast(this, getResources().getString(R.string.no_task_in_progress));
+            return;
+        }
+
+        if(tasks.getTaskStatus() == TaskStatus.inprogress){
+            startTaskBtn.setVisibility(View.INVISIBLE);
+            completeTaskBtn.setVisibility(View.VISIBLE);
+        }
+        else {
+            startTaskBtn.setVisibility(View.VISIBLE);
+            completeTaskBtn.setVisibility(View.INVISIBLE);
+        }
+
+        activeTaskDescriptionTxt.setText(getPresenter().getActiveTask().getDescription());
+        activeTakDueDateTxt.setText(getPresenter().getActiveTask().getDueDateTime());
+
+transitionViews(activeTaskContainer);
     }
 
     @Override
@@ -228,12 +271,6 @@ public class WorkerWorkerDashboardActivity extends SharedDashboardActivity imple
             NotificationHelper.showShortToast(this, getResources().getString(R.string.new_task_message));
     }
 
-    @Override
-    public void showTasks(List<TaskModel> tasks) {
-        TaskViewAdapter taskViewAdapter = new TaskViewAdapter(this, tasks);
-        taskViewAdapter.setClickListener(this);
-        tasksRv.setAdapter(taskViewAdapter);
-    }
 
     @Override
     public void onItemClick(View view, TaskModel task) {
@@ -249,32 +286,13 @@ public class WorkerWorkerDashboardActivity extends SharedDashboardActivity imple
     }
 
     @Override
-    public void onContinueTaskClicked(View view) {
-        showActiveTask(getPresenter().getActiveTask());
+    public void transitionViews(View incomingView) {
+        AnimationHelper.shuffleViews(getParentLayout(), currentView, incomingView);
+        currentView = incomingView;
     }
 
-    @Override
-    public void showActiveTask(TaskModel tasks) {
-        if(tasks == null){
-            NotificationHelper.showShortToast(this, getResources().getString(R.string.no_task_in_progress));
-            return;
-        }
-
-        tasksContainerRl.setVisibility(View.INVISIBLE);
-        homeContentLl.setVisibility(View.INVISIBLE);
-        activeTaskContainer.setVisibility(View.VISIBLE);
-
-        if(tasks.getTaskStatus() == TaskStatus.inprogress){
-            startTaskBtn.setVisibility(View.INVISIBLE);
-            completeTaskBtn.setVisibility(View.VISIBLE);
-        }
-        else {
-            startTaskBtn.setVisibility(View.VISIBLE);
-            completeTaskBtn.setVisibility(View.INVISIBLE);
-        }
-
-        activeTaskDescriptionTxt.setText(getPresenter().getActiveTask().getDescription());
-        activeTakDueDateTxt.setText(getPresenter().getActiveTask().getDueDateTime());
+    public void onContinueTaskClicked(View view) {
+        showActiveTask(getPresenter().getActiveTask());
     }
 
     @Override
@@ -307,10 +325,10 @@ public class WorkerWorkerDashboardActivity extends SharedDashboardActivity imple
 
         switch (itemId){
             case R.id.action_pending_tasks:
-                onViewPendingTasksClicked(null);
+                showPendingTasks();
                 break;
             case R.id.action_completed_tasks:
-                onViewCompletedTasksClicked(null);
+                showCompletedTasks();
                 break;
            case R.id.action_active_tasks:
                 showActiveTask(getPresenter().getActiveTask());

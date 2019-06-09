@@ -135,11 +135,11 @@ public class WorkerDashboardPresenter extends SharedDashboardPresenter {
     }
 
     private void showTaskStats() {
-        workerDashboardView.showTasks();
+        workerDashboardView.showTasksDashboard();
         int pendingTasksCount = pendingTasks.size();
-        workerDashboardView.showPendingTaskCount(String.valueOf(pendingTasksCount));
+        workerDashboardView.setPendingTaskCount(String.valueOf(pendingTasksCount));
         int completedTasksCount = completedTasks.size();
-        workerDashboardView.showCompletedTaskCount(String.valueOf(completedTasksCount));
+        workerDashboardView.setCompletedTaskCount(String.valueOf(completedTasksCount));
 
         if(isNewAvailable)
             workerDashboardView.notifyUserOfnewTask();
@@ -147,7 +147,7 @@ public class WorkerDashboardPresenter extends SharedDashboardPresenter {
 
     private void greetWorker() {
         String welcomeMessage = context.getResources().getString(R.string.worker_welcome_message, worker.getName());
-        workerDashboardView.showWelcomeMessage(welcomeMessage);
+        workerDashboardView.setWelcomeMessage(welcomeMessage);
     }
 
     private boolean isTaskCaptured(List<TaskModel> tasks, TaskModel newTask) {
