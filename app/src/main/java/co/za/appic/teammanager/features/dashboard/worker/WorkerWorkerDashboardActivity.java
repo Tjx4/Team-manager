@@ -256,7 +256,7 @@ public class WorkerWorkerDashboardActivity extends SharedDashboardActivity imple
         }
 
         activeTaskDescriptionTxt.setText(getPresenter().getActiveTask().getDescription());
-        activeTakDueDateTxt.setText(getPresenter().getActiveTask().getDueDateTime());
+        activeTakDueDateTxt.setText("Due on "+getPresenter().getActiveTask().getDueDateTime());
 
         transitionViews(activeTaskContainer);
     }
