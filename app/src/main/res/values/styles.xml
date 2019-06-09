@@ -66,8 +66,9 @@
         <item name="android:textColor">@color/darkText</item>
     </style>
     <style name="profileUpdateLabels" parent="smallDarkLabel">
-        <item name="android:layout_width">80dp</item>
-        <item name="android:gravity">center</item>
+        <item name="android:textSize">@dimen/xsmall_text_size</item>
+        <item name="android:layout_width">50dp</item>
+        <item name="android:layout_gravity">center</item>
     </style>
 
     <style name="smallErrorLabel" parent="smallLabel">
@@ -178,9 +179,18 @@
 
     <style name="propicUpdateIcons">
         <item name="android:layout_gravity">center</item>
-        <item name="android:layout_width">30dp</item>
-        <item name="android:layout_height">30dp</item>
+        <item name="android:layout_width">25dp</item>
+        <item name="android:layout_height">25dp</item>
         <item name="android:scaleType">centerCrop</item>
+    </style>
+
+    <style name="newPicContainer">
+        <item name="android:background">@drawable/newpic_container_backgroud</item>
+        <item name="android:visibility">gone</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:paddingTop">14dp</item>
+        <item name="android:layout_width">65dp</item>
+        <item name="android:layout_height">65dp</item>
     </style>
 
 </resources>

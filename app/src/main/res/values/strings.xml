@@ -110,8 +110,8 @@
     <string name="enter_your_name">Enter your name...</string>
     <string name="full_names">Full names</string>
     <string name="employee_type">Rank</string>
-    <string name="upload_picture">Upload picture</string>
-    <string name="take_picture">Take picture</string>
+    <string name="upload_picture">Upload pic</string>
+    <string name="take_picture">Take pic</string>
     <string name="loading_profile">Loading profile</string>
     <string name="send_to">Send to</string>
 </resources>
