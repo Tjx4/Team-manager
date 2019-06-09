@@ -17,17 +17,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-        <provider
-            android:name=".Providers.GenericFileProvider"
-            android:authorities="${applicationId}.fileprovider"
-            android:exported="false"
-            android:grantUriPermissions="true">
-            <meta-data
-                android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/provider_paths"/>
-        </provider>
-
         <activity
             android:name=".features.dashboard.supervisor.SupervisorDashboardActivity"
             android:label="@string/title_activity_supervisor_dashboard"
@@ -72,5 +61,4 @@
             </intent-filter>
         </activity>
     </application>
-
 </manifest>
