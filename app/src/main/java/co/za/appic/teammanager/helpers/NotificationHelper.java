@@ -43,6 +43,12 @@ public class NotificationHelper {
         showTheToastIfNotNull(toast);
     }
 
+    public static void showLongToast(Context context, String message) {
+        Toast toast = getToast(context, message, Toast.LENGTH_LONG);
+        showTheToastIfNotNull(toast);
+    }
+
+
     public static void showShortTopToast(Context context, String message) {
         Toast toast = getToast(context, message, Toast.LENGTH_SHORT);
         toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 300);
@@ -52,11 +58,6 @@ public class NotificationHelper {
     public static void showShortBottomToast(Context context, String message) {
         Toast toast = getToast(context, message, Toast.LENGTH_SHORT);
         toast.setGravity(Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 300);
-        showTheToastIfNotNull(toast);
-    }
-
-    public static void showLongToast(Context context, String message) {
-        Toast toast = getToast(context, message, Toast.LENGTH_LONG);
         showTheToastIfNotNull(toast);
     }
 

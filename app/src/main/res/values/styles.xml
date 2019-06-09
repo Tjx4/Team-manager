@@ -39,7 +39,7 @@
     <style name="largeLightLabel" parent="largeLabel">
         <item name="android:textColor">@color/lightestText</item>
     </style>
-    <style name="largeDarktLabel" parent="largeLabel">
+    <style name="largeDarkLabel" parent="largeLabel">
         <item name="android:textColor">@color/darkestText</item>
     </style>
 
