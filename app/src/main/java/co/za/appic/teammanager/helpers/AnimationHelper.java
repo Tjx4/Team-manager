@@ -1,6 +1,5 @@
 package co.za.appic.teammanager.helpers;
 
-import android.animation.Animator;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
@@ -31,8 +30,7 @@ public class AnimationHelper {
                 currentChild.setVisibility(View.VISIBLE);
             }
             else{
-                currentChild.setVisibility(View.GONE);
-                TranslateAnimation anim = new TranslateAnimation(0, -activeView.getWidth(), 0, 0);
+                TranslateAnimation anim = new TranslateAnimation(0, activeView.getWidth(), 0, 0);
                 anim.setDuration(0);
                 currentChild.setAnimation(anim);
                 currentChild.startAnimation(anim);
@@ -46,7 +44,7 @@ public class AnimationHelper {
         if(activeView == incomingView)
             return;
 
-        final int duration = 400;
+        final int duration = 300;
 
         TranslateAnimation anim = new TranslateAnimation(0, -activeView.getWidth(), 0, 0);
         anim.setDuration(duration);
@@ -65,15 +63,15 @@ public class AnimationHelper {
                     if(currentChild.getId() == incomingView.getId()){
                         incomingView.setVisibility(View.VISIBLE);
                         TranslateAnimation anim = new TranslateAnimation(currentChild.getWidth(), 0, 0, 0);
-                        anim.setDuration(duration);
+                        anim.setDuration(duration - 50);
                         currentChild.setAnimation(anim);
                         currentChild.startAnimation(anim);
                     }
                     else if(currentChild.getId() == activeView.getId()){
-                        currentChild.setVisibility(View.GONE);
+                        currentChild.setVisibility(View.INVISIBLE);
                     }
                     else{
-                        currentChild.setVisibility(View.GONE);
+                        currentChild.setVisibility(View.INVISIBLE);
                     }
 
                 }

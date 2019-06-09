@@ -220,8 +220,8 @@ public class WorkerWorkerDashboardActivity extends SharedDashboardActivity imple
     private void showTaskListAndTitle(String tasksMessage, List<TaskModel> tasks) {
         tasksTitleTv.setText(tasksMessage);
         setCurrentTasksList(tasks);
+        transitionViews(tasksContainerRl);
         isMainView = false;
-transitionViews(tasksContainerRl);
     }
 
     @Override
@@ -235,10 +235,8 @@ transitionViews(tasksContainerRl);
     public void onHomeClicked(View view) {
         int cardVisibility = (getPresenter().getActiveTask() != null)? View.VISIBLE : View.INVISIBLE ;
         continueTaskContainerCv.setVisibility(cardVisibility);
-
-        isMainView = true;
-
         transitionViews(homeContentLl);
+        isMainView = true;
     }
 
     @Override
@@ -260,7 +258,7 @@ transitionViews(tasksContainerRl);
         activeTaskDescriptionTxt.setText(getPresenter().getActiveTask().getDescription());
         activeTakDueDateTxt.setText(getPresenter().getActiveTask().getDueDateTime());
 
-transitionViews(activeTaskContainer);
+        transitionViews(activeTaskContainer);
     }
 
     @Override
