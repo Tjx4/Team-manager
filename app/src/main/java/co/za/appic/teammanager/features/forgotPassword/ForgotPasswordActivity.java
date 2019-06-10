@@ -87,4 +87,9 @@ public class ForgotPasswordActivity extends BaseChildActivity implements ForgotP
         String email = emailTxt.getText().toString();
         getPresenter().resetPassword(email);
     }
+
+    @Override
+    public void resetEmailText() {
+        emailTxt.setText("");
+    }
 }

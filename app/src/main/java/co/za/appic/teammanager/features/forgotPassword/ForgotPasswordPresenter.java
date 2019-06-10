@@ -33,6 +33,7 @@ public class ForgotPasswordPresenter extends BaseAsyncPresenter {
                         forgotPasswordView.hideLoader();
 
                         if (task.isSuccessful()) {
+                            forgotPasswordView.resetEmailText();
                             forgotPasswordView.showResetSuccessMessage();
                         }
                         else {

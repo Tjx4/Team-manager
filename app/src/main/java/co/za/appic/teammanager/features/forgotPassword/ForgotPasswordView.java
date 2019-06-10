@@ -11,4 +11,5 @@ public interface ForgotPasswordView extends BaseView {
     void showResetingDialog();
     void showResetSuccessMessage();
     void showResetFailMessage();
+    void resetEmailText();
 }
