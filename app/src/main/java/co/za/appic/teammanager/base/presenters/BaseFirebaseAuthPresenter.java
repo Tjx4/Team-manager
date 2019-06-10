@@ -26,7 +26,6 @@ public abstract class BaseFirebaseAuthPresenter extends BaseAsyncPresenter {
             @Override
             public void onCanceled() {
                 onFirebaseSignInFailure();
-                isBusy = false;
             }
         };
 
@@ -42,7 +41,6 @@ public abstract class BaseFirebaseAuthPresenter extends BaseAsyncPresenter {
                     onFirebaseSignInFailure();
                 }
 
-                isBusy = false;
             }
 
         };

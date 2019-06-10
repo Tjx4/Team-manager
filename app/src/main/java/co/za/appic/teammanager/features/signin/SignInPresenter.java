@@ -59,6 +59,7 @@ public class SignInPresenter extends BaseFirebaseAuthPresenter  {
     @Override
     protected void onFirebaseSignInSuccessfull() {
         super.onFirebaseSignInSuccessfull();
+        isBusy = false;
         String userId = firebaseAuth.getInstance().getUid();
         fetchCurrentWorker(userId);
     }
@@ -66,6 +67,7 @@ public class SignInPresenter extends BaseFirebaseAuthPresenter  {
     @Override
     protected void onFirebaseSignInFailure() {
         super.onFirebaseSignInFailure();
+        isBusy = false;
         signInView.hideLoader();
         signInView.closeLoaderAndShowSignInError(context.getString(R.string.signin_error), context.getString(R.string.signin_error_message));
     }

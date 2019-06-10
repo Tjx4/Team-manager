@@ -121,5 +121,5 @@
     <string name="success_title">Success</string>
     <string name="error_title">Error</string>
     <string name="forgot_password_error_message">The email you entered does not exist</string>
-    <string name="reseting_password">Reseting password, please wait...</string>
+    <string name="reseting_password">Reseting password...</string>
 </resources>
