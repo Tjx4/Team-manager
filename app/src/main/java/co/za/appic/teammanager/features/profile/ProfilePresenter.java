@@ -96,6 +96,8 @@ public class ProfilePresenter extends BaseAsyncPresenter {
                 sharedPrefsHelper.setSupervisor(ConverterHelper.getSupervisorFromUser(user));
                 break;
         }
+
+        sharedPrefsHelper.setLinkedUser(user);
     }
 
     public void updateProfilePic(Bitmap bitmap) {
