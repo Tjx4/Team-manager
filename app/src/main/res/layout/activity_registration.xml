@@ -38,8 +38,7 @@
 
                     <TextView
                         android:id="@+id/tvNameError"
-                        style="@style/smallErrorLabel"
-                        android:text="Error"/>
+                        style="@style/smallErrorLabel"/>
 
                     <EditText
                         android:id="@+id/txtSurname"
@@ -48,8 +47,7 @@
 
                     <TextView
                         android:id="@+id/tvSurnameNameError"
-                        style="@style/smallErrorLabel"
-                        android:text="Error"/>
+                        style="@style/smallErrorLabel"/>
 
                     <RadioGroup
                         android:layout_gravity="center"
@@ -76,8 +74,7 @@
 
                     <TextView
                         android:id="@+id/tvGenderError"
-                        style="@style/smallErrorLabel"
-                        android:text="Error"/>
+                        style="@style/smallErrorLabel"/>
 
                 </LinearLayout>
 
@@ -93,8 +90,7 @@
 
                     <TextView
                         android:id="@+id/tvMobileNumberError"
-                        style="@style/smallErrorLabel"
-                        android:text="Error"/>
+                        style="@style/smallErrorLabel"/>
 
                     <EditText
                         android:id="@+id/txtEmail"
@@ -103,8 +99,7 @@
 
                     <TextView
                         android:id="@+id/tvEmailError"
-                        style="@style/smallErrorLabel"
-                        android:text="Error"/>
+                        style="@style/smallErrorLabel"/>
 
                 </LinearLayout>
 
@@ -120,8 +115,7 @@
 
                     <TextView
                         android:id="@+id/tvPasswordError"
-                        style="@style/smallErrorLabel"
-                        android:text="Error"/>
+                        style="@style/smallErrorLabel"/>
 
                     <EditText
                         android:id="@+id/txtConfirmPassword"
@@ -131,8 +125,7 @@
 
                     <TextView
                         android:id="@+id/tvConfirmPasswordError"
-                        style="@style/smallErrorLabel"
-                        android:text="Error"/>
+                        style="@style/smallErrorLabel"/>
 
                     <RadioGroup
                         android:layout_gravity="center"
@@ -159,8 +152,7 @@
 
                     <TextView
                         android:id="@+id/tvEmployeeTypeError"
-                        style="@style/smallErrorLabel"
-                        android:text="Error"/>
+                        style="@style/smallErrorLabel"/>
 
                 </LinearLayout>
 
