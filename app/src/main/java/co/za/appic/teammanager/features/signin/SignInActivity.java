@@ -17,6 +17,7 @@ import co.za.appic.teammanager.di.modules.SignInModule;
 import co.za.appic.teammanager.features.dashboard.supervisor.SupervisorDashboardActivity;
 import co.za.appic.teammanager.features.dashboard.supervisor.SupervisorDashboardView;
 import co.za.appic.teammanager.features.dashboard.worker.WorkerWorkerDashboardActivity;
+import co.za.appic.teammanager.features.forgotPassword.ForgotPasswordActivity;
 import co.za.appic.teammanager.features.registration.RegistrationActivity;
 import co.za.appic.teammanager.helpers.NavigationHelper;
 import co.za.appic.teammanager.helpers.NotificationHelper;
@@ -87,7 +88,7 @@ public class SignInActivity extends BaseNoActionBarActivity implements DaggerAct
 
     @Override
     public void onForgotPasswordButtonClicked(View view) {
-        NotificationHelper.showShortTopToast(this, getString(R.string.demo_unavailable_feature_message));
+        NavigationHelper.goToActivityWithNoPayload(this, ForgotPasswordActivity.class, TransitionHelper.slideInActivity());
     }
 
     @Override

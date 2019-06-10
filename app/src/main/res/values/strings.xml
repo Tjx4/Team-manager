@@ -115,4 +115,11 @@
     <string name="loading_profile">Loading profile</string>
     <string name="send_to">Send to</string>
     <string name="upload_failed">Upload failed please try again</string>
+    <string name="reset_password">Reset password</string>
+    <string name="enter_your_email_to_continue">Enter your email to continue</string>
+    <string name="forgot_password_success_message">Password reset successful, please check your email for further instructions</string>
+    <string name="success_title">Success</string>
+    <string name="error_title">Error</string>
+    <string name="forgot_password_error_message">The email you entered does not exist</string>
+    <string name="reseting_password">Reseting password, please wait...</string>
 </resources>
