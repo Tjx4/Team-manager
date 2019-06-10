@@ -54,7 +54,7 @@ public class NewTaskFragment extends BaseDialogFragment implements BaseCreateTas
 
             @Override
             public void onClick(View v) {
-                --currentStage;
+                decrementStage();
 
                 if(currentStage < 1){
                     backImgBtn.setVisibility(View.INVISIBLE);
@@ -88,9 +88,20 @@ public class NewTaskFragment extends BaseDialogFragment implements BaseCreateTas
     }
 
     public void moveToNextTimeStage(TaskModel taskModel) {
-        ++currentStage;
+        incrementStage();
         setStageAndTitle(currentStage);
         backImgBtn.setVisibility(View.VISIBLE);
+    }
+
+    private void incrementStage(){
+        int maxStage = stepFragments.size() - 1;
+        if(currentStage < maxStage)
+            ++currentStage;
+    }
+
+    private void decrementStage(){
+        if(currentStage > 0)
+            --currentStage;
     }
 
     public void setStageAndTitle(int index) {
