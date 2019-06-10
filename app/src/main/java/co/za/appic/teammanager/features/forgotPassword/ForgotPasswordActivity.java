@@ -83,7 +83,6 @@ public class ForgotPasswordActivity extends BaseChildActivity implements ForgotP
 
     @Override
     public void onForgotPasswordClicked(View view) {
-        showResetingDialog();
         String email = emailTxt.getText().toString();
         getPresenter().resetPassword(email);
     }

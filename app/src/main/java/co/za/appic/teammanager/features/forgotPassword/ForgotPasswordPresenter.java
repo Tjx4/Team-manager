@@ -23,6 +23,7 @@ public class ForgotPasswordPresenter extends BaseAsyncPresenter {
             return;
         }
 
+        forgotPasswordView.showResetingDialog();
         isBusy = true;
 
         firebaseAuth.getInstance().sendPasswordResetEmail(email)

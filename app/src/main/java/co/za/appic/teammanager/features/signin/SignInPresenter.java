@@ -51,6 +51,8 @@ public class SignInPresenter extends BaseFirebaseAuthPresenter  {
         }
 
         signInView.showSigningInDialog();
+        isBusy = true;
+
         signInUserOnFirebase(username, password, (SignInActivity)signInView);
     }
 

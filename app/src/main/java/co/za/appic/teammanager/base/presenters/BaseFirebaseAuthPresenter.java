@@ -20,7 +20,6 @@ public abstract class BaseFirebaseAuthPresenter extends BaseAsyncPresenter {
     }
 
     protected void signInUserOnFirebase(String username, String password, BaseActivity baseActivity){
-        isBusy = true;
         firebaseAuth = FirebaseAuth.getInstance();
 
         OnCanceledListener signCancelListener = new OnCanceledListener() {
