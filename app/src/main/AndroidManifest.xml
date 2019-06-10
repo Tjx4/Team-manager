@@ -20,12 +20,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".features.forgotPassword.ForgotPasswordActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".features.signin.SignInActivity" />
-        </activity>
-        <activity
             android:name=".features.dashboard.supervisor.SupervisorDashboardActivity"
             android:label="@string/title_activity_supervisor_dashboard"
             android:screenOrientation="portrait"
@@ -47,6 +41,12 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".features.dashboard.worker.WorkerWorkerDashboardActivity" />
+        </activity>
+        <activity
+            android:name=".features.forgotPassword.ForgotPasswordActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".features.signin.SignInActivity" />
         </activity>
         <activity
             android:name=".features.history.HistoryActivity"

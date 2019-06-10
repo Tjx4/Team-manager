@@ -45,6 +45,16 @@ public class SignInActivity extends BaseNoActionBarActivity implements DaggerAct
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+
+        if(isNewActivity)
+            return;
+
+        overridePendingTransition(TransitionHelper.slideOutActivity()[0], TransitionHelper.slideOutActivity()[1]);
+    }
+
+    @Override
     public void setupComponent(AppComponent appComponent) {
         DaggerSignInComponent.builder().appComponent(appComponent)
                 .signInModule(new SignInModule(this))

@@ -15,7 +15,6 @@ import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import java.io.IOException;
 import javax.inject.Inject;
 import co.za.appic.teammanager.R;
 import co.za.appic.teammanager.base.activities.BaseChildActivity;
