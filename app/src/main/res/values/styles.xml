@@ -67,7 +67,7 @@
     </style>
     <style name="profileUpdateLabels" parent="smallDarkLabel">
         <item name="android:textSize">@dimen/small_text_size</item>
-        <item name="android:layout_width">55dp</item>
+        <item name="android:layout_width">58dp</item>
         <item name="android:layout_marginBottom">4dp</item>
         <item name="android:gravity">center</item>
         <item name="android:layout_gravity">center</item>
