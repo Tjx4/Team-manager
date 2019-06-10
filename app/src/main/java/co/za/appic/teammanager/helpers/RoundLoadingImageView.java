@@ -84,6 +84,10 @@ public class RoundLoadingImageView extends RelativeLayout {
         loaderView.setVisibility(View.INVISIBLE);
         imageView.setVisibility(View.VISIBLE);
     }
+    public void showDefImage(){
+        imageView.setImageResource(defImage);
+        showImage();
+    }
 
     public void showCurrentImage(String url){
         try {
