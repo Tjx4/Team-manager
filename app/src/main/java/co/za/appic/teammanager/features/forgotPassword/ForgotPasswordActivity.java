@@ -1,6 +1,7 @@
 package co.za.appic.teammanager.features.forgotPassword;
 
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -92,4 +93,5 @@ public class ForgotPasswordActivity extends BaseChildActivity implements ForgotP
     public void resetEmailText() {
         emailTxt.setText("");
     }
+
 }
