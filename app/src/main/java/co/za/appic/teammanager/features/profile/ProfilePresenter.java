@@ -1,13 +1,19 @@
 package co.za.appic.teammanager.features.profile;
 
 import android.graphics.Bitmap;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.UploadTask;
+
 import co.za.appic.teammanager.base.presenters.BaseAsyncPresenter;
 import co.za.appic.teammanager.constants.Constants;
 import co.za.appic.teammanager.enums.UserGender;
@@ -93,16 +99,28 @@ public class ProfilePresenter extends BaseAsyncPresenter {
     }
 
     public void updateProfilePic(Bitmap bitmap) {
-        String newProfPic = "propic.jpeg";
+        final String newProfPic = "propic.jpeg";
         String imagePath = ImageHelper.getProfilePicRootPath(user)+newProfPic;
-        ImageHelper.uploadFromBitmap((AppCompatActivity) context, getFirebaseStorage(), bitmap, imagePath);
 
-        String userId = firebaseAuth.getUid();
-        DatabaseReference tableRef = FirebaseDatabase.getInstance().getReference().child(user.getEmployeeType().getDbTable());
-        DatabaseReference userRef = tableRef.child(userId);
+        OnSuccessListener successListener = new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                String userId = firebaseAuth.getUid();
+                DatabaseReference tableRef = FirebaseDatabase.getInstance().getReference().child(user.getEmployeeType().getDbTable());
+                DatabaseReference userRef = tableRef.child(userId);
 
-        DatabaseReference profPicRef = userRef.child(Constants.DB_PROFILE_PIC);
-        profPicRef.setValue(newProfPic);
+                DatabaseReference profPicRef = userRef.child(Constants.DB_PROFILE_PIC);
+                profPicRef.setValue(newProfPic);
+            }
+        };
 
+        OnFailureListener failureListener = new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                profileView.showImageUploadErrorToast();
+            }
+        };
+
+        ImageHelper.uploadFromBitmap((AppCompatActivity) context, getFirebaseStorage(), bitmap, imagePath, successListener, failureListener);
     }
 }

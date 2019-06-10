@@ -14,5 +14,6 @@ public interface ProfileView extends BaseView {
     void onUploadPictureClicked(View view);
     void onTakePictureClicked(View view);
     void showContent();
+    void showImageUploadErrorToast();
     void showUserDetails(String employeeId, String names, String surnames, EmployeeType employeeType, UserGender gender, String ppUrl);
 }

@@ -27,6 +27,7 @@ import co.za.appic.teammanager.enums.EmployeeType;
 import co.za.appic.teammanager.enums.UserGender;
 import co.za.appic.teammanager.helpers.AnimationHelper;
 import co.za.appic.teammanager.helpers.ImageHelper;
+import co.za.appic.teammanager.helpers.NotificationHelper;
 import co.za.appic.teammanager.helpers.PermissionsHelper;
 import co.za.appic.teammanager.helpers.RoundLoadingImageView;
 
@@ -102,6 +103,11 @@ public class ProfileActivity extends BaseChildActivity implements ProfileView {
     public void showContent() {
         loaderContainerLl.setVisibility(View.GONE);
         employeeDetailsGl.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void showImageUploadErrorToast() {
+        NotificationHelper.showShortToast(this, getResources().getString(R.string.upload_failed));
     }
 
     @Override

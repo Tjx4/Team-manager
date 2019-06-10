@@ -96,7 +96,7 @@ public class ImageHelper {
         activity.startActivity(Intent.createChooser(shareIntent, activity.getResources().getText(R.string.send_to)));
     }
 
-    public static void uploadFromBitmap(final AppCompatActivity activity, StorageReference firebaseStorage, Bitmap bitmap, String imagePath) {
+    public static void uploadFromBitmap(final AppCompatActivity activity, StorageReference firebaseStorage, Bitmap bitmap, String imagePath, OnSuccessListener successListener, OnFailureListener failureListener) {
         StorageReference storageRef = firebaseStorage;
         StorageReference fullImageRef = storageRef.child(imagePath);
 
@@ -105,17 +105,8 @@ public class ImageHelper {
         byte[] data = baos.toByteArray();
 
         UploadTask uploadTask = fullImageRef.putBytes(data);
-        uploadTask.addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception exception) {
-                //
-            }
-        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                onUploadSuccess(activity);
-            }
-        });
+        uploadTask.addOnFailureListener(failureListener).addOnSuccessListener(successListener);
+
     }
 
     public static void onUploadSuccess(AppCompatActivity activity) {

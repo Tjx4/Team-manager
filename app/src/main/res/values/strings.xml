@@ -114,4 +114,5 @@
     <string name="take_picture">Take pic</string>
     <string name="loading_profile">Loading profile</string>
     <string name="send_to">Send to</string>
+    <string name="upload_failed">Upload failed please try again</string>
 </resources>
