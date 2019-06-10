@@ -108,7 +108,7 @@ public class ProfileActivity extends BaseChildActivity implements ProfileView {
     @Override
     public void showImageUploadErrorToast() {
         NotificationHelper.showShortToast(this, getResources().getString(R.string.upload_failed));
-        profilePicRli.showDefImage();
+        //profilePicRli.showDefImage();
     }
 
     @Override
@@ -205,7 +205,8 @@ public class ProfileActivity extends BaseChildActivity implements ProfileView {
                 }
 
                 if(currentImageBitmap != null){
-                    profilePicRli.showLoader();
+                    //profilePicRli.showLoader();
+                    currentImageView.setImageBitmap(currentImageBitmap);
                     getPresenter().updateProfilePic(currentImageBitmap);
                 }
 
