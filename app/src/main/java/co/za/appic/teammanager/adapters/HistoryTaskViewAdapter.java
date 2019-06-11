@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import java.util.List;
 import co.za.appic.teammanager.R;
-
 import co.za.appic.teammanager.models.TaskModel;
 
 public class HistoryTaskViewAdapter extends RecyclerView.Adapter<HistoryTaskViewAdapter.ViewHolder>  {
@@ -61,7 +60,6 @@ public class HistoryTaskViewAdapter extends RecyclerView.Adapter<HistoryTaskView
                 mClickListener.onItemClick(view, taskModel);
         }
     }
-
 
     @Override
     public int getItemCount() {
