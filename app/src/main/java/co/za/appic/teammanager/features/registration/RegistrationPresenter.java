@@ -146,13 +146,14 @@ public class RegistrationPresenter extends BaseFirebaseAuthPresenter  {
         addCommonData(worker, user);
 
         DatabaseReference teams = user.child(Constants.DB_TEAMS);
-        teams.setValue(true);
+        teams.setValue(Constants.DEF_STR_VAL);
     }
 
     private void setBasicUserDetails(UserModel user) {
         String fbid = firebaseUser.getUid();
         user.setFbId(fbid);
         user.setEmployeeId(newUser.getEmployeeId());
+        user.setProfilePic(Constants.DEF_STR_VAL);
         user.setName(newUser.getName());
         user.setSurname(newUser.getSurname());
         user.setGender(newUser.getGender());
@@ -169,9 +170,11 @@ public class RegistrationPresenter extends BaseFirebaseAuthPresenter  {
         DatabaseReference surname = dbUserRef.child(Constants.DB_SURNAME);
         surname.setValue(newUser.getSurname());
         DatabaseReference gender = dbUserRef.child(Constants.DB_GENDER);
-        gender.setValue(newUser.getGender()+"");
+        gender.setValue(newUser.getGender().getId());
         DatabaseReference mobile = dbUserRef.child(Constants.DB_MOBILE);
         mobile.setValue(newUser.getMobile());
+        DatabaseReference profilePic = dbUserRef.child(Constants.DB_PROFILE_PIC);
+        profilePic.setValue(newUser.getProfilePic());
         DatabaseReference email = dbUserRef.child(Constants.DB_EMAIL);
         email.setValue(newUser.getEmail());
         DatabaseReference employeeType = dbUserRef.child(Constants.DB_EMPLOYEE_TYPE);

@@ -31,4 +31,5 @@ public class Constants {
     public static final String DB_TASK_DUE_DATE = "dueDate";
     public static final String DB_TASK_COMPLETION_DATE = "completionDate";
     public static final String DB_PROFILE_PIC = "profilePic";
+    public static final String DEF_STR_VAL = "_";
 }

@@ -1,6 +1,9 @@
 package co.za.appic.teammanager.base.presenters;
 
 import com.google.firebase.database.DataSnapshot;
+
+import java.util.List;
+
 import co.za.appic.teammanager.base.views.BaseView;
 import co.za.appic.teammanager.constants.Constants;
 import co.za.appic.teammanager.enums.EmployeeType;
@@ -35,7 +38,12 @@ public abstract class BaseAsyncPresenter extends BasePresenter {
         try {
             WorkerModel workerModel = new WorkerModel();
             setCommonUserDetails(chatSnapshot, workerModel);
-            // Set teams
+/*
+            Object teams = chatSnapshot.child(Constants.DB_TEAMS).getValue();
+            if(teams.equals(Constants.DEF_STR_VAL)){
+                workerModel.setTeams(teams);
+            }
+*/
             return workerModel;
         }
         catch (Exception e){
