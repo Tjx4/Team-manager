@@ -11,6 +11,7 @@ import java.util.List;
 import co.za.appic.teammanager.base.presenters.BaseAsyncPresenter;
 import co.za.appic.teammanager.constants.Constants;
 import co.za.appic.teammanager.enums.EmployeeType;
+import co.za.appic.teammanager.enums.TaskStatus;
 import co.za.appic.teammanager.models.TaskModel;
 
 public class HistoryPresenter extends BaseAsyncPresenter {
@@ -22,7 +23,7 @@ public class HistoryPresenter extends BaseAsyncPresenter {
         this.historyView = historyView;
     }
 
-    public void syncTaskHistory(EmployeeType employeeType){
+    public void syncTaskHistory(final EmployeeType employeeType){
         String employeeId = firebaseAuth.getUid();
         String employee = (employeeType == EmployeeType.worker)? Constants.DB_WORKER : Constants.DB_SUPERVISOR;
         DatabaseReference tasksRef = FirebaseDatabase.getInstance().getReference().child(Constants.DB_TASKS);
@@ -37,6 +38,10 @@ public class HistoryPresenter extends BaseAsyncPresenter {
 
                     try{
                         TaskModel currentTask = getTaskFromDataSnapsho(chatSnapshot);
+
+                        if(employeeType == EmployeeType.worker && currentTask.getTaskStatus() != TaskStatus.completed)
+                            return;
+
                         tasksWorkedOn.add(currentTask);
                     }
                     catch (Exception e){

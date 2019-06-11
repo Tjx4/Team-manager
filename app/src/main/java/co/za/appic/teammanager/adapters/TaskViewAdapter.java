@@ -40,10 +40,6 @@ public class TaskViewAdapter extends RecyclerView.Adapter<TaskViewAdapter.ViewHo
         holder.dueDateTv.setText(dueDate);
     }
 
-    @Override
-    public int getItemCount() {
-        return tasks.size();
-    }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView decriptionTv;
@@ -68,8 +64,13 @@ public class TaskViewAdapter extends RecyclerView.Adapter<TaskViewAdapter.ViewHo
         }
     }
 
-    String getItem(int id) {
-        return tasks.get(id).getDescription();
+    @Override
+    public int getItemCount() {
+        return tasks.size();
+    }
+
+    TaskModel getItem(int index) {
+        return tasks.get(index);
     }
 
     public void setClickListener(TaskViewAdapter.ItemClickListener itemClickListener) {

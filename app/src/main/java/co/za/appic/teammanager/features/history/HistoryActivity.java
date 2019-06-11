@@ -1,6 +1,7 @@
 package co.za.appic.teammanager.features.history;
 
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
@@ -8,7 +9,6 @@ import java.util.List;
 import javax.inject.Inject;
 import co.za.appic.teammanager.R;
 import co.za.appic.teammanager.adapters.HistoryTaskViewAdapter;
-import co.za.appic.teammanager.adapters.TaskViewAdapter;
 import co.za.appic.teammanager.base.activities.BaseChildActivity;
 import co.za.appic.teammanager.constants.Constants;
 import co.za.appic.teammanager.di.components.AppComponent;
@@ -40,8 +40,10 @@ public class HistoryActivity extends BaseChildActivity implements HistoryView, H
 
     @Override
     protected void initViews() {
-        taskHistoryRv = findViewById(R.id.rvTaskHistory);
         titleTv = findViewById(R.id.tvTaskHistoryTitle);
+
+        taskHistoryRv = findViewById(R.id.rvTaskHistory);
+        taskHistoryRv.setLayoutManager(new LinearLayoutManager(this));
     }
 
     @Override
@@ -70,12 +72,13 @@ public class HistoryActivity extends BaseChildActivity implements HistoryView, H
             return;
         }
 
-        HistoryTaskViewAdapter taskViewAdapter = new HistoryTaskViewAdapter(this, tasks);
-        taskViewAdapter.setClickListener(this);
-        taskHistoryRv.setAdapter(taskViewAdapter);
+        HistoryTaskViewAdapter historyTaskViewAdapter = new HistoryTaskViewAdapter(this, tasks);
+        historyTaskViewAdapter.setClickListener(this);
+        taskHistoryRv.setAdapter(historyTaskViewAdapter);
     }
 
     @Override
     public void onItemClick(View view, TaskModel taskModel) {
+
     }
 }
