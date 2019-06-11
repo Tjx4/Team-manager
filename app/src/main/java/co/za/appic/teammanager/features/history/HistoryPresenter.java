@@ -49,7 +49,7 @@ public class HistoryPresenter extends BaseAsyncPresenter {
                     }
                 }
 
-                historyView.showHistory(tasksWorkedOn);
+                historyView.showHistoryForCurrentEmployee(tasksWorkedOn, employeeType);
             }
 
             @Override

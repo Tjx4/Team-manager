@@ -66,12 +66,14 @@ public class HistoryActivity extends BaseChildActivity implements HistoryView, H
     }
 
     @Override
-    public void showHistory(List<TaskModel> tasks) {
+    public void showHistoryForCurrentEmployee(List<TaskModel> tasks, EmployeeType employeeType) {
         if(tasks == null || tasks.size() < 1){
             titleTv.setText(getResources().getString(R.string.no_history_message));
             return;
         }
 
+        String titleMessage = (employeeType == EmployeeType.supervisor)? getResources().getString(R.string.supervisor_history_message) : getResources().getString(R.string.worker_history_message) ;
+        titleTv.setText(titleMessage);
         HistoryTaskViewAdapter historyTaskViewAdapter = new HistoryTaskViewAdapter(this, tasks);
         historyTaskViewAdapter.setClickListener(this);
         taskHistoryRv.setAdapter(historyTaskViewAdapter);

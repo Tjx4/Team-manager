@@ -122,6 +122,7 @@
     <string name="error_title">Error</string>
     <string name="forgot_password_error_message">The email you entered does not exist</string>
     <string name="reseting_password">Reseting password...</string>
-    <string name="this_is_your_work_history">This is your work history</string>
+    <string name="worker_history_message">This is your work history</string>
+    <string name="supervisor_history_message">This are the tasks you created</string>
     <string name="no_history_message">Nothing in your history</string>
 </resources>

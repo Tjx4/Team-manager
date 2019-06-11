@@ -10,8 +10,7 @@
             style="@style/mediumDarkLabel"
             android:layout_alignParentTop="true"
             android:layout_gravity="center"
-            android:layout_margin="@dimen/medium_view_padding"
-            android:text="@string/this_is_your_work_history"/>
+            android:layout_margin="@dimen/medium_view_padding"/>
 
         <android.support.v7.widget.RecyclerView
             android:layout_below="@+id/tvTaskHistoryTitle"
