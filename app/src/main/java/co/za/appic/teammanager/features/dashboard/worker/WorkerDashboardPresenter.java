@@ -10,9 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 import co.za.appic.teammanager.R;
 import co.za.appic.teammanager.constants.Constants;
-import co.za.appic.teammanager.enums.PriorityLevel;
 import co.za.appic.teammanager.enums.TaskStatus;
 import co.za.appic.teammanager.features.dashboard.shared.SharedDashboardPresenter;
+import co.za.appic.teammanager.helpers.DateTimeHelper;
 import co.za.appic.teammanager.models.TaskModel;
 import co.za.appic.teammanager.models.WorkerModel;
 
@@ -56,35 +56,9 @@ public class WorkerDashboardPresenter extends SharedDashboardPresenter {
                 for (DataSnapshot chatSnapshot: dataSnapshot.getChildren()) {
 
                     try{
-                        TaskModel currentTask = new TaskModel();
+                        TaskModel currentTask = getTaskFromDataSnapsho(chatSnapshot);
 
-                        String id =  chatSnapshot.getKey();
-                        currentTask.setId(id);
-
-                        String description = chatSnapshot.child(Constants.DB_TASK_DESCRIPTION).getValue().toString();
-                        currentTask.setDescription(description);
-
-                        String worker = chatSnapshot.child(Constants.DB_WORKER).getValue().toString();
-                        currentTask.setWorker(worker);
-
-                        String supervisor = chatSnapshot.child(Constants.DB_SUPERVISOR).getValue().toString();
-                        currentTask.setSupervisor(supervisor);
-
-                        int priorityId = Integer.parseInt(chatSnapshot.child(Constants.DB_TASK_PRIORITY).getValue().toString());
-                        PriorityLevel priority = PriorityLevel.values()[--priorityId];
-                        currentTask.setPriority(priority);
-
-                        String dueDate = chatSnapshot.child(Constants.DB_TASK_DUE_DATE).getValue().toString();
-                        currentTask.setDueDateTime(dueDate);
-
-                        String creationDate = chatSnapshot.child(Constants.DB_TASK_CREATION_DATE).getValue().toString();
-                        currentTask.setCreationDateTime(creationDate);
-
-                        int taskStatusId = Integer.parseInt(chatSnapshot.child(Constants.DB_TASK_STATUS).getValue().toString());
-                        TaskStatus taskStatus = TaskStatus.values()[--taskStatusId];
-                        currentTask.setTaskStatus(taskStatus);
-
-                        switch (taskStatus){
+                        switch (currentTask.getTaskStatus()){
                             case pending:
                                 pendingTasks.add(currentTask);
                                 break;
@@ -184,6 +158,7 @@ public class WorkerDashboardPresenter extends SharedDashboardPresenter {
 
     public void completeTask() {
         activeTask.setTaskStatus(TaskStatus.completed);
+        activeTask.setCompletionDateTime(DateTimeHelper.convertDashesToSlashes(DateTimeHelper.getYearMonthDayAndTime()));
         updateTask();
         activeTask = null;
     }
@@ -194,6 +169,11 @@ public class WorkerDashboardPresenter extends SharedDashboardPresenter {
         DatabaseReference taskRef = tasksRef.child(newTaskId);
         DatabaseReference taskStatusRef = taskRef.child(Constants.DB_TASK_STATUS);
         taskStatusRef.setValue(activeTask.getTaskStatus().getId());
+
+        if(activeTask.getTaskStatus() == TaskStatus.completed){
+            DatabaseReference taskCompleteDateRef = taskRef.child(Constants.DB_TASK_COMPLETION_DATE);
+            taskCompleteDateRef.setValue(activeTask.getCompletionDateTime());
+        }
     }
 
     public TaskModel getActiveTask() {

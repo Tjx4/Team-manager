@@ -9,10 +9,13 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import javax.inject.Inject;
 import co.za.appic.teammanager.R;
+import co.za.appic.teammanager.constants.Constants;
 import co.za.appic.teammanager.di.components.AppComponent;
 import co.za.appic.teammanager.di.components.DaggerSupervisorDashboardComponent;
 import co.za.appic.teammanager.di.modules.SupervisorDashboardModule;
+import co.za.appic.teammanager.enums.EmployeeType;
 import co.za.appic.teammanager.features.dashboard.shared.SharedDashboardActivity;
+import co.za.appic.teammanager.features.history.HistoryActivity;
 import co.za.appic.teammanager.features.signin.SignInActivity;
 import co.za.appic.teammanager.features.dashboard.supervisor.fragments.NewTaskFragment;
 import co.za.appic.teammanager.helpers.AnimationHelper;
@@ -42,11 +45,12 @@ public class SupervisorDashboardActivity extends SharedDashboardActivity impleme
         int itemId = item.getItemId();
 
         switch (itemId){
-            case R.id.action_signout:
-                getPresenter().signOutFromFirebase();
-                NavigationHelper.goToActivityWithNoPayload(this , SignInActivity.class,  TransitionHelper.slideOutActivity());
-                finish();
-                break;
+
+        case R.id.action_history:
+            Bundle payload = new Bundle();
+            payload.putInt(Constants.EMPLOYEE_EXTRA_ID, EmployeeType.worker.getUserId());
+            NavigationHelper.goToActivityWithPayload(this , HistoryActivity.class, payload, TransitionHelper.slideInActivity());
+            break;
 
         }
         return super.handleSlideMenuItemClicked(item);

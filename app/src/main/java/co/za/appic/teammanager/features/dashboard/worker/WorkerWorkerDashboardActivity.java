@@ -18,11 +18,15 @@ import java.util.List;
 import javax.inject.Inject;
 import co.za.appic.teammanager.R;
 import co.za.appic.teammanager.adapters.TaskViewAdapter;
+import co.za.appic.teammanager.constants.Constants;
 import co.za.appic.teammanager.di.components.AppComponent;
 import co.za.appic.teammanager.di.components.DaggerWorkerDashboardComponent;
 import co.za.appic.teammanager.di.modules.WorkerDashboardModule;
+import co.za.appic.teammanager.enums.EmployeeType;
 import co.za.appic.teammanager.enums.TaskStatus;
 import co.za.appic.teammanager.features.dashboard.shared.SharedDashboardActivity;
+import co.za.appic.teammanager.features.history.HistoryActivity;
+import co.za.appic.teammanager.features.profile.ProfileActivity;
 import co.za.appic.teammanager.features.signin.SignInActivity;
 import co.za.appic.teammanager.helpers.AnimationHelper;
 import co.za.appic.teammanager.helpers.NavigationHelper;
@@ -78,21 +82,6 @@ public class WorkerWorkerDashboardActivity extends SharedDashboardActivity imple
     protected void onDestroy() {
         super.onDestroy();
         showPushnotifiaction = true;
-    }
-
-    @Override
-    protected boolean handleSlideMenuItemClicked(MenuItem item) {
-        super.handleSlideMenuItemClicked(item);
-        int itemId = item.getItemId();
-
-        switch (itemId){
-            case R.id.action_signout:
-                getPresenter().signOutFromFirebase();
-                NavigationHelper.goToActivityWithNoPayload(this , SignInActivity.class,  TransitionHelper.slideOutActivity());
-                finish();
-                break;
-        }
-        return true;
     }
 
     @Override
@@ -358,4 +347,22 @@ public class WorkerWorkerDashboardActivity extends SharedDashboardActivity imple
             super.onBackPressed();
         }
     }
+
+    @Override
+    protected boolean handleSlideMenuItemClicked(MenuItem item) {
+        super.handleSlideMenuItemClicked(item);
+        int itemId = item.getItemId();
+
+        switch (itemId){
+
+            case R.id.action_history:
+                Bundle payload = new Bundle();
+                payload.putInt(Constants.EMPLOYEE_EXTRA_ID, EmployeeType.worker.getUserId());
+                NavigationHelper.goToActivityWithPayload(this , HistoryActivity.class, payload, TransitionHelper.slideInActivity());
+                break;
+        }
+        return true;
+    }
+
+
 }

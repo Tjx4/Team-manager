@@ -13,9 +13,9 @@ import co.za.appic.teammanager.models.TaskModel;
 
 public class TaskViewAdapter extends RecyclerView.Adapter<TaskViewAdapter.ViewHolder> {
 
-    private List<TaskModel> tasks;
-    private LayoutInflater mInflater;
-    private TaskViewAdapter.ItemClickListener mClickListener;
+    protected List<TaskModel> tasks;
+    protected LayoutInflater mInflater;
+    protected TaskViewAdapter.ItemClickListener mClickListener;
 
     public TaskViewAdapter(Context context, List<TaskModel> tasks) {
         this.mInflater = LayoutInflater.from(context);

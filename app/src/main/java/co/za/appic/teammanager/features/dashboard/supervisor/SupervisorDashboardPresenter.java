@@ -72,7 +72,7 @@ public class SupervisorDashboardPresenter extends SharedDashboardPresenter {
     public void createTask(final TaskModel taskModel) {
         taskModel.setTaskStatus(TaskStatus.pending);
         taskModel.setSupervisor(supervisorModel.getFbId());
-        taskModel.setCreationDateTime(DateTimeHelper.getYearMonthDayAndTime());
+        taskModel.setCreationDateTime(DateTimeHelper.convertDashesToSlashes(DateTimeHelper.getYearMonthDayAndTime()));
 
         DatabaseReference tasksRef = FirebaseDatabase.getInstance().getReference().child(Constants.DB_TASKS);
         String newTaskId = StringHelper.getUniqueString();

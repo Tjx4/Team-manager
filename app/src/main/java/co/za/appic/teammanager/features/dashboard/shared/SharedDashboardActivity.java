@@ -1,11 +1,14 @@
 package co.za.appic.teammanager.features.dashboard.shared;
 
+import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 import co.za.appic.teammanager.R;
 import co.za.appic.teammanager.base.activities.BaseSlideMenuActivity;
+import co.za.appic.teammanager.constants.Constants;
 import co.za.appic.teammanager.features.history.HistoryActivity;
 import co.za.appic.teammanager.features.profile.ProfileActivity;
+import co.za.appic.teammanager.features.signin.SignInActivity;
 import co.za.appic.teammanager.helpers.NavigationHelper;
 import co.za.appic.teammanager.helpers.TransitionHelper;
 
@@ -35,13 +38,17 @@ public abstract class SharedDashboardActivity extends BaseSlideMenuActivity {
                 NavigationHelper.goToActivityWithNoPayload(this , ProfileActivity.class,  TransitionHelper.slideInActivity());
                 break;
 
-            case R.id.action_history:
-                NavigationHelper.goToActivityWithNoPayload(this , HistoryActivity.class,  TransitionHelper.slideInActivity());
+            case R.id.action_signout:
+                getPresenter().signOutFromFirebase();
+                NavigationHelper.goToActivityWithNoPayload(this , SignInActivity.class,  TransitionHelper.slideOutActivity());
+                finish();
                 break;
         }
 
         return super.handleSlideMenuItemClicked(item);
     }
+
+    protected abstract SharedDashboardPresenter getPresenter();
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {

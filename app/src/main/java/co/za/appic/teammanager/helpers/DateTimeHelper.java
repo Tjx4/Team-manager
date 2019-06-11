@@ -63,5 +63,8 @@ public class DateTimeHelper {
         return StringDate;
     }
 
+    public static String convertDashesToSlashes(String dateTime) {
+        return dateTime.replace("-", "/");
+    }
 
 }

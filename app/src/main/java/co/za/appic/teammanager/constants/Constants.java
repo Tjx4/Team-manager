@@ -7,6 +7,7 @@ public class Constants {
     public static final String TOAST_ERROR = "toast_error";
     public static final String LAYOUT = "layout";
     public static final String PAYLOAD_KEY = "payload";
+    public static final String EMPLOYEE_EXTRA_ID = "employee_extra_id";
     public static final String ACTIVITY_TRANSITION = "acticity_transition";
     public static final String TYPE = "type";
     //DB fields

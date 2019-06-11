@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="0dp">
+
+    <android.support.v7.widget.CardView
+        android:layout_margin="2dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="15dp">
+
+            <RelativeLayout
+                android:id="@+id/detailsContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:id="@+id/imgUserProfpic"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/ic_tasks_dark"/>
+
+                <TextView
+                    android:id="@+id/txtTaskDescription"
+                    style="@style/mediumDarkLabel"
+                    android:layout_toRightOf="@+id/imgUserProfpic"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:text="Task name"/>
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/detailsContainer"
+                android:orientation="vertical"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true">
+                <TextView
+                    android:id="@+id/txtTaskStartDate"
+                    style="@style/smallDarkLabel"
+                    android:gravity="right"
+                    android:text="created on 0/00/0000 00:00"/>
+
+                <TextView
+                    android:id="@+id/txtTaskCompleteDate"
+                    style="@style/smallDarkLabel"
+                    android:gravity="right"
+                    android:text="Completed on 0/00/0000 00:00"/>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
+</FrameLayout>
