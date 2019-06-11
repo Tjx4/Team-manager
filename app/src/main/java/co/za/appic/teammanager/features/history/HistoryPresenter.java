@@ -40,7 +40,7 @@ public class HistoryPresenter extends BaseAsyncPresenter {
                         TaskModel currentTask = getTaskFromDataSnapsho(chatSnapshot);
 
                         if(employeeType == EmployeeType.worker && currentTask.getTaskStatus() != TaskStatus.completed)
-                            return;
+                            continue;
 
                         tasksWorkedOn.add(currentTask);
                     }

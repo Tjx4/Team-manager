@@ -32,11 +32,12 @@ public class HistoryTaskViewAdapter extends RecyclerView.Adapter<HistoryTaskView
         String description = tasks.get(position).getDescription();
         holder.decriptionTv.setText(description);
 
-        String ceatedDate = "Created on "+tasks.get(position).getCreationDateTime();
-        holder.createdDateTv.setText(ceatedDate);
+        String ceatedDateMessage = "Created on "+tasks.get(position).getCreationDateTime();
+        holder.createdDateTv.setText(ceatedDateMessage);
 
-        String completeDate = "Completed on "+tasks.get(position).getCompletionDateTime();
-        holder.createdDateTv.setText(completeDate);
+        String copletionDateTime = tasks.get(position).getCompletionDateTime();
+        String copletionMessage = (copletionDateTime.isEmpty())? "Task still pending" : "Completed on "+copletionDateTime;
+        holder.completeDateTv.setText(copletionMessage);
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
