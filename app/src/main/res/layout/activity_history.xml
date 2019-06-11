@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".features.history.HistoryActivity">
         <TextView
-            android:id="@+id/tvTasksTitle"
+            android:id="@+id/tvTaskHistoryTitle"
             style="@style/mediumDarkLabel"
             android:layout_alignParentTop="true"
             android:layout_gravity="center"
@@ -14,7 +14,7 @@
             android:text="@string/this_is_your_work_history"/>
 
         <android.support.v7.widget.RecyclerView
-            android:layout_below="@+id/tvTasksTitle"
+            android:layout_below="@+id/tvTaskHistoryTitle"
             android:id="@+id/rvTaskHistory"
             android:layout_alignParentBottom="true"
             android:layout_width="match_parent"

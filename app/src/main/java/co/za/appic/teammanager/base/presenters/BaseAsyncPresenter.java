@@ -95,6 +95,9 @@ public abstract class BaseAsyncPresenter extends BasePresenter {
         PriorityLevel priority = PriorityLevel.values()[--priorityId];
         currentTask.setPriority(priority);
 
+        String creationDate = chatSnapshot.child(Constants.DB_TASK_CREATION_DATE).getValue().toString();
+        currentTask.setCreationDateTime(creationDate);
+
         String dueDate = chatSnapshot.child(Constants.DB_TASK_DUE_DATE).getValue().toString();
         currentTask.setDueDateTime(dueDate);
 

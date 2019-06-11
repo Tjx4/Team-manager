@@ -123,4 +123,5 @@
     <string name="forgot_password_error_message">The email you entered does not exist</string>
     <string name="reseting_password">Reseting password...</string>
     <string name="this_is_your_work_history">This is your work history</string>
+    <string name="no_history_message">Nothing in your history</string>
 </resources>

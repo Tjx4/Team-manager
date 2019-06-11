@@ -48,7 +48,7 @@ public class SupervisorDashboardActivity extends SharedDashboardActivity impleme
 
         case R.id.action_history:
             Bundle payload = new Bundle();
-            payload.putInt(Constants.EMPLOYEE_EXTRA_ID, EmployeeType.worker.getUserId());
+            payload.putInt(Constants.EMPLOYEE_EXTRA_ID, EmployeeType.supervisor.getUserId());
             NavigationHelper.goToActivityWithPayload(this , HistoryActivity.class, payload, TransitionHelper.slideInActivity());
             break;
 

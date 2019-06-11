@@ -1,48 +1,72 @@
 package co.za.appic.teammanager.adapters;
 
 import android.content.Context;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import java.util.List;
 import co.za.appic.teammanager.R;
+import co.za.appic.teammanager.enums.TaskStatus;
 import co.za.appic.teammanager.models.TaskModel;
 
-public class HistoryTaskViewAdapter extends TaskViewAdapter {
+public class HistoryTaskViewAdapter extends RecyclerView.Adapter<HistoryTaskViewAdapter.ViewHolder>  {
+
+    protected List<TaskModel> tasks;
+    protected LayoutInflater mInflater;
+    protected TaskViewAdapter.ItemClickListener mClickListener;
 
     public HistoryTaskViewAdapter(Context context, List<TaskModel> tasks) {
-        super(context, tasks);
+        this.mInflater = LayoutInflater.from(context);
+        this.tasks = tasks;
     }
-
     @Override
-    public TaskViewAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public HistoryTaskViewAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = mInflater.inflate(R.layout.history_task_layout, parent, false);
-        return new TaskViewAdapter.ViewHolder(view);
+        return new HistoryTaskViewAdapter.ViewHolder(view);
     }
 
-    public class HistoryViewHolder extends TaskViewAdapter.ViewHolder implements View.OnClickListener {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        TextView decriptionTv;
         TextView createdDateTv;
         TextView completeDateTv;
 
-        HistoryViewHolder(View itemView) {
+        ViewHolder(View itemView) {
             super(itemView);
+            decriptionTv = itemView.findViewById(R.id.txtTaskDescription);
             createdDateTv = itemView.findViewById(R.id.txtTaskStartDate);
             completeDateTv = itemView.findViewById(R.id.txtTaskCompleteDate);
             itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) {
+            TaskModel taskModel = tasks.get(getAdapterPosition());
+
+            if(taskModel.getTaskStatus() == TaskStatus.completed)
+                return;
+
+            if (mClickListener != null)
+                mClickListener.onItemClick(view, taskModel);
         }
     }
 
     @Override
     public void onBindViewHolder(HistoryTaskViewAdapter.ViewHolder holder, int position) {
-        HistoryViewHolder historyViewHolder = (HistoryViewHolder) holder;
         String description = tasks.get(position).getDescription();
         holder.decriptionTv.setText(description);
 
-        String ceatedDate = "Started on "+tasks.get(position).getCreationDateTime();
-        historyViewHolder.createdDateTv.setText(ceatedDate);
+        String ceatedDate = "Created on "+tasks.get(position).getCreationDateTime();
+        holder.createdDateTv.setText(ceatedDate);
 
         String completeDate = "Completed on "+tasks.get(position).getCompletionDateTime();
-        historyViewHolder.createdDateTv.setText(completeDate);
+        holder.createdDateTv.setText(completeDate);
+    }
+
+    @Override
+    public int getItemCount() {
+        return  tasks.size();
     }
 
 }

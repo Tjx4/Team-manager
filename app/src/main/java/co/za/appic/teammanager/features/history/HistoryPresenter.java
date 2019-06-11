@@ -24,7 +24,7 @@ public class HistoryPresenter extends BaseAsyncPresenter {
 
     public void syncTaskHistory(EmployeeType employeeType){
         String employeeId = firebaseAuth.getUid();
-        String employee = (employeeType == EmployeeType.supervisor)? Constants.DB_WORKER : Constants.DB_SUPERVISOR;
+        String employee = (employeeType == EmployeeType.worker)? Constants.DB_WORKER : Constants.DB_SUPERVISOR;
         DatabaseReference tasksRef = FirebaseDatabase.getInstance().getReference().child(Constants.DB_TASKS);
         Query query = tasksRef.orderByChild(employee).equalTo(employeeId);
         query.keepSynced(true);
