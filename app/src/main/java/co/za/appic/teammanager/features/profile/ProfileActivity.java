@@ -71,7 +71,6 @@ public class ProfileActivity extends BaseChildActivity implements ProfileView {
         collapsingToolbarLayout.setExpandedTitleColor(getResources().getColor(R.color.lightestText));
         collapsingToolbarLayout.setContentScrimColor(getResources().getColor(R.color.colorPrimary));
         collapsingToolbarLayout.setStatusBarScrimColor(getResources().getColor(R.color.colorPrimaryDark));
-        collapsingToolbarLayout.setTitle(getResources().getString(R.string.profile));
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

@@ -25,8 +25,8 @@
         app:expandedTitleMarginStart="20dp"
         app:expandedTitleMarginEnd="64dp"
         app:expandedTitleMarginBottom="60dp"
-        app:collapsedTitleTextAppearance="@style/CollapsedAppBarLarge"
-        app:title="Profile"
+        app:expandedTitleTextAppearance="@style/CollapsedAppBarLarge"
+        app:title="@string/profile"
         android:fitsSystemWindows="true">
 
         <ImageView
