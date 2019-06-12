@@ -125,4 +125,5 @@
     <string name="worker_history_message">This is your work history</string>
     <string name="supervisor_history_message">These are the tasks you created</string>
     <string name="no_history_message">Nothing in your history</string>
+    <string name="click_the_edit_icon_if_you_with_to_make_changes">Click the edit icon if you with to make changes</string>
 </resources>
