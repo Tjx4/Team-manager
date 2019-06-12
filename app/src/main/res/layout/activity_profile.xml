@@ -1,219 +1,277 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:animateLayoutChanges="true"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".features.profile.ProfileActivity">
+    tools:context=".features.profile.ProfileActivity"
+    android:fitsSystemWindows="true">
 
-    <ScrollView
+<android.support.design.widget.AppBarLayout
+    android:id="@+id/app_bar_layout"
+    android:layout_width="match_parent"
+    android:layout_height="250dp"
+    android:padding="0dp"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+    android:fitsSystemWindows="true">
+
+    <android.support.design.widget.CollapsingToolbarLayout
+        android:id="@+id/collapsing_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        app:layout_scrollFlags="scroll|exitUntilCollapsed"
+        app:contentScrim="?attr/colorPrimary"
+        app:expandedTitleMarginStart="20dp"
+        app:expandedTitleMarginEnd="64dp"
+        app:expandedTitleMarginBottom="60dp"
+        app:collapsedTitleTextAppearance="@style/CollapsedAppBarLarge"
+        app:title="Profile"
+        android:fitsSystemWindows="true">
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:fitsSystemWindows="true"
+            app:layout_collapseMode="parallax"
+            android:layout_margin="0dp"
+            android:src="@drawable/profile_pic_bg"/>
+
+        <TextView
+            style="@style/mediumLightLabel"
+            android:layout_marginRight="64dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="30dp"
+            app:layout_collapseMode="parallax"
+            android:layout_gravity="bottom"
+            android:text="Iran Lorem Ipsum Iran Lorem Ipsum Iran "/>
+
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            app:layout_collapseMode="pin" />
+
+    </android.support.design.widget.CollapsingToolbarLayout>
+
+</android.support.design.widget.AppBarLayout>
+
+<android.support.v4.widget.NestedScrollView
+    android:id="@+id/scroll"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipToPadding="false"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:orientation="vertical"
+            android:id="@+id/llLoaderContainer"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="20dp">
+
+            <TextView
+                style="@style/mediumDarkLabel"
+                android:gravity="center"
+                android:layout_marginBottom="2dp"
+                android:text="@string/loading_profile"/>
+
+            <com.wang.avi.AVLoadingIndicatorView
+                android:id="@+id/progressBarLoading"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:indicatorName="allScaleMultipleIndicator"
+                app:indicatorColor="@color/darkText"/>
+
+        </LinearLayout>
+
+        <GridLayout
+            android:visibility="gone"
+            android:id="@+id/glEmployeeDetails"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:columnCount="4"
+            android:rowCount="7"
+            android:useDefaultMargins="true"
+            android:layout_gravity="center_horizontal">
 
             <LinearLayout
-                android:orientation="vertical"
-                android:id="@+id/llLoaderContainer"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="20dp">
+                style="@style/newPicContainer"
+                android:id="@+id/llUploadPic"
+                android:layout_column="0"
+                android:layout_row="0"
+                android:tag="e"
+                android:layout_gravity="center|right"
+                android:onClick="onUploadPictureClicked">
 
                 <TextView
-                    style="@style/mediumDarkLabel"
-                    android:gravity="center"
-                    android:layout_marginBottom="2dp"
-                    android:text="@string/loading_profile"/>
+                    style="@style/profileUpdateLabels"
+                    android:text="@string/upload_picture" />
 
-                <com.wang.avi.AVLoadingIndicatorView
-                    android:id="@+id/progressBarLoading"
-                    android:layout_gravity="center"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:indicatorName="allScaleMultipleIndicator"
-                    app:indicatorColor="@color/darkText"/>
+                <com.makeramen.roundedimageview.RoundedImageView
+                    style="@style/propicUpdateIcons"
+                    app:riv_corner_radius="15dp"
+                    android:src="@drawable/ic_upload_pic_dark"/>
 
             </LinearLayout>
 
-            <GridLayout
-                android:visibility="gone"
-                android:id="@+id/glEmployeeDetails"
+            <co.za.appic.teammanager.helpers.RoundLoadingImageView
+                android:id="@+id/rliProfilePic"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                app:corner_radius="75"
+                app:loaderType="BallPulseIndicator"
+                app:loaderColor="@color/lightestText"
+                app:loaderWidth="50"
+                app:defImage="@drawable/ic_profpic_dark"
+                android:layout_gravity="center"
+                android:layout_column="1"
+                android:layout_row="0"
+                android:layout_columnSpan="2" />
+
+            <LinearLayout
+                style="@style/newPicContainer"
+                android:id="@+id/llTakePic"
+                android:layout_row="0"
+                android:layout_column="3"
+                android:layout_gravity="center|left"
+                android:onClick="onTakePictureClicked"
+                android:tag="e">
+
+                <TextView
+                    style="@style/profileUpdateLabels"
+                    android:text="@string/take_picture" />
+
+                <com.makeramen.roundedimageview.RoundedImageView
+                    style="@style/propicUpdateIcons"
+                    android:src="@drawable/ic_take_pic_dark"
+                    app:riv_corner_radius="15dp" />
+
+            </LinearLayout>
+
+            <TextView
+                style="@style/profileLabels"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:columnCount="4"
-                android:rowCount="7"
-                android:useDefaultMargins="true"
-                android:layout_gravity="center_horizontal">
+                android:layout_column="1"
+                android:layout_row="1"
+                android:tag="v"
+                android:text="@string/employee_id"/>
 
-                <LinearLayout
-                    style="@style/newPicContainer"
-                    android:id="@+id/llUploadPic"
-                    android:layout_column="0"
-                    android:layout_row="0"
-                    android:tag="e"
-                    android:layout_gravity="center|right"
-                    android:onClick="onUploadPictureClicked">
+            <TextView
+                android:id="@+id/tvEmployeeId"
+                style="@style/mediumDarkLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="2"
+                android:layout_row="1"
+                android:tag="v"/>
 
-                    <TextView
-                        style="@style/profileUpdateLabels"
-                        android:text="@string/upload_picture" />
+            <TextView
+                style="@style/profileLabels"
+                android:layout_column="1"
+                android:layout_row="2"
+                android:text="@string/full_names"/>
 
-                    <com.makeramen.roundedimageview.RoundedImageView
-                        style="@style/propicUpdateIcons"
-                        app:riv_corner_radius="15dp"
-                        android:src="@drawable/ic_upload_pic_dark"/>
+            <TextView
+                android:id="@+id/tvFullNames"
+                style="@style/mediumDarkLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:tag="v"
+                android:layout_column="2"
+                android:layout_row="2"/>
 
-                </LinearLayout>
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="0"
+                android:layout_row="3"
+                android:layout_columnSpan="4"
+                android:visibility="gone"
+                android:layout_gravity="center"
+                android:layout_margin="0dp"
+                android:tag="e">
 
-                <co.za.appic.teammanager.helpers.RoundLoadingImageView
-                    android:id="@+id/rliProfilePic"
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
-                    app:corner_radius="75"
-                    app:loaderType="BallPulseIndicator"
-                    app:loaderColor="@color/lightestText"
-                    app:loaderWidth="50"
-                    app:defImage="@drawable/ic_profpic_dark"
-                    android:layout_gravity="center"
-                    android:layout_column="1"
-                    android:layout_row="0"
-                    android:layout_columnSpan="2" />
+                <EditText
+                    android:id="@+id/txtName"
+                    style="@style/profileEditText"
+                    android:hint="@string/enter_your_name"/>
 
-                <LinearLayout
-                    style="@style/newPicContainer"
-                    android:id="@+id/llTakePic"
-                    android:layout_row="0"
-                    android:layout_column="3"
-                    android:layout_gravity="center|left"
-                    android:onClick="onTakePictureClicked"
-                    android:tag="e">
+                <EditText
+                    android:id="@+id/txtSurname"
+                    style="@style/profileEditText"
+                    android:layout_marginTop="@dimen/small_view_margin"
+                    android:hint="@string/enter_your_surname"/>
 
-                    <TextView
-                        style="@style/profileUpdateLabels"
-                        android:text="@string/take_picture" />
+            </LinearLayout>
 
-                    <com.makeramen.roundedimageview.RoundedImageView
-                        style="@style/propicUpdateIcons"
-                        android:src="@drawable/ic_take_pic_dark"
-                        app:riv_corner_radius="15dp" />
+            <TextView
+                style="@style/profileLabels"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="1"
+                android:layout_row="4"
+                android:tag="v"
+                android:text="@string/employee_type"/>
 
-                </LinearLayout>
+            <TextView
+                android:id="@+id/tvEmployeeType"
+                style="@style/mediumDarkLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="2"
+                android:layout_row="4"
+                android:tag="v"
+                android:text="General worker"/>
 
-                <TextView
-                    style="@style/profileLabels"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_column="1"
-                    android:layout_row="1"
-                    android:tag="v"
-                    android:text="@string/employee_id"/>
+            <TextView
+                style="@style/profileLabels"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="1"
+                android:layout_row="5"
+                android:text="@string/gender"/>
 
-                <TextView
-                    android:id="@+id/tvEmployeeId"
-                    style="@style/mediumDarkLabel"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_column="2"
-                    android:layout_row="1"
-                    android:tag="v"/>
+            <TextView
+                android:id="@+id/tvGender"
+                style="@style/mediumDarkLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:tag="v"
+                android:layout_column="2"
+                android:layout_row="5"
+                android:text="Male"/>
 
-                <TextView
-                    style="@style/profileLabels"
-                    android:layout_column="1"
-                    android:layout_row="2"
-                    android:text="@string/full_names"/>
+            <co.za.appic.teammanager.customViews.GenderSelectorView
+                android:id="@+id/gsvGender"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="0"
+                android:layout_row="6"
+                android:layout_columnSpan="4"
+                android:layout_gravity="center"
+                android:visibility="gone"
+                android:tag="e"/>
 
-                <TextView
-                    android:id="@+id/tvFullNames"
-                    style="@style/mediumDarkLabel"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:tag="v"
-                    android:layout_column="2"
-                    android:layout_row="2"/>
+        </GridLayout>
 
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_column="0"
-                    android:layout_row="3"
-                    android:layout_columnSpan="4"
-                    android:visibility="gone"
-                    android:layout_gravity="center"
-                    android:layout_margin="0dp"
-                    android:tag="e">
+    </LinearLayout>
 
-                    <EditText
-                        android:id="@+id/txtName"
-                        style="@style/profileEditText"
-                        android:hint="@string/enter_your_name"/>
+</android.support.v4.widget.NestedScrollView>
 
-                    <EditText
-                        android:id="@+id/txtSurname"
-                        style="@style/profileEditText"
-                        android:layout_marginTop="@dimen/small_view_margin"
-                        android:hint="@string/enter_your_surname"/>
 
-                </LinearLayout>
-
-                <TextView
-                    style="@style/profileLabels"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_column="1"
-                    android:layout_row="4"
-                    android:tag="v"
-                    android:text="@string/employee_type"/>
-
-                <TextView
-                    android:id="@+id/tvEmployeeType"
-                    style="@style/mediumDarkLabel"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_column="2"
-                    android:layout_row="4"
-                    android:tag="v"
-                    android:text="General worker"/>
-
-                <TextView
-                    style="@style/profileLabels"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_column="1"
-                    android:layout_row="5"
-                    android:text="@string/gender"/>
-
-                <TextView
-                    android:id="@+id/tvGender"
-                    style="@style/mediumDarkLabel"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:tag="v"
-                    android:layout_column="2"
-                    android:layout_row="5"
-                    android:text="Male"/>
-
-                <co.za.appic.teammanager.customViews.GenderSelectorView
-                    android:id="@+id/gsvGender"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_column="0"
-                    android:layout_row="6"
-                    android:layout_columnSpan="4"
-                    android:layout_gravity="center"
-                    android:visibility="gone"
-                    android:tag="e"/>
-
-            </GridLayout>
-
-        </LinearLayout>
-    </ScrollView>
-
-</FrameLayout>
+</android.support.design.widget.CoordinatorLayout>

@@ -2,9 +2,13 @@ package co.za.appic.teammanager.features.profile;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.v7.graphics.Palette;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -35,6 +39,8 @@ public class ProfileActivity extends BaseChildActivity implements ProfileView {
     @Inject
     ProfilePresenter profilePresenter;
 
+    private CollapsingToolbarLayout collapsingToolbarLayout;
+    private Toolbar toolbar;
     private GridLayout employeeDetailsGl;
     private LinearLayout loaderContainerLl;
     private RoundLoadingImageView profilePicRli;
@@ -51,6 +57,7 @@ public class ProfileActivity extends BaseChildActivity implements ProfileView {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         getPresenter().syncUser();
 
         if(!PermissionsHelper.isWriteExternalStoragePermissionGranted(this)){
@@ -59,10 +66,27 @@ public class ProfileActivity extends BaseChildActivity implements ProfileView {
     }
 
     @Override
-    protected void setActionbarActivityDependencies() {
-        super.setActionbarActivityDependencies();
-        currentActionBar.setTitle(getResources().getString(R.string.profile));
+    protected void setActionbar(){
+        collapsingToolbarLayout = findViewById(R.id.collapsing_toolbar);
+        collapsingToolbarLayout.setExpandedTitleColor(getResources().getColor(R.color.lightestText));
+        collapsingToolbarLayout.setContentScrimColor(getResources().getColor(R.color.colorPrimary));
+        collapsingToolbarLayout.setStatusBarScrimColor(getResources().getColor(R.color.colorPrimaryDark));
+        collapsingToolbarLayout.setTitle(getResources().getString(R.string.profile));
+
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        toolbar.setNavigationIcon(android.support.v7.appcompat.R.drawable.abc_ic_ab_back_material);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
+
     }
+
+
 
     @Override
     protected void setBaseActivityDependencies() {
