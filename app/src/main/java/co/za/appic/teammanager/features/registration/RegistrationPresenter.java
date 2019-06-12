@@ -150,7 +150,7 @@ public class RegistrationPresenter extends BaseFirebaseAuthPresenter  {
     }
 
     private void setBasicUserDetails(UserModel user) {
-        String fbid = firebaseUser.getUid();
+        String fbid = firebaseAuth.getUid();
         user.setFbId(fbid);
         user.setEmployeeId(newUser.getEmployeeId());
         user.setProfilePic(Constants.DEF_STR_VAL);
