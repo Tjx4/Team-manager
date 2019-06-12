@@ -200,4 +200,15 @@
         <item name="android:textColor">@color/lightestText</item>
     </style>
 
+    <style name="airLineTextView" parent="largeDarkLabel">
+        <item name="android:textColor">@color/airLine_text_color</item>
+    </style>
+
+    <style name="flightInfContainer">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:layout_gravity">center_vertical</item>
+    </style>
+
 </resources>
