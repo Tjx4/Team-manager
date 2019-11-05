@@ -15,6 +15,7 @@
             android:layout_height="wrap_content"
             android:padding="15dp">
 
+
             <co.za.appic.teammanager.helpers.RoundLoadingImageView
                 android:id="@+id/imgProfpic"
                 android:layout_width="45dp"
